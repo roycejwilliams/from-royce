@@ -1,0 +1,247 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.svg-container {
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 1117px;
+}
+
+svg {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: -225px;
+}
+
+@media (max-width: 1024px) {
+  .svg-container {
+    height: 100vh;
+    width: 100vw;
+  }
+
+  svg {
+    min-width: 100vw; /* Ensures it fills the width */
+    min-height: 100vh; /* Ensures it fills the height */
+    width: 150vh;
+    height: 150vh;
+  }
+}
+
+@media (max-width: 768px) {
+  svg {
+    min-width: 100vw; /* Ensures it fills the width */
+    min-height: 100vh; /* Ensures it fills the height */
+    width: 150vh;
+    height: auto;
+  }
+}
+
+@media (max-width: 650px) {
+  svg {
+    min-width: 100vw; /* Ensures it fills the width */
+    min-height: 120vh; /* Ensures it fills the height */
+    width: 120vh;
+    height: auto; 
+    top: -100px !important; 
+  }
+}
+
+.menu {
+  position: absolute;
+  width: 0.5rem;
+  height: 0.5rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+::-webkit-scrollbar {
+  width: 10px; /* Adjust scrollbar width */
+}
+
+::-webkit-scrollbar-track {
+  opacity: 0;
+  background-color: transparent; /* Transparent track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Adjust thumb color and transparency */
+  border-radius: 5px; /* Rounded corners */
+  border: 2px solid transparent; /* Padding effect */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.0); /* Slightly darker on hover */
+}
+
+@media (max-width: 768px) {
+  svg {
+    top: 0;
+  }
+}
+
+:root {
+  --color-bg1: rgb(108, 0, 162);
+  --color-bg2: rgb(0, 17, 82);
+  --color1: 120, 110, 100;  /* Warm Gray */
+  --color2: 180, 160, 140;  /* Taupe */
+  --color3: 150, 120, 90;   /* Saddle Brown */
+  --color4: 90, 60, 50;     /* Deep Umber */
+  --color5: 220, 190, 150;  /* Sand Beige */
+  --color-interactive: 200, 110, 100	; /* Warm Coral */
+  --circle-size: 40%;
+  --blending: hard-light;
+}
+
+
+
+.gradient-bg {
+  height: 100%;
+  min-height: 100vh;
+  position: relative;
+  background: linear-gradient(180deg, #FFF6F6 0%, #312623 50%);
+  left: 0;
+}
+
+.gradient-bg-2 {
+  height: 100%;
+  min-height: 100vh;
+  position: relative;
+  background: linear-gradient(180deg, #F4E3D7 0%, #817366 70%);
+  left: 0;
+}
+
+.gradient-bg-3 {
+  height: 100%;
+  min-height: 100vh;
+  position: relative;
+  background: linear-gradient(180deg, #775253 0%, #A2AEBB 70%);
+  left: 0;
+}
+
+.gradient-container {
+  position: fixed;  /* Covers entire viewport */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  filter: url(#goo) blur(12px);
+}
+
+
+ .g1 {
+  position: absolute;
+  background: radial-gradient(circle at center, rgba(var(--color1), 0.8) 0, rgba(var(--color1), 0) 50%) no-repeat;
+  mix-blend-mode: var(--blending);
+  width: var(--circle-size);
+  height: var(--circle-size);
+  border-radius: 100%;
+  transform-origin: center center;
+}
+
+.g2 {
+  position: absolute;
+  background: radial-gradient(circle at center, rgba(var(--color2), 0.8) 0, rgba(var(--color2), 0) 80%) no-repeat;
+  mix-blend-mode: var(--blending);
+  width: var(--circle-size);
+  height: var(--circle-size);
+  transform-origin: calc(50% - 400px);
+  border-radius: 100%;
+
+  opacity: 1;
+}
+
+.g3 {
+  position: absolute;
+  background: radial-gradient(circle at center, rgba(var(--color3), 0.8) 0, rgba(var(--color3), 0) 50%) no-repeat;
+  mix-blend-mode: var(--blending);
+  width: var(--circle-size);
+  height: var(--circle-size);
+  border-radius: 100%;
+
+  transform-origin: calc(50% + 400px);
+  opacity: 1;
+}
+
+.g4 {
+  position: absolute;
+  background: radial-gradient(circle at center, rgba(var(--color4), 0.8) 0, rgba(var(--color4), 0) 50%) no-repeat;
+  mix-blend-mode: var(--blending);
+  width: var(--circle-size);
+  height: var(--circle-size);
+  border-radius: 100%;
+
+  transform-origin: calc(50% - 200px);
+  opacity: 0.7;
+}
+
+.g5 {
+  position: absolute;
+  background: radial-gradient(circle at center, rgba(var(--color5), 0.8) 0, rgba(var(--color5), 0) 50%) no-repeat;
+  mix-blend-mode: var(--blending);
+  width: calc(var(--circle-size) * 2);
+  height: calc(var(--circle-size) * 2);
+  border-radius: 100%;
+
+  transform-origin: calc(50% - 800px) calc(50% + 200px);
+  opacity: 1;
+} 
+
+
+.interactive {
+  position: absolute;
+  width: var(--circle-size);
+  height: var(--circle-size);
+  border-radius: 100%;
+  background: radial-gradient(circle at center, rgba(var(--color-interactive), 0.8) 0%, rgba(var(--color-interactive), 0) 50%) no-repeat;
+  mix-blend-mode: var(--blending);
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%); /* Ensures it centers around the mouse */
+  pointer-events: none;
+  opacity: 0.7;
+  z-index: -1;
+}
+
+.interactive-2 {
+  position: absolute;
+  width: var(--circle-size);
+  height: var(--circle-size);
+  border-radius: 100%;
+  background: radial-gradient(circle at center, rgba(244, 227, 215, 0.8) 0%, rgba(178, 158, 141, 0) 50%) no-repeat;
+  mix-blend-mode: var(--blending);
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%); /* Ensures it centers around the mouse */
+  pointer-events: none;
+  opacity: 0.7;
+  z-index: -10;
+}
+
+.interactive-3 {
+  position: absolute;
+  width: var(--circle-size);
+  height: var(--circle-size);
+  border-radius: 100%;
+  background: radial-gradient(circle at center, rgba(85, 85, 85, 0.8) 0%, rgba(200, 200, 200, 0) 50%) no-repeat;
+  mix-blend-mode: var(--blending);
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%); /* Ensures it centers around the mouse */
+  pointer-events: none;
+  opacity: 0.7;
+  z-index: -10;
+}
+
