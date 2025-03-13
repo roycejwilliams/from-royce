@@ -2,7 +2,6 @@ import React, { useRef, useState, useEffect } from "react";
 import {
   Send,
   Aperture,
-  ListMinus,
   CircleCheckBig,
   CircleSlash,
 } from "lucide-react";
@@ -114,7 +113,7 @@ const Draft: React.FC = () => {
       const response = await res.json();
       console.log("Success:", response);
       setSuccess(true);
-    } catch (error) {
+    } catch  {
       setError("Failed to send post. Please try again.");
     } finally {
       setLoading(false);

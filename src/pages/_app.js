@@ -2,7 +2,6 @@
 import "../styles/globals.css";
 import TransitionProvider from '../context/TransitionContext'
 import Transition from '../components/Transition';
-import { useEffect } from "react";
 import { AuthProvider } from "../context/AuthContext";
 
 

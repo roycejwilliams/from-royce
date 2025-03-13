@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useRef } from "react";
-import Nav from "./nav";
 import gsap from "gsap";
 import ScrambleTextPlugin from "gsap/ScrambleTextPlugin";
 

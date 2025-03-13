@@ -1,14 +1,12 @@
 "use client";
 import Image from "next/image";
 
-import { useEffect, useState, useLayoutEffect, useRef } from "react";
+import { useEffect,  useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import Link from "next/link";
-import router from "next/navigation";
 
 const Splash = () => {
   const svgRef = useRef<SVGSVGElement | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
 
   //Drawout Path
   useLayoutEffect(() => {
@@ -26,7 +24,6 @@ const Splash = () => {
         strokeDashoffset: 0,
         duration: 4.5,
         ease: "power2.out",
-        onComplete: () => setIsLoading(false),
       });
     }
   }, []);

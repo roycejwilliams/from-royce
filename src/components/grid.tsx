@@ -271,7 +271,7 @@ const Grid = () => {
         >
           <div className="via-[#FF5C00]/50 bg-gradient-to-b from-white/20 -z-10  blur-lg w-full h-full absolute"></div>
           <h2 className="uppercase text-white  p-4">
-            <span className="font-cylburn text-4xl">L</span>et's{" "}
+            <span className="font-cylburn text-4xl">L</span>et&apos;s{" "}
             <span className="font-cylburn text-4xl">W</span>ork
           </h2>
           <button

@@ -1,4 +1,4 @@
-import React, { useState, useCallback, ReactNode } from "react";
+import React, {  useCallback, ReactNode } from "react";
 import { useDropzone } from "react-dropzone";
 
 interface FileUploadProps {
@@ -13,14 +13,12 @@ interface FileExtended extends File {
 
 const Upload: React.FC<FileUploadProps> = ({ onFilesSelected, children }) => {
   // Ensure selectedFiles is an array, since onFilesSelected expects FileExtended[]
-  const [selectedFiles, setSelectedFiles] = useState<FileExtended[]>([]);
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
       if (acceptedFiles.length > 0) {
         const file = acceptedFiles[0] as FileExtended;
         file.url = URL.createObjectURL(file);
-        setSelectedFiles([file]);
         onFilesSelected([file]);
       }
     },

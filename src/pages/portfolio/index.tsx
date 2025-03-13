@@ -1,7 +1,5 @@
-"use client";
 import Intro from "../../components/intro";
-import React, { useEffect, useRef, useState } from "react";
-import Idea from "../../components/idea";
+import React, { useEffect, useRef } from "react";
 import Grid from "../../components/grid";
 import Photos from "../../components/photoTransition";
 import Work from "../../components/work";

@@ -1,6 +1,5 @@
 "use client";
 import React, { useContext, useState } from "react";
-import { useRouter } from "next/router";
 import { auth } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import Draft from "./draft";
@@ -19,13 +18,20 @@ function SignIn() {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-    } catch (error: any) {
-      setError(error.message);
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An unexpected error occurred.");
+      }
     }
   };
 
   return (
     <section className="min-h-[75vh] w-full flex justify-center items-center">
+      {error && (
+  <p className="text-xs text-red-500 text-center mt-2">{error}</p>
+)}
       {user ? (
         <Draft />
       ) : (

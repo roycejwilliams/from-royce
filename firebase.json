@@ -21,10 +21,12 @@
       "**/node_modules/**"
     ],
     "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
+      { "source": "/", "destination": "/index.html" },
+      { "source": "/post", "destination": "/post.html" },
+      { "source": "/blog", "destination": "/blog.html" },
+      { "source": "/portfolio", "destination": "/portfolio.html" },
+      { "source": "/page", "destination": "/page.html" },
+      { "source": "**", "destination": "/index.html" }
     ]
   }
 }

@@ -1,4 +1,3 @@
-"use client";
 import { useEffect, useRef } from "react";
 import Nav from "../../components/nav";
 import Post from "../../components/post";

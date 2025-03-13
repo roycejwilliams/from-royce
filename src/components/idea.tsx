@@ -1,6 +1,5 @@
 import React from "react";
-import Image from "next/image";
-import { useEffect, useState, useRef, useLayoutEffect } from "react";
+import { useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
