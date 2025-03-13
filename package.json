@@ -5,7 +5,7 @@
   "scripts": {
     "queries": "node scripts/queries.js",
     "dev": "next dev --turbopack",
-    "build": "next build && next export",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },

@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 
-import { useEffect,  useLayoutEffect, useRef } from "react";
+import { useEffect,  useRef } from "react";
 import gsap from "gsap";
 import Link from "next/link";
 
@@ -9,7 +9,7 @@ const Splash = () => {
   const svgRef = useRef<SVGSVGElement | null>(null);
 
   //Drawout Path
-  useLayoutEffect(() => {
+  useEffect(() => {
     const svg = svgRef.current;
     const path = svg?.querySelector("path");
 

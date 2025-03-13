@@ -1,5 +1,5 @@
 import React from "react";
-import { useRef, useLayoutEffect } from "react";
+import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
@@ -16,7 +16,7 @@ function Idea() {
   const svgContainer = useRef(null);
   const svgRef = useRef<SVGSVGElement | null>(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!svgContainer.current || !svgRef.current) return;
 
     const ctx = gsap.context(() => {

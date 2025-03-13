@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import {  useState, useRef, useLayoutEffect } from "react";
+import {  useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
@@ -17,7 +17,7 @@ const Photos = () => {
     "/images/photo3.jpg",
   ];
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const ctx = gsap.context(() => {
       const timeline = gsap.timeline({
         scrollTrigger: {

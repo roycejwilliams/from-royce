@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ChevronsRight } from "lucide-react";
@@ -115,7 +115,7 @@ const Grid = () => {
 
   const gridContainer = useRef(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!gridContainer.current) return;
 
     const sections = gsap.utils.toArray(".section") as HTMLElement[]; // Cast to HTMLElement[]
