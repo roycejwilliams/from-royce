@@ -261,7 +261,7 @@ const Grid = () => {
             onClick={handleScheduleClick}
             className="px-4 py-2 border uppercase text-sm text-white bg-transparent rounded-full"
           >
-            Schedule
+            Schedule 
           </button>
         </div>
       </div>
