@@ -2,13 +2,14 @@
 import Image from "next/image";
 import { useEffect,  useRef } from "react";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import Link from "next/link";
 
 const Splash = () => {
   const svgRef = useRef<SVGSVGElement | null>(null);
 
   //Drawout Path
-  useEffect(() => {
+  useGSAP(() => {
     const svg = svgRef.current;
     const path = svg?.querySelector("path");
 
@@ -29,7 +30,7 @@ const Splash = () => {
 
   const backgroundRef = useRef<HTMLDivElement | null>(null);  
 
-  useEffect(() => {
+  useGSAP(() => {
     if (!backgroundRef.current) return;
   
     const bubbles = backgroundRef.current.querySelectorAll<HTMLDivElement>(".g1, .g2, .g3, .g4, .g5");
@@ -144,7 +145,7 @@ const Splash = () => {
             d="M0.585327 1113.19C501.5 1007 717 573 675.5 395C630.048 200.047 376 218 286 395C107.079 746.878 -272.836 1434.62 826.203 1113.19C1925.24 791.763 1545.27 73.7384 1077.9 -84.6784C610.534 -243.095 699.375 739.289 1728 660.93"
             stroke="#F7F0F0"
             strokeOpacity="0.8"
-            strokeWidth="3"
+            strokeWidth="2"
           />
         </svg>
       </div>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 const MobileMenu = ({
   menu,
@@ -11,7 +12,7 @@ const MobileMenu = ({
 }) => {
   const menuRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     if (menu) {
       gsap.to(menuRef.current, {
         x: 0,

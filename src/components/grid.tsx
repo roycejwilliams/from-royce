@@ -1,9 +1,10 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState,  useRef } from "react";
-// import gsap from "gsap";
-// import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React, { useState,  useRef, useEffect } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import { ChevronsRight } from "lucide-react";
 
 declare global {
@@ -21,7 +22,7 @@ declare global {
   }
 }
 
-// gsap.registerPlugin(ScrollTrigger);
+ gsap.registerPlugin(ScrollTrigger);
 
 const Grid = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,25 +32,7 @@ const Grid = () => {
     setIsOpen(true); // Open modal
   };
 
-  // useEffect(() => {
-  //   if (isOpen) {
-  //     document.documentElement.style.overflow = "hidden"; // Disable scrolling
-
-  //     if (modalRef.current) {
-  //       gsap.fromTo(
-  //         modalRef.current,
-  //         { opacity: 0, ease: "power3.out" },
-  //         { opacity: 1, duration: 0.8, ease: "power3.in" }
-  //       );
-  //     }
-  //   } else {
-  //     document.documentElement.style.overflow = "auto"; // Restore scrolling
-  //   }
-
-  //   return () => {
-  //     document.documentElement.style.overflow = "auto"; // Ensure scrolling is re-enabled on cleanup
-  //   };
-  // }, [isOpen]); 
+  
 
   const logos = [
     {
@@ -115,52 +98,52 @@ const Grid = () => {
 
   const gridContainer = useRef(null);
 
-  // useEffect(() => {
-  //   if (!gridContainer.current) return;
+   useGSAP(() => {
+     if (!gridContainer.current) return;
 
-  //   const sections = gsap.utils.toArray(".section") as HTMLElement[]; // Cast to HTMLElement[]
-  //   const skillItems = document.querySelectorAll(".skills-list li"); // Select skill list items
+     const sections = gsap.utils.toArray(".section") as HTMLElement[]; // Cast to HTMLElement[]
+     const skillItems = document.querySelectorAll(".skills-list li"); // Select skill list items
 
-  //   const ctx = gsap.context(() => {
-  //     const timeline = gsap.timeline({
-  //       scrollTrigger: {
-  //         trigger: gridContainer.current,
-  //         start: "top+=50", // Offset the start point
-  //         end: `+=${skills.length * 100}vh`, // Adjust based on your layout
-  //         pin: true,
-  //         scrub: true, // Smooth scroll animation
-  //       },
-  //     });
+     const ctx = gsap.context(() => {
+       const timeline = gsap.timeline({
+         scrollTrigger: {
+           trigger: gridContainer.current,
+           start: "top+=50",  //Offset the start point
+           end: `+=${skills.length * 100}vh`,  //Adjust based on your layout
+           pin: true,
+           scrub: true,  //Smooth scroll animation
+         },
+       });
 
-  //     sections.forEach((section, index) => {
-  //       gsap.set(section, {
-  //         opacity: index === 0 ? 1 : 0,
-  //       }); // Example scale effect
-  //       timeline.to(
-  //         section,
-  //         {
-  //           opacity: 1,
-  //           duration: 1,
-  //           display: "none",
-  //           zIndex: 50,
-  //           ease: "power2.inOut",
-  //         },
-  //         index * 0.75
-  //       );
-  //     });
+       sections.forEach((section, index) => {
+         gsap.set(section, {
+           opacity: index === 0 ? 1 : 0,
+         });  //Example scale effect
+         timeline.to(
+           section,
+           {
+             opacity: 1,
+             duration: 1,
+             display: "none",
+             zIndex: 50,
+             ease: "power2.inOut",
+           },
+           index * 0.75
+         );
+       });
 
-  //     skillItems.forEach((skill, index) => {
-  //       timeline.fromTo(
-  //         skill,
-  //         { opacity: 0.25 },
-  //         { opacity: 1, duration: 0.5, ease: "power2.inOut" },
-  //         index * 0.5 // Adjust the timing independently
-  //       );
-  //     });
-  //   }, gridContainer); // Use `gridContainer` to bind the context
+       skillItems.forEach((skill, index) => {
+         timeline.fromTo(
+           skill,
+           { opacity: 0.25 },
+           { opacity: 1, duration: 0.5, ease: "power2.inOut" },
+           index * 0.5 // Adjust the timing independently
+         );
+      });
+     }, gridContainer); // Use `gridContainer` to bind the context
 
-  //   return () => ctx.revert(); // Cleanup the effect on unmount or dependencies change
-  // }, []);
+     return () => ctx.revert(); // Cleanup the effect on unmount or dependencies change
+   }, []);
 
   return (
     <div
@@ -178,8 +161,8 @@ const Grid = () => {
           <div className="via-white/10 from-black/20 bg-gradient-to-t to-white/10 blur-lg w-full h-full  absolute"></div>
           <div className="w-full block z-50 ">
             <p className=" text-sm text-white z-40 ml-4 font-anonymous font-light ">
-              <span className="font-cylburn text-5xl">I</span>’m a computer
-              engineer with a designer’s eye, aspiring agency owner, and
+              <span className="font-cylburn text-5xl">I</span>'m a computer
+              engineer with a designer's eye, aspiring agency owner, and
               dedicated developer. As a founder and creative, I focus on
               crafting solutions that help businesses grow and thrive.
             </p>

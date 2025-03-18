@@ -1,15 +1,17 @@
 "use client";
 import React, { useEffect, useRef } from "react";
-import gsap from "gsap";
-import ScrambleTextPlugin from "gsap/ScrambleTextPlugin";
+import { gsap } from "gsap";
+import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
+import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrambleTextPlugin);
+
 
 function Intro() {
 
   const tableRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     if (!tableRef.current) return;
     // Select all table cells with the "scramble" class
     const cells = tableRef.current.querySelectorAll('.scramble');

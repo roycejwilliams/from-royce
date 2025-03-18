@@ -1,14 +1,15 @@
 "use client";
 import Image from "next/image";
 import {  useState, useRef,  } from "react";
-// import gsap from "gsap";
-// import { ScrollTrigger } from "gsap/ScrollTrigger";
+ import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
-// gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger);
 
 const Photos = () => {
   const photosRef = useRef<HTMLDivElement>(null);
-  // const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const photos = [
     "/images/photo.jpg",
@@ -17,50 +18,50 @@ const Photos = () => {
     "/images/photo3.jpg",
   ];
 
-  // useEffect(() => {
-  //   const ctx = gsap.context(() => {
-  //     const timeline = gsap.timeline({
-  //       scrollTrigger: {
-  //         trigger: photosRef.current, // Target the section
-  //         start: "top top", // Starts when the top of the section hits the top of the viewport
-  //         end: `+=${photos.length * window.innerHeight * 0.6}`, // Adjust the scroll duration to fit the number of slides
-  //         scrub: true,
-  //         pin: true,
-  //         onUpdate: (self) => {
-  //           // Calculate the active index based on the scroll progress
-  //           const index = Math.floor(self.progress * photos.length);
-  //           setActiveIndex(index); // Update the activeIndex
-  //         },
-  //       },
-  //     });
+   useGSAP(() => {
+     const ctx = gsap.context(() => {
+       const timeline = gsap.timeline({
+         scrollTrigger: {
+           trigger: photosRef.current,  //Target the section
+           start: "top top",  //Starts when the top of the section hits the top of the viewport
+           end: `+=${photos.length * window.innerHeight * 0.6}`,  //Adjust the scroll duration to fit the number of slides
+           scrub: true,
+           pin: true,
+           onUpdate: (self) => {
+              //Calculate the active index based on the scroll progress
+             const index = Math.floor(self.progress * photos.length);
+             setActiveIndex(index);  //Update the activeIndex
+           },
+         },
+       });
 
-  //     const photoElements = gsap.utils.toArray(".photo") as HTMLElement[];
+       const photoElements = gsap.utils.toArray(".photo") as HTMLElement[];
 
-  //     // Animate in order (from slide1 to slide4)
-  //     photoElements.forEach((photo, index) => {
-  //       gsap.set(photo, {
-  //         zIndex: -index,
-  //         y: 75,
-  //         opacity: index === 0 ? 1 : 0,
-  //       }); // Example scale effect
+        //Animate in order (from slide1 to slide4)
+       photoElements.forEach((photo, index) => {
+         gsap.set(photo, {
+           zIndex: -index,
+           y: 75,
+           opacity: index === 0 ? 1 : 0,
+         });  //Example scale effect
 
-  //       timeline.to(
-  //         photo,
-  //         {
-  //           zIndex: 1, 
-  //           scale: 1, 
-  //           opacity: 1, 
-  //           duration: 1.5,
-  //           ease: "power1.in",
-  //           y: 0,
-  //         },
-  //         index * 0.5 
-  //       );
-  //     });
-  //   }, photosRef);
+         timeline.to(
+           photo,
+           {
+             zIndex: 1, 
+             scale: 1, 
+             opacity: 1, 
+             duration: 1.5,
+             ease: "power1.in",
+             y: 0,
+           },
+           index * 0.5 
+         );
+       });
+     }, photosRef);
 
-  //   return () => ctx.revert();
-  // }, []);
+     return () => ctx.revert();
+   }, []);
 
   return (
     <section
@@ -84,17 +85,17 @@ const Photos = () => {
       <h2 className="z-50 absolute left-0 font-anonymous top-1/2 -translate-y-1/2 xl:px-24 px-8 xl:text-3xl text-xl text-white font-medium">
         <span className="font-cylburn text-8xl ">V</span>isions{" "}
         <span className="font-cylburn text-8xl ">C</span>rafted: <br></br>An
-        Engineer’s Perspective
+        Engineer's Perspective
       </h2>
       <div className="z-50 absolute p-4 right-0 top-1/2 flex flex-col justify-center items-center gap-6 -translate-y-1/2 h-auto">
-        {/* {photos.map((_, index) => (
+        {photos.map((_, index) => (
           <div
             key={index}
             className={`w-3 shadow-md rounded-full bg-white transition-all duration-300 ease-in-out ${
               activeIndex === index ? "max-h-40 md:max-h-72" : "max-h-3"
             }`}
           ></div>
-        ))} */}
+        ))} 
       </div>
     </section>
   );
