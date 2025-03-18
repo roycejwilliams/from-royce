@@ -1,5 +1,5 @@
 import React from "react";
-import { useRef, useEffect } from "react";
+import { useRef,  } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
@@ -16,40 +16,40 @@ function Idea() {
   const svgContainer = useRef(null);
   const svgRef = useRef<SVGSVGElement | null>(null);
 
-  useEffect(() => {
-    if (!svgContainer.current || !svgRef.current) return;
+  // useEffect(() => {
+  //   if (!svgContainer.current || !svgRef.current) return;
 
-    const ctx = gsap.context(() => {
-      // Create an infinite spinning animation
-      const spinAnimation = gsap.to(svgRef.current, {
-        rotation: 360,
-        duration: 10, // Fixed duration for consistent speed
-        repeat: -1, // Infinite spin
-        ease: "linear", // Smooth constant spin
-      });
+  //   const ctx = gsap.context(() => {
+  //     // Create an infinite spinning animation
+  //     const spinAnimation = gsap.to(svgRef.current, {
+  //       rotation: 360,
+  //       duration: 10, // Fixed duration for consistent speed
+  //       repeat: -1, // Infinite spin
+  //       ease: "linear", // Smooth constant spin
+  //     });
 
-      // Listener for scroll event to change spin direction
-      const handleScroll = () => {
-        const velocity = gsap.utils.clamp(
-          -1,
-          1,
-          window.scrollY - (window.prevScrollY || 0)
-        ); // Calculate scroll velocity
-        const direction = velocity >= 0 ? 1 : -1; // Positive for clockwise, negative for counterclockwise
-        spinAnimation.timeScale(direction); // Adjust spin direction
-        window.prevScrollY = window.scrollY; // Save current scroll position
-      };
+  //     // Listener for scroll event to change spin direction
+  //     const handleScroll = () => {
+  //       const velocity = gsap.utils.clamp(
+  //         -1,
+  //         1,
+  //         window.scrollY - (window.prevScrollY || 0)
+  //       ); // Calculate scroll velocity
+  //       const direction = velocity >= 0 ? 1 : -1; // Positive for clockwise, negative for counterclockwise
+  //       spinAnimation.timeScale(direction); // Adjust spin direction
+  //       window.prevScrollY = window.scrollY; // Save current scroll position
+  //     };
 
-      // Attach scroll event listener
-      window.addEventListener("scroll", handleScroll);
+  //     // Attach scroll event listener
+  //     window.addEventListener("scroll", handleScroll);
 
-      return () => {
-        window.removeEventListener("scroll", handleScroll); // Cleanup listener on component unmount
-      };
-    }, svgContainer);
+  //     return () => {
+  //       window.removeEventListener("scroll", handleScroll); // Cleanup listener on component unmount
+  //     };
+  //   }, svgContainer);
 
-    return () => ctx.revert(); // Cleanup GSAP context on component unmount
-  }, []);
+  //   return () => ctx.revert(); 
+  // }, []);
 
   return (
     <section
