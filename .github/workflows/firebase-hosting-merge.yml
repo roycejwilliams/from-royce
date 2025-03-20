@@ -6,12 +6,29 @@ on:
   push:
     branches:
       - main
+
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: npm ci && npm run build
+
+      # 🔐 Set up .npmrc with GSAP token
+      - name: Set up .npmrc for GSAP
+        run: |
+          echo "@gsap:registry=https://npm.greensock.com/" >> .npmrc
+          echo "//npm.greensock.com/:_authToken=${{ secrets.GSAP_TOKEN }}" >> .npmrc
+          echo "always-auth=true" >> .npmrc
+
+      # 📦 Install deps and build project
+      - name: Install and Build
+        run: npm ci && npm run build
+
+      # 🧹 Clean up .npmrc after build
+      - name: Clean up auth token
+        run: rm .npmrc
+
+      # 🚀 Deploy to Firebase Hosting
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
