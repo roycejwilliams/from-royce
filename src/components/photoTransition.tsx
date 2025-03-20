@@ -85,7 +85,7 @@ const Photos = () => {
       <h2 className="z-50 absolute left-0 font-anonymous top-1/2 -translate-y-1/2 xl:px-24 px-8 xl:text-3xl text-xl text-white font-medium">
         <span className="font-cylburn text-8xl ">V</span>isions{" "}
         <span className="font-cylburn text-8xl ">C</span>rafted: <br></br>An
-        Engineer's Perspective
+        Engineer&apos;s Perspective
       </h2>
       <div className="z-50 absolute p-4 right-0 top-1/2 flex flex-col justify-center items-center gap-6 -translate-y-1/2 h-auto">
         {photos.map((_, index) => (

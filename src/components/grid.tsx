@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState,  useRef, useEffect } from "react";
+import React, { useState,  useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -161,8 +161,8 @@ const Grid = () => {
           <div className="via-white/10 from-black/20 bg-gradient-to-t to-white/10 blur-lg w-full h-full  absolute"></div>
           <div className="w-full block z-50 ">
             <p className=" text-sm text-white z-40 ml-4 font-anonymous font-light ">
-              <span className="font-cylburn text-5xl">I</span>'m a computer
-              engineer with a designer's eye, aspiring agency owner, and
+              <span className="font-cylburn text-5xl">I</span>$&apos;m a computer
+              engineer with a designer&apos;s eye, aspiring agency owner, and
               dedicated developer. As a founder and creative, I focus on
               crafting solutions that help businesses grow and thrive.
             </p>

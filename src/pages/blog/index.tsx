@@ -109,12 +109,12 @@ function Blog() {
       </div>
       <Nav />
       {/* Title */}
-      <div className=" xl:p-24 p-8 mt-52  flex flex-col xl:flex-row xl:items-center gap-y-12 xl:gap-x-32 text-white">
-        <h1 className=" tracking-[0.2em] z-30 leading-[1.2em]  font-anonymous gap-x-8 text-xl uppercase">
-          <span className="font-cylburn xl:text-[12rem] md:text-[10rem] text-[8rem]">F</span>rom
-          <span className="font-cylburn xl:text-[12rem] md:text-[10rem] text-[8rem]">R</span>oyce
+      <div className=" xl:px-24 px-8 mt-52  flex flex-col  gap-y-12 xl:gap-x-32 text-white">
+        <h1 className=" tracking-[0.2em] z-30 leading-[1.2em]  font-anonymous gap-x-8 xl:text-xl text-sm uppercase">
+          <span className="font-cylburn  md:text-[10rem] text-[6rem]">F</span>rom
+          <span className="font-cylburn  md:text-[10rem] text-[6rem]">R</span>oyce
         </h1>
-        <p className="text-lg font-anonymous z-30 uppercase tracking-[0.2em] ">
+        <p className="xl:text-base  text-sm font-anonymous z-30 uppercase tracking-[0.2em] ">
           frames of mind.{" "}
         </p>
       </div>

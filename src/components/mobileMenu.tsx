@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useEffect, useRef } from "react";
+import React, {  useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -55,25 +55,25 @@ const MobileMenu = ({
       {/* Always Render the Section, But Hide It */}
       <section
         ref={menuRef}
-        className="bg-[#FFFFF8]/65 backdrop-blur-md  flex-col justify-center items-end px-8 fixed h-screen w-screen left-0 top-0 z-40 opacity-0 translate-x-full hidden"
+        className="bg-[#FFFFF8]/65 backdrop-blur-md  flex-col justify-center items-end px-8 gap-y-8 fixed h-screen w-screen left-0 top-0 z-40 opacity-0 translate-x-full hidden"
       >
-        <div className="text-[#828282] cursor-pointer z-40 flex gap-x-1 justify-center hover:text-white duration-200 ease-in-out transition items-center tracking-[0.2em] rounded-full text-center group">
-          <div className="relative px-4 py-2 mt-4 rounded-full tracking-[0.2em] transition font-anonymous uppercase text-xs">
+        <div className="text-[#828282] cursor-pointer z-40 flex gap-x-1  justify-center hover:text-white duration-200 ease-in-out transition items-center tracking-[0.2em] rounded-full group">
+          <div className="relative  mt-4 rounded-full tracking-[0.2em] transition font-anonymous uppercase text-xs">
             <span className="transition-opacity duration-200 ease-in-out opacity-100 group-hover:opacity-0 text-sm">
-              <span className="font-cylburn text-4xl">w</span>ork
+              <span className="font-cylburn text-3xl">w</span>ork
             </span>
-            <span className="absolute inset-0 transition-opacity duration-200 ease-in-out opacity-0 group-hover:opacity-100 text-sm">
-              <span className="font-cylburn text-4xl">c</span>oming soon
+            <span className="absolute inset-0 transition-opacity  duration-200 ease-in-out text-left opacity-0 group-hover:opacity-100 text-sm">
+              <span className="font-cylburn text-5xl">S</span>oon
             </span>
           </div>
         </div>
 
         <Link
           href="/blog"
-          className="text-[#828282] cursor-pointer z-40 flex gap-x-1 justify-center hover:text-white duration-200 ease-in-out transition items-center tracking-[0.2em] rounded-full text-center group"
+          className="text-[#828282] cursor-pointer z-40 flex gap-x-1 justify-center hover:text-white duration-200 ease-in-out transition items-center tracking-[0.2em] rounded-full  group"
         >
-          <div className="px-4 py-2 mt-4 rounded-full tracking-widest font-anonymous uppercase text-sm">
-            <span className="font-cylburn text-4xl">e</span>thos
+          <div className=" mt-4 rounded-full tracking-widest font-anonymous uppercase text-sm">
+            <span className="font-cylburn text-5xl">e</span>thos
           </div>
         </Link>
       </section>

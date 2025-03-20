@@ -71,7 +71,7 @@ function Post() {
   return (
     <div className="xl:p-24 p-8 w-full tracking-[0.1em] z-50 overflow-hidden text-white mt-24 inline-block font-anonymous">
       {loading && <p className="text-sm text-white/50">Loading posts...</p>}
-      {error && <p className="text-sm text-red-400">{error}</p>}
+      {error && <p className="text-xs text-red-400">{error}</p>}
       {post.map((p, index) => (
         <>
           <div

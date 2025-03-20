@@ -93,14 +93,14 @@ svg {
 }
 
 :root {
-  --color-bg1: rgb(108, 0, 162);
-  --color-bg2: rgb(0, 17, 82);
-  --color1: 120, 110, 100;  /* Warm Gray */
-  --color2: 180, 160, 140;  /* Taupe */
-  --color3: 150, 120, 90;   /* Saddle Brown */
-  --color4: 90, 60, 50;     /* Deep Umber */
-  --color5: 220, 190, 150;  /* Sand Beige */
-  --color-interactive: 200, 110, 100	; /* Warm Coral */
+  --color-bg1: rgb(245, 245, 245);     /* Light Gray */
+  --color-bg2: rgb(230, 230, 230);     /* Slightly Darker Gray */
+  --color1: 210, 210, 210;             /* Light Warm Gray */
+  --color2: 220, 215, 210;             /* Pale Taupe */
+  --color3: 200, 195, 190;             /* Soft Greige */
+  --color4: 180, 175, 170;             /* Medium Neutral */
+  --color5: 240, 235, 225;             /* Sand White */
+  --color-interactive: 200, 180, 170;  /* Light Muted Coral */
   --circle-size: 40%;
   --blending: hard-light;
 }
@@ -127,7 +127,7 @@ svg {
   height: 100%;
   min-height: 100vh;
   position: relative;
-  background: linear-gradient(180deg, #775253 0%, #312623 70%);
+  background: linear-gradient(135deg, #775253 0%, #312623 70%);
   left: 0;
 }
 
@@ -144,7 +144,7 @@ svg {
 
  .g1 {
   position: absolute;
-  background: radial-gradient(circle at center, rgba(var(--color1), 0.8) 0, rgba(var(--color1), 0) 50%) no-repeat;
+  background: radial-gradient(circle at center, rgba(var(--color1), 0.8) 0, rgba(var(--color1), 0) 35%) no-repeat;
   mix-blend-mode: var(--blending);
   width: var(--circle-size);
   height: var(--circle-size);
@@ -154,7 +154,7 @@ svg {
 
 .g2 {
   position: absolute;
-  background: radial-gradient(circle at center, rgba(var(--color2), 0.8) 0, rgba(var(--color2), 0) 80%) no-repeat;
+  background: radial-gradient(circle at center, rgba(var(--color2), 0.8) 0, rgba(var(--color2), 0) 35%) no-repeat;
   mix-blend-mode: var(--blending);
   width: var(--circle-size);
   height: var(--circle-size);
@@ -166,7 +166,7 @@ svg {
 
 .g3 {
   position: absolute;
-  background: radial-gradient(circle at center, rgba(var(--color3), 0.8) 0, rgba(var(--color3), 0) 50%) no-repeat;
+  background: radial-gradient(circle at center, rgba(var(--color3), 0.8) 0, rgba(var(--color3), 0) 35%) no-repeat;
   mix-blend-mode: var(--blending);
   width: var(--circle-size);
   height: var(--circle-size);
@@ -178,7 +178,7 @@ svg {
 
 .g4 {
   position: absolute;
-  background: radial-gradient(circle at center, rgba(var(--color4), 0.8) 0, rgba(var(--color4), 0) 50%) no-repeat;
+  background: radial-gradient(circle at center, rgba(var(--color4), 0.8) 0, rgba(var(--color4), 0) 35%) no-repeat;
   mix-blend-mode: var(--blending);
   width: var(--circle-size);
   height: var(--circle-size);
@@ -190,10 +190,10 @@ svg {
 
 .g5 {
   position: absolute;
-  background: radial-gradient(circle at center, rgba(var(--color5), 0.8) 0, rgba(var(--color5), 0) 50%) no-repeat;
+  background: radial-gradient(circle at center, rgba(var(--color5), 0.8) 0, rgba(var(--color5), 0) 35%) no-repeat;
   mix-blend-mode: var(--blending);
-  width: calc(var(--circle-size) * 2);
-  height: calc(var(--circle-size) * 2);
+  width: var(--circle-size) ;
+  height: var(--circle-size) ;
   border-radius: 100%;
 
   transform-origin: calc(50% - 800px) calc(50% + 200px);
@@ -218,8 +218,8 @@ svg {
 
 .interactive-2 {
   position: absolute;
-  width: var(--circle-size);
-  height: var(--circle-size);
+ width: 100px;
+  height: 100px;
   border-radius: 100%;
   background: radial-gradient(circle at center, rgba(244, 227, 215, 0.8) 0%, rgba(178, 158, 141, 0) 50%) no-repeat;
   mix-blend-mode: var(--blending);
@@ -233,10 +233,10 @@ svg {
 
 .interactive-3 {
   position: absolute;
-  width: var(--circle-size);
-  height: var(--circle-size);
+  width: 100px;
+  height: 100px;
   border-radius: 100%;
-  background: radial-gradient(circle at center, rgba(85, 85, 85, 0.8) 0%, rgba(200, 200, 200, 0) 50%) no-repeat;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.8) 0%, rgba(200, 200, 200, 0) 50%) no-repeat;
   mix-blend-mode: var(--blending);
   top: 0;
   left: 0;

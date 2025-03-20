@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useEffect,  useRef } from "react";
+import {   useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import Link from "next/link";
@@ -113,10 +113,13 @@ const Splash = () => {
         <div className="g3"></div>
         <div className="g4"></div>
         <div className="g5"></div>
-        <div className="interactive-3"></div>
+        <div className="interactive-3 hidden xl:block"></div>
       </div>
       {/* Logo / Action button */}
       <div className="mx-auto flex flex-col z-50 justify-center items-center">
+      <Link
+          scroll={false}
+          href="/portfolio" >
         <Image
           src="/images/from-royce-white.png"
           alt="from royce logo"
@@ -124,12 +127,6 @@ const Splash = () => {
           height={100}
           style={{ objectFit: "contain" }}
         />
-         <Link
-          scroll={false}
-          href="/portfolio"
-          className="px-4 py-2 font-anonymous uppercase  z-40 flex justify-center items-center text-sm text-white  hover:scale-105 ease-in-out duration-300 mt-8  shadow-black/50 cursor-pointer"
-        >
-          <span className="font-cylburn text-4xl">S</span>tart
         </Link> 
       </div>
       <div className="svg-container">
@@ -144,8 +141,8 @@ const Splash = () => {
           <path
             d="M0.585327 1113.19C501.5 1007 717 573 675.5 395C630.048 200.047 376 218 286 395C107.079 746.878 -272.836 1434.62 826.203 1113.19C1925.24 791.763 1545.27 73.7384 1077.9 -84.6784C610.534 -243.095 699.375 739.289 1728 660.93"
             stroke="#F7F0F0"
-            strokeOpacity="0.8"
-            strokeWidth="2"
+            strokeOpacity="0.5"
+            strokeWidth="1.5"
           />
         </svg>
       </div>

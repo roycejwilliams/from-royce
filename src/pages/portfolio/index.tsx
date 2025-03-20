@@ -101,7 +101,7 @@ const Portfolio = () => {
         <div className="g3"></div>
         <div className="g4"></div>
         <div className="g5"></div>
-        <div className="interactive"></div>
+        <div className="interactive hidden xl:block"></div>
       </div>
 
       <Nav />
