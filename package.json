@@ -4,16 +4,11 @@
   "private": true,
   "scripts": {
     "queries": "node scripts/queries.js",
-    "preinstall": "npx npm-force-resolutions",
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "postinstall": "patch-package"
-  },
-  "resolutions": {
-    "picomatch": "4.0.2"
-  },
+    "lint": "next lint"  },
+ 
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "date-fns": "^4.1.0",
