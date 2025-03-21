@@ -4,7 +4,6 @@
   },
   "hosting": {
     "site": "from-royce",
-    "public": ".next",
     "ignore": [
       "firebase.json",
       "**/.*",
