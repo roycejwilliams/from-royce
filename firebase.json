@@ -1,32 +1,24 @@
 {
-  "functions": [
-    {
-      "source": "functions",
-      "codebase": "default",
-      "runtime": "nodejs20",
-      "ignore": [
-        "node_modules",
-        ".git",
-        "firebase-debug.log",
-        "firebase-debug.*.log",
-        "*.local"
-      ]
-    }
-  ],
+  "functions": {
+    "source": "functions"
+  },
   "hosting": {
-    "public": "out",
+    "site": "from-royce",
+    "public": ".next",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
     "rewrites": [
-      { "source": "/", "destination": "/index.html" },
-      { "source": "/post", "destination": "/post.html" },
-      { "source": "/blog", "destination": "/blog.html" },
-      { "source": "/portfolio", "destination": "/portfolio.html" },
-      { "source": "/page", "destination": "/page.html" },
-      { "source": "**", "destination": "/index.html" }
-    ]
+  {
+    "source": "/api/**",
+    "function": "api"
+  },
+  {
+    "source": "**",
+    "function": "nextApp"
+  }
+]
   }
 }

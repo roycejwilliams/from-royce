@@ -1,15 +1,17 @@
+// Firebase Functions SDK
 const functions = require("firebase-functions");
+
+// Express (for API)
 const express = require("express");
 const cors = require("cors");
-const pool = require("./db");
+const pool = require("./db"); // Your PostgreSQL pool or DB connection
 
+// Initialize Express app
 const app = express();
-
-// Middleware
 app.use(cors());
-app.use(express.json()); // for parsing application/json
+app.use(express.json());
 
-// Routes
+// ===== REST API Routes (under /api) =====
 
 // Create a post
 app.post("/posts", async (req, res) => {
@@ -31,13 +33,11 @@ app.get("/posts", async (req, res) => {
   try {
     const { page = 1, limit = 6 } = req.query;
     const offset = (page - 1) * limit;
-
     const paginatedPage = await pool.query(
       "SELECT * FROM post ORDER BY post_date DESC, post_time DESC LIMIT $1 OFFSET $2",
       [limit, offset]
     );
     const totalPost = await pool.query("SELECT COUNT(*) FROM post");
-
     res.json({
       totalPost: parseInt(totalPost.rows[0].count),
       currentPage: parseInt(page),
@@ -90,5 +90,23 @@ app.delete("/posts/:id", async (req, res) => {
   }
 });
 
-// 👇 Firebase handles the server, so no need for app.listen
+// 🔥 Export Express API under /api
 exports.api = functions.https.onRequest(app);
+
+// ===== Next.js SSR Handler =====
+
+const next = require("next");
+
+const isDev = process.env.NODE_ENV !== "production";
+const nextApp = next({
+  dev: isDev,
+  conf: {
+    distDir: ".next", // Important: this matches your Next.js output
+  },
+});
+
+const handle = nextApp.getRequestHandler();
+
+exports.nextApp = functions.https.onRequest((req, res) => {
+  return nextApp.prepare().then(() => handle(req, res));
+});
