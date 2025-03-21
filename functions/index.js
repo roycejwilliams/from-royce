@@ -4,16 +4,14 @@ const functions = require("firebase-functions");
 // Express (for API)
 const express = require("express");
 const cors = require("cors");
-const pool = require("./db"); // Your PostgreSQL pool or DB connection
+const pool = require("./db"); // Your PostgreSQL pool
 
-// Initialize Express app
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// ===== REST API Routes (under /api) =====
+// ===== REST API Routes =====
 
-// Create a post
 app.post("/posts", async (req, res) => {
   try {
     const { title, content, image } = req.body;
@@ -28,7 +26,6 @@ app.post("/posts", async (req, res) => {
   }
 });
 
-// Get all posts (paginated)
 app.get("/posts", async (req, res) => {
   try {
     const { page = 1, limit = 6 } = req.query;
@@ -50,7 +47,6 @@ app.get("/posts", async (req, res) => {
   }
 });
 
-// Get a single post
 app.get("/posts/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -62,7 +58,6 @@ app.get("/posts/:id", async (req, res) => {
   }
 });
 
-// Update a post
 app.put("/posts/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -78,7 +73,6 @@ app.put("/posts/:id", async (req, res) => {
   }
 });
 
-// Delete a post
 app.delete("/posts/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -90,7 +84,7 @@ app.delete("/posts/:id", async (req, res) => {
   }
 });
 
-// 🔥 Export Express API under /api
+// ✅ Export Express API under /api
 exports.api = functions.https.onRequest(app);
 
 // ===== Next.js SSR Handler =====
@@ -101,7 +95,7 @@ const isDev = process.env.NODE_ENV !== "production";
 const nextApp = next({
   dev: isDev,
   conf: {
-    distDir: ".next", // Important: this matches your Next.js output
+    distDir: ".next",
   },
 });
 
