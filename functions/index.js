@@ -4,8 +4,9 @@ const functions = require("firebase-functions");
 // Express (for API)
 const express = require("express");
 const cors = require("cors");
-const pool = require("./db"); // Your PostgreSQL pool
+const pool = require("./db"); // Your PostgreSQL pool or DB connection
 
+// Initialize Express app
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -84,7 +85,7 @@ app.delete("/posts/:id", async (req, res) => {
   }
 });
 
-// ✅ Export Express API under /api
+// ✅ Export your API under /api
 exports.api = functions.https.onRequest(app);
 
 // ===== Next.js SSR Handler =====
@@ -95,12 +96,14 @@ const isDev = process.env.NODE_ENV !== "production";
 const nextApp = next({
   dev: isDev,
   conf: {
-    distDir: ".next",
-  },
+    distDir: ".next"
+  }
 });
 
+// ✅ This line was missing
 const handle = nextApp.getRequestHandler();
 
+// ✅ Export your SSR handler for all other routes
 exports.nextApp = functions.https.onRequest((req, res) => {
   return nextApp.prepare().then(() => handle(req, res));
 });
