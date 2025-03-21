@@ -23,6 +23,10 @@ jobs:
       - name: Install and build
         run: npm ci && npm run build
 
+      # ✅ Copy .next into functions so Firebase Functions can serve SSR
+      - name: Copy .next to functions
+        run: cp -r .next functions/.next
+
       # ✅ Install Cloud Functions dependencies
       - name: Install functions dependencies
         working-directory: functions
