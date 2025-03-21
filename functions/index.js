@@ -22,7 +22,7 @@ app.post("/posts", async (req, res) => {
     );
     res.json(newPost.rows[0]);
   } catch (error) {
-    console.error("❌ POST /posts error:", error.message);
+    console.error(error.message);
     res.status(500).send("Server Error");
   }
 });
@@ -43,7 +43,7 @@ app.get("/posts", async (req, res) => {
       post: paginatedPage.rows,
     });
   } catch (error) {
-    console.error("❌ GET /posts error:", error.message);
+    console.error(error.message);
     res.status(500).send("Server Error");
   }
 });
@@ -54,7 +54,7 @@ app.get("/posts/:id", async (req, res) => {
     const posts = await pool.query("SELECT * FROM post WHERE post_id = $1", [id]);
     res.json(posts.rows[0]);
   } catch (error) {
-    console.error("❌ GET /posts/:id error:", error.message);
+    console.error(error.message);
     res.status(500).send("Server Error");
   }
 });
@@ -69,7 +69,7 @@ app.put("/posts/:id", async (req, res) => {
     );
     res.json("Post was updated");
   } catch (error) {
-    console.error("❌ PUT /posts/:id error:", error.message);
+    console.error(error.message);
     res.status(500).send("Server Error");
   }
 });
@@ -80,36 +80,31 @@ app.delete("/posts/:id", async (req, res) => {
     await pool.query("DELETE FROM post WHERE post_id = $1", [id]);
     res.json("Post was deleted!");
   } catch (error) {
-    console.error("❌ DELETE /posts/:id error:", error.message);
+    console.error(error.message);
     res.status(500).send("Server Error");
   }
 });
 
-// ✅ Export your Express API (Gen 1)
-exports.api = functions
-  .runWith({ memory: "256MB", timeoutSeconds: 60 })
-  .https.onRequest(app);
+
 
 // ===== Next.js SSR Handler =====
 
 const next = require("next");
-const fs = require("fs");
 
 const isDev = process.env.NODE_ENV !== "production";
 const nextApp = next({
   dev: isDev,
   conf: {
-    distDir: ".next",
-  },
+    distDir: ".next"
+  }
 });
 
+// ✅ This line was missing
 const handle = nextApp.getRequestHandler();
 
-// ✅ Export your SSR handler (Gen 1)
-exports.nextApp = functions
-  .runWith({ memory: "512MB", timeoutSeconds: 60 })
-  .https.onRequest((req, res) => {
-    console.log("💥 __dirname:", __dirname);
-    console.log("💥 Files in __dirname:", fs.readdirSync(__dirname));
-    return nextApp.prepare().then(() => handle(req, res));
-  });
+// ✅ Export your SSR handler for all other routes
+exports.api = onRequest(app);
+exports.nextApp = onRequest(async (req, res) => {
+  await nextApp.prepare();
+  return handle(req, res);
+});
