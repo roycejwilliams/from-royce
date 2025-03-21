@@ -15,6 +15,9 @@ const firebaseConfig = {
   measurementId: "G-L3241H26V3"
 };
 
+console.log("Firebase API KEY:", process.env.NEXT_PUBLIC_FIREBASE_API_KEY);
+
+
 // Initialize Firebase
 const app: FirebaseApp = initializeApp(firebaseConfig);
 const storage: FirebaseStorage = getStorage(app);
