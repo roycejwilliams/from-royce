@@ -36,7 +36,7 @@ jobs:
           rm -rf functions/.next
           cp -r .next functions/.next
           cp -r public functions/public
-          cp next.config.ts functions/ || true
+          cp next.config.js functions/ || true
 
       - name: Install functions dependencies
         working-directory: functions
