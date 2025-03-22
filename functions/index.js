@@ -1,10 +1,10 @@
 // Firebase Functions SDK
-const functions = require("firebase-functions");
+const functions = require("firebase-functions"); // <-- must use this for onRequest
 
 // Express (for API)
 const express = require("express");
 const cors = require("cors");
-const pool = require("./db"); // Your PostgreSQL pool or DB connection
+const pool = require("./db");
 
 // Initialize Express app
 const app = express();
@@ -85,8 +85,6 @@ app.delete("/posts/:id", async (req, res) => {
   }
 });
 
-
-
 // ===== Next.js SSR Handler =====
 
 const next = require("next");
@@ -99,12 +97,11 @@ const nextApp = next({
   }
 });
 
-// ✅ This line was missing
 const handle = nextApp.getRequestHandler();
 
-// ✅ Export your SSR handler for all other routes
-exports.api = onRequest(app);
-exports.nextApp = onRequest(async (req, res) => {
+// ✅ Correct Firebase function exports
+exports.api = functions.https.onRequest(app);
+exports.nextApp = functions.https.onRequest(async (req, res) => {
   await nextApp.prepare();
   return handle(req, res);
 });

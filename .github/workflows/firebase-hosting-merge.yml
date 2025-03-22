@@ -12,30 +12,37 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # ✅ Set up .npmrc securely for GSAP Club plugins
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      # 🔐 GSAP .npmrc setup (only if you use GSAP Club)
       - name: Create .npmrc for GSAP Club plugins
         run: |
           echo "@gsap:registry=https://npm.greensock.com/" >> .npmrc
           echo "//npm.greensock.com/:_authToken=${{ secrets.GSAP_TOKEN }}" >> .npmrc
           echo "always-auth=true" >> .npmrc
 
-      # ✅ Install root dependencies and build Next.js
+      # 🛠 Install & Build Next.js
       - name: Install and build
-        run: npm ci && npm run build
+        run: |
+          npm ci
+          npm run build
 
-      # ✅ Copy Next.js output and public assets into functions
-      - name: Copy .next to functions
-        run: cp -r .next functions/.next
+      # 🧹 Clean and prepare functions/
+      - name: Prepare Firebase Functions
+        run: |
+          rm -rf functions/.next
+          cp -r .next functions/.next
+          cp -r public functions/public
+          cp next.config.ts functions/ || true
 
-      - name: Copy public to functions
-        run: cp -r public functions/public
-
-      # ✅ Install Cloud Functions dependencies
       - name: Install functions dependencies
         working-directory: functions
         run: npm install
 
-      # ✅ Deploy to Firebase Hosting + Functions (Gen 2 ready)
+      # 🚀 Deploy to Firebase
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}

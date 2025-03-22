@@ -2,15 +2,15 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    unoptimized: true, // 🔥 THIS is the fix
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
         hostname: "firebasestorage.googleapis.com",
-        pathname: "/v0/b/**", // ✅ Correct for Firebase Storage
+        pathname: "/v0/b/**",
       },
     ],
-  },
+  }
 };
 
 export default nextConfig;
