@@ -40,7 +40,5 @@ jobs:
           channelId: live
           projectId: from-royce
           entryPoint: .
-          expires: 7d
-          firebaseToolsVersion: latest
-          target: hosting,functions
+      
       
