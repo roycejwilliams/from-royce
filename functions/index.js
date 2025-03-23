@@ -1,19 +1,28 @@
-// Firebase Functions SDK
-const functions = require("firebase-functions"); // <-- must use this for onRequest
-
-// Express (for API)
 const express = require("express");
+const next = require("next");
 const cors = require("cors");
-const pool = require("./db");
+const { Pool } = require("pg");
 
-// Initialize Express app
+// 🧠 PostgreSQL connection (via env var)
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false },
+});
+
+// ⚙️ Express + Next.js setup
+const dev = process.env.NODE_ENV !== "production";
+const nextApp = next({ dev, conf: { distDir: ".next" } });
+const handle = nextApp.getRequestHandler();
+
 const app = express();
+const port = process.env.PORT || 8080;
+
+// 🔧 Middleware
 app.use(cors());
 app.use(express.json());
 
-// ===== REST API Routes =====
-
-app.post("/posts", async (req, res) => {
+// ✅ REST API Routes
+app.post("/api/posts", async (req, res) => {
   try {
     const { title, content, image } = req.body;
     const newPost = await pool.query(
@@ -21,13 +30,13 @@ app.post("/posts", async (req, res) => {
       [title, content, image || null]
     );
     res.json(newPost.rows[0]);
-  } catch (error) {
-    console.error(error.message);
-    res.status(500).send("Server Error");
+  } catch (err) {
+    console.error("POST /api/posts error:", err);
+    res.status(500).send("Server error");
   }
 });
 
-app.get("/posts", async (req, res) => {
+app.get("/api/posts", async (req, res) => {
   try {
     const { page = 1, limit = 6 } = req.query;
     const offset = (page - 1) * limit;
@@ -42,24 +51,24 @@ app.get("/posts", async (req, res) => {
       totalPages: Math.ceil(totalPost.rows[0].count / limit),
       post: paginatedPage.rows,
     });
-  } catch (error) {
-    console.error(error.message);
-    res.status(500).send("Server Error");
+  } catch (err) {
+    console.error("GET /api/posts error:", err);
+    res.status(500).send("Server error");
   }
 });
 
-app.get("/posts/:id", async (req, res) => {
+app.get("/api/posts/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const posts = await pool.query("SELECT * FROM post WHERE post_id = $1", [id]);
-    res.json(posts.rows[0]);
-  } catch (error) {
-    console.error(error.message);
-    res.status(500).send("Server Error");
+    const post = await pool.query("SELECT * FROM post WHERE post_id = $1", [id]);
+    res.json(post.rows[0]);
+  } catch (err) {
+    console.error("GET /api/posts/:id error:", err);
+    res.status(500).send("Server error");
   }
 });
 
-app.put("/posts/:id", async (req, res) => {
+app.put("/api/posts/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const { title, content, image } = req.body;
@@ -67,41 +76,31 @@ app.put("/posts/:id", async (req, res) => {
       "UPDATE post SET post_title = $1, post_content = $2, post_image = $3 WHERE post_id = $4",
       [title, content, image || null, id]
     );
-    res.json("Post was updated");
-  } catch (error) {
-    console.error(error.message);
-    res.status(500).send("Server Error");
+    res.json("Post updated");
+  } catch (err) {
+    console.error("PUT /api/posts/:id error:", err);
+    res.status(500).send("Server error");
   }
 });
 
-app.delete("/posts/:id", async (req, res) => {
+app.delete("/api/posts/:id", async (req, res) => {
   try {
     const { id } = req.params;
     await pool.query("DELETE FROM post WHERE post_id = $1", [id]);
-    res.json("Post was deleted!");
-  } catch (error) {
-    console.error(error.message);
-    res.status(500).send("Server Error");
+    res.json("Post deleted");
+  } catch (err) {
+    console.error("DELETE /api/posts/:id error:", err);
+    res.status(500).send("Server error");
   }
 });
 
-// ===== Next.js SSR Handler =====
+// ⚡ Next.js SSR (handle everything else)
+nextApp.prepare().then(() => {
+  app.all("*", (req, res) => {
+    return handle(req, res);
+  });
 
-const next = require("next");
-
-const isDev = process.env.NODE_ENV !== "production";
-const nextApp = next({
-  dev: isDev,
-  conf: {
-    distDir: ".next"
-  }
-});
-
-const handle = nextApp.getRequestHandler();
-
-// ✅ Correct Firebase function exports
-exports.api = functions.https.onRequest(app);
-exports.nextApp = functions.https.onRequest(async (req, res) => {
-  await nextApp.prepare();
-  return handle(req, res);
+  app.listen(port, () => {
+    console.log(`🚀 Server ready on http://localhost:${port}`);
+  });
 });
