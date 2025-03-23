@@ -39,5 +39,5 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_FROM_ROYCE }}
           channelId: live
           projectId: from-royce
-          entryPoint: .     
-          target: hosting,functions
+          entryPoint: .
+      
