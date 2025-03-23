@@ -40,5 +40,7 @@ jobs:
           channelId: live
           projectId: from-royce
           entryPoint: .
+          firebaseToolsVersion: latest
+          target: hosting,functions
       
       
