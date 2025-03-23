@@ -25,9 +25,7 @@ jobs:
         run: |
           cp -r .next functions/
           cp -r public functions/
-          cp next.config.js functions/
-          cp package.json functions/
-          cp package-lock.json functions/
+          cp next.config.js functions
 
       - name: Install Functions Dependencies
         working-directory: functions
