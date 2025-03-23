@@ -1,3 +1,4 @@
+const { onRequest } = require('firebase-functions/v2/https');
 const express = require("express");
 const next = require("next");
 const cors = require("cors");
@@ -15,7 +16,6 @@ const nextApp = next({ dev, conf: { distDir: ".next" } });
 const handle = nextApp.getRequestHandler();
 
 const app = express();
-const port = process.env.PORT || 8080;
 
 // 🔧 Middleware
 app.use(cors());
@@ -95,12 +95,9 @@ app.delete("/api/posts/:id", async (req, res) => {
 });
 
 // ⚡ Next.js SSR (handle everything else)
-nextApp.prepare().then(() => {
-  app.all("*", (req, res) => {
-    return handle(req, res);
-  });
-
-  app.listen(port, () => {
-    console.log(`🚀 Server ready on http://localhost:${port}`);
-  });
+const nextServer = onRequest(async (req, res) => {
+  await nextApp.prepare();
+  return app(req, res);
 });
+
+exports.nextApp = nextServer;
