@@ -12,6 +12,7 @@
   },
   "hosting": {
     "site": "from-royce",
+    "public": "public", 
     "ignore": [
       "firebase.json",
       "**/.*",

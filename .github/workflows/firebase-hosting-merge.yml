@@ -18,25 +18,25 @@ jobs:
           echo "//npm.greensock.com/:_authToken=${{ secrets.GSAP_TOKEN }}" >> .npmrc
           echo "always-auth=true" >> .npmrc
 
-      - name: Install dependencies and build Next.js
+      - name: Install root dependencies and build Next.js
         run: npm ci && npm run build
 
-      - name: Prepare functions directory
+      - name: Prepare Firebase Functions directory
         run: |
-          rm -rf functions/.next
           cp -r .next functions/
           cp -r public functions/
           cp next.config.js functions/
-          cp -r node_modules functions/ # ensure all deps including GSAP are present
 
       - name: Install Functions Dependencies
         working-directory: functions
         run: npm install --omit=dev
 
-      - name: Deploy to Firebase Hosting + Functions
+      - name: Deploy to Firebase (Hosting + Functions)
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
-          channelId: live
           projectId: from-royce
+          channelId: live
+          entryPoint: .
+          firebaseToolsVersion: latest
