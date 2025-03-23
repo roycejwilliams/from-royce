@@ -35,9 +35,12 @@ jobs:
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_FROM_ROYCE }}
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_FROM_ROYCE }}"
           channelId: live
           projectId: from-royce
           entryPoint: .
+          expires: 7d
+          firebaseToolsVersion: latest
+          target: hosting,functions
       
