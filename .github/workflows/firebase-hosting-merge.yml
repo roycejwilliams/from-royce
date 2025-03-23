@@ -39,7 +39,7 @@ jobs:
           projectId: from-royce
           entryPoint: .
           firebaseToolsVersion: latest
-          target: from-royce,functions
+      
 
       
       
