@@ -1,4 +1,5 @@
-// ✅ next.config.js
+const path = require('path');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -10,6 +11,10 @@ const nextConfig = {
         pathname: "/v0/b/**",
       },
     ],
+  },
+  webpack(config) {
+    config.resolve.alias['@'] = path.join(__dirname, 'src');
+    return config;
   },
 };
 
