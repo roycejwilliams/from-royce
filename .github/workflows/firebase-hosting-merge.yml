@@ -39,7 +39,6 @@ jobs:
           channelId: live
           projectId: from-royce
           firebaseToolsVersion: latest
-          entryPoint: functions
 
       
       
