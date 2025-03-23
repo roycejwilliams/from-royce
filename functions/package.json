@@ -1,9 +1,12 @@
 {
-  "name": "server",
+  "name": "functions",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "echo 'nothing to build for functions'",
+    "serve": "firebase emulators:start --only functions",
+    "deploy": "firebase deploy --only functions",
+    "lint": "echo 'no linting setup'"
   },
   "author": "",
   "license": "ISC",

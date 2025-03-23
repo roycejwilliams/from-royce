@@ -23,22 +23,21 @@ jobs:
 
       - name: Prepare functions directory
         run: |
+          rm -rf functions/.next
           cp -r .next functions/
           cp -r public functions/
-          cp next.config.js functions
+          cp next.config.js functions/
+          cp -r node_modules functions/ # ensure all deps including GSAP are present
 
       - name: Install Functions Dependencies
         working-directory: functions
-        run: npm install --production
+        run: npm install --omit=dev
 
-      - name: Deploy to Firebase
+      - name: Deploy to Firebase Hosting + Functions
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
           channelId: live
           projectId: from-royce
-          firebaseToolsVersion: latest
-
-      
-      
+          entryPoint: functions
