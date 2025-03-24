@@ -1,14 +1,18 @@
 const { onRequest } = require('firebase-functions/v2/https');
 const express = require("express");
 const cors = require("cors");
+const next = require("next");
 const { Pool } = require("pg");
-const path = require("path");
 
 // PostgreSQL connection
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: { rejectUnauthorized: false },
 });
+
+const dev = process.env.NODE_ENV !== "production";
+const nextApp = next({ dev, conf: { distDir: ".next" } });
+const handle = nextApp.getRequestHandler();
 
 const app = express();
 app.use(cors());
@@ -87,12 +91,10 @@ app.delete("/api/posts/:id", async (req, res) => {
   }
 });
 
-// 👇 Route everything else to Next.js handler
-const nextHandler = require("./server.js"); // This doesn't call .listen()
-
+// ✅ Handle all other routes with Next.js
 app.all("*", (req, res) => {
-  return nextHandler(req, res);
+  return handle(req, res);
 });
 
-// ✅ Export function handler
-exports.nextApp = onRequest(app);
+// ✅ Export function for Firebase Hosting
+exports.nextApp = nextApp.prepare().then(() => onRequest(app));
