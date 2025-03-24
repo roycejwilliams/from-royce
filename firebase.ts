@@ -1,24 +1,20 @@
+"use client"
 // Import the Firebase functions you need
 import { initializeApp, FirebaseApp, getApps, getApp } from "firebase/app";
 import { getAnalytics, Analytics } from "firebase/analytics";
 import { getStorage, FirebaseStorage } from "firebase/storage";
 import { Auth, getAuth } from "firebase/auth";
-const functions = require("firebase-functions");
-
 
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: functions.config().myfirebase.api_key,
-  authDomain: functions.config().myfirebase.auth_domain,
-  projectId: functions.config().myfirebase.project_id,
-  storageBucket: functions.config().myfirebase.storage_bucket,
-  messagingSenderId: functions.config().myfirebase.messaging_sender_id,
-  appId: functions.config().myfirebase.app_id,
-  measurementId: functions.config().myfirebase.measurement_id,
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
-
-console.log("Firebase API Key: ", process.env.NEXT_PUBLIC_FIREBASE_API_KEY);
-
 
 
 
