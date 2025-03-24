@@ -23,10 +23,13 @@ jobs:
 
       - name: Prepare Firebase Functions directory for SSR
         run: |
-          mkdir -p functions/.next
+          mkdir -p functions
           cp -r .next functions/.next
           cp -r public functions/public
           cp next.config.js functions/
+          cp -r pages functions/pages || true
+          cp -r app functions/app || true
+          cp -r src functions/src || true
 
       - name: Install Functions Dependencies
         working-directory: functions
