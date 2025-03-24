@@ -1,11 +1,10 @@
-"use client"
-// Import the Firebase functions you need
-import { initializeApp, FirebaseApp, getApps, getApp } from "firebase/app";
-import { getAnalytics, Analytics } from "firebase/analytics";
+"use client";
+import { initializeApp, getApps, getApp, FirebaseApp } from "firebase/app";
+import { getAnalytics, Analytics, isSupported as isAnalyticsSupported } from "firebase/analytics";
 import { getStorage, FirebaseStorage } from "firebase/storage";
-import { Auth, getAuth } from "firebase/auth";
+import { getAuth, Auth } from "firebase/auth";
 
-// Firebase configuration
+// Firebase config
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -16,28 +15,20 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
+// Shared app instance
+const app: FirebaseApp = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
+// Client-only services
+let analytics: Analytics | null = null;
 
-// Initialize Firebase
-let app: FirebaseApp;
-let auth: Auth | undefined;
-let storage: FirebaseStorage | undefined;
-let analytics: Analytics | undefined;
-
-if (typeof window !== 'undefined') {
-  if (!getApps().length) {
-    app = initializeApp(firebaseConfig);
-  } else {
-    app = getApp();
-  }
-
-  auth = getAuth(app);
-  storage = getStorage(app);
-  analytics = getAnalytics(app);
+if (typeof window !== "undefined") {
+  isAnalyticsSupported().then((yes) => {
+    if (yes) analytics = getAnalytics(app);
+  }).catch(() => null);
 }
 
+// Export core services
+const auth: Auth = getAuth(app);
+const storage: FirebaseStorage = getStorage(app);
 
-
-
-// Export Firebase services
-export { storage, analytics, auth };
+export { app, auth, storage, analytics };
