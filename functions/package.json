@@ -1,7 +1,7 @@
 {
   "name": "functions",
   "version": "1.0.0",
-  "main": ".next",
+  "main": "index.js",
   "scripts": {
     "build": "echo 'nothing to build for functions'",
     "serve": "firebase emulators:start --only functions",

@@ -4,24 +4,22 @@ const next = require("next");
 const cors = require("cors");
 const { Pool } = require("pg");
 
-// 🧠 PostgreSQL connection (via env var)
+// PostgreSQL connection
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: { rejectUnauthorized: false },
 });
 
-// ⚙️ Express + Next.js setup
+// Express + Next.js setup
 const dev = process.env.NODE_ENV !== "production";
 const nextApp = next({ dev, conf: { distDir: ".next" } });
 const handle = nextApp.getRequestHandler();
 
 const app = express();
-
-// 🔧 Middleware
 app.use(cors());
 app.use(express.json());
 
-// ✅ REST API Routes
+// API Routes
 app.post("/api/posts", async (req, res) => {
   try {
     const { title, content, image } = req.body;
@@ -94,10 +92,5 @@ app.delete("/api/posts/:id", async (req, res) => {
   }
 });
 
-// ⚡ Next.js SSR (handle everything else)
-const nextServer = onRequest(async (req, res) => {
-  await nextApp.prepare();
-  return app(req, res);
-});
-
-exports.nextApp = nextServer;
+// Export SSR handler
+exports.nextApp = nextApp.prepare().then(() => onRequest(app));
