@@ -12,17 +12,19 @@
   },
   "hosting": {
     "site": "from-royce",
-    "public": "public", 
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
     "rewrites": [
-  {
-    "source": "**",
-    "function": "nextApp"
-  }
-]
+      {
+        "source": "**",
+        "run": {
+          "serviceId": "nextapp",
+          "region": "us-central1"
+        }
+      }
+    ]
   }
 }
