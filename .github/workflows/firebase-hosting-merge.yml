@@ -30,7 +30,7 @@ jobs:
           cp -r pages functions/pages || true
           cp -r app functions/app || true
           cp -r src functions/src || true
-
+          cp .npmrc functions/.npmrc  # ← ✅ Ensure GSAP private registry config is passed to functions
 
       - name: Install Functions Dependencies
         working-directory: functions
