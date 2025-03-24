@@ -1,36 +1,45 @@
-name: Deploy to Firebase
+name: Deploy to Firebase Hosting on merge
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
-  deploy:
+  build_and_deploy:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install root dependencies & build
+      - name: Create .npmrc for GSAP Club plugins
+        run: |
+          echo "@gsap:registry=https://npm.greensock.com/" >> .npmrc
+          echo "//npm.greensock.com/:_authToken=${{ secrets.GSAP_TOKEN }}" >> .npmrc
+          echo "always-auth=true" >> .npmrc
+
+      - name: Install root dependencies and build Next.js
         run: npm ci && npm run build
 
-      - name: Prepare Firebase Functions directory
+      - name: Prepare Firebase Functions directory for SSR
         run: |
-          cp -r .next functions/
-          cp -r public functions/
+          mkdir -p functions/.next
+          cp -r .next/standalone/* functions/
+          cp -r .next/static functions/.next/static
+          cp -r public functions/public
           cp next.config.js functions/
+
+      - name: Install Functions Dependencies
+        working-directory: functions
+        run: npm install --omit=dev
 
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
-      - name: Install Functions Dependencies
-        working-directory: functions
-        run: npm install
-
-      - name: Authenticate with Firebase (if using service account)
+      - name: Authenticate with Firebase (Service Account)
         uses: google-github-actions/auth@v1
         with:
           credentials_json: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
 
-      - name: Deploy to Firebase
+      - name: Deploy SSR app to Firebase (Functions + Hosting)
         run: firebase deploy --only functions,hosting --project from-royce
