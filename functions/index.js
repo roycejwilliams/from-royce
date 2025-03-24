@@ -97,4 +97,6 @@ app.all("*", (req, res) => {
 });
 
 // ✅ Export function for Firebase Hosting
-exports.nextApp = nextApp.prepare().then(() => onRequest(app));
+nextApp.prepare().then(() => {
+  exports.nextApp = onRequest(app); // ✅ eager export after prepare
+});
