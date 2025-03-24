@@ -18,13 +18,13 @@
       "**/node_modules/**"
     ],
     "rewrites": [
-      {
-        "source": "**",
-        "run": {
-          "serviceId": "nextapp",
-          "region": "us-central1"
-        }
-      }
-    ]
+  {
+    "source": "**",
+    "function": {
+      "functionId": "nextApp",
+      "region": "us-central1"
+    }
+  }
+]
   }
 }
