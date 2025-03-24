@@ -91,12 +91,16 @@ app.delete("/api/posts/:id", async (req, res) => {
   }
 });
 
-// ✅ Handle all other routes with Next.js
+// 🔁 Catch-all for Next.js pages
 app.all("*", (req, res) => {
   return handle(req, res);
 });
 
-// ✅ Export function for Firebase Hosting
-nextApp.prepare().then(() => {
-  exports.nextApp = onRequest(app); // ✅ eager export after prepare
-});
+// ✅ Export Firebase Gen 2 Cloud Function
+exports.nextApp = onRequest(
+  { region: "us-central1" }, // match firebase.json
+  async (req, res) => {
+    await nextApp.prepare();
+    app(req, res);
+  }
+);
