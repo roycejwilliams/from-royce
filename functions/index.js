@@ -1,6 +1,6 @@
 const { onRequest } = require('firebase-functions/v2/https');
 const express = require("express");
-const next = require("next");
+const server = require("./server"); // from .next/standalone/server.js
 const cors = require("cors");
 const { Pool } = require("pg");
 
@@ -10,11 +10,7 @@ const pool = new Pool({
   ssl: { rejectUnauthorized: false },
 });
 
-// Express + Next.js setup
-const dev = process.env.NODE_ENV !== "production";
-const nextApp = next({ dev, conf: { distDir: ".next" } });
-const handle = nextApp.getRequestHandler();
-
+// Express setup
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -92,5 +88,9 @@ app.delete("/api/posts/:id", async (req, res) => {
   }
 });
 
-// Export SSR handler
-exports.nextApp = nextApp.prepare().then(() => onRequest(app));
+// Use Next.js server handler for all other routes
+app.use((req, res) => {
+  server(req, res);
+});
+
+exports.nextApp = onRequest(app);
