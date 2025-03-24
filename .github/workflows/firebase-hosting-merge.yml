@@ -24,12 +24,8 @@ jobs:
       - name: Prepare Firebase Functions directory for SSR
         run: |
           mkdir -p functions/.next
-          mkdir -p functions/public
-      
-          # Copy the minimal runtime needed by Next.js
-          cp .next/standalone/server.js functions/
-          cp -r .next/static functions/.next/static
-          cp -r public/* functions/public/
+          cp -r .next functions/.next
+          cp -r public functions/public
           cp next.config.js functions/
 
       - name: Install Functions Dependencies
