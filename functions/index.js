@@ -1,8 +1,8 @@
 const { onRequest } = require('firebase-functions/v2/https');
 const express = require("express");
-const server = require("./server"); // from .next/standalone/server.js
 const cors = require("cors");
 const { Pool } = require("pg");
+const path = require("path");
 
 // PostgreSQL connection
 const pool = new Pool({
@@ -10,7 +10,6 @@ const pool = new Pool({
   ssl: { rejectUnauthorized: false },
 });
 
-// Express setup
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -88,9 +87,12 @@ app.delete("/api/posts/:id", async (req, res) => {
   }
 });
 
-// Use Next.js server handler for all other routes
-app.use((req, res) => {
-  server(req, res);
+// 👇 Route everything else to Next.js handler
+const nextHandler = require("./server.js"); // This doesn't call .listen()
+
+app.all("*", (req, res) => {
+  return nextHandler(req, res);
 });
 
+// ✅ Export function handler
 exports.nextApp = onRequest(app);
