@@ -27,10 +27,13 @@ jobs:
           cp functions/package.json functions/package.json.bak
 
           mkdir -p functions/.next
-          cp -r .next/standalone/* functions/
+          cp .next/standalone/server.js functions/
+          cp -r .next/standalone/.next functions/.next
           cp -r .next/static functions/.next/static
           cp -r public functions/public
           cp next.config.js functions/
+
+          cp functions/package.json.bak functions/package.json
 
           cp functions/package.json.bak functions/package.json
 
