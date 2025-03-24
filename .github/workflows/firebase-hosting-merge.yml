@@ -21,10 +21,12 @@ jobs:
       - name: Install root dependencies and build Next.js
         run: npm ci && npm run build
 
-      - name: Prepare Firebase Functions directory
+      - name: Prepare Firebase Functions directory for SSR
         run: |
-          cp -r .next functions/
-          cp -r public functions/
+          mkdir -p functions/.next
+          cp -r .next/standalone/* functions/
+          cp -r .next/static functions/.next/static
+          cp -r public functions/public
           cp next.config.js functions/
 
       - name: Install Functions Dependencies
@@ -39,14 +41,7 @@ jobs:
         with:
           credentials_json: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
 
-      - name: Deploy Functions (Next.js SSR)
-        run: firebase deploy --only functions --project from-royce
-
-      - name: Deploy Hosting (SSR + Rewrites)
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: "${{ secrets.GITHUB_TOKEN }}"
-          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
-          projectId: from-royce
-          channelId: live
-          firebaseToolsVersion: latest
+      - name: Deploy SSR app to Firebase (Functions + Hosting)
+        run: firebase deploy --only functions,hosting --project from-royce
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}

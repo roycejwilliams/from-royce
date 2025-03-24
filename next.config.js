@@ -2,8 +2,9 @@ const path = require('path');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone', // 👈 Add this for SSR compatibility
-  distDir: '.next',     // 👈 Ensure you're explicitly defining the distDir
+  output: 'standalone', 
+  distDir: '.next',    
+   
   images: {
     unoptimized: true,
     remotePatterns: [
@@ -18,6 +19,9 @@ const nextConfig = {
     config.resolve.alias['@'] = path.join(__dirname, 'src');
     return config;
   },
+  experimental: {
+    serverActions: true
+  }
 };
 
 module.exports = nextConfig;
