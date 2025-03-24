@@ -30,6 +30,8 @@ jobs:
           cp -r pages functions/pages || true
           cp -r app functions/app || true
           cp -r src functions/src || true
+          firebase deploy --only functions:nextApp --project from-royce
+
 
       - name: Install Functions Dependencies
         working-directory: functions
