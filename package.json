@@ -5,17 +5,17 @@
   "scripts": {
     "queries": "node scripts/queries.js",
     "dev": "next dev --turbopack",
-    "build": "next build",  
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "overrides": {
-  "picomatch": "^4.0.2"
-},
+    "picomatch": "^4.0.2"
+  },
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "date-fns": "^4.1.0",
-    "firebase": "^11.3.1",
+    "firebase": "^11.5.0",
     "firebase-admin": "^13.1.0",
     "gsap": "npm:@gsap/simply@^3.12.7",
     "locomotive-scroll": "^5.0.0-beta.21",
