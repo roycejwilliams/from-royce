@@ -88,7 +88,7 @@ const Splash = () => {
   }, []);
 
   return (
-    <section ref={backgroundRef} className="w-full gradient-bg-3 overflow-hidden flex justify-center items-center">
+    <section ref={backgroundRef} className="w-full gradient-bg-3  flex justify-center items-center">
       <svg>
         <defs>
           <filter id="goo">
