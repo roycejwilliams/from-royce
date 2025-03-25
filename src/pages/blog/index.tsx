@@ -27,8 +27,8 @@ function Blog() {
           tablet: {
             smooth: false,
           },
-        } as any); // <-- Ignore TS warnings here
-    
+        } as unknown as ConstructorParameters<typeof LocomotiveScroll>[0]); // ✅ type-checked!
+        
         console.log(scroll);
       })();
     }, []);

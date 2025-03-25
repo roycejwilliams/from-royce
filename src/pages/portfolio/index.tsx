@@ -8,6 +8,8 @@ import Nav from "../../components/nav";
 import WorkCon from "../../components/workCon";
 
 
+
+
 const Portfolio = () => {
 
   const backgroundRef = useRef<HTMLDivElement | null>(null);
@@ -25,8 +27,8 @@ const Portfolio = () => {
         tablet: {
           smooth: false,
         },
-      } as any); // <-- Ignore TS warnings here
-  
+      } as unknown as ConstructorParameters<typeof LocomotiveScroll>[0]); // ✅ type-checked!
+      
       console.log(scroll);
     })();
   }, []);
