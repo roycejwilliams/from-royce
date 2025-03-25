@@ -112,14 +112,14 @@ const Splash = () => {
           </filter>
         </defs>
       </svg>
-      <div className="gradient-container ">
+      {/* <div className="gradient-container ">
         <div className="g1"></div>
         <div className="g2"></div>
         <div className="g3"></div>
         <div className="g4"></div>
         <div className="g5"></div>
         <div className="interactive-3 hidden xl:block"></div>
-      </div>
+      </div> */}
       {/* Logo / Action button */}
       <div className="mx-auto flex flex-col z-50 absolute left-1/2 translate-x-[-50%] top-1/2 translate-y-[-50%] transform justify-center items-center">
       <Link
