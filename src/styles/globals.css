@@ -249,3 +249,6 @@ svg {
   z-index: -10;
 }
 
+.g1, .g2, .g3, .g4, .g5, .interactive, .interactive-2 , .interactive-3 {
+  will-change: transform;
+}

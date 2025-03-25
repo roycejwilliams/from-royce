@@ -15,80 +15,85 @@ function Blog() {
    const backgroundRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-         (async () => {
-           const LocomotiveScroll = (await import('locomotive-scroll')).default;
-           const locomotiveScroll = new LocomotiveScroll();
-           console.log(locomotiveScroll); // Logs the instance to the console
-         })();
-       }, []);
-  
-    useEffect(() => {
-      if (!backgroundRef.current) return;
+      (async () => {
+        const LocomotiveScroll = (await import("locomotive-scroll")).default;
     
-      const bubbles = backgroundRef.current.querySelectorAll<HTMLDivElement>(".g1, .g2, .g3, .g4, .g5");
-      const interactive = backgroundRef.current.querySelector<HTMLDivElement>(".interactive-2");
+        const scroll = new LocomotiveScroll({
+          el: document.querySelector("[data-scroll-container]") as HTMLElement,
+          smooth: true,
+          smartphone: {
+            smooth: false,
+          },
+          tablet: {
+            smooth: false,
+          },
+        } as any); // <-- Ignore TS warnings here
     
-      let mouseX = window.innerWidth / 2;
-      let mouseY = window.innerHeight / 2;
-    
-      // ✅ Function to Move Bubbles Randomly Forever
-      function moveBubbles() {
-        bubbles.forEach((bubble) => {
-          let bubbleX = Math.random() * (window.innerWidth - 100);
-          let bubbleY = Math.random() * (window.innerHeight - 100);
-          let velocityX = (Math.random() - 0.5) * 4; // Speed in X direction
-          let velocityY = (Math.random() - 0.5) * 4; // Speed in Y direction
-    
-          function animateBubble() {
-            bubbleX += velocityX;
-            bubbleY += velocityY;
-    
-            // Bounce off screen edges
-            if (bubbleX <= 0 || bubbleX >= window.innerWidth - 100) velocityX *= -1;
-            if (bubbleY <= 0 || bubbleY >= window.innerHeight - 100) velocityY *= -1;
-    
-            bubble.style.transform = `translate(${bubbleX}px, ${bubbleY}px)`;
-    
-            requestAnimationFrame(animateBubble);
-          }
-    
-          animateBubble(); // Start animation
-        });
-      }
-    
-      moveBubbles(); // Start movement immediately
-    
-      // ✅ Add Interactive Mouse Tracking Effect for `.interactive`
-      function updateMousePosition(event: MouseEvent) {
-        mouseX = event.clientX;
-        mouseY = event.clientY;
-      }
-    
-      function moveWithMouse() {
-        if (interactive) {
-          interactive.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
-        }
-        requestAnimationFrame(moveWithMouse);
-      }
-    
-      window.addEventListener("mousemove", updateMousePosition);
-      moveWithMouse(); // Start interactive movement
-    
-      return () => {
-        window.removeEventListener("mousemove", updateMousePosition);
-      };
+        console.log(scroll);
+      })();
     }, []);
+    
+     
+  
+         useEffect(() => {
+          if (!backgroundRef.current) return;
+        
+          const bubbles = Array.from(backgroundRef.current.querySelectorAll<HTMLDivElement>(".g1, .g2, .g3, .g4, .g5"));
+          const interactive = backgroundRef.current.querySelector<HTMLDivElement>(".interactive, .interactive-2");
+        
+          let mouseX = window.innerWidth / 2;
+          let mouseY = window.innerHeight / 2;
+        
+          const bubbleStates = bubbles.map(() => ({
+            x: Math.random() * (window.innerWidth - 100),
+            y: Math.random() * (window.innerHeight - 100),
+            vx: (Math.random() - 0.5) * 4,
+            vy: (Math.random() - 0.5) * 4,
+          }));
+        
+          function update() {
+            bubbleStates.forEach((state, i) => {
+              state.x += state.vx;
+              state.y += state.vy;
+        
+              if (state.x <= 0 || state.x >= window.innerWidth - 100) state.vx *= -1;
+              if (state.y <= 0 || state.y >= window.innerHeight - 100) state.vy *= -1;
+        
+              const bubble = bubbles[i];
+              if (bubble) {
+                bubble.style.transform = `translate(${state.x}px, ${state.y}px)`;
+              }
+            });
+        
+            if (interactive) {
+              interactive.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+            }
+        
+            requestAnimationFrame(update);
+          }
+        
+          window.addEventListener("mousemove", (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+          });
+        
+          update(); // start animation
+        
+          return () => {
+            window.removeEventListener("mousemove", (e) => {
+              mouseX = e.clientX;
+              mouseY = e.clientY;
+            });
+          };
+        }, []);
 
   return (
-    <section ref={backgroundRef} className="w-full gradient-bg-2 overflow-x-hidden">
-      <svg>
+    <section data-scroll-container ref={backgroundRef} className="w-full gradient-bg-2 overflow-x-hidden">
+      {typeof window !== "undefined" && window.innerWidth > 768 && (
+      <svg >
         <defs>
           <filter id="goo">
-            <feGaussianBlur
-              in="SourceGraphic"
-              stdDeviation="10"
-              result="blur"
-            />
+            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
             <feColorMatrix
               in="blur"
               mode="matrix"
@@ -99,6 +104,7 @@ function Blog() {
           </filter>
         </defs>
       </svg>
+      )}
       <div className="gradient-container">
         <div className="g1"></div>
         <div className="g2"></div>
