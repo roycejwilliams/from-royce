@@ -61,7 +61,7 @@ const Photos = () => {
   return (
     <section
       ref={photosRef}
-      className="photos min-h-[100svh]  relative  flex justify-center items-center w-full overflow-hidden"
+      className="photos min-h-[100vh] relative  flex justify-center items-center w-full overflow-hidden"
     >
       {photos.map((photo, index) => (
         <div

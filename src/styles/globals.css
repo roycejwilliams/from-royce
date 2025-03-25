@@ -15,8 +15,10 @@
   align-items: center;
   justify-content: center;
   pointer-events: none;
-  overflow: visible;
+  overflow: hidden;
   z-index: 5;
+  scroll-behavior: none;
+  border: 10px solid red;
 }
 
 .svg-container svg {
@@ -112,7 +114,6 @@
 }
 
 .gradient-bg-3 {
-  height: 100vh;
   position: relative;
   background: linear-gradient(135deg, #775253 0%, #312623 70%);
   left: 0;
