@@ -271,7 +271,7 @@ const Grid = () => {
         <h2 className="uppercase z-40 mb-20 font-anonymous tracking-widest xl:w-1/2 w-full xl:text-left text-center text-white ">
           <span className="font-cylburn text-8xl">S</span>kills
         </h2>
-        <ul className="skills-list text-white text-center xl:text-left font-anonymous flex flex-col z-50 xl:text-lg text-sm  gap-y-10 tracking-[0.3em] uppercase p-4 ml-8">
+        <ul className="skills-list text-white text-center xl:text-left font-anonymous flex flex-col z-50 md:text-lg  text-sm  gap-y-10 tracking-[0.3em] uppercase p-4 ml-8">
           {skills.map((skill, index) => (
             <li
               key={index}

@@ -9,7 +9,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Photos = () => {
   const photosRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
 
   const photos = [
     "/images/photo.jpg",
@@ -24,14 +23,9 @@ const Photos = () => {
          scrollTrigger: {
            trigger: photosRef.current,  //Target the section
            start: "top top",  //Starts when the top of the section hits the top of the viewport
-           end: `+=${photos.length * (window.innerHeight * (window.innerWidth < 768 ? 0.4 : 0.6))}`,
+           end: `+=${photos.length * window.innerHeight * (window.innerWidth < 768 ? 0.4 : 0.6)}`,
            scrub: true,
            pin: true,
-           onUpdate: (self) => {
-              //Calculate the active index based on the scroll progress
-             const index = Math.floor(self.progress * photos.length);
-             setActiveIndex(index);  //Update the activeIndex
-           },
          },
        });
 
@@ -51,11 +45,11 @@ const Photos = () => {
              zIndex: 1, 
              scale: 1, 
              opacity: 1, 
-             duration: 1,
+             duration: 0.6,
              ease: "power2.inOut",
              y: 0,
            },
-           index * 0.5 
+           index * 0.25 
          );
        });
      }, photosRef);
@@ -75,6 +69,10 @@ const Photos = () => {
           className={`photo photo-${index} w-[100%] h-screen absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 overflow-hidden origin-bottom`}
         >
           <Image
+         priority
+          style={{
+            transform: "translateZ(0)",
+          }}
             src={photo}
             fill
             alt={`Photo ${index + 1}`}
@@ -83,12 +81,12 @@ const Photos = () => {
           <div className="absolute w-full h-full bg-gradient-to-b from-gray-500/20 via-black/50 to-[#6F5C5C]/35"></div>
         </div>
       ))}
-      <h2 className="z-50 absolute left-0 font-anonymous top-1/2 -translate-y-1/2 xl:px-24 px-8 xl:text-3xl text-xl text-white font-medium">
-        <span className="font-cylburn text-8xl ">V</span>isions{" "}
-        <span className="font-cylburn text-8xl ">C</span>rafted: <br></br>An
+      <h2 className="z-50 absolute left-0 font-anonymous top-1/2 -translate-y-1/2 xl:px-24 px-8 xl:text-3xl  text-white font-medium">
+        <span className="font-cylburn xl:text-8xl text-6xl">V</span>isions{" "}
+        <span className="font-cylburn xl:text-8xl text-6xl">C</span>rafted: <br></br>An
         Engineer&apos;s Perspective
       </h2>
-      <div className="z-50 absolute p-4 right-0 top-1/2 flex flex-col justify-center items-center gap-6 -translate-y-1/2 h-auto">
+      {/* <div className="z-50 absolute p-4 right-0 top-1/2 flex flex-col justify-center items-center gap-6 -translate-y-1/2 h-auto">
         {photos.map((_, index) => (
           <div
             key={index}
@@ -97,7 +95,7 @@ const Photos = () => {
             }`}
           ></div>
         ))} 
-      </div>
+      </div> */}
     </section>
   );
 };
