@@ -81,10 +81,11 @@ const Photos = () => {
           <div className="absolute w-full h-full bg-gradient-to-b from-gray-500/20 via-black/50 to-[#6F5C5C]/35"></div>
         </div>
       ))}
-      <h2 className="z-50 absolute left-0 font-anonymous top-1/2 -translate-y-1/2 xl:px-24 px-8 xl:text-3xl  text-white font-medium">
+      <h2 className="z-50 absolute left-0 font-anonymous top-1/2 -translate-y-1/2 xl:px-24 px-8 py-4 xl:text-3xl  text-white font-medium">
         <span className="font-cylburn xl:text-8xl text-6xl">V</span>isions{" "}
-        <span className="font-cylburn xl:text-8xl text-6xl">C</span>rafted: <br></br>An
-        Engineer&apos;s Perspective
+        <span className="font-cylburn xl:text-8xl text-6xl">C</span>rafted: 
+        <br></br>
+        <span>An Engineer&apos;s Perspective</span>
       </h2>
       {/* <div className="z-50 absolute p-4 right-0 top-1/2 flex flex-col justify-center items-center gap-6 -translate-y-1/2 h-auto">
         {photos.map((_, index) => (
