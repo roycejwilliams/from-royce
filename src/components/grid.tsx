@@ -146,7 +146,7 @@ const Grid = () => {
   return (
     <div
       ref={gridContainer}
-      className="w-full mx-auto p-24 flex flex-col lg:flex-row justify-center gap-y-2 min-h-screen "
+      className="w-full mx-auto p-24 flex flex-col  lg:flex-row justify-center gap-y-2 min-h-[100vh] "
     >
       <div className="w-1/2 hidden relative xl:flex justify-center mt-24">
         {/* Mission */}

@@ -24,7 +24,7 @@ const Photos = () => {
          scrollTrigger: {
            trigger: photosRef.current,  //Target the section
            start: "top top",  //Starts when the top of the section hits the top of the viewport
-           end: `+=${photos.length * window.innerHeight * 0.6}`,  //Adjust the scroll duration to fit the number of slides
+           end: `+=${photos.length * (window.innerHeight * (window.innerWidth < 768 ? 0.4 : 0.6))}`,
            scrub: true,
            pin: true,
            onUpdate: (self) => {
@@ -51,8 +51,8 @@ const Photos = () => {
              zIndex: 1, 
              scale: 1, 
              opacity: 1, 
-             duration: 1.5,
-             ease: "power1.in",
+             duration: 1,
+             ease: "power2.inOut",
              y: 0,
            },
            index * 0.5 
@@ -62,11 +62,12 @@ const Photos = () => {
 
      return () => ctx.revert();
    }, []);
+   
 
   return (
     <section
       ref={photosRef}
-      className="photos h-[100vh] relative flex justify-center items-center w-full overflow-hidden"
+      className="photos min-h-[100vh] relative  flex justify-center items-center w-full overflow-hidden"
     >
       {photos.map((photo, index) => (
         <div

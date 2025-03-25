@@ -121,7 +121,7 @@ const Portfolio = () => {
       <Intro />
       <Work />
       <WorkCon />
-      <Grid />
+        <Grid />
       <Photos />
       <Footer />
       
