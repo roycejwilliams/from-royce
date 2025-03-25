@@ -1,11 +1,13 @@
+require("dotenv").config();
+const { initializeApp } = require("firebase/app");
+
+
 const { onRequest } = require('firebase-functions/v2/https');
 const express = require("express");
 const cors = require("cors");
 const next = require("next");
 const { Pool } = require("pg");
 
-require("dotenv").config();
-const { initializeApp } = require("firebase/app");
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
