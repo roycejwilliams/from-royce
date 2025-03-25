@@ -4,12 +4,14 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
 
+
 // Extend the Window interface
 declare global {
   interface Window {
     prevScrollY?: number; // Add the prevScrollY property
   }
 }
+
 
 function Idea() {
   const svgContainer = useRef(null);

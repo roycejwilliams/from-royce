@@ -5,6 +5,8 @@ import React, { useState,  useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ChevronsRight } from "lucide-react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 
 declare global {
   interface Window {
@@ -20,6 +22,8 @@ declare global {
     };
   }
 }
+
+gsap.registerPlugin(ScrollTrigger);
 
 
 const Grid = () => {

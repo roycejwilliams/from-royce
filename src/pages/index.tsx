@@ -90,7 +90,7 @@ const Splash = () => {
   }, []);
 
   return (
-    <section ref={backgroundRef}   className="w-full h-screen overflow-hidden gradient-bg-3 flex justify-center items-center"
+    <section ref={backgroundRef}   className="w-full overflow-hidden gradient-bg-3 flex justify-center items-center"
 >
       <svg>
         <defs>

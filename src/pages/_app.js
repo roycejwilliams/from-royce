@@ -7,16 +7,6 @@ import { useEffect } from "react";
 
 export default function App({ Component, pageProps, router }) {
 
-  useEffect(() => {
-    // Prevent this logic from ever running on the server
-  
-    (async () => {
-      const { gsap } = await import("gsap");
-      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
-  
-      gsap.registerPlugin(ScrollTrigger);
-    })(); // <-- This was missing
-  }, []);
 
   
   
