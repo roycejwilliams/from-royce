@@ -10,7 +10,6 @@
   justify-content: center;
   width: 100%;
   height: 1117px;
-  overflow: hidden;
 }
 
 svg {
@@ -127,19 +126,20 @@ svg {
 }
 
 .gradient-bg-3 {
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   position: relative;
   background: linear-gradient(135deg, #775253 0%, #312623 70%);
   left: 0;
   overflow: hidden;
-} */
+}
 
- .gradient-container {
-  position: fixed;  
+.gradient-container {
+  position: fixed;  /* Covers entire viewport */
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh; 
+  height: 100vh; /* Full viewport height */
   filter: url(#goo) blur(12px); 
   nav-down: auto;
 }
@@ -213,7 +213,7 @@ svg {
   mix-blend-mode: var(--blending);
   top: 0;
   left: 0;
-  transform: translate(-50%, -50%); 
+  transform: translate(-50%, -50%); /* Ensures it centers around the mouse */
   pointer-events: none;
   opacity: 0.7;
   z-index: -1;
@@ -228,7 +228,7 @@ svg {
   mix-blend-mode: var(--blending);
   top: 0;
   left: 0;
-  transform: translate(-50%, -50%); 
+  transform: translate(-50%, -50%); /* Ensures it centers around the mouse */
   pointer-events: none;
   opacity: 0.7;
   z-index: -10;
@@ -243,7 +243,7 @@ svg {
   mix-blend-mode: var(--blending);
   top: 0;
   left: 0;
-  transform: translate(-50%, -50%); 
+  transform: translate(-50%, -50%); /* Ensures it centers around the mouse */
   pointer-events: none;
   opacity: 0.7;
   z-index: -10;
