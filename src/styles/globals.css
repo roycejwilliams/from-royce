@@ -17,6 +17,7 @@ svg {
   height: 100%;
   width: 100%;
   top: -225px;
+  overflow: hidden;
 }
 
 @media (max-width: 1024px) {
@@ -45,7 +46,7 @@ svg {
 @media (max-width: 650px) {
   svg {
     min-width: 100vw; /* Ensures it fills the width */
-    min-height: 120vh; /* Ensures it fills the height */
+    height: 100vh; /* Ensures it fills the height */
     width: 120vh;
     height: auto; 
     top: -100px !important; 

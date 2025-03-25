@@ -106,7 +106,7 @@ const Grid = () => {
        const timeline = gsap.timeline({
          scrollTrigger: {
            trigger: gridContainer.current,
-           start: "top+=50",  //Offset the start point
+           start: "top+=25",  //Offset the start point
            end: `+=${skills.length * 100}vh`,  //Adjust based on your layout
            pin: true,
            scrub: true,  //Smooth scroll animation
@@ -159,7 +159,7 @@ const Grid = () => {
           <div className="via-white/10 from-black/20 bg-gradient-to-t to-white/10 blur-lg w-full h-full  absolute"></div>
           <div className="w-full block z-50 ">
             <p className=" text-sm text-white z-40 ml-4 font-anonymous font-light ">
-              <span className="font-cylburn text-5xl">I</span>$&apos;m a computer
+              <span className="font-cylburn text-5xl">I</span>&apos;m a computer
               engineer with a designer&apos;s eye, aspiring agency owner, and
               dedicated developer. As a founder and creative, I focus on
               crafting solutions that help businesses grow and thrive.
@@ -271,7 +271,7 @@ const Grid = () => {
         <h2 className="uppercase z-40 mb-20 font-anonymous tracking-widest xl:w-1/2 w-full xl:text-left text-center text-white ">
           <span className="font-cylburn text-8xl">S</span>kills
         </h2>
-        <ul className="skills-list text-white text-center xl:text-left font-anonymous flex flex-col z-50 text-lg  gap-y-10 tracking-[0.3em] uppercase p-4 ml-8">
+        <ul className="skills-list text-white text-center xl:text-left font-anonymous flex flex-col z-50 xl:text-lg text-sm  gap-y-10 tracking-[0.3em] uppercase p-4 ml-8">
           {skills.map((skill, index) => (
             <li
               key={index}
