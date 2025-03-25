@@ -265,7 +265,7 @@ const Grid = () => {
       </div>
       <div
         data-scroll
-        data-scroll-speed="-0.05"
+        data-scroll-speed="0.05"
         className="flex-col p-8 relative xl:w-1/2 w-full  flex justify-center items-center h-full "
       >
         <h2 className="uppercase z-40 mb-20 font-anonymous tracking-widest xl:w-1/2 w-full xl:text-left text-center text-white ">
