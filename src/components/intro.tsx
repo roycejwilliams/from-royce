@@ -1,45 +1,45 @@
 "use client";
-import React, {  useRef } from "react";
+import React, { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
+import { ScrollTrigger } from "gsap/ScrollTrigger"; // Optional: For normalizeScroll
 import { useGSAP } from "@gsap/react";
 
-gsap.registerPlugin(ScrambleTextPlugin);
-
+gsap.registerPlugin(ScrambleTextPlugin, ScrollTrigger);
+ScrollTrigger.normalizeScroll(true); // Ensures smoother scroll on mobile
 
 function Intro() {
-
   const tableRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
     if (!tableRef.current) return;
-    // Select all table cells with the "scramble" class
-    const cells = tableRef.current.querySelectorAll('.scramble');
+
+    const cells = tableRef.current.querySelectorAll(".scramble");
 
     cells.forEach((cell) => {
       const text = cell.textContent ?? "";
-      // Create a timeline for each cell
       const tl = gsap.timeline();
-      // Smooth scramble animation with easing
+
       tl.to(cell, {
         duration: 5,
-        ease: "power2.inOut", // Smooth easing for scramble effect
+        ease: "power2.inOut",
         scrambleText: {
-          text, // Scramble to the cell's original text
+          text,
           chars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
           revealDelay: 0.3,
         },
       });
-      // If the cell should disappear, fade it out with easing
+
       if (cell.classList.contains("fadeOut")) {
         tl.to(cell, {
           duration: 1,
-          ease: "power2.out", // Smooth easing for the fade-out effect
+          ease: "power2.out",
           opacity: 0,
         });
       }
     });
   }, []);
+
 
   return (
     <div ref={tableRef}  className="w-full  relative   ">
