@@ -9,29 +9,13 @@ export default function App({ Component, pageProps, router }) {
 
   useEffect(() => {
     // Prevent this logic from ever running on the server
-    if (typeof window === "undefined") return;
-
+  
     (async () => {
       const { gsap } = await import("gsap");
       const { ScrollTrigger } = await import("gsap/ScrollTrigger");
-
+  
       gsap.registerPlugin(ScrollTrigger);
-
-      if (ScrollTrigger.isTouch) {
-        ScrollTrigger.normalizeScroll();
-      }
-
-      const handleResize = () => {
-        ScrollTrigger.refresh();
-      };
-
-      window.addEventListener("resize", handleResize);
-
-      // Cleanup
-      return () => {
-        window.removeEventListener("resize", handleResize);
-      };
-    })();
+    })(); // <-- This was missing
   }, []);
 
   
