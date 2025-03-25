@@ -1,12 +1,10 @@
 import React from "react";
-import { useRef } from "react";
+import { useRef,  } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
-ScrollTrigger.normalizeScroll(true); // ✅ Smooths scroll & address bar behavior on mobile
-
 
 // Extend the Window interface
 declare global {
