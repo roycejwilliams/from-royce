@@ -4,29 +4,34 @@ import TransitionProvider from '../context/TransitionContext'
 import Transition from '../components/Transition';
 import { AuthProvider } from "../context/AuthContext";
 import { useEffect } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default function App({ Component, pageProps, router }) {
 
   useEffect(() => {
-    // Normalize scroll only on mobile/touch devices
-    if (ScrollTrigger.isTouch) {
-      ScrollTrigger.normalizeScroll();
-    }
+    // Prevent this logic from ever running on the server
+    if (typeof window === "undefined") return;
 
-    // Refresh on resize to handle viewport height/address bar changes
-    const handleResize = () => {
-      ScrollTrigger.refresh();
-    };
+    (async () => {
+      const { gsap } = await import("gsap");
+      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
 
-    window.addEventListener("resize", handleResize);
+      gsap.registerPlugin(ScrollTrigger);
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+      if (ScrollTrigger.isTouch) {
+        ScrollTrigger.normalizeScroll();
+      }
+
+      const handleResize = () => {
+        ScrollTrigger.refresh();
+      };
+
+      window.addEventListener("resize", handleResize);
+
+      // Cleanup
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    })();
   }, []);
 
   return (
