@@ -46,7 +46,7 @@ function Intro() {
       
       {/* Crossword */}
      <div className="w-full h-[75vh]   z-50 flex justify-center items-center">
-      <div data-scroll data-scroll-speed="0.2" className="text-[#999898] font-anonymous text-sm md:text-base ">
+      <div data-scroll data-scroll-speed="0.2" className="text-[#999898] font-anonymous text-xs md:text-base ">
         <table className="table-auto w-full ">
           <tbody>
             <tr>

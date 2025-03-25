@@ -106,7 +106,7 @@ const Grid = () => {
        const timeline = gsap.timeline({
          scrollTrigger: {
            trigger: gridContainer.current,
-           start: "top+=25",  //Offset the start point
+           start: "top+=0",  //Offset the start point
            end: `+=${skills.length * 100}vh`,  //Adjust based on your layout
            pin: true,
            scrub: true,  //Smooth scroll animation

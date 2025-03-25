@@ -1,15 +1,24 @@
+/* Cylburn Regular */
 @font-face {
   font-family: 'Cylburn';
-  src: url('/Fonts/Cylburn.otf') format('opentype');
+  src: url('/Fonts/Cylburn.otf') format('opentype'),
+       url('/Fonts/Cylburn.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
+/* Anonymous Pro Minus - Regular */
 @font-face {
-  font-family: 'Anonymous Pro Minus B';
-  src: url('/Fonts/AnonymousProMinus.ttf') format('truetype');
-  font-weight: normal;
+  font-family: 'Anonymous Pro Minus';
+  src: url('/Fonts/Anonymous Pro Minus.ttf') format('truetype');
+  font-weight: 400;
   font-style: normal;
 }
 
-  
+/* Anonymous Pro Minus - Bold */
+@font-face {
+  font-family: 'Anonymous Pro Minus';
+  src: url('/Fonts/Anonymous Pro Minus B.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
