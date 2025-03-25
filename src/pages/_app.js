@@ -3,7 +3,6 @@ import "../styles/globals.css";
 import TransitionProvider from '../context/TransitionContext'
 import Transition from '../components/Transition';
 import { AuthProvider } from "../context/AuthContext";
-import { useEffect } from "react";
 
 export default function App({ Component, pageProps, router }) {
 
