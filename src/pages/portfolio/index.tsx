@@ -12,7 +12,14 @@ const Portfolio = () => {
 
   const backgroundRef = useRef<HTMLDivElement | null>(null);
 
-   
+  useEffect(() => {
+         (async () => {
+           const LocomotiveScroll = (await import('locomotive-scroll')).default;
+           const locomotiveScroll = new LocomotiveScroll();
+           console.log(locomotiveScroll); // Logs the instance to the console
+         })();
+       }, []); 
+
   useEffect(() => {
     if (!backgroundRef.current) return;
   

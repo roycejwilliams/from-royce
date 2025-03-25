@@ -8,6 +8,8 @@ import Link from "next/link";
 const Splash = () => {
   const svgRef = useRef<SVGSVGElement | null>(null);
 
+
+
   //Drawout Path
   useGSAP(() => {
     const svg = svgRef.current;
