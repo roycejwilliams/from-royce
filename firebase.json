@@ -21,10 +21,7 @@
     "rewrites": [
       {
         "source": "**",
-        "run": {
-          "serviceId": "nextapp",  
-          "region": "us-central1"
-        }
+        "function": "nextApp"
       }
     ]
   }

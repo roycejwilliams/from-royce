@@ -90,7 +90,9 @@ const Splash = () => {
   }, []);
 
   return (
-    <section ref={backgroundRef}   className="w-full overflow-hidden gradient-bg-3 flex justify-center items-center"
+<section
+  ref={backgroundRef}
+  className="w-full h-[100svh] overflow-hidden gradient-bg-3 flex justify-center items-center relative"
 >
       <svg>
         <defs>
@@ -119,16 +121,16 @@ const Splash = () => {
         <div className="interactive-3 hidden xl:block"></div>
       </div>
       {/* Logo / Action button */}
-      <div className="mx-auto flex flex-col z-50 justify-center items-center">
+      <div className="mx-auto flex flex-col z-50 absolute left-1/2 translate-x-[-50%] top-1/2 translate-y-[-50%] transform justify-center items-center">
       <Link
           scroll={false}
           href="/portfolio" >
         <Image
-          src="/images/from-royce-white.png"
+          src="/images/logo.svg"
           alt="from royce logo"
           width={75}
           height={75}
-          style={{ objectFit: "contain" }}
+          className="invert"
         />
         </Link> 
       </div>

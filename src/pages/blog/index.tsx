@@ -14,24 +14,13 @@ function Blog() {
 
    const backgroundRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-      (async () => {
-        const LocomotiveScroll = (await import("locomotive-scroll")).default;
-    
-        const scroll = new LocomotiveScroll({
-          el: document.querySelector("[data-scroll-container]") as HTMLElement,
-          smooth: true,
-          smartphone: {
-            smooth: false,
-          },
-          tablet: {
-            smooth: false,
-          },
-        } as unknown as ConstructorParameters<typeof LocomotiveScroll>[0]); // ✅ type-checked!
-        
-        console.log(scroll);
-      })();
-    }, []);
+   useEffect(() => {
+    (async () => {
+      const LocomotiveScroll = (await import('locomotive-scroll')).default;
+      const locomotiveScroll = new LocomotiveScroll();
+      console.log(locomotiveScroll); // Logs the instance to the console
+    })();
+  }, []);
     
      
   
@@ -88,7 +77,7 @@ function Blog() {
         }, []);
 
   return (
-    <section data-scroll-container ref={backgroundRef} className="w-full gradient-bg-2 overflow-x-hidden">
+    <section  ref={backgroundRef} className="w-full gradient-bg-2 overflow-x-hidden">
       {typeof window !== "undefined" && window.innerWidth > 768 && (
       <svg >
         <defs>

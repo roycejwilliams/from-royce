@@ -8,55 +8,31 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 100vw;
-  height: 100%;
+  width: 200vw;        /* Wider than screen */
+  height: 200vh;       /* Taller than screen */
+  transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  z-index: 10;
-  transform: translate(-50%, -50%);
   pointer-events: none;
+  overflow: visible;
+  z-index: 5;
 }
-svg {
-  position: absolute;
-  height: 100%;
-  width: 2080px;
-  overflow: hidden;
+
+.svg-container svg {
+  width: 75%;
+  height: 75%;
+  object-fit: contain;
 }
 
 @media (max-width: 1024px) {
-  .svg-container {
-    height: 100vh;
-    width: 100vw;
-  }
-
-  svg {
-    min-width: 100vw; /* Ensures it fills the width */
-    min-height: 100vh; /* Ensures it fills the height */
-    width: 150vh;
-    height: 150vh;
+  .svg-container svg {
+    width: 100%;
+    height: 100%;
   }
 }
 
-@media (max-width: 768px) {
-  svg {
-    min-width: 100vw; /* Ensures it fills the width */
-    min-height: 100vh; /* Ensures it fills the height */
-    width: 150vh;
-    height: auto;
-  }
-}
 
-@media (max-width: 650px) {
-  svg {
-    min-width: 100vw; /* Ensures it fills the width */
-    height: 100vh; /* Ensures it fills the height */
-    width: 120vh;
-    height: auto; 
-    top: -100px !important; 
-  }
-}
 
 .photo {
   will-change: transform, opacity;
