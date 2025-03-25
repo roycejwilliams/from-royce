@@ -126,8 +126,8 @@ const Splash = () => {
         <Image
           src="/images/from-royce-white.png"
           alt="from royce logo"
-          width={100}
-          height={100}
+          width={75}
+          height={75}
           style={{ objectFit: "contain" }}
         />
         </Link> 
