@@ -28,9 +28,9 @@ function SignIn() {
   };
 
   return (
-    <section className="min-h-[75vh] w-full flex justify-center items-center">
+    <section className="min-h-[75vh] w-full flex flex-col justify-center items-center">
       {error && (
-  <p className="text-xs text-red-500 text-center mt-2">{error}</p>
+    <p className="text-xs text-red-500 text-center mt-2">{error}</p>
 )}
       {user ? (
         <Draft />
@@ -87,7 +87,7 @@ function SignIn() {
             </div>
             <button
               type="submit"
-              className="w-full text-white text-xs font-light uppercase bg-gradient-to-r backdrop-blur-lg from-slate-400 via-gray-700 to-slate-500 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-lg px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+              className="w-full black text-xs font-light uppercase bg-gradient-to-r backdrop-blur-lg bg-white hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-lg px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
             >
               Sign in
             </button>
