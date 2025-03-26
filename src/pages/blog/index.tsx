@@ -79,7 +79,7 @@ function Blog() {
   return (
     <section  ref={backgroundRef} className="w-full gradient-bg-2 overflow-x-hidden">
       {typeof window !== "undefined" && window.innerWidth > 768 && (
-      <svg >
+      <svg id="svg-goo" >
         <defs>
           <filter id="goo">
             <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
