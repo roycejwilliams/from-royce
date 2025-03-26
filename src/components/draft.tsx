@@ -198,7 +198,7 @@ const Draft: React.FC = () => {
                   type="button"
                   className="p-4 flex items-center hover:scale-110 duration-200 transition ease-in-out justify-center relative rounded-full border"
                 >
-                  <Aperture className="absolute w-5 h-5 -translate-x-1/2 left-1/2 -translate-y-1/2 top-1/2" />
+                  <Aperture className="absolute w-5 h-5 text-white -translate-x-1/2 left-1/2 -translate-y-1/2 top-1/2" />
                 </button>
               </Upload>
               <button
@@ -208,7 +208,7 @@ const Draft: React.FC = () => {
                   loading ? "opacity-50 cursor-not-allowed" : ""
                 }`}
               >
-                <Send className="absolute w-5 h-5 -translate-x-1/2 left-1/2 -translate-y-1/2 top-1/2" />
+                <Send className="absolute w-5 h-5 text-white -translate-x-1/2 left-1/2 -translate-y-1/2 top-1/2" />
               </button>
             </div>
           </form>

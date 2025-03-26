@@ -42,7 +42,12 @@ function Intro() {
   }, []);
 
   return (
-    <div ref={tableRef}  className="w-full  relative   ">
+    <div
+  ref={tableRef}
+  data-scroll
+  data-scroll-repeat
+  className="reveal opacity-0 translate-y-10 transition-all duration-700 w-full relative"
+>
       
       {/* Crossword */}
      <div className="w-full h-[75vh]   z-50 flex justify-center items-center">
