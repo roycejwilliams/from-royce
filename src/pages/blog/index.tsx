@@ -104,8 +104,8 @@ function Blog() {
       {/* Title */}
       <div className=" xl:px-24 px-8  xl:mt-52 mt-36 py-8 flex flex-col  gap-y-12 xl:gap-x-32 text-white">
         <h1 className=" tracking-[0.2em] z-30 leading-[1.2em]  font-anonymous gap-x-8 xl:text-xl text-sm uppercase">
-          <span className="font-cylburn  xl:text-8xl text-6xl">F</span>rom
-          <span className="font-cylburn  xl:text-8xl text-6xl">R</span>oyce
+          <span className="font-cylburn  xl:text-8xl text-5xl">F</span>rom
+          <span className="font-cylburn  xl:text-8xl text-5xl">R</span>oyce
         </h1>
         <p className="xl:text-base  text-sm font-anonymous z-30 uppercase tracking-[0.2em] ">
           frames of mind.{" "}
