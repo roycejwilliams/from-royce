@@ -79,7 +79,6 @@ const Portfolio = () => {
 
   return (
     <section  ref={backgroundRef} className="w-full gradient-bg overflow-x-hidden">
-      {typeof window !== "undefined" && window.innerWidth > 768 && (
       <svg id="svg-goo" >
         <defs>
           <filter id="goo">
@@ -94,7 +93,6 @@ const Portfolio = () => {
           </filter>
         </defs>
       </svg>
-      )}
       <div 
       
       className="gradient-container ">

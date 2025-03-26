@@ -78,7 +78,6 @@ function Blog() {
 
   return (
     <section  ref={backgroundRef} className="w-full gradient-bg-2 overflow-x-hidden">
-      {typeof window !== "undefined" && window.innerWidth > 768 && (
       <svg id="svg-goo" >
         <defs>
           <filter id="goo">
@@ -93,7 +92,6 @@ function Blog() {
           </filter>
         </defs>
       </svg>
-      )}
       <div className="gradient-container">
         <div className="g1"></div>
         <div className="g2"></div>

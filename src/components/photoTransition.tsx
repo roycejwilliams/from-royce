@@ -70,9 +70,7 @@ const Photos = () => {
         >
           <Image
          priority
-          style={{
-            transform: "translateZ(0)",
-          }}
+          
             src={photo}
             fill
             alt={`Photo ${index + 1}`}

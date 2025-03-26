@@ -1,4 +1,6 @@
 const { onRequest } = require('firebase-functions/v2/https');
+const { defineSecret } = require('firebase-functions/params');
+const DATABASE_URL = defineSecret('DATABASE_URL');
 const express = require("express");
 const cors = require("cors");
 const next = require("next");
@@ -29,7 +31,7 @@ const nextApp = next({ dev, conf: { distDir: ".next" } });
 const handle = nextApp.getRequestHandler();
 
 const app = express();
-app.use(cors({ origin: true })); 
+app.use(cors()); 
 app.use(express.json());
 
 // API Routes
