@@ -8,6 +8,10 @@
   transform: translateY(0) !important;
 }
 
+.photo {
+  will-change: transform, opacity;
+}
+
 
 .svg-container {
   position: absolute;

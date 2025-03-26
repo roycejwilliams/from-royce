@@ -23,7 +23,7 @@ const Photos = () => {
          scrollTrigger: {
            trigger: photosRef.current,  //Target the section
            start: "top top",  //Starts when the top of the section hits the top of the viewport
-           end: `+=${photos.length * window.innerHeight * (window.innerWidth < 768 ? 0.7 : 0.9)}`,
+           end: `+=${photos.length * window.innerHeight * (window.innerWidth < 768 ? 0.5 : 0.9)}`,
            scrub: true,
            pin: true,
          },
@@ -69,8 +69,8 @@ const Photos = () => {
           className={`photo photo-${index} w-[100%] h-screen absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 overflow-hidden origin-bottom`}
         >
           <Image
-         priority
-          
+            priority
+            loading="lazy"
             src={photo}
             fill
             alt={`Photo ${index + 1}`}

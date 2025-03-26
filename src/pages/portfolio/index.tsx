@@ -7,14 +7,10 @@ import Footer from "../../components/footer";
 import Nav from "../../components/nav";
 import WorkCon from "../../components/workCon";
 
-
-
-
 const Portfolio = () => {
 
   const backgroundRef = useRef<HTMLDivElement | null>(null);
  
-
 
   useEffect(() => {
     (async () => {
@@ -25,10 +21,6 @@ const Portfolio = () => {
     })();
   }, []);
   
-
-  
-   
-
        useEffect(() => {
         if (!backgroundRef.current) return;
       
@@ -110,8 +102,8 @@ const Portfolio = () => {
       </div>
 
       <Nav />
-     <Intro />
-     <Work />
+      <Intro />
+      <Work />
       <WorkCon />
       <Grid />
       <Photos />
