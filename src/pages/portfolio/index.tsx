@@ -18,7 +18,6 @@ const Portfolio = () => {
     (async () => {
       const LocomotiveScroll = (await import('locomotive-scroll')).default;
       const locomotiveScroll = new LocomotiveScroll();
-      console.log(locomotiveScroll); // Logs the instance to the console
     })();
   }, []);
   
