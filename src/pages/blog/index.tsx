@@ -102,7 +102,7 @@ function Blog() {
       </div>
       <Nav />
       {/* Title */}
-      <div className=" xl:px-24 px-8  xl:mt-52 mt-32  flex flex-col  gap-y-8 xl:gap-x-32 text-white">
+      <div className=" xl:px-24 px-8  xl:mt-52 mt-20  flex flex-col  gap-y-4 xl:gap-x-32 text-white">
         <h1 className=" tracking-[0.2em] z-30 leading-[1.2em] py-8 font-anonymous gap-x-8 xl:text-xl text-sm uppercase">
           <span className="font-cylburn  xl:text-8xl text-6xl">F</span>rom
           <span className="font-cylburn  xl:text-8xl text-6xl">R</span>oyce

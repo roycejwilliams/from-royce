@@ -6,6 +6,7 @@ import Work from "../../components/work";
 import Footer from "../../components/footer";
 import Nav from "../../components/nav";
 import WorkCon from "../../components/workCon";
+import gsap from "gsap";
 
 
 
@@ -13,6 +14,11 @@ import WorkCon from "../../components/workCon";
 const Portfolio = () => {
 
   const backgroundRef = useRef<HTMLDivElement | null>(null);
+  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const setSectionRef = (index: number) => (el: HTMLDivElement | null) => {
+    sectionRefs.current[index] = el;
+  };
+
 
   useEffect(() => {
     (async () => {
@@ -23,6 +29,26 @@ const Portfolio = () => {
     })();
   }, []);
   
+
+  useEffect(() => {
+    sectionRefs.current.forEach((el) => {
+      if (!el) return;
+      gsap.fromTo(
+        el,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: el,
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    });
+  }, []);
    
 
        useEffect(() => {
@@ -106,10 +132,10 @@ const Portfolio = () => {
       </div>
 
       <Nav />
-      <Intro />
-      <Work />
-      <WorkCon />
-        <Grid />
+      <div ref={setSectionRef(0)}><Intro /></div>
+      <div ref={setSectionRef(1)}><Work /></div>
+      <div ref={setSectionRef(2)}><WorkCon /></div>
+      <Grid />
       <Photos />
       <Footer />
       
