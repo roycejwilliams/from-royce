@@ -19,11 +19,16 @@ function Post() {
   const [error, setError] = useState<string | null>(null);
   const [post, setPost] = useState<Blog[]>([]);
 
+  const BASE_URL =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:5001/from-royce/us-central1/nextApp"
+    : "https://from-royce.web.app";
+
   const getAllPost = async () => {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("http://localhost:5001/posts", {
+      const res = await fetch(`${BASE_URL}/api/posts`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });

@@ -63,7 +63,7 @@ const MobileMenu = ({
               <span className="font-cylburn text-3xl">w</span>ork
             </span>
             <span className="absolute inset-0 transition-opacity  duration-200 ease-in-out text-left opacity-0 group-hover:opacity-100 text-sm">
-              <span className="font-cylburn text-5xl">S</span>oon
+              <span className="font-cylburn text-3xl">s</span>oon
             </span>
           </div>
         </div>

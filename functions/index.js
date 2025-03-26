@@ -4,19 +4,40 @@ const cors = require("cors");
 const next = require("next");
 const { Pool } = require("pg");
 
+// 🔐Load local env vars when not in production
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config({ path: "../.env.local" });
+}
 
-// PostgreSQL connection
+//  PostgreSQL connection
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: { rejectUnauthorized: false },
 });
 
+// DB Connection
+pool.connect()
+  .then(() => console.log("Connected to PostgreSQL"))
+  .catch(err => console.error(" PostgreSQL connection error:", err));
+
 const dev = process.env.NODE_ENV !== "production";
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config({ path: "../.env.local" });
+}
+
 const nextApp = next({ dev, conf: { distDir: ".next" } });
 const handle = nextApp.getRequestHandler();
 
 const app = express();
-app.use(cors());
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  if (req.method === "OPTIONS") {
+    return res.status(204).send("");
+  }
+  next();
+});
 app.use(express.json());
 
 // API Routes
@@ -97,9 +118,9 @@ app.all("*", (req, res) => {
   return handle(req, res);
 });
 
-// ✅ Export Firebase Gen 2 Cloud Function
+// 🚀 Export Firebase Gen 2 Cloud Function
 exports.nextApp = onRequest(
-  { region: "us-central1" }, // match firebase.json
+  { region: "us-central1" },
   async (req, res) => {
     await nextApp.prepare();
     app(req, res);
