@@ -74,11 +74,7 @@
   background-color: rgba(0, 0, 0, 0.0); /* Slightly darker on hover */
 }
 
-@media (max-width: 768px) {
-  #svg-goo {
-    top: 0;
-  }
-}
+
 
 :root {
   --color-bg1: rgb(245, 245, 245);     /* Light Gray */

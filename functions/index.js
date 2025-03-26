@@ -56,14 +56,21 @@ app.post("/api/posts", async (req, res) => {
 });
 
 app.get("/api/posts", async (req, res) => {
+  console.log("🟡 Incoming GET /api/posts");
+
   try {
     const { page = 1, limit = 6 } = req.query;
     const offset = (page - 1) * limit;
+
+    console.log("Params", { page, limit, offset });
+
     const paginatedPage = await pool.query(
       "SELECT * FROM post ORDER BY post_date DESC, post_time DESC LIMIT $1 OFFSET $2",
       [limit, offset]
     );
+
     const totalPost = await pool.query("SELECT COUNT(*) FROM post");
+
     res.json({
       totalPost: parseInt(totalPost.rows[0].count),
       currentPage: parseInt(page),
@@ -71,7 +78,7 @@ app.get("/api/posts", async (req, res) => {
       post: paginatedPage.rows,
     });
   } catch (err) {
-    console.error("GET /api/posts error:", err);
+    console.error("Error in GET /api/posts", err);
     res.status(500).send("Server error");
   }
 });
