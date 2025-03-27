@@ -66,10 +66,13 @@ const Photos = () => {
       {photos.map((photo, index) => (
         <div
           key={index}
-          className={`photo photo-${index} w-[100%] h-screen absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 overflow-hidden `}
+          className={`photo photo-${index} w-[100%] h-screen absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 overflow-hidden origin-bottom`}
         >
           <Image
-            loading="lazy"
+         priority
+          style={{
+            transform: "translateZ(0)",
+          }}
             src={photo}
             fill
             alt={`Photo ${index + 1}`}
@@ -84,7 +87,7 @@ const Photos = () => {
         <br></br>
         <span>An Engineer&apos;s Perspective</span>
       </h2>
-   
+     
     </section>
   );
 };
