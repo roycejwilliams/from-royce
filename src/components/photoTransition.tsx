@@ -23,7 +23,7 @@ const Photos = () => {
          scrollTrigger: {
            trigger: photosRef.current,  //Target the section
            start: "top top",  //Starts when the top of the section hits the top of the viewport
-           end: `+=${photos.length * window.innerHeight * (window.innerWidth < 768 ? 0.3 : 0.6)}`,
+           end: `+=${photos.length * window.innerHeight * (window.innerWidth < 768 ? 0.4 : 0.6)}`,
            scrub: true,
            pin: true,
          },
@@ -35,7 +35,7 @@ const Photos = () => {
        photoElements.forEach((photo, index) => {
          gsap.set(photo, {
            zIndex: -index,
-           y: 0,
+           y: 75,
            opacity: index === 0 ? 1 : 0,
          });  //Example scale effect
 
@@ -85,16 +85,7 @@ const Photos = () => {
         <br></br>
         <span>An Engineer&apos;s Perspective</span>
       </h2>
-      {/* <div className="z-50 absolute p-4 right-0 top-1/2 flex flex-col justify-center items-center gap-6 -translate-y-1/2 h-auto">
-        {photos.map((_, index) => (
-          <div
-            key={index}
-            className={`w-3 shadow-md rounded-full bg-white transition-all duration-300 ease-in-out ${
-              activeIndex === index ? "max-h-40 md:max-h-72" : "max-h-3"
-            }`}
-          ></div>
-        ))} 
-      </div> */}
+   
     </section>
   );
 };
