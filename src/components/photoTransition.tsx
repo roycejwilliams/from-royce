@@ -22,7 +22,7 @@ const Photos = () => {
        const timeline = gsap.timeline({
          scrollTrigger: {
            trigger: photosRef.current,  //Target the section
-           start: "top top",  //Starts when the top of the section hits the top of the viewport
+           start: "top+=25",  //Starts when the top of the section hits the top of the viewport
            end: `+=${photos.length * window.innerHeight * (window.innerWidth < 768 ? 0.4 : 0.6)}`,
            scrub: true,
            pin: true,
@@ -69,7 +69,6 @@ const Photos = () => {
           className={`photo photo-${index} w-[100%] h-screen absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 overflow-hidden `}
         >
           <Image
-            priority
             loading="lazy"
             src={photo}
             fill
