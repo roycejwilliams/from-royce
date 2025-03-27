@@ -23,7 +23,7 @@ const Photos = () => {
          scrollTrigger: {
            trigger: photosRef.current,  //Target the section
            start: "top top",  //Starts when the top of the section hits the top of the viewport
-           end: `+=${photos.length * window.innerHeight * (window.innerWidth < 768 ? 0.5 : 0.9)}`,
+           end: `+=${photos.length * window.innerHeight * (window.innerWidth < 768 ? 0.3 : 0.6)}`,
            scrub: true,
            pin: true,
          },
