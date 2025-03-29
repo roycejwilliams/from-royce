@@ -60,6 +60,12 @@ const Draft: React.FC = () => {
     };
   }, [imageUrl]);
 
+
+  const BASE_URL =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:5001/from-royce/us-central1/nextApp"
+    : "https://from-royce.web.app";
+
   //Send Post
   const handleSubmit = async () => {
     if (!title || !textArea) {
@@ -94,7 +100,7 @@ const Draft: React.FC = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:5001/posts", {
+      const res = await fetch(`${BASE_URL}/api/posts`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -132,7 +138,7 @@ const Draft: React.FC = () => {
 
   return (
     <div className="w-full flex flex-col  justify-center items-center mx-auto">
-      <h1 className="font-light uppercase tracking-wider font-anonymous sm:text-xs  my-8 text-gray-500/75">
+      <h1 className="font-light uppercase tracking-wider font-anonymous sm:text-xs  my-8 text-black">
         {loading ? (
           "Sending, please wait..."
         ) : success ? (
@@ -148,7 +154,7 @@ const Draft: React.FC = () => {
         )}
       </h1>
 
-      <div className="p-4 space-y-4 md:space-y-6 sm:p-8 bg-white/30 backdrop-blur-2xl shadow-[0px_5px_30px_5px_#FFFFFF] hover:shadow-[0px_15px_50px_10px_#FFFFFF] ease-in-out transition duration-200 border border-t border-l border-r sm:max-w-lg w-[90%] tracking-[0.1em] rounded-xl">
+      <div className="p-4 space-y-4 md:space-y-6 sm:p-8 bg-white/30 backdrop-blur-2xl shadow-[0px_5px_30px_5px_#FFFFFF] hover:shadow-[0px_15px_50px_10px_#FFFFFF] ease-in-out transition duration-200 border border-t border-l border-r sm:max-w-lg w-[90%] rounded-xl">
         {loading ? (
           <div className="w-full flex flex-col text-xs justify-center items-center space-y-2">
             <span className="loading loading-dots loading-sm text-center"></span>
@@ -168,7 +174,7 @@ const Draft: React.FC = () => {
                 name="title"
                 id="title"
                 placeholder="What's the topic?"
-                className="border text-xs border-gray-200  placeholder:text-black/40 rounded-md bg-transparent focus:ring-primary-600 focus:border-primary-600 block p-4"
+                className="border text-xs border-gray-200  placeholder:text-black rounded-md bg-transparent focus:ring-primary-600 focus:border-primary-600 block p-4"
               />
               <textarea
                 ref={textRef}

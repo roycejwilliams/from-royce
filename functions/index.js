@@ -25,7 +25,6 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config({ path: "../.env.local" });
 }
 
-console.log(" DATABASE_URL:", process.env.DATABASE_URL);
 
 const nextApp = next({ dev, conf: { distDir: ".next" } });
 const handle = nextApp.getRequestHandler();

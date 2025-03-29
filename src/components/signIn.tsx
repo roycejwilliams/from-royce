@@ -72,13 +72,13 @@ function SignIn() {
                     id="remember"
                     aria-describedby="remember"
                     type="checkbox"
-                    className="w-3 h-3 border border-gray-300 rounded bg-transparent focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                    className="w-3 h-3 border border-gray-300 rounded bg-transparent focus:ring-3 focus:ring-primary-300 bg-white dark:focus:ring-primary-600 dark:ring-offset-gray-800"
                   />
                 </div>
                 <div className="ml-3 text-sm ">
                   <label
                     htmlFor="remember"
-                    className="text-gray-500 text-xs uppercase bg-transparent  dark:text-gray-300"
+                    className="text-black text-xs uppercase bg-transparent  "
                   >
                     Remember me
                   </label>

@@ -75,8 +75,9 @@ function Post() {
 
   return (
     <div className="xl:p-24 p-8 w-full tracking-[0.1em] z-50 overflow-hidden text-white mt-24 inline-block font-anonymous">
-      {loading && <p className="text-sm text-white/50">Loading posts...</p>}
       {error && <p className="text-xs text-red-400">{error}</p>}
+      {post.length === 0  && loading ? <p className="text-sm font-anonymous font-thin">Nothing yet.</p> : 
+      <>
       {post.map((p, index) => (
         <>
           <div
@@ -126,6 +127,8 @@ function Post() {
           </div>
         </>
       ))}
+      </>
+    }
     </div>
   );
 }
