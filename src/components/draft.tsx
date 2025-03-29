@@ -158,7 +158,7 @@ const Draft: React.FC = () => {
         {loading ? (
           <div className="w-full flex flex-col text-xs justify-center items-center space-y-2">
             <span className="loading loading-dots loading-sm text-center"></span>
-            <p className="text-gray-500 font-medium">Submitting...</p>
+            <p className="text-black font-medium">Submitting...</p>
           </div>
         ) : (
           <form
@@ -174,14 +174,14 @@ const Draft: React.FC = () => {
                 name="title"
                 id="title"
                 placeholder="What's the topic?"
-                className="border text-xs border-gray-200  placeholder:text-black rounded-md bg-transparent focus:ring-primary-600 focus:border-primary-600 block p-4"
+                className="border text-xs border-gray-200  placeholder:text-black text-black rounded-md bg-transparent focus:ring-primary-600 focus:border-primary-600 block p-4"
               />
               <textarea
                 ref={textRef}
                 onChange={handleInput}
                 name="post"
                 id="post"
-                className="border text-xs border-gray-200 max-h-3/4 placeholder:text-black/40 transition-[height] bg-transparent duration-300 ease-in-out  rounded-md focus:ring-primary-600 focus:border-primary-600 block p-4"
+                className="border text-xs border-gray-200 text-black max-h-3/4 placeholder:text-black transition-[height] bg-transparent duration-300 ease-in-out  rounded-md focus:ring-primary-600 focus:border-primary-600 block p-4"
                 placeholder="Let it out."
                 value={textArea}
                 required
