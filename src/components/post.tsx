@@ -1,10 +1,7 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { format, parseISO } from "date-fns";
 import Image from "next/image";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-
 
 interface Blog {
   post_id: number; // Matches SERIAL PRIMARY KEY
@@ -70,28 +67,11 @@ function Post() {
     }
   };
 
+  console.log("Individual Post:", post);
 
   useEffect(() => {
     getAllPost();
   }, []);
-
-  const postRef = useRef(null);
-
-  useGSAP(() => {
-    gsap.timeline()
-      .from(postRef.current, {
-        opacity: 0,
-        y: 100,
-        duration: 0.6,
-      })
-      .to(postRef, {
-        opacity: 1,
-        y: 0,
-        ease: "power2.in",
-        duration: 1,
-      });
-  });
-
 
   return (
     <div className="xl:p-24 p-8 w-full tracking-[0.1em] z-50 overflow-hidden text-white mt-24 inline-block font-anonymous">
@@ -102,15 +82,16 @@ function Post() {
       {post.map((p, index) => (
         <>
           <div
-          data-scroll
-              data-scroll-speed="0.3"
+        data-scroll
+        data-scroll-speed="0.12"
+        data-scroll-repeat
             className={`w-full flex ${
               index % 2 === 0 ? "justify-start" : "justify-end"
             } `}
           >
             {" "}
             <div
-              ref={postRef}
+              
               className="xl:p-4 xl:w-1/2 w-full my-8 xl:my-2 xl:max-w-1/2 "
             >
               <h1 className="uppercase text-2xl mb-2">{p.post_title}</h1>
