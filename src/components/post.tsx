@@ -75,9 +75,9 @@ function Post() {
 
   return (
     <div className="xl:p-24 p-8 w-full tracking-[0.1em] z-50 overflow-hidden text-white mt-24 inline-block font-anonymous">
-      {loading && <p className="text-sm text-white/50">Loading posts...</p>}
       {error && <p className="text-xs text-red-400">{error}</p>}
-      {post.length === 0  ? <p>Nothing yet.</p> : 
+      {post.length === 0  ?       <>{loading && <span className="loading loading-infinity loading-lg"></span>} </>
+ : 
       <>
       {post.map((p, index) => (
         <>
@@ -90,7 +90,8 @@ function Post() {
           >
             {" "}
             <div
-              
+              data-scroll
+              data-scroll-repeat
               className="xl:p-4 xl:w-1/2 w-full my-8 xl:my-2 xl:max-w-1/2 "
             >
               <h1 className="uppercase text-2xl mb-2">{p.post_title}</h1>
@@ -107,6 +108,7 @@ function Post() {
                 ""
               )}
               <div
+              
                 key={index}
                 className="p-4  border-white/40   rounded-lg shadow-md shadow-white/20 h-auto w-fit  bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-30"
               >
