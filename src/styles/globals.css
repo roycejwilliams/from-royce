@@ -3,6 +3,11 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.calendly-inline-widget iframe {
+  background-color: transparent !important;
+}
+
 .reveal.is-inview {
   opacity: 1 !important;
   transform: translateY(0) !important;

@@ -1,27 +1,24 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState,  useRef } from "react";
+import React, { useState,  useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ChevronsRight } from "lucide-react";
+import { ChevronsRight, Minimize2 } from "lucide-react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 
 declare global {
   interface Window {
-    calendar?: {
-      schedulingButton: {
-        load: (options: {
-          url: string;
-          color: string;
-          label: string;
-          target: HTMLElement | null;
-        }) => void;
-      };
+    Calendly: {
+      initInlineWidget: (options: {
+        url: string;
+        parentElement: HTMLElement | null;
+      }) => void;
     };
   }
 }
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -32,7 +29,13 @@ const Grid = () => {
 
   const handleScheduleClick = () => {
     setIsOpen(true); // Open modal
+    document.body.style.overflow = "hidden"; // Prevent scroll
   };
+
+  const handleCloseMenu = () => {
+    setIsOpen(false);
+    document.body.style.overflow = ""; // Allows scroll
+  }
 
   
 
@@ -147,6 +150,42 @@ const Grid = () => {
      return () => ctx.revert(); // Cleanup the effect on unmount or dependencies change
    }, []);
 
+
+   //Calendly Modal
+   const calendlyRef = useRef(null);
+
+   useEffect(() => {
+    if (!isOpen) {
+      document.body.style.overflow = "auto"; // Allow scroll again
+    }    
+  
+
+    const script = document.querySelector(
+      'script[src="https://assets.calendly.com/assets/external/widget.js"]'
+    );
+  
+    const loadCalendly = () => {
+      if (window.Calendly && calendlyRef.current) {
+        calendlyRef.current.innerHTML = ""; // Clear previous widget
+        window.Calendly.initInlineWidget({
+          url: 'https://calendly.com/roycewilliamsj?hide_landing_page_details=0&hide_gdpr_banner=1&background_color=000000&text_color=ffffff&primary_color=FF5C00',
+          parentElement: calendlyRef.current,
+        });
+      }
+    };
+  
+    if (!script) {
+      const newScript = document.createElement('script');
+      newScript.src = 'https://assets.calendly.com/assets/external/widget.js';
+      newScript.async = true;
+      newScript.onload = loadCalendly;
+      document.body.appendChild(newScript);
+    } else {
+      loadCalendly();
+    }
+  }, [isOpen]);
+  
+
   return (
     <div
       ref={gridContainer}
@@ -252,16 +291,16 @@ const Grid = () => {
         <div
           data-scroll
           data-scroll-speed="-0.1"
-          className="section py-20 absolute w-[75%] rounded-lg font-anonymous tracking-widest  backdrop-blur flex items-center justify-between"
+          className="section py-20 px-8 border border-white/5 shadow-md absolute w-[75%] rounded-lg font-anonymous tracking-widest  backdrop-blur flex items-center justify-between"
         >
-          <div className="via-[#FF5C00]/50 bg-gradient-to-b from-white/20 -z-10  blur-lg w-full h-full absolute"></div>
+          <div className="via-white/10 -z-10 from-black/20 bg-gradient-to-t to-white/10 blur-lg w-full h-full  absolute"></div>
           <h2 className="uppercase text-white  p-4">
             <span className="font-cylburn text-4xl">L</span>et&apos;s{" "}
             <span className="font-cylburn text-4xl">W</span>ork
           </h2>
           <button
             onClick={handleScheduleClick}
-            className="px-4 py-2 border uppercase text-sm text-white bg-transparent rounded-full"
+            className="px-4 py-2 uppercase hover:scale-105 hover:bg-[#20140a] ease-in-out duration-300 transition hover:border hover:border-white/5 text-sm text-white bg-transparent cursor-pointer rounded-xl shadow-lg border border-white/5"
           >
             Schedule 
           </button>
@@ -290,31 +329,15 @@ const Grid = () => {
       {isOpen && (
         <div
           ref={modalRef}
-          className="fixed h-[120vh] inset-0 flex items-center top-0 left-0 justify-center bg-black bg-opacity-50 z-50"
+          className="fixed h-[100vh] inset-0 flex items-center top-0 left-0 justify-center bg-black bg-opacity-50 z-50"
         >
-          <div className="bg-white rounded-lg shadow-lg w-[90%] max-w-lg">
-            {/* Modal Header */}
-            <div className="flex justify-between items-center p-4 border-b">
-              <h2 className="text-lg font-bold">Appointment</h2>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="text-gray-600 hover:text-black"
-              >
-                ✕
-              </button>
-            </div>
-
-            {/* Google Calendar Scheduling Inside Modal */}
-            <div className="p-4">
-              <iframe
-                src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3zA_z-W8DacfaA4wa1CQyN9ujlNcgfq63YvjFjkN_mD64TakHy137mkUhbUqZEwflvlojcnPMp?gv=true"
-                width="100%"
-                height="500px"
-                style={{ border: "none" }}
-                allowFullScreen
-              />
-            </div>
-          </div>
+          <button onClick={handleCloseMenu} className="absolute cursor-pointer top-8 p-2 hover:shadow-2xl shadow-white/50 ease-in-out duration-300 transition rounded-full right-8">
+            <Minimize2 />
+          </button>
+              <div
+          ref={calendlyRef}
+          style={{ minWidth: '800px', height: '100%', overflow: "hidden",  colorScheme: "light"}}
+            ></div>
         </div>
       )}
     </div>
