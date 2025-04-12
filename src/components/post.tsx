@@ -85,7 +85,7 @@ function Post() {
         data-scroll
         data-scroll-speed="0.12"
         data-scroll-repeat
-            className={`w-full flex reveal opacity-0 ${
+            className={`w-full flex reveal opacity-0 translate-y-10 transition-all duration-700 ${
               index % 2 === 0 ? "justify-start" : "justify-end"
             } `}
           >
