@@ -14,6 +14,15 @@ interface Blog {
   formatted_time: string;
 }
 
+declare global {
+  interface Window {
+    locomotive: {
+      update: () => void;
+      // add other methods if needed like start, stop etc.
+    };
+  }
+}
+
 function Post() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -59,6 +68,10 @@ function Post() {
       });
 
       setPost(formattedPosts);
+
+      if (typeof window !== 'undefined' && window.locomotive) {
+        window.locomotive.update();
+      }
     } catch (error) {
       console.log("Error Retrieving Blog Post: ", error);
       setError("Failed to retrieve posts.");
@@ -85,7 +98,7 @@ function Post() {
         data-scroll
         data-scroll-speed="0.12"
         data-scroll-repeat
-            className={`w-full flex reveal opacity-0 translate-y-10 transition-all duration-700 ${
+        className={`w-full flex reveal opacity-0 translate-y-10 transition-all duration-700 ${
               index % 2 === 0 ? "justify-start" : "justify-end"
             } `}
           >
