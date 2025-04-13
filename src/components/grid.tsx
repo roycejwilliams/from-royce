@@ -329,7 +329,7 @@ const Grid = () => {
       {isOpen && (
         <div
           ref={modalRef}
-          className="fixed h-[100vh] inset-0 flex items-center top-0 left-0 justify-center bg-black bg-opacity-50 z-50"
+          className="fixed h-[110vh] inset-0 flex items-center top-0 left-0 justify-center bg-black bg-opacity-50 z-50"
         >
           <button onClick={handleCloseMenu} className="absolute cursor-pointer top-8 p-2 hover:shadow-2xl shadow-white/50 ease-in-out duration-300 transition rounded-full right-8">
             <Minimize2 />
