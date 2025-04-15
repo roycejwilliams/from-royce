@@ -319,12 +319,12 @@ const Grid = ({scroll} : {scroll : any}) => {
       <div
         data-scroll
         data-scroll-speed="0.05"
-        className="flex-col p-8 relative xl:w-1/2 w-full  flex justify-center items-center h-full "
+        className="flex-col xl:p-4 relative xl:w-1/2 w-full  flex justify-center items-center h-full "
       >
-        <h2 className="uppercase z-40 xl:mb-20 mb-8 font-anonymous tracking-widest xl:w-1/2 w-full xl:text-left text-center text-white ">
+        <h2 className="uppercase z-40 xl:mb-20 mb-4 font-anonymous  tracking-widest xl:w-1/2 w-full xl:text-left text-center text-white ">
           <span className="font-cylburn text-8xl">S</span>kills
         </h2>
-        <ul className="skills-list text-white text-center xl:text-left font-anonymous flex flex-col z-50 md:text-lg  text-sm  gap-y-10 tracking-[0.3em] uppercase p-4 ml-8">
+        <ul className="skills-list text-white text-center xl:text-left font-anonymous flex flex-col z-50 md:text-lg  text-sm  gap-y-10 tracking-[0.3em] uppercase p-4 ">
           {skills.map((skill, index) => (
             <li
               key={index}

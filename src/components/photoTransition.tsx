@@ -17,45 +17,48 @@ const Photos = () => {
     "/images/photo3.jpg",
   ];
 
-   useGSAP(() => {
-     const ctx = gsap.context(() => {
-       const timeline = gsap.timeline({
-         scrollTrigger: {
-           trigger: photosRef.current,  //Target the section
-           start: "top top",  //Starts when the top of the section hits the top of the viewport
-           end: `+=${photos.length * window.innerHeight * (window.innerWidth < 768 ? 0.4 : 0.6)}`,
-           scrub: true,
-           pin: true,
-         },
-       });
-
-       const photoElements = gsap.utils.toArray(".photo") as HTMLElement[];
-
-        //Animate in order (from slide1 to slide4)
-       photoElements.forEach((photo, index) => {
-         gsap.set(photo, {
-           zIndex: -index,
-           y: 75,
-           opacity: index === 0 ? 1 : 0,
-         });  //Example scale effect
-
-         timeline.to(
-           photo,
-           {
-             zIndex: 1, 
-             scale: 1, 
-             opacity: 1, 
-             duration: 0.6,
-             ease: "power2.inOut",
-             y: 0,
-           },
-           index * 0.25 
-         );
-       });
-     }, photosRef);
-
-     return () => ctx.revert();
-   }, []);
+  useGSAP(() => {
+    const ctx = gsap.context(() => {
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: photosRef.current,
+          start: "top top",         // starts 100px after top hits
+          end: `+=${photos.length * window.innerHeight * (window.innerWidth < 768 ? 0.4 : 0.6)}`,
+          scrub: 1,                      // smoother scrub effect
+          pin: true,
+          pinSpacing: true,              // keeps layout stable
+          anticipatePin: 1,              // preps for pinning smoother
+          markers: false,                // turn to true to debug
+        },
+      });
+  
+      const photoElements = gsap.utils.toArray(".photo") as HTMLElement[];
+  
+      photoElements.forEach((photo, index) => {
+        gsap.set(photo, {
+          zIndex: -index,
+          y: 75,
+          opacity: index === 0 ? 1 : 0,
+        });
+  
+        timeline.to(
+          photo,
+          {
+            zIndex: 1,
+            scale: 1,
+            opacity: 1,
+            y: 0,
+            ease: "power3.inOut",        // smoother ease
+            duration: 1.2,               // slows down the hit
+          },
+          index * 0.3                     // space out the transitions a bit more
+        );
+      });
+    }, photosRef);
+  
+    return () => ctx.revert();
+  }, []);
+  
    
 
   return (
