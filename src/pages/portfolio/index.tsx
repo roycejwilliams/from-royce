@@ -1,5 +1,5 @@
 import Intro from "../../components/intro";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Grid from "../../components/grid";
 import Photos from "../../components/photoTransition";
 import Work from "../../components/work";
@@ -10,14 +10,14 @@ import WorkCon from "../../components/workCon";
 const Portfolio = () => {
 
   const backgroundRef = useRef<HTMLDivElement | null>(null);
+  const [scrollInstance, setScrollInstance] = useState<any>(null);
  
 
   useEffect(() => {
     (async () => {
       const LocomotiveScroll = (await import('locomotive-scroll')).default;
-      const locomotiveScroll = new LocomotiveScroll();
-      console.log(locomotiveScroll)
-
+      const instance = new LocomotiveScroll();
+      setScrollInstance(instance);
     })();
   }, []);
   
@@ -105,7 +105,7 @@ const Portfolio = () => {
       <Intro />
       <Work />
       <WorkCon />
-      <Grid />
+      <Grid scroll={scrollInstance} />
       <Photos />
       <Footer />
       

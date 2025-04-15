@@ -8,6 +8,7 @@ import { ChevronsRight, Minimize2 } from "lucide-react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 
+
 declare global {
   interface Window {
     Calendly: {
@@ -23,20 +24,19 @@ declare global {
 gsap.registerPlugin(ScrollTrigger);
 
 
-const Grid = () => {
+const Grid = ({scroll} : {scroll : any}) => {
   const [isOpen, setIsOpen] = useState(false);
   const modalRef = useRef<HTMLDivElement | null>(null);
 
   const handleScheduleClick = () => {
     setIsOpen(true); // Open modal
-    document.body.style.overflow = "hidden"; // Prevent scroll
   };
 
   const handleCloseMenu = () => {
-    setIsOpen(false);
-    document.body.style.overflow = ""; // Allows scroll
+    setIsOpen(false); // closes modal
   }
 
+  
   
 
   const logos = [
@@ -155,11 +155,6 @@ const Grid = () => {
    const calendlyRef = useRef(null);
 
    useEffect(() => {
-    if (!isOpen) {
-      document.body.style.overflow = "auto"; // Allow scroll again
-    }    
-  
-
     const script = document.querySelector(
       'script[src="https://assets.calendly.com/assets/external/widget.js"]'
     );
@@ -184,6 +179,21 @@ const Grid = () => {
       loadCalendly();
     }
   }, [isOpen]);
+
+  useEffect(() => {
+    if (isOpen) {
+      scroll?.stop?.(); // Stop Locomotive scroll
+      document.body.style.overflow = 'hidden';
+    } else {
+      scroll?.start?.(); // Start it back up
+      document.body.style.overflow = 'unset';
+    }
+  
+    return () => {
+      scroll?.start?.();
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen, scroll]);
   
 
   return (
@@ -329,14 +339,15 @@ const Grid = () => {
       {isOpen && (
         <div
           ref={modalRef}
-          className="fixed h-[110vh] inset-0 flex items-center top-0 left-0 justify-center bg-black bg-opacity-50 z-50"
+          className="fixed h-[100vh]  inset-0 flex items-center top-0 left-0 justify-center bg-black bg-opacity-65 z-50"
         >
           <button onClick={handleCloseMenu} className="absolute cursor-pointer top-8 p-2 hover:shadow-2xl shadow-white/50 ease-in-out duration-300 transition rounded-full right-8">
             <Minimize2 />
           </button>
               <div
+              className="calendly-inline-widget"
           ref={calendlyRef}
-          style={{ minWidth: '800px', height: '1000px', overflow: "hidden" ,colorScheme: "light"}}
+          style={{ minWidth: '800px', height: '650px', overflow: "hidden" ,colorScheme: "light", padding: "5rem", }}
             ></div>
         </div>
       )}

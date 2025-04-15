@@ -6,6 +6,7 @@
 
 .calendly-inline-widget iframe {
   background-color: transparent !important;
+  border-radius: 40px;
 }
 
 .reveal.is-inview {
