@@ -45,7 +45,7 @@ function Post() {
         const formattedTime = p.post_time
           ? format(parseISO(`1970-01-01T${p.post_time}`), "hh:mm a")
           : "Invalid time";
-        const slug = p.post_title.toLowerCase().replace(/\s+/g, "-"); // ✅ Add this
+          const slug = p.post_title.toLowerCase().replace(/\s+/g, "-").replace(/\./g, "");
       
         return {
           ...p,
