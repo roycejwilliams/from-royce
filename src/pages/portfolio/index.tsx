@@ -84,8 +84,15 @@ const Portfolio = () => {
 
   return (
     <>
-      <Head>
-            <title>Portfolio</title>
+  <Head>
+        <title>Portfolio – From Royce</title>
+        <meta name="description" content="Read insights, ideas, and stories from Royce." />
+        <meta property="og:title" content="Blog – Royce" />
+        <meta property="og:description" content="Read insights, ideas, and stories from Royce." />
+        <meta property="og:image" content="https://from-royce.com/cover.png" />
+        <meta property="og:url" content="https://from-royce.com/blog" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://from-royce.com/cover.png" />
       </Head>
     <section  ref={backgroundRef} className="w-full gradient-bg overflow-x-hidden">
       <svg id="svg-goo" >

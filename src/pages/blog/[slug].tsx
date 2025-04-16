@@ -15,11 +15,29 @@ export default function BlogSlugPage() {
     );
   }
 
+  const { post_title, post_content } = selectedPost;
+  const description = post_content.slice(0, 150).replace(/\n/g, " ");
+  const ogImage =  "https://from-royce.com/cover.png";
+  const slug = post_title.toLowerCase().replace(/\s+/g, "-").replace(/\./g, "");
+  const url = `https://from-royce.com/blog/${slug}`;
+
   return (
     <>
-    <Head>
-        <title>{selectedPost.post_title}</title>
-    </Head>
+     <Head>
+        <title>{post_title} – Royce</title>
+        <meta name="description" content={description} />
+        <meta property="og:title" content={`${post_title} – Royce`} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${post_title} – Royce`} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={ogImage} />
+      </Head>
+    
+  
     <div className=" bg-[#FFF6F6] text-black min-h-[100svh]">
       <Nav />
       <div className="xl:p-24 p-8">

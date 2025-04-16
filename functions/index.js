@@ -5,14 +5,22 @@ const next = require("next");
 const { Pool } = require("pg");
 
 // 🔐Load local env vars when not in production
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config({ path: "../.env.local" });
-}
+const path = require("path");
+require("dotenv").config({ path: path.resolve(__dirname, "../.env.local") });
+
+console.log("DB URL being used:", process.env.LOCAL_DATABASE_URL);
+
 
 //  PostgreSQL connection
+const isProd = process.env.NODE_ENV === "production";
+
+const databaseUrl = isProd
+  ? process.env.DATABASE_URL
+  : process.env.LOCAL_DATABASE_URL;
+
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false },
+  connectionString: databaseUrl,
+  ssl: isProd ? { rejectUnauthorized: false } : false,
 });
 
 // DB Connection
@@ -67,6 +75,19 @@ app.get("/api/posts", async (req, res) => {
     console.error("GET /api/posts error:", err);
     res.status(500).send("Server error");
   }
+});
+
+app.get("/api/posts/:slug", async (req, res) => {
+  const slug = req.params.slug;
+  const result = await db.query("SELECT * FROM post");
+  
+  const post = result.rows.find(
+    (p) =>
+      p.post_title.toLowerCase().replace(/\s+/g, "-").replace(/\./g, "") === slug
+  );
+
+  if (!post) return res.status(404).json({ message: "Post not found" });
+  res.json(post);
 });
 
 app.get("/api/posts/:id", async (req, res) => {
