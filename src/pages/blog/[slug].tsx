@@ -37,7 +37,7 @@ export default function BlogSlugPage() {
         </div>
           )}
 
-        <p className="whitespace-pre-line mt-16 tracking-widest leading-loose font-anonymous text-justify xl:text-left font-light text-sm md:text-base">{selectedPost.post_content}</p>
+        <p className="whitespace-pre-line mt-16 tracking-widest leading-loose font-anonymous font-light text-sm md:text-base">{selectedPost.post_content}</p>
       </div>
     </div>
   );
