@@ -18,7 +18,7 @@ export default function BlogSlugPage() {
   return (
     <>
     <Head>
-        <title>{selectedPost.post_title || "Not Found"}</title>
+        <title>{selectedPost.post_title}</title>
     </Head>
     <div className=" bg-[#FFF6F6] text-black min-h-[100svh]">
       <Nav />
