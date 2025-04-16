@@ -27,7 +27,7 @@ export default function BlogSlugPage() {
      <Head>
         <title>{post_title} – Royce</title>
         <meta name="description" content={description} />
-        <meta property="og:title" content={`${post_title} – Royce`} />
+        <meta property="og:title" content={`${post_title} by royce`} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={ogImage} />
         <meta property="og:url" content={url} />
@@ -41,8 +41,8 @@ export default function BlogSlugPage() {
   
     <div className=" bg-[#FFF6F6] text-black min-h-[100svh]">
       <Nav />
-      <div className="xl:p-24 p-8">
-        <h1 className="xl:text-6xl text-3xl  font-light font-anonymous uppercase mb-2">{selectedPost.post_title}</h1>
+      <div className="xl:p-24 p-8 font-anonymous">
+        <h1 className="xl:text-6xl text-3xl  font-light  uppercase mb-2">{selectedPost.post_title}</h1>
         <p className="text-sm font-medium mt-8 uppercase">
          Date: {selectedPost.formatted_date} 
         </p>
