@@ -10,8 +10,7 @@ export default function App({ Component, pageProps, router }) {
   return (
     <>
       <Head>
-        <link rel="icon" href="public/favicon.ico" />
-        <title>Your Site Title</title>
+        <link rel="icon" href="/public/favicon.ico" />
       </Head>
 
       <AuthProvider>

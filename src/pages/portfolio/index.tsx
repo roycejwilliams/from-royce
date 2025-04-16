@@ -6,6 +6,7 @@ import Work from "../../components/work";
 import Footer from "../../components/footer";
 import Nav from "../../components/nav";
 import WorkCon from "../../components/workCon";
+import Head from "next/head";
 
 type ScrollInstance = {
   start?: () => void;
@@ -82,6 +83,10 @@ const Portfolio = () => {
       
 
   return (
+    <>
+      <Head>
+            <title>Portfolio</title>
+      </Head>
     <section  ref={backgroundRef} className="w-full gradient-bg overflow-x-hidden">
       <svg id="svg-goo" >
         <defs>
@@ -117,6 +122,7 @@ const Portfolio = () => {
       <Footer />
       
     </section>
+    </>
   );
 };
 

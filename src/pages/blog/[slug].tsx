@@ -1,4 +1,5 @@
 "use client";
+import Head from "next/head";
 import Nav from "../../components/nav";
 import { usePostContext } from "../../context/PostContext";
 import Image from "next/image";
@@ -9,12 +10,16 @@ export default function BlogSlugPage() {
   if (!selectedPost) {
     return (
       <div className="p-8 min-h-screen bg-white font-anonymous flex justify-center items-center">
-        <p className="text-black">No post found. Please go back to the blog page.</p>
+        <p className="text-black text-sm text-center">No post found. Please go back to the blog page.</p>
       </div>
     );
   }
 
   return (
+    <>
+    <Head>
+        <title>{selectedPost.post_title || "Not Found"}</title>
+    </Head>
     <div className=" bg-[#FFF6F6] text-black min-h-[100svh]">
       <Nav />
       <div className="xl:p-24 p-8">
@@ -40,5 +45,6 @@ export default function BlogSlugPage() {
         <p className="whitespace-pre-line mt-16 tracking-widest leading-loose font-anonymous font-light text-sm md:text-base">{selectedPost.post_content}</p>
       </div>
     </div>
+    </>
   );
 }

@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import Nav from "../../components/nav";
 import Post from "../../components/post";
+import { Head } from "next/document";
 
 
 interface Blog {
@@ -79,6 +80,10 @@ function Blog() {
         }, []);
 
   return (
+    <>
+      <Head>
+            <title>Ethos</title>
+      </Head>
     <section ref={backgroundRef} className="w-full gradient-bg-2 min-h-[100svh] overflow-x-hidden">
       <Nav />
       {/* Title */}
@@ -93,6 +98,7 @@ function Blog() {
       </div>
       <Post />
     </section>
+    </>
   );
 }
 
