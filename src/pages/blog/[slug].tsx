@@ -10,6 +10,7 @@ export default function BlogSlugPage() {
   if (!selectedPost) {
     return (
       <div className="p-8 min-h-screen bg-white font-anonymous flex justify-center items-center">
+        <h1 className="my-8 text-2xl font-extrabold">404</h1>
         <p className="text-black text-sm text-center">No post found. Please go back to the blog page.</p>
       </div>
     );

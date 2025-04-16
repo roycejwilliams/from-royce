@@ -7,16 +7,6 @@ import { PostProvider } from '../context/PostContext';
 
 export default function App({ Component, pageProps, router }) {
 
-  if (!selectedPost) {
-    return (
-      <div className="p-8 min-h-screen bg-white font-anonymous flex justify-center items-center">
-        <p className="text-black text-sm text-center">No post found. Please go back to the blog page.</p>
-      </div>
-    );
-  }
-
- 
-
 
   return (
     <>
