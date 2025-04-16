@@ -1,6 +1,5 @@
 "use client";
 import "../styles/globals.css";
-import Head from "next/head";
 import TransitionProvider from '../context/TransitionContext';
 import Transition from '../components/Transition';
 import { AuthProvider } from "../context/AuthContext";
