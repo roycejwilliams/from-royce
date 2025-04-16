@@ -20,11 +20,15 @@ declare global {
   }
 }
 
+type ScrollInstance = {
+  start?: () => void;
+  stop?: () => void;
+};
 
 gsap.registerPlugin(ScrollTrigger);
 
 
-const Grid = ({scroll} : {scroll : any}) => {
+const Grid = ({scroll} : {scroll : ScrollInstance}) => {
   const [isOpen, setIsOpen] = useState(false);
   const modalRef = useRef<HTMLDivElement | null>(null);
 

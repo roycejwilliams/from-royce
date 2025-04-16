@@ -126,7 +126,7 @@
   height: 100%;
   min-height: 100vh;
   position: relative;
-  background: linear-gradient(180deg, #F4E3D7 0%, #817366 70%);
+  background: linear-gradient(180deg, #FFF 0%, #312724 50%);
   left: 0;
   overflow: hidden;
 }

@@ -7,10 +7,17 @@ import Footer from "../../components/footer";
 import Nav from "../../components/nav";
 import WorkCon from "../../components/workCon";
 
+type ScrollInstance = {
+  start?: () => void;
+  stop?: () => void;
+};
+
 const Portfolio = () => {
 
   const backgroundRef = useRef<HTMLDivElement | null>(null);
-  const [scrollInstance, setScrollInstance] = useState<any>(null);
+  const [scrollInstance, setScrollInstance] = useState<ScrollInstance | null>(null);
+
+
  
 
   useEffect(() => {

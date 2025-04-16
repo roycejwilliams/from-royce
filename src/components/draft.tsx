@@ -63,7 +63,7 @@ const Draft: React.FC = () => {
 
   const BASE_URL =
   process.env.NODE_ENV === "development"
-    ? "http://localhost:5001/from-royce/us-central1/nextApp"
+    ? "http://localhost:5002"
     : "https://from-royce.web.app";
 
   //Send Post
@@ -188,7 +188,7 @@ const Draft: React.FC = () => {
                 rows={2}
               />
               {imageUrl && (
-                <div className="relative w-full h-[40vh] rounded-md overflow-hidden border">
+                <div className="relative w-full h-[35vh] rounded-md overflow-hidden border">
                   <Image
                     src={imageUrl}
                     fill

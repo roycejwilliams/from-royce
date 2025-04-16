@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import Nav from "../../components/nav";
 import Post from "../../components/post";
 
+
 interface Blog {
   post_id: number; // Matches SERIAL PRIMARY KEY
   post_title: string; // Matches VARCHAR(500) NOT NULL
@@ -79,31 +80,9 @@ function Blog() {
 
   return (
     <section ref={backgroundRef} className="w-full gradient-bg-2 min-h-[100svh] overflow-x-hidden">
-      <svg id="svg-goo" >
-        <defs>
-          <filter id="goo">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-            <feColorMatrix
-              in="blur"
-              mode="matrix"
-              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
-              result="goo"
-            />
-            <feBlend in="SourceGraphic" in2="goo" />
-          </filter>
-        </defs>
-      </svg>
-      <div className="gradient-container">
-        <div className="g1"></div>
-        <div className="g2"></div>
-        <div className="g3"></div>
-        <div className="g4"></div>
-        <div className="g5"></div>
-        <div className="interactive-2"></div>
-      </div>
       <Nav />
       {/* Title */}
-      <div className=" xl:px-24 px-8  xl:mt-52 mt-20  flex flex-col  gap-y-4 xl:gap-x-32 text-white">
+      <div className=" xl:px-24 px-8  xl:mt-32 mt-20  flex flex-col  gap-y-4 xl:gap-x-32 text-white">
         <h1 className=" tracking-[0.2em] z-30 leading-[1.2em] py-8 font-anonymous gap-x-8 xl:text-xl text-sm uppercase">
           <span className="font-cylburn  xl:text-8xl text-6xl">F</span>rom
           <span className="font-cylburn  xl:text-8xl text-6xl">R</span>oyce
