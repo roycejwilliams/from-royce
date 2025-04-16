@@ -1,8 +1,7 @@
 import { useEffect, useRef } from "react";
 import Nav from "../../components/nav";
 import Post from "../../components/post";
-import { Head } from "next/document";
-
+import Head from "next/head";
 
 interface Blog {
   post_id: number; // Matches SERIAL PRIMARY KEY
