@@ -3,49 +3,37 @@ const express = require("express");
 const cors = require("cors");
 const next = require("next");
 const { Pool } = require("pg");
-const path = require("path");
 
-// Load local env vars first if not in production
+// 🔐Load local env vars when not in production
 if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config({ path: path.resolve(__dirname, "../.env.local") });
+  require("dotenv").config({ path: "../.env.local" });
 }
 
-// Setup database URL based on environment
-const isProd = process.env.NODE_ENV === "production";
-const databaseUrl = isProd
-  ? process.env.DATABASE_URL
-  : process.env.LOCAL_DATABASE_URL;
-
-// Initialize PostgreSQL connection pool
+//  PostgreSQL connection
 const pool = new Pool({
-  connectionString: databaseUrl,
-  ssl: isProd ? { rejectUnauthorized: false } : false,
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false },
 });
 
-// Confirm DB connection
+// DB Connection
 pool.connect()
   .then(() => console.log("Connected to PostgreSQL"))
-  .catch(err => console.error("PostgreSQL connection error:", err));
+  .catch(err => console.error(" PostgreSQL connection error:", err));
 
-// Setup Next.js
-const dev = !isProd;
+const dev = process.env.NODE_ENV !== "production";
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config({ path: "../.env.local" });
+}
+
+
 const nextApp = next({ dev, conf: { distDir: ".next" } });
 const handle = nextApp.getRequestHandler();
 
-// Setup Express
 const app = express();
-app.use(
-  cors({
-    origin: "http://localhost:3000", // ✅ Allow frontend origin
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  })
-);
+app.use(cors());
 app.use(express.json());
 
-
-
-// POST /api/posts - Create a post
+// API Routes
 app.post("/api/posts", async (req, res) => {
   try {
     const { title, content, image } = req.body;
@@ -60,7 +48,6 @@ app.post("/api/posts", async (req, res) => {
   }
 });
 
-// GET /api/posts - Fetch paginated posts
 app.get("/api/posts", async (req, res) => {
   try {
     const { page = 1, limit = 6 } = req.query;
@@ -82,7 +69,6 @@ app.get("/api/posts", async (req, res) => {
   }
 });
 
-// GET /api/posts/:id - Get a single post
 app.get("/api/posts/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -94,7 +80,6 @@ app.get("/api/posts/:id", async (req, res) => {
   }
 });
 
-// PUT /api/posts/:id - Update a post
 app.put("/api/posts/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -110,7 +95,6 @@ app.put("/api/posts/:id", async (req, res) => {
   }
 });
 
-// DELETE /api/posts/:id - Delete a post
 app.delete("/api/posts/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -121,26 +105,17 @@ app.delete("/api/posts/:id", async (req, res) => {
     res.status(500).send("Server error");
   }
 });
-const PORT = process.env.PORT || 5002;
 
-if (!process.env.FUNCTIONS_EMULATOR) {
-  app.listen(PORT, () => {
-    console.log(`🔥 Server running on http://localhost:${PORT}`);
-  });
-}
-
-// 🌐 Catch-all for Next.js pages
+// 🔁 Catch-all for Next.js pages
 app.all("*", (req, res) => {
   return handle(req, res);
 });
 
-// 🚀 Firebase Gen 2 Function Export
+// 🚀 Export Firebase Gen 2 Cloud Function
 exports.nextApp = onRequest(
   { region: "us-central1" },
   async (req, res) => {
     await nextApp.prepare();
     app(req, res);
   }
-); 
-
-
+);
