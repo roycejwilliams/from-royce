@@ -42,7 +42,7 @@ export default function BlogSlugPage() {
     <div className=" bg-[#FFF6F6] text-black min-h-[100svh]">
       <Nav />
       <div className="xl:p-24 p-8 font-anonymous">
-        <h1 className="xl:text-6xl text-3xl  font-light  uppercase mb-2">{selectedPost.post_title}</h1>
+        <h1 className="xl:text-6xl text-3xl  font-light w-1/2  uppercase mb-2">{selectedPost.post_title}</h1>
         <p className="text-sm font-medium mt-8 uppercase">
          Date: {selectedPost.formatted_date} 
         </p>
