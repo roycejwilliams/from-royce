@@ -9,8 +9,8 @@ export default function BlogSlugPage() {
 
   if (!selectedPost) {
     return (
-      <div className="p-8 min-h-screen bg-white font-anonymous relative flex overflow-hidden flex-col justify-center items-center">
-        <h1 className="my-8 text-[96rem] absolute transform translate-x-1/2 left-[50%] translate-y-1/2 top-[50%] -z-10 text-gray-400 font-cylburn font-extrabold">404</h1>
+      <div className="p-8 min-h-screen bg-white font-anonymous relative flex flex-col justify-center items-center">
+        <h1 className="my-8  font-extrabold absolute text-9xl -z-10 font-cylburn">404</h1>
         <p className="text-black text-sm text-center">No post found. Please go back to the blog page.</p>
       </div>
     );
@@ -19,7 +19,7 @@ export default function BlogSlugPage() {
   const { post_title, post_content } = selectedPost;
   const description = post_content.slice(0, 150).replace(/\n/g, " ");
   const ogImage =  "https://from-royce.com/cover.png";
-  const slug = post_title.toLowerCase().replace(/[^\w\s-]/g, "") .replace(/\s+/g, "-").replace(/-+/g, "-").trim();                   
+  const slug = post_title.toLowerCase().replace(/\s+/g, "-").replace(/\./g, "");
   const url = `https://from-royce.com/blog/${slug}`;
 
   return (
@@ -42,7 +42,7 @@ export default function BlogSlugPage() {
     <div className=" bg-[#FFF6F6] text-black min-h-[100svh]">
       <Nav />
       <div className="xl:p-24 p-8 font-anonymous">
-        <h1 className="xl:text-6xl text-3xl  font-light w-1/2 uppercase mb-2">{selectedPost.post_title}</h1>
+        <h1 className="xl:text-6xl text-3xl  font-light  uppercase mb-2">{selectedPost.post_title}</h1>
         <p className="text-sm font-medium mt-8 uppercase">
          Date: {selectedPost.formatted_date} 
         </p>
@@ -50,7 +50,7 @@ export default function BlogSlugPage() {
           Time: {selectedPost.formatted_time} 
         </p>
         {selectedPost.post_image && (
-        <div className="xl:w-[50%] w-[100%] h-[70vh] group hover:scale-105 hover:shadow-2xl hover:shadow-black/50 duration-500 ease-in-out transition-transform relative inset-0 overflow-hidden shadow-xl shadow-black/50 rounded-xl mx-auto my-8">
+        <div className="xl:w-[50%] w-[100%] h-[65vh] group hover:scale-105 hover:shadow-2xl hover:shadow-black/50 duration-500 ease-in-out transition-transform relative inset-0 overflow-hidden shadow-xl shadow-black/50 rounded-xl mx-auto my-8">
           
             <Image
               src={selectedPost.post_image}
