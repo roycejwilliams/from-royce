@@ -23,9 +23,9 @@ function Post() {
   
 
   const BASE_URL =
-    process.env.NODE_ENV === "development"
-      ? "https://from-royce.web.app"
-      : "http://localhost:5002";
+  process.env.NODE_ENV === "development"
+    ? "https://from-royce.web.app"
+    : "http://localhost:5002";
 
   const getAllPost = async () => {
     setLoading(true);

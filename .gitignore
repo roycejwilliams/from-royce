@@ -13,7 +13,6 @@
 # testing
 /coverage
 
-functions/node_modules
 
 # next.js
 /.next/
