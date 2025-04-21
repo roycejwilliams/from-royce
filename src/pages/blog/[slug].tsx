@@ -4,6 +4,8 @@ import Nav from "../../components/nav";
 import Image from "next/image";
 import { useEffect, useState, useCallback } from "react";
 import { useParams } from "next/navigation";
+import { format, parseISO } from "date-fns";
+
 
 interface BlogPost {
   post_id: number;
@@ -44,6 +46,11 @@ export default function BlogSlugPage() {
         return cleanedSlug === slug;
       });
 
+      if (matchingPost) {
+        matchingPost.formatted_date = format(parseISO(matchingPost.post_date), "MM/dd/yy");
+        matchingPost.formatted_time = format(parseISO(`1970-01-01T${matchingPost.post_time}`), "hh:mm a");
+      }
+
       setPost(matchingPost || null);
     } finally {
       setLoading(false);
@@ -54,7 +61,7 @@ export default function BlogSlugPage() {
     if (slug) fetchPost();
   }, [fetchPost, slug]);
 
-  if (loading) return <p className="p-8 text-center">Loading...</p>;
+  if (loading) return <p className="p-8 text-center"></p>;
 
   if (!post) {
     return (
