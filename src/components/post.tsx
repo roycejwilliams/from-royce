@@ -96,7 +96,7 @@ function Post() {
                   />
                 </div>
               )}
-              <h1 className="uppercase xl:text-4xl text-xl mb-2">{p.post_title}</h1>
+              <h1 className="uppercase xl:text-2xl text-lg mb-2">{p.post_title}</h1>
               <div className="p-2  flex justify-between items-center">
                 <p className="text-xs font-thin">
                   <span className="uppercase font-light">Date:</span>{" "}

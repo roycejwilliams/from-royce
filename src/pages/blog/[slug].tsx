@@ -9,8 +9,8 @@ export default function BlogSlugPage() {
 
   if (!selectedPost) {
     return (
-      <div className="p-8 min-h-screen bg-white font-anonymous flex justify-center items-center">
-        <h1 className="my-8 text-2xl font-extrabold">404</h1>
+      <div className="p-8 min-h-screen bg-white font-anonymous flex flex-col justify-center items-center">
+        <h1 className="my-8 text-4xl font-cylburn font-extrabold">404</h1>
         <p className="text-black text-sm text-center">No post found. Please go back to the blog page.</p>
       </div>
     );
@@ -19,7 +19,7 @@ export default function BlogSlugPage() {
   const { post_title, post_content } = selectedPost;
   const description = post_content.slice(0, 150).replace(/\n/g, " ");
   const ogImage =  "https://from-royce.com/cover.png";
-  const slug = post_title.toLowerCase().replace(/\s+/g, "-").replace(/\./g, "");
+  const slug = post_title.toLowerCase().replace(/[^\w\s-]/g, "") .replace(/\s+/g, "-").replace(/-+/g, "-").trim();                   
   const url = `https://from-royce.com/blog/${slug}`;
 
   return (
