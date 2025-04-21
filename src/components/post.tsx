@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { format, parseISO } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
-import { usePostContext } from "../context/PostContext";
 
 interface Blog {
   post_id: number;
@@ -21,7 +20,6 @@ function Post() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [posts, setPosts] = useState<Blog[]>([]);
-  const { setSelectedPost } = usePostContext();
   
 
   const BASE_URL =

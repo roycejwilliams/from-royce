@@ -2,14 +2,25 @@
 import Head from "next/head";
 import Nav from "../../components/nav";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useParams } from "next/navigation";
+
+interface BlogPost {
+  post_id: number;
+  post_title: string;
+  post_content: string;
+  post_image: string | null;
+  post_time: string;
+  post_date: string;
+  formatted_date: string;
+  formatted_time: string;
+}
 
 export default function BlogSlugPage() {
   const params = useParams();
   const slug = params?.slug as string;
 
-  const [post, setPost] = useState<any>(null);
+  const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
 
   const BASE_URL =
@@ -17,12 +28,12 @@ export default function BlogSlugPage() {
       ? "http://localhost:5002"
       : "https://from-royce.web.app";
 
-  const fetchPost = async () => {
+  const fetchPost = useCallback(async () => {
     try {
       const res = await fetch(`${BASE_URL}/api/posts`);
       const data = await res.json();
 
-      const matchingPost = data.post.find((p: any) => {
+      const matchingPost = data.post.find((p: BlogPost) => {
         const cleanedSlug = p.post_title
           .toLowerCase()
           .replace(/[^\w\s-]/g, "")
@@ -34,29 +45,27 @@ export default function BlogSlugPage() {
       });
 
       setPost(matchingPost || null);
-    } catch (err) {
-      setPost(null);
     } finally {
       setLoading(false);
     }
-  };
+  }, [slug, BASE_URL]);
 
   useEffect(() => {
     if (slug) fetchPost();
-  }, [slug]);
+  }, [fetchPost, slug]);
 
   if (loading) return <p className="p-8 text-center">Loading...</p>;
 
   if (!post) {
     return (
       <div className="p-8 min-h-screen bg-white font-anonymous relative flex flex-col justify-center items-center">
-        <h1 className="my-8  font-extrabold absolute text-9xl -z-10 font-cylburn">404</h1>
+        <h1 className="my-8 font-extrabold absolute text-9xl -z-10 font-cylburn">404</h1>
         <p className="text-black text-sm text-center">No post found. Please go back to the blog page.</p>
       </div>
     );
   }
 
-  const { post_title, post_content } = post;
+  const { post_title, post_content, post_image, formatted_date, formatted_time } = post;
   const description = post_content.slice(0, 150).replace(/\n/g, " ");
   const ogImage = "https://from-royce.com/cover.png";
   const url = `https://from-royce.com/blog/${slug}`;
@@ -81,22 +90,20 @@ export default function BlogSlugPage() {
         <Nav />
         <div className="xl:p-24 p-8 font-anonymous">
           <h1 className="xl:text-6xl text-3xl font-light uppercase mb-2">{post_title}</h1>
-          <p className="text-sm font-medium mt-8 uppercase">
-            Date: {post.formatted_date}
-          </p>
-          <p className="text-sm font-medium mt-8 uppercase">
-            Time: {post.formatted_time}
-          </p>
-          {post.post_image && (
+          <p className="text-sm font-medium mt-8 uppercase">Date: {formatted_date}</p>
+          <p className="text-sm font-medium mt-8 uppercase">Time: {formatted_time}</p>
+
+          {post_image && (
             <div className="xl:w-[50%] w-[100%] h-[65vh] group hover:scale-105 hover:shadow-2xl hover:shadow-black/50 duration-500 ease-in-out transition-transform relative inset-0 overflow-hidden shadow-xl shadow-black/50 rounded-xl mx-auto my-8">
               <Image
-                src={post.post_image}
+                src={post_image}
                 alt={post_title}
                 fill
                 className="mb-6 rounded-lg w-full h-full object-cover absolute transform transition duration-500 ease-in-out group-hover:scale-105"
               />
             </div>
           )}
+
           <p className="whitespace-pre-line mt-16 tracking-widest leading-loose font-anonymous font-light text-sm md:text-base">
             {post_content}
           </p>
