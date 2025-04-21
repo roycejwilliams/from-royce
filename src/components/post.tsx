@@ -88,7 +88,6 @@ function Post() {
           >
             <Link
              href={`/blog/${p.slug}`}
-             onClick={() => setSelectedPost(p)}
             className="block p-4 group text-black reveal bg-white cursor-pointer hover:scale-105 transition duration-500 border border-white/30 rounded-lg shadow-2xl shadow-white/70 w-full"
             >
               {p.post_image && (

@@ -1,13 +1,53 @@
 "use client";
 import Head from "next/head";
 import Nav from "../../components/nav";
-import { usePostContext } from "../../context/PostContext";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 
 export default function BlogSlugPage() {
-  const { selectedPost } = usePostContext();
+  const params = useParams();
+  const slug = params?.slug as string;
 
-  if (!selectedPost) {
+  const [post, setPost] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  const BASE_URL =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:5002"
+      : "https://from-royce.web.app";
+
+  const fetchPost = async () => {
+    try {
+      const res = await fetch(`${BASE_URL}/api/posts`);
+      const data = await res.json();
+
+      const matchingPost = data.post.find((p: any) => {
+        const cleanedSlug = p.post_title
+          .toLowerCase()
+          .replace(/[^\w\s-]/g, "")
+          .replace(/\s+/g, "-")
+          .replace(/-+/g, "-")
+          .trim();
+
+        return cleanedSlug === slug;
+      });
+
+      setPost(matchingPost || null);
+    } catch (err) {
+      setPost(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (slug) fetchPost();
+  }, [slug]);
+
+  if (loading) return <p className="p-8 text-center">Loading...</p>;
+
+  if (!post) {
     return (
       <div className="p-8 min-h-screen bg-white font-anonymous relative flex flex-col justify-center items-center">
         <h1 className="my-8  font-extrabold absolute text-9xl -z-10 font-cylburn">404</h1>
@@ -16,15 +56,14 @@ export default function BlogSlugPage() {
     );
   }
 
-  const { post_title, post_content } = selectedPost;
+  const { post_title, post_content } = post;
   const description = post_content.slice(0, 150).replace(/\n/g, " ");
-  const ogImage =  "https://from-royce.com/cover.png";
-  const slug = post_title.toLowerCase().replace(/\s+/g, "-").replace(/\./g, "");
+  const ogImage = "https://from-royce.com/cover.png";
   const url = `https://from-royce.com/blog/${slug}`;
 
   return (
     <>
-     <Head>
+      <Head>
         <title>{post_title} – Royce</title>
         <meta name="description" content={description} />
         <meta property="og:title" content={`${post_title} by royce`} />
@@ -37,33 +76,32 @@ export default function BlogSlugPage() {
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={ogImage} />
       </Head>
-    
-  
-    <div className=" bg-[#FFF6F6] text-black min-h-[100svh]">
-      <Nav />
-      <div className="xl:p-24 p-8 font-anonymous">
-        <h1 className="xl:text-6xl text-3xl  font-light  uppercase mb-2">{selectedPost.post_title}</h1>
-        <p className="text-sm font-medium mt-8 uppercase">
-         Date: {selectedPost.formatted_date} 
-        </p>
-        <p className="text-sm font-medium mt-8 uppercase">
-          Time: {selectedPost.formatted_time} 
-        </p>
-        {selectedPost.post_image && (
-        <div className="xl:w-[50%] w-[100%] h-[65vh] group hover:scale-105 hover:shadow-2xl hover:shadow-black/50 duration-500 ease-in-out transition-transform relative inset-0 overflow-hidden shadow-xl shadow-black/50 rounded-xl mx-auto my-8">
-          
-            <Image
-              src={selectedPost.post_image}
-              alt={selectedPost.post_title}
-              fill
-              className="mb-6 rounded-lg w-full h-full object-cover absolute transform transition duration-500 ease-in-out group-hover:scale-105"
-            />
-        </div>
-          )}
 
-        <p className="whitespace-pre-line mt-16 tracking-widest leading-loose font-anonymous font-light text-sm md:text-base">{selectedPost.post_content}</p>
+      <div className="bg-[#FFF6F6] text-black min-h-[100svh]">
+        <Nav />
+        <div className="xl:p-24 p-8 font-anonymous">
+          <h1 className="xl:text-6xl text-3xl font-light uppercase mb-2">{post_title}</h1>
+          <p className="text-sm font-medium mt-8 uppercase">
+            Date: {post.formatted_date}
+          </p>
+          <p className="text-sm font-medium mt-8 uppercase">
+            Time: {post.formatted_time}
+          </p>
+          {post.post_image && (
+            <div className="xl:w-[50%] w-[100%] h-[65vh] group hover:scale-105 hover:shadow-2xl hover:shadow-black/50 duration-500 ease-in-out transition-transform relative inset-0 overflow-hidden shadow-xl shadow-black/50 rounded-xl mx-auto my-8">
+              <Image
+                src={post.post_image}
+                alt={post_title}
+                fill
+                className="mb-6 rounded-lg w-full h-full object-cover absolute transform transition duration-500 ease-in-out group-hover:scale-105"
+              />
+            </div>
+          )}
+          <p className="whitespace-pre-line mt-16 tracking-widest leading-loose font-anonymous font-light text-sm md:text-base">
+            {post_content}
+          </p>
+        </div>
       </div>
-    </div>
     </>
   );
 }
