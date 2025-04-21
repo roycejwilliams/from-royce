@@ -26,9 +26,9 @@ export default function BlogSlugPage() {
   const [loading, setLoading] = useState(true);
 
   const BASE_URL =
-    process.env.NODE_ENV === "development"
-      ? "https://from-royce.web.app"
-      : "http://localhost:5002";
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:5002"
+    : "https://from-royce.web.app";
 
   const fetchPost = useCallback(async () => {
     try {
