@@ -9,8 +9,8 @@ export default function BlogSlugPage() {
 
   if (!selectedPost) {
     return (
-      <div className="p-8 min-h-screen bg-white font-anonymous flex flex-col justify-center items-center">
-        <h1 className="my-8 text-4xl font-cylburn font-extrabold">404</h1>
+      <div className="p-8 min-h-screen bg-white font-anonymous relative flex flex-col justify-center items-center">
+        <h1 className="my-8 text-[96rem] absolute font-cylburn font-extrabold">404</h1>
         <p className="text-black text-sm text-center">No post found. Please go back to the blog page.</p>
       </div>
     );
@@ -42,7 +42,7 @@ export default function BlogSlugPage() {
     <div className=" bg-[#FFF6F6] text-black min-h-[100svh]">
       <Nav />
       <div className="xl:p-24 p-8 font-anonymous">
-        <h1 className="xl:text-6xl text-3xl  font-light w-1/2  uppercase mb-2">{selectedPost.post_title}</h1>
+        <h1 className="xl:text-6xl text-3xl  font-light w-1/2 uppercase mb-2">{selectedPost.post_title}</h1>
         <p className="text-sm font-medium mt-8 uppercase">
          Date: {selectedPost.formatted_date} 
         </p>
