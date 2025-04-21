@@ -50,7 +50,7 @@ export default function BlogSlugPage() {
           Time: {selectedPost.formatted_time} 
         </p>
         {selectedPost.post_image && (
-        <div className="xl:w-[50%] w-[100%] h-[65vh] group hover:scale-105 hover:shadow-2xl hover:shadow-black/50 duration-500 ease-in-out transition-transform relative inset-0 overflow-hidden shadow-xl shadow-black/50 rounded-xl mx-auto my-8">
+        <div className="xl:w-[50%] w-[100%] h-[70vh] group hover:scale-105 hover:shadow-2xl hover:shadow-black/50 duration-500 ease-in-out transition-transform relative inset-0 overflow-hidden shadow-xl shadow-black/50 rounded-xl mx-auto my-8">
           
             <Image
               src={selectedPost.post_image}
