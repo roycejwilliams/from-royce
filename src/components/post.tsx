@@ -45,8 +45,13 @@ function Post() {
         const formattedTime = p.post_time
           ? format(parseISO(`1970-01-01T${p.post_time}`), "hh:mm a")
           : "Invalid time";
-          const slug = p.post_title.toLowerCase().replace(/\s+/g, "-").replace(/\./g, "");
-      
+
+          const slug = p.post_title
+          .toLowerCase()
+          .replace(/[^\w\s-]/g, "")  // Removes special characters (like commas, quotes, etc.)
+          .replace(/\s+/g, "-")      // Replaces spaces with dashes
+          .replace(/-+/g, "-")       // Collapses multiple dashes
+          .trim();         
         return {
           ...p,
           formatted_date: formattedDate,
@@ -87,7 +92,7 @@ function Post() {
             className="block p-4 group text-black reveal bg-white cursor-pointer hover:scale-105 transition duration-500 border border-white/30 rounded-lg shadow-2xl shadow-white/70 w-full"
             >
               {p.post_image && (
-                <div className="relative w-full xl:h-[65vh] md:h-[50vh] h-[35vh] rounded-lg shadow-md overflow-hidden inset-0 my-4">
+                <div className="relative w-full xl:h-[65vh] h-[45vh] rounded-lg shadow-md overflow-hidden inset-0 my-4">
                   <Image
                     src={p.post_image}
                     fill
@@ -96,7 +101,7 @@ function Post() {
                   />
                 </div>
               )}
-              <h1 className="uppercase xl:text-2xl text-lg mb-2">{p.post_title}</h1>
+              <h1 className="uppercase xl:text-2xl w-fit text-lg mb-2">{p.post_title}</h1>
               <div className="p-2  flex justify-between items-center">
                 <p className="text-xs font-thin">
                   <span className="uppercase font-light">Date:</span>{" "}
