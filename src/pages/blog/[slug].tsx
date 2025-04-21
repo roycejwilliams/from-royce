@@ -27,8 +27,8 @@ export default function BlogSlugPage() {
 
   const BASE_URL =
     process.env.NODE_ENV === "development"
-      ? "http://localhost:5002"
-      : "https://from-royce.web.app";
+      ? "https://from-royce.web.app"
+      : "http://localhost:5002";
 
   const fetchPost = useCallback(async () => {
     try {
@@ -103,6 +103,7 @@ export default function BlogSlugPage() {
           {post_image && (
             <div className="xl:w-[50%] w-[100%] h-[65vh] group hover:scale-105 hover:shadow-2xl hover:shadow-black/50 duration-500 ease-in-out transition-transform relative inset-0 overflow-hidden shadow-xl shadow-black/50 rounded-xl mx-auto my-8">
               <Image
+                priority
                 src={post_image}
                 alt={post_title}
                 fill

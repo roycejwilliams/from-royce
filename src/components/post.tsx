@@ -24,8 +24,8 @@ function Post() {
 
   const BASE_URL =
     process.env.NODE_ENV === "development"
-      ? "http://localhost:5002"
-      : "https://from-royce.web.app";
+      ? "https://from-royce.web.app"
+      : "http://localhost:5002";
 
   const getAllPost = async () => {
     setLoading(true);
@@ -81,8 +81,11 @@ function Post() {
       ) : (
         posts.map((p) => (
           <div
+          data-scroll
+          data-scroll-speed="0.12"
+          data-scroll-repeat
             key={p.post_id}
-            className="xl:p-4 xl:w-1/2 w-full mx-auto my-8 xl:my-2 xl:max-w-1/2"
+            className="xl:p-4 xl:w-1/2 w-full mx-auto my-8 xl:my-2 xl:max-w-1/2 "
           >
             <Link
              href={`/blog/${p.slug}`}
@@ -93,13 +96,14 @@ function Post() {
                   <Image
                     src={p.post_image}
                     fill
+                    priority
                     alt="uploaded image"
                     className="absolute w-full h-full object-cover inset-0 transform transition duration-500 ease-in-out group-hover:scale-105"
                   />
                 </div>
               )}
-              <h1 className="uppercase xl:text-2xl w-fit text-lg mb-2">{p.post_title}</h1>
-              <div className="p-2  flex justify-between items-center">
+              <h1 className="uppercase xl:text-2xl w-fit text-sm mb-2">{p.post_title}</h1>
+              <div className="  flex justify-between items-center">
                 <p className="text-xs font-thin">
                   <span className="uppercase font-light">Date:</span>{" "}
                   {p.formatted_date}
