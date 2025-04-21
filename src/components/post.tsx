@@ -27,45 +27,46 @@ function Post() {
     ? "http://localhost:5002"
     : "https://from-royce.web.app";
 
-  const getAllPost = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await fetch(`${BASE_URL}/api/posts`);
-      if (!res.ok) throw new Error("Error Retrieving Post");
+const getAllPost = async () => {
+  setLoading(true);
+  setError(null);
+  try {
+    const res = await fetch(`${BASE_URL}/api/posts`);
+    if (!res.ok) throw new Error("Error Retrieving Post");
 
-      const response = await res.json();
+    const response = await res.json();
 
-      const formattedPosts = response.post.map((p: Blog) => {
-        const formattedDate = p.post_date
-          ? format(parseISO(p.post_date), "MM/dd/yy")
-          : "Invalid date";
-        const formattedTime = p.post_time
-          ? format(parseISO(`1970-01-01T${p.post_time}`), "hh:mm a")
-          : "Invalid time";
+    const formattedPosts = response.post.map((p: Blog) => {
+      const formattedDate = p.post_date
+        ? format(parseISO(p.post_date), "MM/dd/yy")
+        : "Invalid date";
+      const formattedTime = p.post_time
+        ? format(parseISO(`1970-01-01T${p.post_time}`), "hh:mm a")
+        : "Invalid time";
 
-          const slug = p.post_title
-          .toLowerCase()
-          .replace(/[^\w\s-]/g, "")  // Removes special characters (like commas, quotes, etc.)
-          .replace(/\s+/g, "-")      // Replaces spaces with dashes
-          .replace(/-+/g, "-")       // Collapses multiple dashes
-          .trim();         
-        return {
-          ...p,
-          formatted_date: formattedDate,
-          formatted_time: formattedTime,
-          slug, // Added slug
-        };
-      });
+        const slug = p.post_title
+        .toLowerCase()
+        .replace(/[^\w\s-]/g, "")  // Removes special characters (like commas, quotes, etc.)
+        .replace(/\s+/g, "-")      // Replaces spaces with dashes
+        .replace(/-+/g, "-")       // Collapses multiple dashes
+        .trim();         
+      return {
+        ...p,
+        formatted_date: formattedDate,
+        formatted_time: formattedTime,
+        slug, // Added slug
+      };
+    });
 
-      setPosts(formattedPosts);
-    } catch (err) {
-      console.log("Error:", err);
-      setError("Failed to retrieve posts.");
-    } finally {
-      setLoading(false);
-    }
-  };
+    setPosts(formattedPosts);
+  } catch (err) {
+    console.log("Error:", err);
+    setError("Failed to retrieve posts.");
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   useEffect(() => {
     getAllPost();
