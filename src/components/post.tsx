@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { format, lastDayOfDecade, parseISO } from "date-fns";
+import { format, parseISO } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 
