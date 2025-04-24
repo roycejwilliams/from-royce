@@ -54,7 +54,7 @@ const getAllPost = async () => {
         ...p,
         formatted_date: formattedDate,
         formatted_time: formattedTime,
-        slug, // Added slug
+        slug, 
       };
     });
 
@@ -86,25 +86,27 @@ const getAllPost = async () => {
           data-scroll-speed="0.12"
           data-scroll-repeat
             key={p.post_id}
-            className="xl:p-4 xl:w-1/2 w-full mx-auto my-8 xl:my-2 xl:max-w-1/2 "
+            className="xl:p-4 xl:w-[55%] reveal w-full mx-auto my-8 xl:my-2 xl:max-w-1/2 "
           >
             <Link
              href={`/blog/${p.slug}`}
-            className="block p-4 group text-black reveal bg-white cursor-pointer hover:scale-105 transition duration-500 border border-white/30 rounded-lg shadow-2xl shadow-white/70 w-full"
+            className=" p-4 group relative  flex xl:flex-row flex-col cursor-pointer hover:scale-105 transition duration-500 border-l border-t border-r border-white/50 rounded-lg shadow-2xl shadow-white/70 w-full"
             >
+              <div className="via-white/15 from-black/75 bg-gradient-to-t to-white/50 blur-2xl w-full h-full  absolute"></div>
+
               {p.post_image && (
-                <div className="relative w-full xl:h-[65vh] h-[45vh] rounded-lg shadow-md overflow-hidden inset-0 my-4">
+                <div className="relative w-[100%] xl:w-[35%] xl:h-[20vh] h-[50vh] rounded-lg shadow-lg overflow-hidden inset-0 my-4">
                   <Image
                     src={p.post_image}
                     fill
-                    priority
-                    alt="uploaded image"
-                    className="absolute w-full h-full object-cover inset-0 transform transition duration-500 ease-in-out group-hover:scale-105"
+                    alt={p.post_title}
+                    className="absolute w-full h-full object-cover inset-0 transform transition duration-500 ease-in-out  group-hover:scale-105"
                   />
                 </div>
               )}
-              <h1 className="uppercase xl:text-2xl w-fit text-sm mb-2">{p.post_title}</h1>
-              <div className="  flex justify-between items-center">
+              <div className=" text-white flex flex-col xl:p-8 p-4 w-auto justify-between ">
+              <h1 className="uppercase xl:text-2xl w-fit text-base font-medium mb-2">{p.post_title}</h1>
+              <div className="flex justify-between gap-x-4">
                 <p className="text-xs font-thin">
                   <span className="uppercase font-light">Date:</span>{" "}
                   {p.formatted_date}
@@ -113,6 +115,7 @@ const getAllPost = async () => {
                   <span className="uppercase font-light">Time:</span>{" "}
                   {p.formatted_time}
                 </p>
+                </div>
               </div>
             </Link>
           </div>

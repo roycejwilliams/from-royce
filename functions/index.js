@@ -41,6 +41,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.listen(5002, () => {
+  console.log("Express server running on http://localhost:5002");
+});
+
 // API Routes
 app.post("/api/posts", async (req, res) => {
   try {

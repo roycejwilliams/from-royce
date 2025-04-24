@@ -2,9 +2,12 @@
 import Head from "next/head";
 import Nav from "../../components/nav";
 import Image from "next/image";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { useParams } from "next/navigation";
 import { format, parseISO } from "date-fns";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+
 
 
 interface BlogPost {
@@ -21,9 +24,12 @@ interface BlogPost {
 export default function BlogSlugPage() {
   const params = useParams();
   const slug = params?.slug as string;
+  
 
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
+  const imageRef = useRef<HTMLDivElement | null>(null);
+
 
   const BASE_URL =
     process.env.NODE_ENV === "development"
@@ -58,25 +64,43 @@ export default function BlogSlugPage() {
   }, [slug, BASE_URL]);
 
   useEffect(() => {
-    if (slug) fetchPost();
+    if (!slug) return;
+    fetchPost();
   }, [fetchPost, slug]);
 
-  if (loading) return <p className="p-8 text-center"></p>;
-
-  if (!post) {
-    return (
-      <div className="p-8 min-h-screen bg-white font-anonymous relative flex flex-col justify-center items-center">
-        <h1 className="my-8 font-extrabold absolute text-9xl -z-10 font-cylburn">404</h1>
-        <p className="text-black text-sm text-center">No post found. Please go back to the blog page.</p>
-      </div>
+  useGSAP(() => {
+    if (!imageRef.current || !post_image) return;
+  
+    gsap.fromTo(
+      imageRef.current,
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.in",
+        delay: 0.2,
+      }
     );
-  }
+  }, [post?.post_image]);
 
-  const { post_title, post_content, post_image, formatted_date, formatted_time } = post;
-  const description = post_content.slice(0, 150).replace(/\n/g, " ");
-  const ogImage = "https://from-royce.com/cover.png";
-  const url = `https://from-royce.com/blog/${slug}`;
+   if (loading) return <p className="p-8 text-center"></p>;
 
+   if (!post) {
+     return (
+       <div className="p-8 min-h-screen bg-white font-anonymous relative flex flex-col justify-end items-center overflow-hidden">
+         <h1 className=" font-extrabold absolute xl:text-[52rem] text-[18rem] w-fit h-fit transform left-[48%] -translate-x-1/2  top-[60%] -translate-y-1/2 z-10 font-cylburn">404</h1>
+         <p className="text-black text-xs text-center mb-52">No post found. Please go back to the blog page.</p>
+       </div>
+     );
+   }
+
+   const { post_title, post_content, post_image, formatted_date, formatted_time } = post;
+   const description = post_content.slice(0, 150).replace(/\n/g, " ");
+   const ogImage = "https://from-royce.com/cover.png";
+   const url = `https://from-royce.com/blog/${slug}`;
+
+  
   return (
     <>
       <Head>
@@ -101,7 +125,8 @@ export default function BlogSlugPage() {
           <p className="text-sm font-medium mt-8 uppercase">Time: {formatted_time}</p>
 
           {post_image && (
-            <div className="xl:w-[50%] w-[100%] h-[65vh] group hover:scale-105 hover:shadow-2xl hover:shadow-black/50 duration-500 ease-in-out transition-transform relative inset-0 overflow-hidden shadow-xl shadow-black/50 rounded-xl mx-auto my-8">
+            <div ref={imageRef}
+            className="xl:w-[50%] w-[100%] h-[65vh] group hover:scale-105 hover:shadow-2xl hover:shadow-black/50 duration-500 ease-in-out transition-transform relative inset-0 overflow-hidden shadow-xl shadow-black/50 rounded-xl mx-auto my-8">
               <Image
                 src={post_image}
                 alt={post_title}
