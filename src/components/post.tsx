@@ -88,7 +88,7 @@ const getAllPost = async () => {
           data-scroll-speed="0.12"
           data-scroll-repeat
             key={p?.post_id}
-            className={`xl:p-4 xl:w-[55%] reveal ${
+            className={`xl:p-4 xl:w-[55%] ${
               p.post_id === latestPostId ? "" : " reveal "
             } translate-y-10 transition-all duration-700 w-full mx-auto my-8 xl:my-2 xl:max-w-1/2 `}          >
             <Link
@@ -107,7 +107,7 @@ const getAllPost = async () => {
                   />
                 </div>
               )}
-              <div className=" text-white flex flex-col xl:p-8  w-auto justify-between ">
+              <div className=" text-white flex flex-col xl:p-8  w-full justify-between ">
               <h1 className="uppercase xl:text-2xl w-fit text-base font-medium mb-2">{p.post_title}</h1>
               <div className="flex justify-between gap-x-4">
                 <p className="text-xs font-thin">
