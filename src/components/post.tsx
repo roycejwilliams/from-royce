@@ -60,6 +60,8 @@ function Post() {
       });
 
       setPosts(formattedPosts);
+      console.log("[Post] Fetched and formatted posts:", formattedPosts);
+
     } catch (err) {
       console.log("Error:", err);
       setError("Failed to retrieve posts.");
@@ -69,9 +71,20 @@ function Post() {
   };
 
   useEffect(() => {
+    console.log("[Post] Component mounted (client-side only)");
     setHasMounted(true);
     getAllPost();
   }, []);
+
+  useEffect(() => {
+    if (hasMounted && posts.length > 0) {
+      console.log("[Post] Posts rendered and ready for scroll animations");
+  
+      // Log all reveal elements
+      const revealEls = document.querySelectorAll(".reveal");
+      console.log("[Post] .reveal elements in DOM:", revealEls.length);
+    }
+  }, [hasMounted, posts]);
 
   if (!hasMounted) return null;
 
@@ -84,6 +97,8 @@ function Post() {
         posts.map((p) => {
           const latestPostId = Math.max(...posts.map((p) => p.post_id));
           const isLatest = p.post_id === latestPostId;
+          console.log(`[Post] Rendering post ${p.post_id} – isLatest: ${isLatest}`);
+
 
           return (
             <div
