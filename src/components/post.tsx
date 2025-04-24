@@ -87,7 +87,7 @@ const getAllPost = async () => {
           data-scroll
           data-scroll-speed="0.12"
           data-scroll-repeat
-            key={p?.post_id}
+            key={p.post_id}
             className={`xl:p-4 xl:w-[55%] ${
               p.post_id === latestPostId ? "" : " reveal "
             } translate-y-10 transition-all duration-700 w-full mx-auto my-8 xl:my-2 xl:max-w-1/2 `}          >
