@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { format, parseISO } from "date-fns";
+import { format, lastDayOfDecade, parseISO } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -72,10 +72,12 @@ const getAllPost = async () => {
     getAllPost();
   }, []);
 
+  const latestPostId = Math.max(...posts.map(p => p.post_id));
+  console.log(latestPostId)
 
 
   return (
-    <div className="xl:p-24 p-8 w-full tracking-[0.1em] z-50 overflow-hidden mt-16 inline-block font-anonymous">
+    <div className="xl:p-24 p-8 w-full tracking-[0.1em] z-50 overflow-hidden mt-8 inline-block font-anonymous">
       {error && <p className="text-xs text-red-400">{error}</p>}
       {loading ? (
         <span className="loading loading-infinity loading-lg" />
@@ -85,9 +87,10 @@ const getAllPost = async () => {
           data-scroll
           data-scroll-speed="0.12"
           data-scroll-repeat
-            key={p.post_id}
-            className="xl:p-4 xl:w-[55%] reveal w-full mx-auto my-8 xl:my-2 xl:max-w-1/2 "
-          >
+            key={p?.post_id}
+            className={`xl:p-4 xl:w-[55%] reveal ${
+              p.post_id === latestPostId ? "" : " reveal "
+            } translate-y-10 transition-all duration-700 w-full mx-auto my-8 xl:my-2 xl:max-w-1/2 `}          >
             <Link
              href={`/blog/${p.slug}`}
             className=" p-4 group relative  flex xl:flex-row flex-col cursor-pointer hover:scale-105 transition duration-500 border-l border-t border-r border-white/50 rounded-lg shadow-2xl shadow-white/70 w-full"
@@ -104,7 +107,7 @@ const getAllPost = async () => {
                   />
                 </div>
               )}
-              <div className=" text-white flex flex-col xl:p-8 p-4 w-auto justify-between ">
+              <div className=" text-white flex flex-col xl:p-8  w-auto justify-between ">
               <h1 className="uppercase xl:text-2xl w-fit text-base font-medium mb-2">{p.post_title}</h1>
               <div className="flex justify-between gap-x-4">
                 <p className="text-xs font-thin">
