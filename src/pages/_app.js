@@ -10,10 +10,6 @@ export default function App({ Component, pageProps, router }) {
 
   return (
     <>
-    
-  
-   
-
       <AuthProvider>
         <PostProvider>
           <TransitionProvider>

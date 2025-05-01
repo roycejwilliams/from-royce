@@ -16,11 +16,15 @@ interface Blog {
   slug: string;
 }
 
-function Post() {
+interface PostProps {
+  onReady: () => void;
+}
+
+function Post({ onReady }: PostProps) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [posts, setPosts] = useState<Blog[]>([]);
-  const [hasMounted, setHasMounted] = useState(false); // ✅ SSR hydration guard
+
 
   const BASE_URL =
     process.env.NODE_ENV === "development"
@@ -35,6 +39,7 @@ function Post() {
       if (!res.ok) throw new Error("Error Retrieving Post");
 
       const response = await res.json();
+      console.log(response);
 
       const formattedPosts = response.post.map((p: Blog) => {
         const formattedDate = p.post_date
@@ -60,7 +65,6 @@ function Post() {
       });
 
       setPosts(formattedPosts);
-      console.log("[Post] Fetched and formatted posts:", formattedPosts);
 
     } catch (err) {
       console.log("Error:", err);
@@ -71,28 +75,23 @@ function Post() {
   };
 
   useEffect(() => {
-    console.log("[Post] Component mounted (client-side only)");
-    setHasMounted(true);
     getAllPost();
   }, []);
 
   useEffect(() => {
-    if (hasMounted && posts.length > 0) {
-      console.log("[Post] Posts rendered and ready for scroll animations");
-  
-      // Log all reveal elements
-      const revealEls = document.querySelectorAll(".reveal");
-      console.log("[Post] .reveal elements in DOM:", revealEls.length);
+    if (posts.length > 0) {
+      onReady();
     }
-  }, [hasMounted, posts]);
+  }, [posts, onReady]);
 
-  if (!hasMounted) return null;
+  
+
 
   return (
     <div className="xl:p-24 p-8 w-full tracking-[0.1em] z-50 overflow-hidden mt-8 inline-block font-anonymous">
       {error && <p className="text-xs text-red-400">{error}</p>}
       {loading ? (
-        <span className="loading loading-infinity loading-lg" />
+        <span className="loading loading-infinity loading-md" />
       ) : (
         posts.map((p) => {
           const latestPostId = Math.max(...posts.map((p) => p.post_id));
@@ -121,6 +120,7 @@ function Post() {
                     <Image
                       src={p.post_image}
                       fill
+                      priority
                       alt={p.post_title}
                       className="absolute w-full h-full object-cover inset-0 transform transition duration-500 ease-in-out group-hover:scale-105"
                     />

@@ -2,12 +2,11 @@
 import Head from "next/head";
 import Nav from "../../components/nav";
 import Image from "next/image";
-import { useEffect, useState, useCallback, useRef } from "react";
+import { useEffect, useState, useCallback} from "react";
 import { useParams } from "next/navigation";
 import { format, parseISO } from "date-fns";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-
 
 
 interface BlogPost {
@@ -23,14 +22,11 @@ interface BlogPost {
 
 export default function BlogSlugPage() {
   const params = useParams();
-  const slug = params?.slug as string;
+  const slug = params?.slug;
   
-
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
-  const imageRef = useRef<HTMLDivElement | null>(null);
-
-
+ 
   const BASE_URL =
     process.env.NODE_ENV === "development"
       ? "http://localhost:5002"
@@ -69,20 +65,21 @@ export default function BlogSlugPage() {
   }, [fetchPost, slug]);
 
   useGSAP(() => {
-    if (!imageRef.current || !post_image) return;
+    if (!post) return;
   
     gsap.fromTo(
-      imageRef.current,
+      '.show',
       { opacity: 0, y: 50 },
       {
         opacity: 1,
         y: 0,
-        duration: 0.8,
-        ease: "power2.in",
+        stagger: 0.15,
+        duration: 1.2,
+        ease: "power3.out", 
         delay: 0.2,
       }
     );
-  }, [post?.post_image]);
+  }, [post]);
 
    if (loading) return <p className="p-8 text-center"></p>;
 
@@ -120,21 +117,20 @@ export default function BlogSlugPage() {
       <div className="bg-[#FFF6F6] text-black min-h-[100svh]">
         <Nav />
         <div className="xl:p-24 p-8 font-anonymous">
-          <h1 className="xl:text-6xl text-3xl font-light uppercase mb-2">{post_title}</h1>
-          <p className="text-sm font-medium mt-8 uppercase">Date: {formatted_date}</p>
-          <p className="text-sm font-medium mt-8 uppercase">Time: {formatted_time}</p>
+          <h1  className="xl:text-6xl text-3xl show font-light uppercase mb-2">{post_title}</h1>
+          <p  className="text-sm font-medium show mt-8 uppercase">Date: {formatted_date}</p>
+          <p  className="text-sm font-medium show mt-8 uppercase">Time: {formatted_time}</p>
 
-          {post_image && (
-            <div ref={imageRef}
-            className="xl:w-[50%] w-[100%] h-[65vh] group hover:scale-105 hover:shadow-2xl hover:shadow-black/50 duration-500 ease-in-out transition-transform relative inset-0 overflow-hidden shadow-xl shadow-black/50 rounded-xl mx-auto my-8">
+            <div 
+            className="xl:w-[50%] w-[100%] h-[65vh] show group hover:scale-105 hover:shadow-2xl hover:shadow-black/50 duration-500 ease-in-out transition-transform relative inset-0 overflow-hidden shadow-xl shadow-black/50 rounded-xl mx-auto my-8">
               <Image
                 src={post_image}
                 alt={post_title}
                 fill
+                priority
                 className="mb-6 rounded-lg w-full h-full object-cover absolute transform transition duration-500 ease-in-out group-hover:scale-105"
               />
             </div>
-          )}
 
           <p className="whitespace-pre-line mt-16 tracking-widest leading-loose font-anonymous font-light text-sm md:text-base">
             {post_content}
