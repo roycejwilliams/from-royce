@@ -18,9 +18,6 @@ const Portfolio = () => {
   const backgroundRef = useRef<HTMLDivElement | null>(null);
   const [scrollInstance, setScrollInstance] = useState<ScrollInstance | null>(null);
 
-
- 
-
   useEffect(() => {
     (async () => {
       const LocomotiveScroll = (await import('locomotive-scroll')).default;

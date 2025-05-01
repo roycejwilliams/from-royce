@@ -39,7 +39,6 @@ function Post({ onReady }: PostProps) {
       if (!res.ok) throw new Error("Error Retrieving Post");
 
       const response = await res.json();
-      console.log(response);
 
       const formattedPosts = response.post.map((p: Blog) => {
         const formattedDate = p.post_date
@@ -83,9 +82,6 @@ function Post({ onReady }: PostProps) {
       onReady();
     }
   }, [posts, onReady]);
-
-  
-
 
   return (
     <div className="xl:p-24 p-8 w-full tracking-[0.1em] z-50 overflow-hidden mt-8 inline-block font-anonymous">
