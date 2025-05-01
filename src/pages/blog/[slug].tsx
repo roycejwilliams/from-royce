@@ -21,7 +21,7 @@ interface BlogPost {
 }
 
 export default function BlogSlugPage() {
-  const params = useParams();
+  const params = useParams(); 
   const slug = params?.slug;
   
   const [post, setPost] = useState<BlogPost | null>(null);
@@ -92,7 +92,7 @@ export default function BlogSlugPage() {
      );
    }
 
-   const { post_title, post_content, post_image, formatted_date, formatted_time } = post;
+   const { post_title, post_content, post_image, formatted_date, formatted_time } = post; // Object Destructing
    const description = post_content.slice(0, 150).replace(/\n/g, " ");
    const ogImage = "https://from-royce.com/cover.png";
    const url = `https://from-royce.com/blog/${slug}`;
@@ -121,6 +121,7 @@ export default function BlogSlugPage() {
           <p  className="text-sm font-medium show mt-8 uppercase">Date: {formatted_date}</p>
           <p  className="text-sm font-medium show mt-8 uppercase">Time: {formatted_time}</p>
 
+        {post_image && (
             <div 
             className="xl:w-[50%] w-[100%] h-[65vh] show group hover:scale-105 hover:shadow-2xl hover:shadow-black/50 duration-500 ease-in-out transition-transform relative inset-0 overflow-hidden shadow-xl shadow-black/50 rounded-xl mx-auto my-8">
               <Image
@@ -131,7 +132,7 @@ export default function BlogSlugPage() {
                 className="mb-6 rounded-lg w-full h-full object-cover absolute transform transition duration-500 ease-in-out group-hover:scale-105"
               />
             </div>
-
+        )}
           <p className="whitespace-pre-line mt-16 tracking-widest leading-loose font-anonymous font-light text-sm md:text-base">
             {post_content}
           </p>
