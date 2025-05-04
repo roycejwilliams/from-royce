@@ -92,8 +92,6 @@ function Post({ onReady }: PostProps) {
         posts.map((p) => {
           const latestPostId = Math.max(...posts.map((p) => p.post_id));
           const isLatest = p.post_id === latestPostId;
-          console.log(`[Post] Rendering post ${p.post_id} – isLatest: ${isLatest}`);
-
 
           return (
             <div

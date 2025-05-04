@@ -7,7 +7,6 @@ export default function Transition({ children }) {
   const [displayChildren, setDisplayChildren] = useState(children);
   const container = useRef(null);
 
-  // First useGSAP hook for content fade-out animation
   useGSAP(() => {
     if (children.key !== displayChildren.key) {
       gsap.to(container.current, { opacity: 0 }).then(() => {

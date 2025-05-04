@@ -40,10 +40,10 @@ export default function BlogSlugPage() {
       const matchingPost = data.post.find((p: BlogPost) => {
         const cleanedSlug = p.post_title
           .toLowerCase()
-          .replace(/[^\w\s-]/g, "")
-          .replace(/\s+/g, "-")
-          .replace(/-+/g, "-")
-          .trim();
+          .replace(/[^\w\s-]/g, "") //means remove all symbols that are not letters, numbers, spaces, & hyphens
+          .replace(/\s+/g, "-") //removes the excess whitespace with a "-"
+          .replace(/-+/g, "-") //additional hyphens are just replaced with "-"
+          .trim(); //removes whitespaces for beginning and end
 
         return cleanedSlug === slug;
       });
