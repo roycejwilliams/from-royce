@@ -46,23 +46,23 @@ const Grid = ({scroll} : {scroll : ScrollInstance}) => {
   const logos = [
     {
       social: "/images/insta.webp",
-      href: "",
+      href: "https://instagram.com/roycejwilliams",
       alt: "instagram",
     },
     {
       social: "/images/google.png",
-      href: "",
+      href: "roycewilliamsj@gmail.com",
       alt: "google",
     },
     {
       social: "/images/github.png",
-      href: "",
+      href: "https://github.com/roycejwilliams",
       alt: "github",
     },
     {
       social: "/images/linkedin.png",
-      href: "",
-      alt: "github",
+      href: "https://www.linkedin.com/in/royce-williams-9bb2021a1/",
+      alt: "linkedIn",
     },
   ];
 
@@ -351,7 +351,7 @@ const Grid = ({scroll} : {scroll : ScrollInstance}) => {
               <div
               className="calendly-inline-widget"
           ref={calendlyRef}
-          style={{ minWidth: '800px', height: '650px', overflow: "hidden" ,colorScheme: "light", padding: "5rem", }}
+          style={{ minWidth: '800px', height: '800px', overflow: "hidden" ,colorScheme: "light", padding: "2rem" }}
             ></div>
         </div>
       )}
