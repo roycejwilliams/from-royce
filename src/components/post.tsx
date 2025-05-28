@@ -45,8 +45,11 @@ function Post({ onReady }: PostProps) {
           ? format(parseISO(p.post_date), "MM/dd/yy")
           : "Invalid date";
         const formattedTime = p.post_time
-          ? format(parseISO(`1970-01-01T${p.post_time}`), "hh:mm a")
+          ? format(parseISO(`1970-01-01T${p.post_time}Z`), "hh:mm a")
           : "Invalid time";
+
+        console.log(p.post_time)
+
 
         const slug = p.post_title
           .toLowerCase()
@@ -64,6 +67,7 @@ function Post({ onReady }: PostProps) {
       });
 
       setPosts(formattedPosts);
+      
 
     } catch (err) {
       console.log("Error:", err);
@@ -82,6 +86,7 @@ function Post({ onReady }: PostProps) {
       onReady();
     }
   }, [posts, onReady]);
+
 
   return (
     <div className="xl:p-24 p-8 w-full tracking-[0.1em] z-50 overflow-hidden mt-8 inline-block font-anonymous">
