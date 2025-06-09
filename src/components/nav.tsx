@@ -32,7 +32,7 @@ function Nav() {
   }, [menu]);
 
   return (
-    <div className="xl:px-24 px-8 py-4 w-full flex justify-between items-center">
+    <nav className="xl:px-24 px-8 py-4 w-full flex justify-between items-center">
       <Link href="/portfolio" className="z-40">
         <Image
           src="/images/royce-logo.png"
@@ -44,34 +44,38 @@ function Nav() {
       </Link>
 
       {/* Desktop Nav */}
-      <div className="xl:flex gap-x-12 hidden">
-        <div className="text-[#828282] px-4 cursor-pointer z-40 flex gap-x-4 justify-center hover:text-black duration-200 ease-in-out transition items-center tracking-[0.2em] rounded-full text-center group">
-          
-          <div className="relative  mt-4 rounded-full tracking-[0.2em] transition font-anonymous uppercase text-xs">
+    <ul className="xl:flex gap-x-12 hidden list-none p-0 m-0 z-50">
+      <li className="cursor-pointer">
+        <button
+          className="text-[#828282] px-4 cursor-pointer z-40 flex gap-x-4 justify-center hover:text-black duration-200 ease-in-out transition items-center tracking-[0.2em] rounded-full text-center group mt-4 font-anonymous uppercase text-xs"
+          aria-label="Work (Coming Soon)"
+          disabled
+        >
+          <span className="relative rounded-full tracking-[0.2em]">
             <span className="transition-opacity duration-200 ease-in-out opacity-100 group-hover:opacity-0">
               <span className="font-cylburn text-2xl">w</span>ork
             </span>
             <span className="absolute inset-0 transition-opacity duration-200 ease-in-out opacity-0 group-hover:opacity-100">
               <span className="font-cylburn text-2xl">S</span>oon
             </span>
-          </div>
-        </div>
+          </span>
+        </button>
+      </li>
 
+      <li className="cursor-pointer">
         <Link
           href="/blog"
-          className="text-[#828282] px-4 cursor-pointer z-40 flex gap-x-1 justify-center hover:text-black duration-200 ease-in-out transition items-center tracking-[0.2em] rounded-full text-center group"
+          className="text-[#828282] px-4 cursor-pointer z-40 flex gap-x-1 justify-center hover:text-black duration-200 ease-in-out transition items-center tracking-[0.2em] rounded-full text-center group mt-4 font-anonymous uppercase text-xs"
         >
-         
-
-          <div className=" mt-4 rounded-full tracking-widest font-anonymous uppercase text-xs">
-            <span className="font-cylburn text-2xl">e</span>thos
-          </div>
+          <span className="font-cylburn text-2xl">e</span>thos
         </Link>
-      </div>
+      </li>
+    </ul>
+
 
       {/* Mobile Menu Button */}
       <MobileMenu menu={menu} toggleMenu={toggleMenu} />
-    </div>
+    </nav>
   );
 }
 
