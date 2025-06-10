@@ -73,7 +73,7 @@ function Blog() {
         <section aria-labelledby="posts-heading">
           {/* You can add a visually hidden label if needed */}
           <h2 id="posts-heading" className="sr-only">
-            Blog Posts
+            Blog Posts 
           </h2>
           <Post onReady={initializeLocomotive} />
         </section>
