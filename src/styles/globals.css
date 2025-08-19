@@ -1,8 +1,7 @@
-@import './fonts.css';
+@import "./fonts.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 
 .calendly-inline-widget iframe {
   background-color: transparent !important;
@@ -18,13 +17,12 @@
   will-change: transform, opacity;
 }
 
-
 .svg-container {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 200vw;        /* Wider than screen */
-  height: 200vh;       /* Taller than screen */
+  width: 200vw; /* Wider than screen */
+  height: 200vh; /* Taller than screen */
   transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
@@ -49,8 +47,6 @@
   }
 }
 
-
-
 .photo {
   will-change: transform, opacity;
 }
@@ -63,7 +59,6 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
 
 ::-webkit-scrollbar {
   width: 10px; /* Adjust scrollbar width */
@@ -86,7 +81,7 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(0, 0, 0, 0.0); /* Slightly darker on hover */
+  background-color: rgba(0, 0, 0, 0); /* Slightly darker on hover */
 }
 
 @media (max-width: 768px) {
@@ -96,14 +91,14 @@
 }
 
 :root {
-  --color-bg1: rgb(245, 245, 245);     /* Light Gray */
-  --color-bg2: rgb(230, 230, 230);     /* Slightly Darker Gray */
-  --color1: 210, 210, 210;             /* Light Warm Gray */
-  --color2: 220, 215, 210;             /* Pale Taupe */
-  --color3: 200, 195, 190;             /* Soft Greige */
-  --color4: 180, 175, 170;             /* Medium Neutral */
-  --color5: 240, 235, 225;             /* Sand White */
-  --color-interactive: 200, 180, 170;  /* Light Muted Coral */
+  --color-bg1: rgb(245, 245, 245); /* Light Gray */
+  --color-bg2: rgb(230, 230, 230); /* Slightly Darker Gray */
+  --color1: 210, 210, 210; /* Light Warm Gray */
+  --color2: 220, 215, 210; /* Pale Taupe */
+  --color3: 200, 195, 190; /* Soft Greige */
+  --color4: 180, 175, 170; /* Medium Neutral */
+  --color5: 240, 235, 225; /* Sand White */
+  --color-interactive: 200, 180, 170; /* Light Muted Coral */
   --circle-size: 40%;
   --blending: hard-light;
 }
@@ -112,12 +107,11 @@
   display: none;
 }
 
-
 .gradient-bg {
   height: 100%;
   min-height: 100vh;
   position: relative;
-  background: linear-gradient(180deg, #FFF6F6 0%, #312623 50%);
+  background: linear-gradient(180deg, #fff6f6 0%, #312623 50%);
   left: 0;
   overflow: hidden;
 }
@@ -126,7 +120,7 @@
   height: 100%;
   min-height: 100vh;
   position: relative;
-  background: linear-gradient(180deg, #FFF 0%, #312724 50%);
+  background: linear-gradient(180deg, #312724 0%, #161210 50%);
   left: 0;
   overflow: hidden;
 }
@@ -139,19 +133,23 @@
 }
 
 .gradient-container {
-  position: fixed;  /* Covers entire viewport */
+  position: fixed; /* Covers entire viewport */
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh; /* Full viewport height */
-  filter: url(#goo) blur(12px); 
+  filter: url(#goo) blur(12px);
   nav-down: auto;
 }
 
-
- .g1 {
+.g1 {
   position: absolute;
-  background: radial-gradient(circle at center, rgba(var(--color1), 0.8) 0, rgba(var(--color1), 0) 35%) no-repeat;
+  background: radial-gradient(
+      circle at center,
+      rgba(var(--color1), 0.8) 0,
+      rgba(var(--color1), 0) 35%
+    )
+    no-repeat;
   mix-blend-mode: var(--blending);
   width: var(--circle-size);
   height: var(--circle-size);
@@ -161,7 +159,12 @@
 
 .g2 {
   position: absolute;
-  background: radial-gradient(circle at center, rgba(var(--color2), 0.8) 0, rgba(var(--color2), 0) 35%) no-repeat;
+  background: radial-gradient(
+      circle at center,
+      rgba(var(--color2), 0.8) 0,
+      rgba(var(--color2), 0) 35%
+    )
+    no-repeat;
   mix-blend-mode: var(--blending);
   width: var(--circle-size);
   height: var(--circle-size);
@@ -173,7 +176,12 @@
 
 .g3 {
   position: absolute;
-  background: radial-gradient(circle at center, rgba(var(--color3), 0.8) 0, rgba(var(--color3), 0) 35%) no-repeat;
+  background: radial-gradient(
+      circle at center,
+      rgba(var(--color3), 0.8) 0,
+      rgba(var(--color3), 0) 35%
+    )
+    no-repeat;
   mix-blend-mode: var(--blending);
   width: var(--circle-size);
   height: var(--circle-size);
@@ -185,7 +193,12 @@
 
 .g4 {
   position: absolute;
-  background: radial-gradient(circle at center, rgba(var(--color4), 0.8) 0, rgba(var(--color4), 0) 35%) no-repeat;
+  background: radial-gradient(
+      circle at center,
+      rgba(var(--color4), 0.8) 0,
+      rgba(var(--color4), 0) 35%
+    )
+    no-repeat;
   mix-blend-mode: var(--blending);
   width: var(--circle-size);
   height: var(--circle-size);
@@ -197,23 +210,32 @@
 
 .g5 {
   position: absolute;
-  background: radial-gradient(circle at center, rgba(var(--color5), 0.8) 0, rgba(var(--color5), 0) 35%) no-repeat;
+  background: radial-gradient(
+      circle at center,
+      rgba(var(--color5), 0.8) 0,
+      rgba(var(--color5), 0) 35%
+    )
+    no-repeat;
   mix-blend-mode: var(--blending);
-  width: var(--circle-size) ;
-  height: var(--circle-size) ;
+  width: var(--circle-size);
+  height: var(--circle-size);
   border-radius: 100%;
 
   transform-origin: calc(50% - 800px) calc(50% + 200px);
   opacity: 1;
-} 
-
+}
 
 .interactive {
   position: absolute;
   width: var(--circle-size);
   height: var(--circle-size);
   border-radius: 100%;
-  background: radial-gradient(circle at center, rgba(var(--color-interactive), 0.8) 0%, rgba(var(--color-interactive), 0) 50%) no-repeat;
+  background: radial-gradient(
+      circle at center,
+      rgba(var(--color-interactive), 0.8) 0%,
+      rgba(var(--color-interactive), 0) 50%
+    )
+    no-repeat;
   mix-blend-mode: var(--blending);
   top: 0;
   left: 0;
@@ -225,10 +247,15 @@
 
 .interactive-2 {
   position: absolute;
- width: 100px;
+  width: 100px;
   height: 100px;
   border-radius: 100%;
-  background: radial-gradient(circle at center, rgba(244, 227, 215, 0.8) 0%, rgba(178, 158, 141, 0) 50%) no-repeat;
+  background: radial-gradient(
+      circle at center,
+      rgba(244, 227, 215, 0.8) 0%,
+      rgba(178, 158, 141, 0) 50%
+    )
+    no-repeat;
   mix-blend-mode: var(--blending);
   top: 0;
   left: 0;
@@ -243,7 +270,12 @@
   width: 100px;
   height: 100px;
   border-radius: 100%;
-  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.8) 0%, rgba(200, 200, 200, 0) 50%) no-repeat;
+  background: radial-gradient(
+      circle at center,
+      rgba(255, 255, 255, 0.8) 0%,
+      rgba(200, 200, 200, 0) 50%
+    )
+    no-repeat;
   mix-blend-mode: var(--blending);
   top: 0;
   left: 0;
@@ -253,6 +285,13 @@
   z-index: -10;
 }
 
-.g1, .g2, .g3, .g4, .g5, .interactive, .interactive-2 , .interactive-3 {
+.g1,
+.g2,
+.g3,
+.g4,
+.g5,
+.interactive,
+.interactive-2,
+.interactive-3 {
   will-change: transform;
 }

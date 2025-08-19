@@ -25,7 +25,6 @@ function Post({ onReady }: PostProps) {
   const [error, setError] = useState<string | null>(null);
   const [posts, setPosts] = useState<Blog[]>([]);
 
-
   const BASE_URL =
     process.env.NODE_ENV === "development"
       ? "http://localhost:5002"
@@ -48,8 +47,7 @@ function Post({ onReady }: PostProps) {
           ? format(parseISO(`1970-01-01T${p.post_time}Z`), "hh:mm a")
           : "Invalid time";
 
-        console.log(p.post_time)
-
+        console.log(p.post_time);
 
         const slug = p.post_title
           .toLowerCase()
@@ -67,8 +65,6 @@ function Post({ onReady }: PostProps) {
       });
 
       setPosts(formattedPosts);
-      
-
     } catch (err) {
       console.log("Error:", err);
       setError("Failed to retrieve posts.");
@@ -86,7 +82,6 @@ function Post({ onReady }: PostProps) {
       onReady();
     }
   }, [posts, onReady]);
-
 
   return (
     <div className="xl:p-24 p-8 w-full tracking-[0.1em] z-50 overflow-hidden mt-8 inline-block font-anonymous">
@@ -113,7 +108,6 @@ function Post({ onReady }: PostProps) {
                 className="p-4 group relative flex xl:flex-row flex-col cursor-pointer hover:scale-105 transition duration-500 border-l border-t border-r border-white/50 rounded-lg shadow-2xl shadow-white/70 w-full"
               >
                 <div className="via-white/15 from-black/75 bg-gradient-to-t to-white/50 blur-2xl w-full h-full absolute"></div>
-
                 {p.post_image && (
                   <div className="relative w-[100%] xl:w-[35%] xl:h-[20vh] h-[50vh] rounded-lg shadow-lg overflow-hidden inset-0 my-4">
                     <Image
@@ -125,7 +119,6 @@ function Post({ onReady }: PostProps) {
                     />
                   </div>
                 )}
-
                 <div className="text-white flex flex-col xl:p-8 w-full justify-between">
                   <h1 className="uppercase xl:text-2xl w-fit text-base font-medium mb-2">
                     {p.post_title}
