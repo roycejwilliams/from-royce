@@ -84,7 +84,7 @@ function Post({ onReady }: PostProps) {
   }, [posts, onReady]);
 
   return (
-    <div className="xl:p-24 p-8 w-full tracking-[0.1em] z-50 overflow-hidden mt-8 inline-block font-anonymous">
+    <div className="xl:p-24 p-8 w-full tracking-[0.1em] z-50 overflow-hidden mt-4 inline-block font-anonymous">
       {error && <p className="text-xs text-red-400">{error}</p>}
       {loading ? (
         <span className="loading loading-infinity loading-md" />
@@ -105,7 +105,7 @@ function Post({ onReady }: PostProps) {
             >
               <Link
                 href={`/blog/${p.slug}`}
-                className="p-4 group relative flex xl:flex-row flex-col cursor-pointer hover:scale-105 transition duration-500 border-l border-t border-r border-white/50 rounded-lg shadow-2xl shadow-white/70 w-full"
+                className="p-4 group relative flex xl:flex-row flex-col cursor-pointer hover:scale-105 transition duration-500 border-l border-t border-r border-white/50 rounded-lg shadow-lg shadow-white/70 w-full"
               >
                 <div className="via-white/15 from-black/75 bg-gradient-to-t to-white/50 blur-2xl w-full h-full absolute"></div>
                 {p.post_image && (
