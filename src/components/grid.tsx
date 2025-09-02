@@ -1,13 +1,11 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState,  useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ChevronsRight, Minimize2 } from "lucide-react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-
 
 declare global {
   interface Window {
@@ -27,8 +25,7 @@ type ScrollInstance = {
 
 gsap.registerPlugin(ScrollTrigger);
 
-
-const Grid = ({scroll} : {scroll : ScrollInstance}) => {
+const Grid = ({ scroll }: { scroll: ScrollInstance }) => {
   const [isOpen, setIsOpen] = useState(false);
   const modalRef = useRef<HTMLDivElement | null>(null);
 
@@ -38,10 +35,7 @@ const Grid = ({scroll} : {scroll : ScrollInstance}) => {
 
   const handleCloseMenu = () => {
     setIsOpen(false); // closes modal
-  }
-
-  
-  
+  };
 
   const logos = [
     {
@@ -67,27 +61,32 @@ const Grid = ({scroll} : {scroll : ScrollInstance}) => {
   ];
 
   const sounds = [
-    "https://embed.music.apple.com/us/album/life-is-beautiful/1793866201?i=1793866743",
-    "https://embed.music.apple.com/us/album/i-cant-wait-to-get-there/1793654348?i=1793654639",
-    "https://embed.music.apple.com/us/album/one-eye-open/1437899976?i=1437900163",
-    "https://embed.music.apple.com/us/album/moment-hung/1546825984?i=1546826150",
-    "https://embed.music.apple.com/us/album/everybodys-favorite-uncle/1767503809?i=1767503967",
-    "https://embed.music.apple.com/us/album/let-it-happen/1440838039?i=1440838060",
-    "https://embed.music.apple.com/us/album/next-time-humble-pie/1388571796?i=1388572550",
-    "https://embed.music.apple.com/us/album/cola/1666142474?i=1666142670",
-    "https://embed.music.apple.com/us/album/mixed-emotions/1769093191?i=1769093513",
-    "https://embed.music.apple.com/us/album/glimmer/1497230760?i=1497231172",
-    "https://embed.music.apple.com/us/album/you-dont-have-to-change/1443798401?i=1443798977",
-    "https://embed.music.apple.com/us/album/jazz-is-for-ordinary-people/1691075357?i=1691075358",
-    "https://embed.music.apple.com/us/album/come-as-you-are/1586895441?i=1586895445",
-    "https://embed.music.apple.com/us/album/change-in-the-house-of-flies/1099848709?i=1099848811",
-    "https://embed.music.apple.com/us/album/loving-you-aint-complicated/1499855510?i=1499855516",
-    "https://embed.music.apple.com/us/album/junes-cry-feat-emil/1576488643?i=1576489325",
-    "https://embed.music.apple.com/us/album/waves/1396290965?i=1396291667",
-    "https://embed.music.apple.com/us/album/ghetto-gospel/1582876749?i=1582876752",
-    "https://embed.music.apple.com/us/album/all-i-do/1440820988?i=1440821233",
-    "https://embed.music.apple.com/us/album/shiggy/1529996984?i=1529996990",
-    "https://embed.music.apple.com/us/album/you-sure-love-to-ball/1701654441?i=1701654456",
+    "https://embed.music.apple.com/us/album/the-calm/1452017773?i=1452018100",
+    "https://embed.music.apple.com/us/album/nobodys-perfect/1830114202?i=1830114774",
+    "https://embed.music.apple.com/us/album/carruth/1522353829?i=1522353830",
+    "https://embed.music.apple.com/us/album/forever-on-some-fly-shit/705400082?i=705401066",
+    "https://embed.music.apple.com/us/album/red-light/1407068859?i=1407068999",
+    "https://embed.music.apple.com/us/album/my-heart/1822666383?i=1822666386",
+    "https://embed.music.apple.com/us/album/lly-1h8u/1769093191?i=1769093510",
+    "https://embed.music.apple.com/us/album/hoe-train/1128588967?i=1128589113",
+    "https://embed.music.apple.com/us/album/rich-forever-feat-john-legend/1440718127?i=1440718637",
+    "https://embed.music.apple.com/us/album/pound-cake-paris-morton-music-2-feat-jay-z/1440829462?i=1440829777",
+    "https://embed.music.apple.com/us/album/idols/1622129078?i=1622129563",
+    "https://embed.music.apple.com/us/album/jazz-club-after-hours/1789168367?i=1789168431",
+    "https://embed.music.apple.com/us/album/when-im-in-your-arms/1504276245?i=1504276747",
+    "https://embed.music.apple.com/us/album/purchasing-power/1592427387?i=1592427554",
+    "https://embed.music.apple.com/us/album/really-love/950764300?i=950764325",
+    "https://embed.music.apple.com/us/album/what-i-tell-kids/994273343?i=994273489",
+    "https://embed.music.apple.com/us/album/trampa-de-la-casa/1405710728?i=1405710831",
+    "https://embed.music.apple.com/us/album/sierra-leone/1440765580?i=1440766139",
+    "https://embed.music.apple.com/us/album/palmolive-feat-pusha-t-killer-mike/1464243671?i=1464243894",
+    "https://embed.music.apple.com/us/album/on-deck/1614570594?i=1614570728",
+    "https://embed.music.apple.com/us/album/50/1820521524?i=1820521920",
+    "https://embed.music.apple.com/us/album/by-george-outro/1149506748?i=1149507881",
+    "https://embed.music.apple.com/us/album/born-sinner-feat-james-fauntleroy/1529510479?i=1529510874",
+    "https://embed.music.apple.com/us/album/lost-my-lex/1445963026?i=1445963028",
+    "https://embed.music.apple.com/us/album/beach-chair-feat-chris-martin/1440744598?i=1440744804",
+    "https://embed.music.apple.com/us/album/shine-your-light-for-we/1832510565?i=1832510723",
   ];
 
   const skills = [
@@ -107,75 +106,74 @@ const Grid = ({scroll} : {scroll : ScrollInstance}) => {
 
   const gridContainer = useRef(null);
 
-   useGSAP(() => {
-     if (!gridContainer.current) return;
+  useGSAP(() => {
+    if (!gridContainer.current) return;
 
-     const sections = gsap.utils.toArray(".section") as HTMLElement[]; // Cast to HTMLElement[]
-     const skillItems = document.querySelectorAll(".skills-list li"); // Select skill list items
+    const sections = gsap.utils.toArray(".section") as HTMLElement[]; // Cast to HTMLElement[]
+    const skillItems = document.querySelectorAll(".skills-list li"); // Select skill list items
 
-     const ctx = gsap.context(() => {
-       const timeline = gsap.timeline({
-         scrollTrigger: {
-           trigger: gridContainer.current,
-           start: "top+=0",  //Offset the start point
-           end: `+=${skills.length * 100}vh`,  //Adjust based on your layout
-           pin: true,
-           scrub: true,  //Smooth scroll animation
-         },
-       });
-
-       sections.forEach((section, index) => {
-         gsap.set(section, {
-           opacity: index === 0 ? 1 : 0,
-         });  //Example scale effect
-         timeline.to(
-           section,
-           {
-             opacity: 1,
-             duration: 1,
-             display: "none",
-             zIndex: 50,
-             ease: "power2.inOut",
-           },
-           index * 0.75
-         );
-       });
-
-       skillItems.forEach((skill, index) => {
-         timeline.fromTo(
-           skill,
-           { opacity: 0.25 },
-           { opacity: 1, duration: 0.5, ease: "power2.inOut" },
-           index * 0.5 // Adjust the timing independently
-         );
+    const ctx = gsap.context(() => {
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: gridContainer.current,
+          start: "top+=0", //Offset the start point
+          end: `+=${skills.length * 100}vh`, //Adjust based on your layout
+          pin: true,
+          scrub: true, //Smooth scroll animation
+        },
       });
-     }, gridContainer); // Use `gridContainer` to bind the context
 
-     return () => ctx.revert(); // Cleanup the effect on unmount or dependencies change
-   }, []);
+      sections.forEach((section, index) => {
+        gsap.set(section, {
+          opacity: index === 0 ? 1 : 0,
+        }); //Example scale effect
+        timeline.to(
+          section,
+          {
+            opacity: 1,
+            duration: 1,
+            display: "none",
+            zIndex: 50,
+            ease: "power2.inOut",
+          },
+          index * 0.75
+        );
+      });
 
+      skillItems.forEach((skill, index) => {
+        timeline.fromTo(
+          skill,
+          { opacity: 0.25 },
+          { opacity: 1, duration: 0.5, ease: "power2.inOut" },
+          index * 0.5 // Adjust the timing independently
+        );
+      });
+    }, gridContainer); // Use `gridContainer` to bind the context
 
-   //Calendly Modal
-   const calendlyRef = useRef(null);
+    return () => ctx.revert(); // Cleanup the effect on unmount or dependencies change
+  }, []);
 
-   useEffect(() => {
+  //Calendly Modal
+  const calendlyRef = useRef(null);
+
+  useEffect(() => {
     const script = document.querySelector(
       'script[src="https://assets.calendly.com/assets/external/widget.js"]'
     );
-  
+
     const loadCalendly = () => {
       if (window.Calendly && calendlyRef.current) {
         calendlyRef.current.innerHTML = ""; // Clear previous widget
         window.Calendly.initInlineWidget({
-          url: 'https://calendly.com/roycewilliamsj?hide_landing_page_details=0&hide_gdpr_banner=1&background_color=000000&text_color=ffffff&primary_color=FF5C00',
+          url: "https://calendly.com/roycewilliamsj?hide_landing_page_details=0&hide_gdpr_banner=1&background_color=000000&text_color=ffffff&primary_color=FF5C00",
           parentElement: calendlyRef.current,
         });
       }
     };
-  
+
     if (!script) {
-      const newScript = document.createElement('script');
-      newScript.src = 'https://assets.calendly.com/assets/external/widget.js';
+      const newScript = document.createElement("script");
+      newScript.src = "https://assets.calendly.com/assets/external/widget.js";
       newScript.async = true;
       newScript.onload = loadCalendly;
       document.body.appendChild(newScript);
@@ -187,18 +185,17 @@ const Grid = ({scroll} : {scroll : ScrollInstance}) => {
   useEffect(() => {
     if (isOpen) {
       scroll?.stop?.(); // Stop Locomotive scroll
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
       scroll?.start?.(); // Start it back up
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
-  
+
     return () => {
       scroll?.start?.();
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [isOpen, scroll]);
-  
 
   return (
     <div
@@ -316,7 +313,7 @@ const Grid = ({scroll} : {scroll : ScrollInstance}) => {
             onClick={handleScheduleClick}
             className="px-4 py-2 uppercase hover:scale-105 hover:bg-[#20140a] ease-in-out duration-300 transition hover:border hover:border-white/5 text-sm text-white bg-transparent cursor-pointer rounded-xl shadow-lg border border-white/5"
           >
-            Schedule 
+            Schedule
           </button>
         </div>
       </div>
@@ -345,14 +342,23 @@ const Grid = ({scroll} : {scroll : ScrollInstance}) => {
           ref={modalRef}
           className="fixed h-[100vh]  inset-0 flex items-center top-0 left-0 justify-center bg-black bg-opacity-65 z-50"
         >
-          <button onClick={handleCloseMenu} className="absolute cursor-pointer top-8 p-2 hover:shadow-2xl shadow-white/50 ease-in-out duration-300 transition rounded-full right-8">
+          <button
+            onClick={handleCloseMenu}
+            className="absolute cursor-pointer top-8 p-2 hover:shadow-2xl shadow-white/50 ease-in-out duration-300 transition rounded-full right-8"
+          >
             <Minimize2 />
           </button>
-              <div
-              className="calendly-inline-widget"
-          ref={calendlyRef}
-          style={{ minWidth: '800px', height: '800px', overflow: "hidden" ,colorScheme: "light", padding: "2rem" }}
-            ></div>
+          <div
+            className="calendly-inline-widget"
+            ref={calendlyRef}
+            style={{
+              minWidth: "800px",
+              height: "800px",
+              overflow: "hidden",
+              colorScheme: "light",
+              padding: "2rem",
+            }}
+          ></div>
         </div>
       )}
     </div>
