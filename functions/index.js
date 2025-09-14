@@ -4,11 +4,12 @@ const cors = require("cors");
 const next = require("next");
 const { Pool } = require("pg");
 
-// 🔐Load local env vars when not in production
-const path = require("path");
-require("dotenv").config({ path: path.resolve(__dirname, "../.env.local") });
-
-console.log("DB URL being used:", process.env.LOCAL_DATABASE_URL);
+if (!isProd) {
+  // Only load .env.local during local development
+  const path = require("path");
+  require("dotenv").config({ path: path.resolve(__dirname, "../.env.local") });
+  console.log("DB URL (local):", process.env.LOCAL_DATABASE_URL);
+}
 
 //  PostgreSQL connection
 const isProd = process.env.NODE_ENV === "production";
