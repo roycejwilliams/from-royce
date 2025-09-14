@@ -28,9 +28,8 @@ jobs:
           echo "NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=${{ secrets.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID }}" >> .env.local
           echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env.local
 
-        
       - name: Install root dependencies and build Next.js
-        run: npm ci && npm run build 
+        run: npm ci && npm run build
 
       - name: Prepare Firebase Functions directory for SSR
         run: |
@@ -38,9 +37,6 @@ jobs:
           cp -r .next functions/.next
           cp -r public functions/public
           cp next.config.js functions/
-          cp -r pages functions/pages || true
-          cp -r app functions/app || true
-          cp -r src functions/src || true
       - name: Install Functions Dependencies
         working-directory: functions
         run: |
@@ -52,7 +48,7 @@ jobs:
       - name: Authenticate with Firebase (Service Account)
         uses: google-github-actions/auth@v1
         with:
-          credentials_json: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
+          credentials_json: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
 
       - name: Deploy SSR app to Firebase (Functions + Hosting)
         run: firebase deploy --only functions,hosting --project from-royce
