@@ -37,7 +37,8 @@ jobs:
           cp -r .next functions/.next
           cp -r public functions/public
           cp next.config.js functions/
-          cp package.json package-lock.json functions/   # 👈 add this
+          cp -r pages functions/pages || true
+          cp -r app functions/app || true
           cp -r src functions/src || true
       - name: Install Functions Dependencies
         working-directory: functions

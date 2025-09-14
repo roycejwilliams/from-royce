@@ -4,9 +4,6 @@ const cors = require("cors");
 const next = require("next");
 const { Pool } = require("pg");
 
-const { defineSecret } = require("firebase-functions/params");
-const DATABASE_URL = defineSecret("DATABASE_URL");
-
 // 🔐Load local env vars when not in production
 const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, "../.env.local") });
@@ -142,11 +139,7 @@ app.all("*", (req, res) => {
 });
 
 // 🚀 Export Firebase Gen 2 Cloud Function
-exports.nextApp = onRequest(
-  { region: "us-central1", secrets: [DATABASE_URL] },
-  async (req, res) => {
-    console.log("DB URL being used:", process.env.DATABASE_URL);
-    await nextApp.prepare();
-    app(req, res);
-  }
-);
+exports.nextApp = onRequest({ region: "us-central1" }, async (req, res) => {
+  await nextApp.prepare();
+  app(req, res);
+});
