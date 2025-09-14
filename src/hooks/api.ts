@@ -15,19 +15,26 @@ type BlogPost = {
 
 const BASE_URL =
   process.env.NODE_ENV === "development"
-    ? "http://localhost:5002"
-    : "https://from-royce.web.app";
+    ? "http://localhost:5002" // <- your Express dev server
+    : "https://us-central1-from-royce.cloudfunctions.net/nextApp";
 
 const getAllPost = async (): Promise<BlogPost[]> => {
   const response = await fetch(`${BASE_URL}/api/posts`);
+  console.log("[getAllPost] Response status:", response.status);
+
+  if (!response.ok) {
+    throw new Error(`[getAllPost] Failed with status ${response.status}`);
+  }
+
   const data = await response.json();
+  console.log("[getAllPost] Raw response:", data);
 
   const formattedPost = data.post.map((p: BlogPost) => {
     const formattedDate = p.post_date
       ? format(parseISO(p.post_date), "MM/dd/yy")
       : "Invalid date";
     const formattedTime = p.post_time
-      ? format(parseISO(`1970-01-01T${p.post_time}Z`), "hh:mm a")
+      ? format(parseISO(`1970-01-01T${p.post_time}Z`), "hh:mm")
       : "Invalid time";
 
     const slug = p.post_title
@@ -47,9 +54,9 @@ const getAllPost = async (): Promise<BlogPost[]> => {
   return formattedPost;
 };
 
-const usePosts = (limit: number) => {
+const usePosts = () => {
   return useQuery({
-    queryKey: ["posts", limit],
+    queryKey: ["posts"],
     queryFn: () => getAllPost(),
   });
 };
