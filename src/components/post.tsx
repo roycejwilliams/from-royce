@@ -1,96 +1,34 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { format, parseISO } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
-
-interface Blog {
-  post_id: number;
-  post_title: string;
-  post_content: string;
-  post_image: string | null;
-  post_time: string;
-  post_date: string;
-  formatted_date: string;
-  formatted_time: string;
-  slug: string;
-}
+import { usePosts } from "../hooks/api";
 
 interface PostProps {
   onReady: () => void;
 }
 
 function Post({ onReady }: PostProps) {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [posts, setPosts] = useState<Blog[]>([]);
+  const [posts, setPosts] = useState(10);
 
-  const BASE_URL =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:5002"
-      : "https://from-royce.web.app";
+  const { data, isPending, isError } = usePosts(posts);
 
-  const getAllPost = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await fetch(`${BASE_URL}/api/posts`);
-      if (!res.ok) throw new Error("Error Retrieving Post");
-
-      const response = await res.json();
-
-      const formattedPosts = response.post.map((p: Blog) => {
-        const formattedDate = p.post_date
-          ? format(parseISO(p.post_date), "MM/dd/yy")
-          : "Invalid date";
-        const formattedTime = p.post_time
-          ? format(parseISO(`1970-01-01T${p.post_time}Z`), "hh:mm a")
-          : "Invalid time";
-
-        console.log(p.post_time);
-
-        const slug = p.post_title
-          .toLowerCase()
-          .replace(/[^\w\s-]/g, "")
-          .replace(/\s+/g, "-")
-          .replace(/-+/g, "-")
-          .trim();
-
-        return {
-          ...p,
-          formatted_date: formattedDate,
-          formatted_time: formattedTime,
-          slug,
-        };
-      });
-
-      setPosts(formattedPosts);
-    } catch (err) {
-      console.log("Error:", err);
-      setError("Failed to retrieve posts.");
-    } finally {
-      setLoading(false);
-    }
-  };
+  console.log("Output:", data, isPending, isError);
 
   useEffect(() => {
-    getAllPost();
-  }, []);
-
-  useEffect(() => {
-    if (posts.length > 0) {
+    if (posts > 0) {
       onReady();
     }
-  }, [posts, onReady]);
+  }, [onReady]);
 
   return (
     <div className="xl:p-24 p-8 w-full tracking-[0.1em] z-50 overflow-hidden mt-4 inline-block font-anonymous">
-      {error && <p className="text-xs text-red-400">{error}</p>}
-      {loading ? (
+      {isError && <p className="text-xs text-red-400">{isError}</p>}
+      {isPending ? (
         <span className="loading loading-infinity loading-md" />
       ) : (
-        posts.map((p) => {
-          const latestPostId = Math.max(...posts.map((p) => p.post_id));
+        data.map((p) => {
+          const latestPostId = Math.max(...data.map((p) => p.post_id));
           const isLatest = p.post_id === latestPostId;
 
           return (

@@ -15,7 +15,9 @@ type ScrollInstance = {
 
 const Portfolio = () => {
   const backgroundRef = useRef<HTMLDivElement | null>(null);
-  const [scrollInstance, setScrollInstance] = useState<ScrollInstance | null>(null);
+  const [scrollInstance, setScrollInstance] = useState<ScrollInstance | null>(
+    null
+  );
 
   useEffect(() => {
     (async () => {
@@ -29,9 +31,13 @@ const Portfolio = () => {
     if (!backgroundRef.current) return;
 
     const bubbles = Array.from(
-      backgroundRef.current.querySelectorAll<HTMLDivElement>(".g1, .g2, .g3, .g4, .g5")
+      backgroundRef.current.querySelectorAll<HTMLDivElement>(
+        ".g1, .g2, .g3, .g4, .g5"
+      )
     );
-    const interactive = backgroundRef.current.querySelector<HTMLDivElement>(".interactive, .interactive-2");
+    const interactive = backgroundRef.current.querySelector<HTMLDivElement>(
+      ".interactive, .interactive-2"
+    );
 
     let mouseX = window.innerWidth / 2;
     let mouseY = window.innerHeight / 2;
@@ -83,9 +89,15 @@ const Portfolio = () => {
     <>
       <Head>
         <title>Portfolio – From Royce</title>
-        <meta name="description" content="A curated look at Royce's design, code, and creative work." />
+        <meta
+          name="description"
+          content="A curated look at Royce's design, code, and creative work."
+        />
         <meta property="og:title" content="Portfolio – Royce" />
-        <meta property="og:description" content="Explore Royce's projects and visual storytelling." />
+        <meta
+          property="og:description"
+          content="Explore Royce's projects and visual storytelling."
+        />
         <meta property="og:image" content="https://from-royce.com/cover.png" />
         <meta property="og:url" content="https://from-royce.com/portfolio" />
         <meta name="twitter:card" content="https://from-royce.com/cover.png" />
@@ -97,30 +109,29 @@ const Portfolio = () => {
         className="w-full gradient-bg overflow-x-hidden"
         aria-hidden="true"
       >
+        <Nav />
 
-      <Nav />
+        <main>
+          <section id="intro-section" aria-labelledby="intro-heading">
+            <Intro />
+          </section>
 
-      <main>
-        <section id="intro-section" aria-labelledby="intro-heading">
-          <Intro />
-        </section>
+          <section id="work-section" aria-labelledby="work-heading">
+            <Work />
+            <WorkCon />
+          </section>
 
-        <section id="work-section" aria-labelledby="work-heading">
-          <Work />
-          <WorkCon />
-        </section>
+          <section id="grid-section" aria-labelledby="grid-heading">
+            <Grid scroll={scrollInstance} />
+          </section>
 
-        <section id="grid-section" aria-labelledby="grid-heading">
-          <Grid scroll={scrollInstance} />
-        </section>
+          <section id="photos-section" aria-labelledby="photos-heading">
+            <Photos />
+          </section>
+        </main>
 
-        <section id="photos-section" aria-labelledby="photos-heading">
-          <Photos />
-        </section>
-      </main>
-
-      <Footer />
-  </aside>
+        <Footer />
+      </aside>
     </>
   );
 };

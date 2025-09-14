@@ -48,8 +48,14 @@ export default function BlogSlugPage() {
       });
 
       if (matchingPost) {
-        matchingPost.formatted_date = format(parseISO(matchingPost.post_date), "MM/dd/yy");
-        matchingPost.formatted_time = format(parseISO(`1970-01-01T${matchingPost.post_time}`), "hh:mm a");
+        matchingPost.formatted_date = format(
+          parseISO(matchingPost.post_date),
+          "MM/dd/yy"
+        );
+        matchingPost.formatted_time = format(
+          parseISO(`1970-01-01T${matchingPost.post_time}`),
+          "hh:mm a"
+        );
       }
 
       setPost(matchingPost || null);
@@ -85,13 +91,23 @@ export default function BlogSlugPage() {
   if (!post) {
     return (
       <div className="p-8 min-h-screen bg-white font-anonymous relative flex flex-col justify-end items-center overflow-hidden">
-        <h1 className="font-extrabold absolute xl:text-[52rem] text-[18rem] w-fit h-fit transform left-[48%] -translate-x-1/2 top-[60%] -translate-y-1/2 z-10 font-cylburn">404</h1>
-        <p className="text-black text-xs text-center mb-52">No post found. Please go back to the blog page.</p>
+        <h1 className="font-extrabold absolute xl:text-[52rem] text-[18rem] w-fit h-fit transform left-[48%] -translate-x-1/2 top-[60%] -translate-y-1/2 z-10 font-cylburn">
+          404
+        </h1>
+        <p className="text-black text-xs text-center mb-52">
+          No post found. Please go back to the blog page.
+        </p>
       </div>
     );
   }
 
-  const { post_title, post_content, post_image, formatted_date, formatted_time } = post;
+  const {
+    post_title,
+    post_content,
+    post_image,
+    formatted_date,
+    formatted_time,
+  } = post;
   const description = post_content.slice(0, 150).replace(/\n/g, " ");
   const ogImage = "https://from-royce.com/cover.png";
   const url = `https://from-royce.com/blog/${slug}`;
@@ -130,9 +146,7 @@ export default function BlogSlugPage() {
             </header>
 
             {post_image && (
-              <figure
-                className="xl:w-[50%] w-[100%] h-[65vh] show group hover:scale-105 hover:shadow-2xl hover:shadow-black/50 duration-500 ease-in-out transition-transform relative inset-0 overflow-hidden shadow-xl shadow-black/50 rounded-xl mx-auto my-8"
-              >
+              <figure className="xl:w-[50%] w-[100%] h-[65vh] show group hover:scale-105 hover:shadow-2xl hover:shadow-black/50 duration-500 ease-in-out transition-transform relative inset-0 overflow-hidden shadow-xl shadow-black/50 rounded-xl mx-auto my-8">
                 <Image
                   src={post_image}
                   alt={post_title}

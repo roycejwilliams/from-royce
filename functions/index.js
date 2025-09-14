@@ -1,4 +1,4 @@
-const { onRequest } = require('firebase-functions/v2/https');
+const { onRequest } = require("firebase-functions/v2/https");
 const express = require("express");
 const cors = require("cors");
 const next = require("next");
@@ -7,9 +7,7 @@ const { Pool } = require("pg");
 // 🔐Load local env vars when not in production
 const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, "../.env.local") });
-
 console.log("DB URL being used:", process.env.LOCAL_DATABASE_URL);
-
 
 //  PostgreSQL connection
 const isProd = process.env.NODE_ENV === "production";
@@ -24,15 +22,15 @@ const pool = new Pool({
 });
 
 // DB Connection
-pool.connect()
+pool
+  .connect()
   .then(() => console.log("Connected to PostgreSQL"))
-  .catch(err => console.error(" PostgreSQL connection error:", err));
+  .catch((err) => console.error(" PostgreSQL connection error:", err));
 
 const dev = process.env.NODE_ENV !== "production";
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config({ path: "../.env.local" });
 }
-
 
 const nextApp = next({ dev, conf: { distDir: ".next" } });
 const handle = nextApp.getRequestHandler();
@@ -84,10 +82,11 @@ app.get("/api/posts", async (req, res) => {
 app.get("/api/posts/:slug", async (req, res) => {
   const slug = req.params.slug;
   const result = await db.query("SELECT * FROM post");
-  
+
   const post = result.rows.find(
     (p) =>
-      p.post_title.toLowerCase().replace(/\s+/g, "-").replace(/\./g, "") === slug
+      p.post_title.toLowerCase().replace(/\s+/g, "-").replace(/\./g, "") ===
+      slug
   );
 
   if (!post) return res.status(404).json({ message: "Post not found" });
@@ -97,7 +96,9 @@ app.get("/api/posts/:slug", async (req, res) => {
 app.get("/api/posts/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const post = await pool.query("SELECT * FROM post WHERE post_id = $1", [id]);
+    const post = await pool.query("SELECT * FROM post WHERE post_id = $1", [
+      id,
+    ]);
     res.json(post.rows[0]);
   } catch (err) {
     console.error("GET /api/posts/:id error:", err);
@@ -137,10 +138,7 @@ app.all("*", (req, res) => {
 });
 
 // 🚀 Export Firebase Gen 2 Cloud Function
-exports.nextApp = onRequest(
-  { region: "us-central1" },
-  async (req, res) => {
-    await nextApp.prepare();
-    app(req, res);
-  }
-);
+exports.nextApp = onRequest({ region: "us-central1" }, async (req, res) => {
+  await nextApp.prepare();
+  app(req, res);
+});
