@@ -9,7 +9,7 @@ interface PostProps {
 }
 
 function Post({ onReady }: PostProps) {
-  const [posts, setPosts] = useState(10);
+  const [posts] = useState(10);
 
   const { data, isPending, isError } = usePosts(posts);
 
@@ -19,7 +19,7 @@ function Post({ onReady }: PostProps) {
     if (posts > 0) {
       onReady();
     }
-  }, [onReady]);
+  }, [posts, onReady]);
 
   return (
     <div className="xl:p-24 p-8 w-full tracking-[0.1em] z-50 overflow-hidden mt-4 inline-block font-anonymous">
