@@ -14,7 +14,7 @@ console.log("DB URL being used:", process.env.LOCAL_DATABASE_URL);
 const isProd = process.env.NODE_ENV === "production";
 
 const databaseUrl = isProd
-  ? process.env.DATABASE_URL
+  ? process.env.DATABASE_URL || process.env.FIREBASE_CONFIG?.db?.url
   : process.env.LOCAL_DATABASE_URL;
 
 const pool = new Pool({
@@ -33,16 +33,20 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config({ path: "../.env.local" });
 }
 
-const nextApp = next({ dev, conf: { distDir: ".next" } });
+const nextApp = next({
+  dev,
+  dir: path.resolve(__dirname, "../"), // one level up from /functions
+  conf: { distDir: ".next" },
+});
 const handle = nextApp.getRequestHandler();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.listen(5002, () => {
-  console.log("Express server running on http://localhost:5002");
-});
+if (process.env.NODE_ENV !== "production") {
+  app.listen(5002, () => console.log("Local API on http://localhost:5002"));
+}
 
 // API Routes
 app.post("/api/posts", async (req, res) => {
@@ -82,7 +86,7 @@ app.get("/api/posts", async (req, res) => {
 
 app.get("/api/posts/:slug", async (req, res) => {
   const slug = req.params.slug;
-  const result = await db.query("SELECT * FROM post");
+  const result = await pool.query("SELECT * FROM post");
 
   const post = result.rows.find(
     (p) =>
