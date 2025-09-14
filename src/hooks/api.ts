@@ -34,7 +34,7 @@ const getAllPost = async (): Promise<BlogPost[]> => {
       ? format(parseISO(p.post_date), "MM/dd/yy")
       : "Invalid date";
     const formattedTime = p.post_time
-      ? format(parseISO(`1970-01-01T${p.post_time}Z`), "hh:mm")
+      ? format(parseISO(`1970-01-01T${p.post_time}`), "hh:mm a")
       : "Invalid time";
 
     const slug = p.post_title

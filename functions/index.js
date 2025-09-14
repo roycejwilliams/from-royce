@@ -139,7 +139,13 @@ app.all("*", (req, res) => {
 });
 
 // 🚀 Export Firebase Gen 2 Cloud Function
-exports.nextApp = onRequest({ region: "us-central1" }, async (req, res) => {
-  await nextApp.prepare();
-  app(req, res);
-});
+exports.nextApp = onRequest(
+  {
+    region: "us-central1",
+    secrets: ["DATABASE_URL"], // required in Gen 2
+  },
+  async (req, res) => {
+    await nextApp.prepare();
+    app(req, res);
+  }
+);
