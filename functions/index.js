@@ -82,7 +82,7 @@ app.get("/api/posts", async (req, res) => {
 
 app.get("/api/posts/:slug", async (req, res) => {
   const slug = req.params.slug;
-  const result = await db.query("SELECT * FROM post");
+  const result = await pool.query("SELECT * FROM post");
 
   const post = result.rows.find(
     (p) =>
@@ -142,7 +142,7 @@ app.all("*", (req, res) => {
 exports.nextApp = onRequest(
   {
     region: "us-central1",
-    secrets: ["DATABASE_URL"], // 👈 declare your secret here
+    secrets: ["DATABASE_URL"],
   },
   async (req, res) => {
     await nextApp.prepare();
