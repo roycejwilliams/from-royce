@@ -40,13 +40,11 @@ jobs:
           cp -r pages functions/pages || true
           cp -r app functions/app || true
           cp -r src functions/src || true
-          cp package.json functions/
-          cp package-lock.json functions
       - name: Install Functions Dependencies
         working-directory: functions
         run: |
           npm install --omit=dev
-          npm install firebase gsap @gsap/react
+          npm install firebase gsap @gsap/react @tanstack/react-query
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
