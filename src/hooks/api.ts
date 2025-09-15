@@ -63,8 +63,20 @@ const usePosts = () => {
 
 const selectPost = (slug: string) => {
   const queryClient = useQueryClient();
-  const posts = queryClient.getQueryData<BlogPost[]>(["posts"]);
-  return posts?.find((p) => p.slug === slug);
+
+  return useQuery<BlogPost>({
+    queryKey: ["post", slug],
+    enabled: !!slug,
+    queryFn: async () => {
+      const posts = queryClient.getQueryData<BlogPost[]>(["posts"]);
+      const find = posts?.find((p) => p.slug === slug);
+      if (find) return find;
+
+      const res = await fetch(`${BASE_URL}/api/posts/${slug}`);
+      if (!res.ok) throw new Error("Post fetch error");
+      return res.json();
+    },
+  });
 };
 
 export { selectPost, usePosts, getAllPost };
