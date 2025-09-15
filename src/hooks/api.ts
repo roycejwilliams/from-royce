@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { format, parseISO } from "date-fns";
 
 type BlogPost = {
@@ -61,4 +61,10 @@ const usePosts = () => {
   });
 };
 
-export { usePosts, getAllPost };
+const selectPost = (slug: string) => {
+  const queryClient = useQueryClient();
+  const posts = queryClient.getQueryData<BlogPost[]>(["posts"]);
+  return posts?.find((p) => p.slug === slug);
+};
+
+export { selectPost, usePosts, getAllPost };

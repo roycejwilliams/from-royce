@@ -4,14 +4,6 @@ import Post from "../../components/post";
 import Head from "next/head";
 import type LocomotiveScroll from "locomotive-scroll";
 
-interface Blog {
-  post_id: number;
-  post_title: string;
-  post_content: string;
-  post_image: string | null;
-  post_time: string;
-}
-
 function Blog() {
   const backgroundRef = useRef<HTMLDivElement | null>(null);
   const scrollRef = useRef<LocomotiveScroll | null>(null);
