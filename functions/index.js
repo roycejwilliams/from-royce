@@ -4,7 +4,7 @@ const cors = require("cors");
 const next = require("next");
 const postsRouter = require("./src/routes/posts");
 
-const dev = process.env.NODE_ENV !== "production";
+const dev = process.env.NODE_ENV === "development";
 const path = require("path");
 const dir = dev ? path.resolve(__dirname, "..") : __dirname;
 const nextApp = next({ dev, dir });
