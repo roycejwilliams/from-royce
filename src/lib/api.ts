@@ -4,7 +4,7 @@ import type { BlogPost } from "@/types";
 export const BASE_URL =
   process.env.NODE_ENV === "development"
     ? "http://localhost:5002"
-    : "https://us-central1-from-royce.cloudfunctions.net/nextApp";
+    : "";
 
 export function toSlug(title: string): string {
   return title
