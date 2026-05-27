@@ -59,16 +59,18 @@ const Photos = () => {
       });
 
       const isMobile = window.innerWidth < 768;
+      const vh = document.documentElement.clientHeight;
 
       const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: photosRef.current,
           start: "top top",
-          end: `+=${photos.length * window.innerHeight * (isMobile ? 0.5 : 0.6)}`,
+          end: `+=${photos.length * vh * (isMobile ? 0.75 : 0.6)}`,
           scrub: 1,
           pin: true,
           pinSpacing: true,
           anticipatePin: 1,
+          invalidateOnRefresh: true,
           onUpdate(self) {
             const idx = Math.min(
               photos.length - 1,

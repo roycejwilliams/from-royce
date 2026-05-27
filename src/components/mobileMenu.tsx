@@ -81,7 +81,7 @@ const MobileMenu = ({
         className="fixed inset-0 z-40 hidden opacity-0 flex-col justify-between bg-[#f0ebe5] px-8 pt-28 pb-16 overflow-y-auto"
       >
         {/* Links */}
-        <ul ref={linksRef} className="flex flex-col gap-y-2">
+        <ul ref={linksRef} className="flex flex-col gap-y-2 pt-2 overflow-visible">
           {LINKS.map(({ href, letter, rest }) => {
             const active = isActive(href);
             return (
@@ -96,7 +96,7 @@ const MobileMenu = ({
                       : "text-black/25 hover:text-black/60"
                   }`}
                 >
-                  <span className="font-cylburn text-7xl leading-none">
+                  <span className="font-cylburn text-7xl leading-[0.9] block">
                     {letter}
                   </span>
                   <span className="text-2xl">{rest}</span>
@@ -108,7 +108,7 @@ const MobileMenu = ({
           {/* Work — coming soon */}
           <li>
             <span className="flex items-baseline gap-1 tracking-[0.12em] uppercase font-anonymous text-black/15 cursor-not-allowed">
-              <span className="font-cylburn text-7xl leading-none">W</span>
+              <span className="font-cylburn text-7xl leading-[0.9] block">W</span>
               <span className="text-2xl">ork</span>
               <span className="font-anonymous text-[8px] tracking-[0.2em] uppercase text-black/20 border border-black/10 px-2 py-1 rounded-sm ml-2 self-center">
                 soon

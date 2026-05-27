@@ -18,9 +18,11 @@ app.use("/api/posts", postsRouter);
 
 app.all("*", (req, res) => handle(req, res));
 
+const preparePromise = nextApp.prepare();
+
 if (dev) {
   const PORT = process.env.PORT || 5002;
-  nextApp.prepare().then(() => {
+  preparePromise.then(() => {
     app.listen(PORT, () =>
       console.log(`Dev server running on http://localhost:${PORT}`)
     );
@@ -30,7 +32,7 @@ if (dev) {
 exports.nextApp = onRequest(
   { region: "us-central1" },
   async (req, res) => {
-    await nextApp.prepare();
+    await preparePromise;
     app(req, res);
   }
 );

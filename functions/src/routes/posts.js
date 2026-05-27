@@ -18,18 +18,14 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const { page = 1, limit = 6 } = req.query;
-    const offset = (page - 1) * limit;
-    const paginatedPage = await pool.query(
-      "SELECT * FROM post ORDER BY post_date DESC, post_time DESC LIMIT $1 OFFSET $2",
-      [limit, offset]
+    const result = await pool.query(
+      "SELECT * FROM post ORDER BY post_date DESC, post_time DESC"
     );
-    const totalPost = await pool.query("SELECT COUNT(*) FROM post");
     res.json({
-      totalPost: parseInt(totalPost.rows[0].count),
-      currentPage: parseInt(page),
-      totalPages: Math.ceil(totalPost.rows[0].count / limit),
-      post: paginatedPage.rows,
+      totalPost: result.rows.length,
+      currentPage: 1,
+      totalPages: 1,
+      post: result.rows,
     });
   } catch (err) {
     console.error("GET /api/posts error:", err);
@@ -41,18 +37,22 @@ router.get("/", async (req, res) => {
 router.get("/slug/:slug", async (req, res) => {
   try {
     const { slug } = req.params;
-    const result = await pool.query("SELECT * FROM post");
-    const post = result.rows.find(
-      (p) =>
-        p.post_title
-          .toLowerCase()
-          .replace(/[^\w\s-]/g, "")
-          .replace(/\s+/g, "-")
-          .replace(/-+/g, "-")
-          .trim() === slug
+    const result = await pool.query(
+      `SELECT * FROM post WHERE
+        lower(
+          regexp_replace(
+            regexp_replace(
+              regexp_replace(post_title, '[^\\w\\s-]', '', 'g'),
+              '\\s+', '-', 'g'
+            ),
+            '-+', '-', 'g'
+          )
+        ) = $1
+      LIMIT 1`,
+      [slug]
     );
-    if (!post) return res.status(404).json({ message: "Post not found" });
-    res.json(post);
+    if (!result.rows[0]) return res.status(404).json({ message: "Post not found" });
+    res.json(result.rows[0]);
   } catch (err) {
     console.error("GET /api/posts/slug/:slug error:", err);
     res.status(500).send("Server error");
