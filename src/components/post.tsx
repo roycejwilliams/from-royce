@@ -1,80 +1,113 @@
-"use client";
-import React, { useEffect } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { usePosts } from "../hooks/api";
+import { useReveal } from "../hooks/useReveal";
 
-interface PostProps {
-  onReady: () => void;
+function PostSkeleton() {
+  return (
+    <div className="w-full border-b border-black/8 py-8 animate-pulse flex gap-6 items-center">
+      <div className="hidden xl:block w-[120px] h-[80px] rounded-xl bg-black/6 flex-shrink-0" />
+      <div className="flex flex-col gap-3 flex-1">
+        <div className="h-3 bg-black/6 rounded w-2/3" />
+        <div className="h-2 bg-black/6 rounded w-1/3" />
+      </div>
+      <div className="w-4 h-4 rounded-full bg-black/6 flex-shrink-0" />
+    </div>
+  );
 }
 
-function Post({ onReady }: PostProps) {
+function Post() {
   const { data, isPending, isError } = usePosts();
+  useReveal([data]);
 
-  console.log("Output:", data, isPending, isError);
+  if (isError) {
+    return (
+      <p className="xl:px-24 px-8 font-anonymous text-[8px] tracking-[0.3em] uppercase text-black/30 mt-24 text-center">
+        Failed to load posts.
+      </p>
+    );
+  }
 
-  useEffect(() => {
-    if (data && data.length > 0) {
-      onReady();
-    }
-  }, [data, onReady]);
+  if (isPending) {
+    return (
+      <div className="xl:px-24 px-6 mt-12">
+        <PostSkeleton />
+        <PostSkeleton />
+        <PostSkeleton />
+      </div>
+    );
+  }
+
+  const latestId = Math.max(...data.map((p) => p.post_id));
 
   return (
-    <div className="xl:p-24 p-8 w-full tracking-[0.1em] z-50 overflow-hidden mt-4 inline-block font-anonymous">
-      {isError && <p className="text-xs text-red-400">{isError}</p>}
-      {isPending ? (
-        <span className="loading loading-infinity loading-md" />
-      ) : (
-        data.map((p) => {
-          const latestPostId = Math.max(...data.map((p) => p.post_id));
-          const isLatest = p.post_id === latestPostId;
+    <div className="xl:px-24 px-6 pb-24 mt-12 w-full font-anonymous">
+      {data.map((p, i) => {
+        const isLatest = p.post_id === latestId;
 
-          return (
-            <div
-              key={p.post_id}
-              data-scroll
-              data-scroll-speed="0.12"
-              data-scroll-repeat
-              className={`xl:p-4 xl:w-[55%] ${
-                !isLatest ? "reveal" : ""
-              } translate-y-10 transition-all duration-700 w-full mx-auto my-8 xl:my-2 xl:max-w-1/2`}
+        return (
+          <div key={p.post_id} className={!isLatest ? "reveal" : ""}>
+            <Link
+              href={`/blog/${p.slug}`}
+              className="group w-full flex items-center gap-6 xl:gap-10 py-7 border-b border-black/8 hover:border-black/20 transition-colors duration-300"
             >
-              <Link
-                href={`/blog/${p.slug}`}
-                className="p-4 group relative flex xl:flex-row flex-col cursor-pointer hover:scale-105 transition duration-500 border-l border-t border-r border-white/50 rounded-lg shadow-lg shadow-white/70 w-full"
-              >
-                <div className="via-white/15 from-black/75 bg-gradient-to-t to-white/50 blur-2xl w-full h-full absolute"></div>
-                {p.post_image && (
-                  <div className="relative w-[100%] xl:w-[35%] xl:h-[20vh] h-[50vh] rounded-lg shadow-lg overflow-hidden inset-0 my-4">
-                    <Image
-                      src={p.post_image}
-                      fill
-                      priority
-                      alt={p.post_title}
-                      className="absolute w-full h-full object-cover inset-0 transform transition duration-500 ease-in-out group-hover:scale-105"
-                    />
-                  </div>
+              {/* Index + latest badge */}
+              <div className="hidden xl:flex flex-col items-center gap-1 w-8 flex-shrink-0">
+                <span className="font-anonymous text-[7px] tracking-[0.2em] uppercase text-black/20">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                {isLatest && (
+                  <span className="w-1 h-1 rounded-full bg-black/30" />
                 )}
-                <div className="text-white flex flex-col xl:p-8 w-full justify-between">
-                  <h1 className="uppercase xl:text-2xl w-fit text-base font-medium mb-2">
-                    {p.post_title}
-                  </h1>
-                  <div className="flex justify-between gap-x-4">
-                    <p className="text-xs font-thin">
-                      <span className="uppercase font-light">Date:</span>{" "}
-                      {p.formatted_date}
-                    </p>
-                    <p className="text-xs font-thin">
-                      <span className="uppercase font-light">Time:</span>{" "}
-                      {p.formatted_time}
-                    </p>
-                  </div>
+              </div>
+
+              {/* Thumbnail */}
+              {p.post_image && (
+                <div className="relative w-[80px] h-[56px] xl:w-[110px] xl:h-[72px] rounded-xl overflow-hidden flex-shrink-0">
+                  <Image
+                    src={p.post_image}
+                    fill
+                    priority={isLatest}
+                    alt={p.post_title}
+                    className="object-cover saturate-0 group-hover:saturate-100 transition duration-500"
+                  />
                 </div>
-              </Link>
-            </div>
-          );
-        })
-      )}
+              )}
+
+              {/* Title + meta */}
+              <div className="flex flex-col gap-2 flex-1 min-w-0">
+                <div className="flex items-center gap-3">
+                  {isLatest && (
+                    <span className="font-anonymous text-[7px] tracking-[0.25em] uppercase text-black/30 border border-black/10 px-2 py-0.5 rounded-sm">
+                      Latest
+                    </span>
+                  )}
+                </div>
+                <h2 className="font-anonymous uppercase text-sm xl:text-base tracking-[0.06em] text-black/70 group-hover:text-black/90 transition-colors duration-200 truncate">
+                  {p.post_title}
+                </h2>
+                <div className="flex items-center gap-4">
+                  <span className="font-anonymous text-[8px] tracking-[0.2em] uppercase text-black/25">
+                    {p.formatted_date}
+                  </span>
+                  <span className="w-px h-2.5 bg-black/10" />
+                  <span className="font-anonymous text-[8px] tracking-[0.2em] uppercase text-black/25">
+                    {p.formatted_time}
+                  </span>
+                </div>
+              </div>
+
+              {/* Arrow */}
+              <ArrowUpRight
+                size={14}
+                className="text-black/20 group-hover:text-black/60 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200 flex-shrink-0"
+              />
+            </Link>
+          </div>
+        );
+      })}
     </div>
   );
 }

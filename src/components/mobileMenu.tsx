@@ -1,7 +1,13 @@
 import Link from "next/link";
-import React, { useRef } from "react";
+import { useRef } from "react";
+import { useRouter } from "next/router";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+
+const LINKS = [
+  { href: "/portfolio", letter: "H", rest: "ome", label: "Home" },
+  { href: "/blog", letter: "E", rest: "thos", label: "Ethos" },
+];
 
 const MobileMenu = ({
   menu,
@@ -11,26 +17,38 @@ const MobileMenu = ({
   toggleMenu: () => void;
 }) => {
   const menuRef = useRef<HTMLDivElement | null>(null);
+  const linksRef = useRef<HTMLUListElement | null>(null);
+  const router = useRouter();
+
+  const isActive = (href: string) => router.pathname.startsWith(href);
 
   useGSAP(() => {
     if (menu) {
       gsap.to(menuRef.current, {
-        x: 0,
         opacity: 1,
-        duration: 1,
-        ease: "power3.out",
+        duration: 0.4,
+        ease: "power2.out",
         display: "flex",
       });
+      gsap.fromTo(
+        linksRef.current?.querySelectorAll("li") ?? [],
+        { opacity: 0, y: 16 },
+        {
+          opacity: 1,
+          y: 0,
+          stagger: 0.07,
+          duration: 0.5,
+          ease: "power3.out",
+          delay: 0.15,
+        },
+      );
     } else {
       gsap.to(menuRef.current, {
-        x: 0,
         opacity: 0,
-        duration: 0.5,
-        ease: "power3.in",
+        duration: 0.3,
+        ease: "power2.in",
         onComplete: () => {
-          if (menuRef.current) {
-            menuRef.current.style.display = "none";
-          }
+          if (menuRef.current) menuRef.current.style.display = "none";
         },
       });
     }
@@ -38,59 +56,100 @@ const MobileMenu = ({
 
   return (
     <>
-      {/* Toggle Button */}
+      {/* Toggle button */}
       <button
         onClick={toggleMenu}
-        className="min-w-8 min-h-8 rounded-full xl:hidden relative overflow-hidden z-50 flex justify-center items-center cursor-pointer"
+        className="min-w-8 min-h-8 xl:hidden relative z-50 flex justify-center items-center cursor-pointer"
         aria-label={menu ? "Close menu" : "Open menu"}
         aria-expanded={menu}
         aria-controls="mobile-navigation"
       >
         <span
-          className={`text-4xl font-anonymous text-[#888898] ${
+          className={`text-3xl font-anonymous text-black/40 leading-none transition-transform duration-300 ease-in-out ${
             menu ? "rotate-[135deg]" : "rotate-0"
-          } ease-in-out duration-300 transition`}
+          }`}
         >
           +
         </span>
       </button>
 
-      {/* Mobile Navigation Menu */}
+      {/* Overlay */}
       <nav
         ref={menuRef}
         id="mobile-navigation"
         aria-hidden={!menu}
-        className="bg-[#FFFFF8]/65 backdrop-blur-md flex-col justify-center items-end px-8 gap-y-8 fixed h-screen w-screen left-0 top-0 z-40 opacity-0 translate-x-full hidden"
+        className="fixed inset-0 z-40 hidden opacity-0 flex-col justify-between bg-[#f0ebe5] px-8 pt-28 pb-16 overflow-y-auto"
       >
-        <ul className="flex flex-col items-end gap-y-8">
-          <li>
-            <button
-              disabled
-              className="text-[#828282] cursor-default z-40 flex gap-x-1 justify-center hover:text-[#844444] duration-200 ease-in-out transition items-center tracking-[0.2em] rounded-full group uppercase font-anonymous text-sm mt-4"
-              aria-label="Work (Coming Soon)"
-            >
-              <span className="relative tracking-[0.2em] text-sm">
-                <span className="transition-opacity duration-200 ease-in-out opacity-100 group-hover:opacity-0">
-                  <span className="font-cylburn text-3xl">w</span>ork
-                </span>
-                <span className="absolute inset-0 transition-opacity duration-200 ease-in-out opacity-0 group-hover:opacity-100">
-                  <span className="font-cylburn text-3xl">s</span>oon
-                </span>
-              </span>
-            </button>
-          </li>
+        {/* Links */}
+        <ul ref={linksRef} className="flex flex-col gap-y-2">
+          {LINKS.map(({ href, letter, rest }) => {
+            const active = isActive(href);
+            return (
+              <li key={href}>
+                <Link
+                  href={href}
+                  onClick={toggleMenu}
+                  aria-current={active ? "page" : undefined}
+                  className={`flex items-baseline gap-1 tracking-[0.12em] uppercase font-anonymous text-4xl transition-colors duration-200 ${
+                    active
+                      ? "text-black/80"
+                      : "text-black/25 hover:text-black/60"
+                  }`}
+                >
+                  <span className="font-cylburn text-7xl leading-none">
+                    {letter}
+                  </span>
+                  <span className="text-2xl">{rest}</span>
+                </Link>
+              </li>
+            );
+          })}
 
+          {/* Work — coming soon */}
           <li>
-            <Link
-              href="/blog"
-              className="text-[#828282] cursor-pointer z-40 flex gap-x-1 justify-center hover:text-[#844444] duration-200 ease-in-out transition items-center tracking-[0.2em] rounded-full group uppercase font-anonymous text-sm mt-4"
-            >
-              <span className="tracking-widest">
-                <span className="font-cylburn text-3xl">e</span>thos
+            <span className="flex items-baseline gap-1 tracking-[0.12em] uppercase font-anonymous text-black/15 cursor-not-allowed">
+              <span className="font-cylburn text-7xl leading-none">W</span>
+              <span className="text-2xl">ork</span>
+              <span className="font-anonymous text-[8px] tracking-[0.2em] uppercase text-black/20 border border-black/10 px-2 py-1 rounded-sm ml-2 self-center">
+                soon
               </span>
-            </Link>
+            </span>
           </li>
         </ul>
+
+        {/* Bottom — socials + label */}
+        <div className="flex flex-col gap-4">
+          <div className="w-6 h-px bg-black/15" />
+          <div className="flex gap-6 items-center">
+            <Link
+              href="https://instagram.com/roycejwilliams"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-anonymous uppercase text-[8px] tracking-[0.25em] text-black/30 hover:text-black/60 transition-colors duration-200"
+            >
+              Instagram
+            </Link>
+            <Link
+              href="https://github.com/roycejwilliams"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-anonymous uppercase text-[8px] tracking-[0.25em] text-black/30 hover:text-black/60 transition-colors duration-200"
+            >
+              Github
+            </Link>
+            <Link
+              href="https://www.linkedin.com/in/royce-williams-9bb2021a1/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-anonymous uppercase text-[8px] tracking-[0.25em] text-black/30 hover:text-black/60 transition-colors duration-200"
+            >
+              LinkedIn
+            </Link>
+          </div>
+          <span className="font-anonymous uppercase text-[7px] tracking-[0.3em] text-black/20">
+            © 2026 From-Royce
+          </span>
+        </div>
       </nav>
     </>
   );

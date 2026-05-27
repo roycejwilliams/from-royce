@@ -11,9 +11,6 @@ function SignIn() {
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
 
-  console.log(email, password);
-  console.log(user);
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
@@ -27,73 +24,76 @@ function SignIn() {
     }
   };
 
+  if (user) return <Draft />;
+
   return (
-    <section className="min-h-[75vh] w-full flex flex-col justify-center items-center">
-      {error && (
-    <p className="text-xs text-red-500 text-center mt-2">{error}</p>
-)}
-      {user ? (
-        <Draft />
-      ) : (
-        <div className="p-4 space-y-4 md:space-y-6 sm:p-8 bg-white/30 backdrop-blur-2xl shadow-[0px_5px_30px_5px_#FFFFFF] hover:shadow-[0px_15px_50px_10px_#FFFFFF] ease-in-out transition duration-200 border border-t border-l border-r sm:max-w-lg w-[90%] tracking-[0.1em] rounded-xl">
-          <form
-            onSubmit={handleSubmit}
-            className="space-y-4 md:space-y-6"
-            action="#"
-          >
-            <div className="">
+    <section className=" w-full xl:px-24 px-6 overflow-y-hidden flex justify-center items-center min-h-screen">
+      <div className="w-full max-w-sm flex flex-col gap-8">
+        {/* Header */}
+        <div className="flex flex-col gap-3">
+          <div className="flex items-center gap-3">
+            <div className="w-4 h-px bg-black/20" />
+            <span className="font-anonymous uppercase text-[8px] tracking-[0.35em] text-black/30">
+              Access
+            </span>
+          </div>
+          <h1 className="font-anonymous uppercase text-black/80 tracking-[0.08em] text-sm">
+            <span className="font-cylburn text-5xl leading-none">S</span>ign in
+          </h1>
+        </div>
+
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <input
+            type="email"
+            name="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            required
+            className="w-full bg-transparent border-b border-black/15 py-3 font-anonymous text-xs tracking-[0.08em] text-black/70 placeholder:text-black/25 outline-none focus:border-black/40 transition-colors duration-200"
+          />
+          <input
+            type="password"
+            name="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            required
+            className="w-full bg-transparent border-b border-black/15 py-3 font-anonymous text-xs tracking-[0.08em] text-black/70 placeholder:text-black/25 outline-none focus:border-black/40 transition-colors duration-200"
+          />
+
+          {/* Error */}
+          {error && (
+            <p className="font-anonymous text-[8px] tracking-[0.2em] uppercase text-red-400">
+              {error}
+            </p>
+          )}
+
+          {/* Remember + submit */}
+          <div className="flex items-center justify-between pt-2">
+            <label className="flex items-center gap-2 cursor-pointer group">
               <input
-                type="email"
-                name="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="bg-transparent border text-xs border-gray-300 text-gray-900 placeholder:text-gray-500 rounded-lg block w-full p-2.5"
-                placeholder="Email"
-                required
+                id="remember"
+                type="checkbox"
+                className="w-3 h-3 border border-black/20 rounded-sm bg-transparent accent-black/60"
               />
-            </div>
-            <div>
-              <input
-                type="password"
-                name="password"
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
-                className="bg-transparent text-xs border border-gray-300 text-gray-900 placeholder:text-gray-500 rounded-lg block w-full p-2.5 "
-                required
-              />
-            </div>
-            <div className="flex items-center justify-between">
-              <div className="flex items-start">
-                <div className="flex items-center h-5">
-                  <input
-                    id="remember"
-                    aria-describedby="remember"
-                    type="checkbox"
-                    className="w-3 h-3 border border-gray-300 rounded bg-transparent focus:ring-3 focus:ring-primary-300 bg-white dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                  />
-                </div>
-                <div className="ml-3 text-sm ">
-                  <label
-                    htmlFor="remember"
-                    className="text-black text-xs uppercase bg-transparent  "
-                  >
-                    Remember me
-                  </label>
-                </div>
-              </div>
-            </div>
+              <span className="font-anonymous uppercase text-[8px] tracking-[0.2em] text-black/30 group-hover:text-black/50 transition-colors duration-200">
+                Remember me
+              </span>
+            </label>
+
             <button
               type="submit"
-              className="w-full text-black text-xs font-light uppercase  backdrop-blur-lg bg-white hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-lg px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+              className="font-anonymous uppercase text-[8px] tracking-[0.25em] px-5 py-2.5 border border-black/15 rounded-full text-black/50 hover:text-black/85 hover:border-black/35 transition-all duration-300 cursor-pointer"
             >
-              Sign in
+              Enter
             </button>
-          </form>
-        </div>
-      )}
+          </div>
+        </form>
+      </div>
     </section>
   );
 }

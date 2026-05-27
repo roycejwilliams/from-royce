@@ -1,102 +1,62 @@
-"use client";
 import Head from "next/head";
-import Nav from "../../components/nav";
 import Image from "next/image";
-import { useEffect, useState, useCallback } from "react";
-import { useParams } from "next/navigation";
-import { format, parseISO } from "date-fns";
+import { useRouter } from "next/router";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-
-interface BlogPost {
-  post_id: number;
-  post_title: string;
-  post_content: string;
-  post_image: string | null;
-  post_time: string;
-  post_date: string;
-  formatted_date: string;
-  formatted_time: string;
-}
+import { usePost } from "../../hooks/api";
 
 export default function BlogSlugPage() {
-  const params = useParams();
-  const slug = params?.slug;
+  const router = useRouter();
+  const slug = typeof router.query.slug === "string" ? router.query.slug : "";
 
-  const [post, setPost] = useState<BlogPost | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  const BASE_URL =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:5002"
-      : "https://from-royce.web.app";
-
-  const fetchPost = useCallback(async () => {
-    try {
-      const res = await fetch(`${BASE_URL}/api/posts`);
-      const data = await res.json();
-
-      const matchingPost = data.post.find((p: BlogPost) => {
-        const cleanedSlug = p.post_title
-          .toLowerCase()
-          .replace(/[^\w\s-]/g, "")
-          .replace(/\s+/g, "-")
-          .replace(/-+/g, "-")
-          .trim();
-
-        return cleanedSlug === slug;
-      });
-
-      if (matchingPost) {
-        matchingPost.formatted_date = format(
-          parseISO(matchingPost.post_date),
-          "MM/dd/yy"
-        );
-        matchingPost.formatted_time = format(
-          parseISO(`1970-01-01T${matchingPost.post_time}`),
-          "hh:mm a"
-        );
-      }
-
-      setPost(matchingPost || null);
-    } finally {
-      setLoading(false);
-    }
-  }, [slug, BASE_URL]);
-
-  useEffect(() => {
-    if (!slug) return;
-    fetchPost();
-  }, [fetchPost, slug]);
+  const { data: post, isPending, isError } = usePost(slug);
 
   useGSAP(() => {
     if (!post) return;
-
     gsap.fromTo(
       ".show",
-      { opacity: 0, y: 50 },
+      { opacity: 0, y: 30 },
       {
         opacity: 1,
         y: 0,
-        stagger: 0.15,
-        duration: 1.2,
+        stagger: 0.12,
+        duration: 1,
         ease: "power3.out",
-        delay: 0.2,
-      }
+        delay: 0.1,
+      },
     );
   }, [post]);
 
-  if (loading) return <p className="p-8 text-center"></p>;
-
-  if (!post) {
+  if (!slug || isPending) {
     return (
-      <div className="p-8 min-h-screen bg-white font-anonymous relative flex flex-col justify-end items-center overflow-hidden">
-        <h1 className="font-extrabold absolute xl:text-[52rem] text-[18rem] w-fit h-fit transform left-[48%] -translate-x-1/2 top-[60%] -translate-y-1/2 z-10 font-cylburn">
+      <div className="min-h-[100svh] bg-[#f0ebe5] flex items-center justify-center">
+        <span className="font-anonymous text-[8px] tracking-[0.35em] uppercase text-black/30 animate-pulse">
+          Loading
+        </span>
+      </div>
+    );
+  }
+
+  if (isError || !post) {
+    return (
+      <div className="min-h-[100svh] bg-[#f0ebe5] font-anonymous relative flex flex-col justify-center items-center overflow-hidden xl:px-24 px-8">
+        <span
+          className="font-cylburn absolute select-none pointer-events-none text-black/[0.04]"
+          style={{ fontSize: "clamp(12rem, 40vw, 52rem)", lineHeight: 1 }}
+        >
           404
-        </h1>
-        <p className="text-black text-xs text-center mb-52">
-          No post found. Please go back to the blog page.
-        </p>
+        </span>
+        <div className="relative z-10 flex flex-col items-center gap-4">
+          <p className="font-anonymous uppercase text-[9px] tracking-[0.35em] text-black/35">
+            Post not found
+          </p>
+          <button
+            onClick={() => router.back()}
+            className="font-anonymous uppercase text-[8px] tracking-[0.25em] px-5 py-2.5 border border-black/15 rounded-full text-black/45 hover:text-black/80 hover:border-black/30 transition-all duration-300 cursor-pointer"
+          >
+            Go back
+          </button>
+        </div>
       </div>
     );
   }
@@ -107,10 +67,11 @@ export default function BlogSlugPage() {
     post_image,
     formatted_date,
     formatted_time,
+    slug: postSlug,
   } = post;
   const description = post_content.slice(0, 150).replace(/\n/g, " ");
   const ogImage = "https://from-royce.com/cover.png";
-  const url = `https://from-royce.com/blog/${slug}`;
+  const url = `https://from-royce.com/blog/${postSlug}`;
 
   return (
     <>
@@ -122,43 +83,44 @@ export default function BlogSlugPage() {
         <meta property="og:image" content={ogImage} />
         <meta property="og:url" content={url} />
         <meta property="og:type" content="article" />
-        <meta name="twitter:card" content={ogImage} />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={`${post_title} – Royce`} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={ogImage} />
       </Head>
 
-      <div className="bg-[#FFF6F6] text-black min-h-[100svh]">
-        <Nav />
-
-        <main className="xl:p-24 p-8 font-anonymous">
+      <div className="bg-[#f0ebe5] text-black min-h-[100svh]">
+        <main className="xl:px-24 px-6 pb-24 pt-8 font-anonymous">
           <article>
-            <header>
-              <h1 className="xl:text-6xl text-3xl show font-light uppercase mb-2">
+            {/* Header */}
+            <header className="show flex flex-col gap-3 max-w-2xl xl:pt-12 pt-6">
+              <div className="flex items-center gap-3">
+                <div className="w-4 h-px bg-black/20" />
+                <p className="font-anonymous text-[8px] uppercase tracking-[0.35em] text-black/30">
+                  {formatted_date} &nbsp;·&nbsp; {formatted_time}
+                </p>
+              </div>
+              <h1 className="font-anonymous font-light uppercase leading-[1.15] tracking-[0.06em] xl:text-5xl text-2xl text-black/85">
                 {post_title}
               </h1>
-              <p className="text-sm font-medium show mt-8 uppercase">
-                Date: {formatted_date}
-              </p>
-              <p className="text-sm font-medium show mt-2 uppercase">
-                Time: {formatted_time}
-              </p>
             </header>
 
+            {/* Cover image */}
             {post_image && (
-              <figure className="xl:w-[50%] w-[100%] h-[65vh] show group hover:scale-105 hover:shadow-2xl hover:shadow-black/50 duration-500 ease-in-out transition-transform relative inset-0 overflow-hidden shadow-xl shadow-black/50 rounded-xl mx-auto my-8">
+              <figure className="show w-full xl:w-[60%] h-[50vh] xl:h-[65vh] relative overflow-hidden rounded-2xl my-12 mx-auto">
                 <Image
                   src={post_image}
                   alt={post_title}
                   fill
                   priority
-                  className="mb-6 rounded-lg w-full h-full object-cover absolute transform transition duration-500 ease-in-out group-hover:scale-105"
+                  className="object-cover transition duration-700 ease-in-out hover:scale-[1.02]"
                 />
               </figure>
             )}
 
-            <section>
-              <p className="whitespace-pre-line mt-16 tracking-widest leading-loose font-anonymous font-light text-sm md:text-base">
+            {/* Body */}
+            <section className="show max-w-xl mx-auto">
+              <p className="whitespace-pre-line font-anonymous font-light text-xs xl:text-sm leading-[2.4] tracking-[0.06em] text-black/60">
                 {post_content}
               </p>
             </section>

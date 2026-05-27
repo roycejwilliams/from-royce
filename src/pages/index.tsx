@@ -1,147 +1,164 @@
-"use client";
+import Head from "next/head";
 import Image from "next/image";
-import {   useRef } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import Link from "next/link";
 
 const Splash = () => {
-  const svgRef = useRef<SVGSVGElement | null>(null);
-  //Drawout Path
-  useGSAP(() => {
-    const svg = svgRef.current;
-    const path = svg?.querySelector("path");
-
-    if (path) {
-      const pathLength = path.getTotalLength();
-      gsap.set(path, {
-        strokeDasharray: pathLength,
-        strokeDashoffset: pathLength,
-      });
-
-      gsap.to(path, {
-        strokeDashoffset: 0,
-        duration: 4.5,
-        ease: "power2.out",
-      });
-    }
-  }, []);
-
-  const backgroundRef = useRef<HTMLDivElement | null>(null);  
+  const logoRef = useRef<HTMLAnchorElement>(null);
+  const promptRef = useRef<HTMLDivElement>(null);
+  const lineRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    if (!backgroundRef.current) return;
-  
-    const bubbles = backgroundRef.current.querySelectorAll<HTMLDivElement>(".g1, .g2, .g3, .g4, .g5");
-    const interactive = backgroundRef.current.querySelector<HTMLDivElement>(".interactive-3");
-  
-    let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
-  
-    // ✅ Function to Move Bubbles Randomly Forever
-    function moveBubbles() {
-      bubbles.forEach((bubble) => {
-        let bubbleX = Math.random() * (window.innerWidth - 100);
-        let bubbleY = Math.random() * (window.innerHeight - 100);
-        let velocityX = (Math.random() - 0.5) * 4; // Speed in X direction
-        let velocityY = (Math.random() - 0.5) * 4; // Speed in Y direction
-  
-        function animateBubble() {
-          bubbleX += velocityX;
-          bubbleY += velocityY;
-  
-          // Bounce off screen edges
-          if (bubbleX <= 0 || bubbleX >= window.innerWidth - 100) velocityX *= -1;
-          if (bubbleY <= 0 || bubbleY >= window.innerHeight - 100) velocityY *= -1;
-  
-          bubble.style.transform = `translate(${bubbleX}px, ${bubbleY}px)`;
-  
-          requestAnimationFrame(animateBubble);
-        }
-  
-        animateBubble(); // Start animation
-      });
-    }
-  
-    moveBubbles(); // Start movement immediately
-  
-    // ✅ Add Interactive Mouse Tracking Effect for `.interactive`
-    function updateMousePosition(event: MouseEvent) {
-      mouseX = event.clientX;
-      mouseY = event.clientY;
-    }
-  
-    function moveWithMouse() {
-      if (interactive) {
-        interactive.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
-      }
-      requestAnimationFrame(moveWithMouse);
-    }
-  
-    window.addEventListener("mousemove", updateMousePosition);
-    moveWithMouse(); // Start interactive movement
-  
-    return () => {
-      window.removeEventListener("mousemove", updateMousePosition);
-    };
+    const tl = gsap.timeline();
+    tl.fromTo(
+      logoRef.current,
+      { opacity: 0, scale: 0.92 },
+      { opacity: 1, scale: 1, duration: 1.6, ease: "power3.out" },
+    )
+      .fromTo(
+        lineRef.current,
+        { scaleX: 0, transformOrigin: "left center" },
+        { scaleX: 1, duration: 0.8, ease: "power2.out" },
+        "-=0.4",
+      )
+      .fromTo(
+        promptRef.current,
+        { opacity: 0, y: 6 },
+        { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
+        "-=0.4",
+      );
   }, []);
 
   return (
-<section
-  ref={backgroundRef}
-  className="w-full h-[100svh] overflow-hidden gradient-bg-3 flex justify-center items-center relative"
->
-      <svg>
-        <defs>
-          <filter id="goo">
-            <feGaussianBlur
-              in="SourceGraphic"
-              stdDeviation="10"
-              result="blur"
-            />
-            <feColorMatrix
-              in="blur"
-              mode="matrix"
-              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
-              result="goo"
-            />
-            <feBlend in="SourceGraphic" in2="goo" />
-          </filter>
-        </defs>
-      </svg>
-      
-      <div className="mx-auto flex flex-col z-50 absolute left-1/2 translate-x-[-50%] top-1/2 translate-y-[-50%] transform justify-center items-center">
-      <Link
-          scroll={false}
-          href="/portfolio" >
-        <Image
-          src="/images/logo.svg"
-          alt="from royce logo"
-          width={75}
-          height={75}
-          className="invert"
+    <>
+      <Head>
+        <title>From Royce</title>
+        <meta
+          name="description"
+          content="From Royce – Design and visual thinking by Royce Williams."
         />
-        </Link> 
-      </div>
-      <div className="svg-container">
+        <meta property="og:title" content="From Royce" />
+        <meta
+          property="og:description"
+          content="Design and visual thinking by Royce Williams."
+        />
+        <meta property="og:image" content="https://from-royce.com/cover.png" />
+        <meta property="og:url" content="https://from-royce.com" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="From Royce" />
+        <meta
+          name="twitter:description"
+          content="Design and visual thinking by Royce Williams."
+        />
+        <meta name="twitter:image" content="https://from-royce.com/cover.png" />
+      </Head>
+
+      <section className="w-full h-[100dvh] bg-[#f0ebe5] overflow-hidden flex flex-col justify-center items-center relative">
+        {/* Geometric SVG background */}
         <svg
-          ref={svgRef}
-          width="1728"
-          height="1117"
-          viewBox="0 0 1728 1117"
-          fill="none"
+          className="absolute inset-0 w-full h-full opacity-[0.15] pointer-events-none"
+          viewBox="0 0 1440 900"
+          preserveAspectRatio="xMidYMid slice"
           xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
         >
-          <path
-            d="M0.585327 1113.19C501.5 1007 717 573 675.5 395C630.048 200.047 376 218 286 395C107.079 746.878 -272.836 1434.62 826.203 1113.19C1925.24 791.763 1545.27 73.7384 1077.9 -84.6784C610.534 -243.095 699.375 739.289 1728 660.93"
-            stroke="#F7F0F0"
-            strokeOpacity="0.5"
-            strokeWidth="1.5"
+          <style>{`
+            .g { fill: none; stroke: #1e1b18; stroke-linecap: round; stroke-dasharray: 2400; stroke-dashoffset: 2400; animation: draw 2.4s cubic-bezier(0.4,0,0.2,1) forwards; }
+            .g1 { stroke-width: 0.7; animation-delay: 0s; }
+            .g2 { stroke-width: 0.7; animation-delay: 0.12s; }
+            .g3 { stroke-width: 0.7; animation-delay: 0.24s; }
+            .g4 { stroke-width: 0.4; animation-delay: 0.36s; }
+            .g5 { stroke-width: 0.4; animation-delay: 0.48s; }
+            .g6 { stroke-width: 0.4; animation-delay: 0.6s; }
+            .g7 { stroke-width: 0.7; animation-delay: 0.72s; }
+            .g8 { stroke-width: 0.5; stroke-dasharray: 1200; stroke-dashoffset: 1200; animation-delay: 0.9s; }
+            .g9 { stroke-width: 0.5; stroke-dasharray: 1200; stroke-dashoffset: 1200; animation-delay: 1.1s; }
+            @keyframes draw { to { stroke-dashoffset: 0; } }
+          `}</style>
+
+          {/* Diagonals */}
+          <line className="g g1" x1="-40" y1="0" x2="1480" y2="900" />
+          <line className="g g2" x1="-40" y1="180" x2="1480" y2="1080" />
+          <line className="g g3" x1="1480" y1="0" x2="-40" y2="900" />
+
+          {/* Verticals */}
+          <line className="g g4" x1="720" y1="-20" x2="720" y2="920" />
+          <line className="g g5" x1="360" y1="-20" x2="360" y2="920" />
+          <line className="g g6" x1="1080" y1="-20" x2="1080" y2="920" />
+
+          {/* Horizontal midline */}
+          <line className="g g7" x1="-40" y1="450" x2="1480" y2="450" />
+
+          {/* Nested rects centered on logo */}
+          <rect
+            className="g g8"
+            x="560"
+            y="340"
+            width="320"
+            height="220"
+            rx="0"
+          />
+          <rect
+            className="g g9"
+            x="620"
+            y="390"
+            width="200"
+            height="120"
+            rx="0"
           />
         </svg>
-      </div>
-    </section>
+
+        {/* Corner labels */}
+        <span className="absolute top-8 left-8 xl:left-24 font-anonymous text-[7px] tracking-[0.3em] uppercase text-black/20">
+          2026
+        </span>
+        <span className="absolute top-8 right-8 xl:right-24 font-anonymous text-[7px] tracking-[0.3em] uppercase text-black/20">
+          from-royce.com
+        </span>
+
+        {/* Logo — sits above SVG */}
+        <Link
+          ref={logoRef}
+          scroll={false}
+          href="/portfolio"
+          className="relative z-10 opacity-0 hover:opacity-60 transition-opacity duration-300"
+        >
+          <Image
+            src="/images/from-royce-white.png"
+            alt="from royce"
+            width={80}
+            height={80}
+            className="object-contain invert"
+            priority
+          />
+        </Link>
+
+        {/* Enter prompt */}
+        <div
+          ref={promptRef}
+          className="absolute bottom-10 z-10 flex flex-col items-center gap-3 opacity-0"
+        >
+          <div
+            ref={lineRef}
+            className="w-8 h-px bg-black/20"
+            style={{ transformOrigin: "left center" }}
+          />
+          <Link
+            scroll={false}
+            href="/portfolio"
+            className="font-anonymous uppercase text-[8px] tracking-[0.35em] text-black/30 hover:text-black/60 transition-colors duration-300"
+          >
+            Enter
+          </Link>
+        </div>
+      </section>
+    </>
   );
 };
+
+Splash.noNav = true;
 
 export default Splash;

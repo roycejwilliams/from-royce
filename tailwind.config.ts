@@ -15,6 +15,17 @@ export default {
         cylburn: ['Cylburn', 'cursive'],
         anonymous: ['Anonymous Pro Minus B', 'monospace'],
       },
+      colors: {
+        royce: {
+          cream: '#fff6f6',
+          dark: '#161210',
+          warm: '#312623',
+          mid: '#775253',
+        },
+      },
+      backdropBlur: {
+        xs: '2px',
+      },
     },
   },
   plugins: [

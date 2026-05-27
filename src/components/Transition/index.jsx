@@ -1,29 +1,15 @@
-import React, { useRef, useState } from "react";
-import { gsap } from "gsap";
-import { useGSAP } from "@gsap/react";
-gsap.registerPlugin(useGSAP);
+import { motion } from "motion/react";
+
+const variants = {
+  initial: { opacity: 0, y: 12 },
+  enter: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] } },
+  exit: { opacity: 0, y: -8, transition: { duration: 0.25, ease: [0.25, 0.1, 0.25, 1] } },
+};
 
 export default function Transition({ children }) {
-  const [displayChildren, setDisplayChildren] = useState(children);
-  const container = useRef(null);
-
-  useGSAP(() => {
-    if (children.key !== displayChildren.key) {
-      gsap.to(container.current, { opacity: 0 }).then(() => {
-        setDisplayChildren(children);
-        window.scrollTo(0, 0);
-        gsap.to(container.current, { opacity: 1 });
-      });
-    }
-  }, [children]);
-
-  useGSAP(() => {
-    gsap.to(container.current, { opacity: 1 });
-  });
-
   return (
-    <div ref={container} style={{ opacity: 0 }}>
-      {displayChildren}
-    </div>
+    <motion.div variants={variants} initial="initial" animate="enter" exit="exit">
+      {children}
+    </motion.div>
   );
 }

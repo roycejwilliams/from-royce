@@ -1,26 +1,59 @@
 import React from "react";
-import Image from "next/image";
+import Link from "next/link";
 
 function Footer() {
   return (
-    <section className="w-full h-[80vh] relative xl:px-24 px-8 ">
-      <div className="absolute inset-0 w-full h-full bg-gradient-to-t from-black/20 to-white/10 backdrop-blur-lg bg-opacity-40 z-20 "></div>
-      <Image
-        src="/images/footer.jpg" // Correct path for images inside the public folder
-        alt="footer image"
-        fill
-        className="object-cover absolute w-[100%] h-[100%] brightness-50 contrast-100 saturate-0 z-10"
-      />
-      <h2
-        className="relative flex justify-center items-center gap-x-4 
-  font-anonymous uppercase text-white text-xs z-30
-  top-1/2 -translate-y-1/2 
-  left-1/2 -translate-x-1/2
-  lg:float-right lg:translate-x-0 lg:left-auto"
-      >
-        © 2025 <div className="w-36 border"></div> From-Royce
-      </h2>
-    </section>
+    <footer className="w-full bg-[#f0ebe5] xl:px-24 px-8 pt-24 pb-12 flex flex-col gap-24">
+      {/* Top — CTA + nav */}
+      <div className="flex justify-between items-start">
+        <div className="flex flex-col gap-4">
+          <span className="font-anonymous uppercase text-[8px] tracking-[0.3em] text-black/30">
+            Let&apos;s build
+          </span>
+          <Link
+            href="mailto:roycewilliamsj@gmail.com"
+            className="font-anonymous uppercase text-[9px] tracking-[0.2em] text-black/50 hover:text-black/90 transition-colors duration-200"
+          >
+            roycewilliamsj@gmail.com
+          </Link>
+        </div>
+
+        <nav className="flex flex-col items-end gap-3">
+          <Link
+            href="/blog"
+            className="font-anonymous uppercase text-[9px] tracking-[0.2em] text-black/35 hover:text-black/70 transition-colors duration-200"
+          >
+            <span className="font-cylburn text-lg italic">E</span>thos
+          </Link>
+          <Link
+            href="https://github.com/roycejwilliams"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-anonymous uppercase text-[9px] tracking-[0.2em] text-black/35 hover:text-black/70 transition-colors duration-200"
+          >
+            Github
+          </Link>
+          <Link
+            href="https://www.linkedin.com/in/royce-williams-9bb2021a1/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-anonymous uppercase text-[9px] tracking-[0.2em] text-black/35 hover:text-black/70 transition-colors duration-200"
+          >
+            LinkedIn
+          </Link>
+        </nav>
+      </div>
+
+      {/* Bottom — legal */}
+      <div className="flex justify-between items-center pt-6 border-t border-black/8">
+        <p className="font-anonymous uppercase text-[7px] tracking-[0.25em] text-black/25">
+          © 2026 From-Royce
+        </p>
+        <p className="font-anonymous uppercase text-[7px] tracking-[0.25em] text-black/25">
+          Design &amp; Code
+        </p>
+      </div>
+    </footer>
   );
 }
 

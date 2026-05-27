@@ -1,27 +1,24 @@
-"use client";
 import "../styles/globals.css";
-import TransitionProvider from "../context/TransitionContext";
+import Providers from "../providers";
+import SmoothScroll from "../providers/SmoothScroll";
 import Transition from "../components/Transition";
-import { AuthProvider } from "../context/AuthContext";
-import { PostProvider } from "../context/PostContext";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
-const queryClient = new QueryClient();
+import Layout from "../components/layout";
+import { AnimatePresence } from "motion/react";
 
 export default function App({ Component, pageProps, router }) {
+  const showNav = !Component.noNav;
+
   return (
-    <>
-      <QueryClientProvider client={queryClient}>
-        <AuthProvider>
-          <PostProvider>
-            <TransitionProvider>
-              <Transition>
-                <Component key={router.route} {...pageProps} />
-              </Transition>
-            </TransitionProvider>
-          </PostProvider>
-        </AuthProvider>
-      </QueryClientProvider>
-    </>
+    <Providers>
+      <SmoothScroll>
+        <Layout showNav={showNav}>
+          <AnimatePresence mode="wait" initial={false}>
+            <Transition key={router.route}>
+              <Component {...pageProps} />
+            </Transition>
+          </AnimatePresence>
+        </Layout>
+      </SmoothScroll>
+    </Providers>
   );
 }
