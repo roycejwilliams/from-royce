@@ -69,7 +69,7 @@ function Post() {
                   <Image
                     src={p.post_image}
                     fill
-                    priority={isLatest}
+                    priority
                     alt={p.post_title}
                     className="object-cover saturate-0 group-hover:saturate-100 transition duration-500"
                   />
