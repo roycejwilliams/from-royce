@@ -6,7 +6,8 @@ const postsRouter = require("./src/routes/posts");
 
 const dev = process.env.NODE_ENV !== "production";
 const path = require("path");
-const nextApp = next({ dev, dir: path.resolve(__dirname, "..") });
+const dir = dev ? path.resolve(__dirname, "..") : __dirname;
+const nextApp = next({ dev, dir });
 const handle = nextApp.getRequestHandler();
 
 const app = express();

@@ -12,11 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Create .npmrc for GSAP Club plugins
-        run: |
-          echo "@gsap:registry=https://npm.greensock.com/" >> .npmrc
-          echo "//npm.greensock.com/:_authToken=${{ secrets.GSAP_TOKEN }}" >> .npmrc
-          echo "always-auth=true" >> .npmrc
       - name: Create .env.local file
         run: |
           echo "NEXT_PUBLIC_FIREBASE_API_KEY=${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY }}" >> .env.local
