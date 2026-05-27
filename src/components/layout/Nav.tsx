@@ -9,8 +9,6 @@ const LINKS = [
   { href: "/blog", letter: "E", rest: "thos", label: "Ethos" },
 ];
 
-const SECTION_PATHS = ["/portfolio", "/blog", "/work"];
-
 function Nav() {
   const [menu, setMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -18,9 +16,6 @@ function Nav() {
 
   const toggleMenu = () => setMenu((prev) => !prev);
   const isActive = (href: string) => router.pathname.startsWith(href);
-  const activeDot = SECTION_PATHS.findIndex((p) =>
-    router.pathname.startsWith(p),
-  );
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
