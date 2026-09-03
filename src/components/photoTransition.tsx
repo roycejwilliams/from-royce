@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { dropCapTightening } from "@/lib/typography";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -202,14 +203,18 @@ const Photos = () => {
 
               {/* Headline: cylburn drop char + anonymous body */}
               <h2 className="font-anonymous uppercase text-white leading-none">
-                <span className="font-cylburn text-[4rem] xl:text-[7rem] leading-[0.85]">
+                <span
+                  className={`font-cylburn text-[4rem] xl:text-[7rem] leading-[0.85] ${dropCapTightening(photo.heading[0])}`}
+                >
                   {photo.heading[0]}
                 </span>
                 <span className="text-xl xl:text-4xl tracking-[0.04em]">
                   {photo.heading.slice(1)}
                 </span>
                 <br />
-                <span className="font-cylburn text-[4rem] xl:text-[7rem] leading-[0.85]">
+                <span
+                  className={`font-cylburn text-[4rem] xl:text-[7rem] leading-[0.85] ${dropCapTightening(photo.sub[0])}`}
+                >
                   {photo.sub[0]}
                 </span>
                 <span className="text-xl xl:text-4xl tracking-[0.04em]">

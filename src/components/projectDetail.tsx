@@ -56,26 +56,26 @@ function ProjectDetail({
   others: Project[];
 }) {
   return (
-    <div className="min-h-[100svh] bg-[#0b0a09] text-white/85 overflow-x-hidden">
+    <div className="min-h-[100svh]  text-black/85 overflow-x-hidden">
       {/* Top breadcrumb bar */}
       <div className="xl:px-24 px-6 pt-8 flex items-center justify-between">
-        <div className="flex items-center gap-3 font-anonymous text-[8px] tracking-[0.3em] uppercase text-white/35">
-          <Link href="/work" className="hover:text-white/70 transition-colors">
+        <div className="flex items-center gap-3 font-anonymous text-[8px] tracking-[0.3em] uppercase text-black/35">
+          <Link href="/work" className="hover:text-black/70 transition-colors">
             Work
           </Link>
-          <span className="text-white/15">/</span>
-          <Link href="/work" className="hover:text-white/70 transition-colors">
+          <span className="text-black/15">/</span>
+          <Link href="/work" className="hover:text-black/70 transition-colors">
             Catalogue
           </Link>
-          <span className="text-white/15">/</span>
-          <span className="text-white/70">{project.title}</span>
+          <span className="text-black/15">/</span>
+          <span className="text-black/70">{project.title}</span>
         </div>
 
         <div className="flex items-center gap-2">
           <button
             type="button"
             aria-label="Save project"
-            className="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-white/40 hover:text-white/80 hover:border-white/30 transition-colors"
+            className="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-black/40 hover:text-black/80 hover:border-white/30 transition-colors"
           >
             <Bookmark size={13} />
           </button>
@@ -85,14 +85,14 @@ function ProjectDetail({
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Open live site"
-              className="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-white/40 hover:text-white/80 hover:border-white/30 transition-colors"
+              className="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-black/40 hover:text-black/80 hover:border-white/30 transition-colors"
             >
               <ArrowUpRight size={13} />
             </Link>
           ) : (
             <span
               aria-hidden="true"
-              className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-white/15"
+              className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-black/15"
             >
               <ArrowUpRight size={13} />
             </span>
@@ -107,7 +107,7 @@ function ProjectDetail({
             <span className="font-cylburn text-6xl leading-[0.85] block mb-1">
               {project.title[0]}
             </span>
-            <span className="text-2xl tracking-[0.05em] text-white/90">
+            <span className="text-2xl tracking-[0.05em] text-black/90">
               {project.title.slice(1)}
             </span>
           </h1>
@@ -117,7 +117,7 @@ function ProjectDetail({
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 self-start font-anonymous text-[9px] tracking-[0.2em] uppercase text-white/50 border border-white/15 rounded-full px-4 py-2.5 hover:text-white/85 hover:border-white/30 transition-colors"
+              className="inline-flex items-center gap-2 self-start font-anonymous text-[9px] tracking-[0.2em] uppercase text-black/50 border border-white/15 rounded-full px-4 py-2.5 hover:text-black/85 hover:border-white/30 transition-colors"
             >
               {project.slug}.work
               <ArrowUpRight size={11} />
@@ -126,26 +126,26 @@ function ProjectDetail({
 
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-1.5">
-              <span className="font-anonymous text-[8px] tracking-[0.3em] uppercase text-white/30">
+              <span className="font-anonymous text-[8px] tracking-[0.3em] uppercase text-black/30">
                 Tags
               </span>
-              <span className="font-anonymous text-[10px] tracking-[0.05em] text-white/60">
+              <span className="font-anonymous text-[10px] tracking-[0.05em] text-black/60">
                 {project.tags.join(" · ")}
               </span>
             </div>
             <div className="flex flex-col gap-1.5">
-              <span className="font-anonymous text-[8px] tracking-[0.3em] uppercase text-white/30">
+              <span className="font-anonymous text-[8px] tracking-[0.3em] uppercase text-black/30">
                 Role
               </span>
-              <span className="font-anonymous text-[10px] tracking-[0.05em] text-white/60">
+              <span className="font-anonymous text-[10px] tracking-[0.05em] text-black/60">
                 {project.role}
               </span>
             </div>
             <div className="flex flex-col gap-1.5">
-              <span className="font-anonymous text-[8px] tracking-[0.3em] uppercase text-white/30">
+              <span className="font-anonymous text-[8px] tracking-[0.3em] uppercase text-black/30">
                 Published
               </span>
-              <span className="font-anonymous text-[10px] tracking-[0.05em] text-white/60">
+              <span className="font-anonymous text-[10px] tracking-[0.05em] text-black/60">
                 {project.year}
               </span>
             </div>
@@ -180,7 +180,7 @@ function ProjectDetail({
       <div className="xl:hidden xl:px-24 px-6 pt-10">
         <Link
           href={`/work/${next.slug}`}
-          className="font-anonymous text-[9px] tracking-[0.25em] uppercase text-white/40 hover:text-white/70 transition-colors"
+          className="font-anonymous text-[9px] tracking-[0.25em] uppercase text-black/40 hover:text-black/70 transition-colors"
         >
           Next project: {next.title} →
         </Link>
@@ -188,12 +188,16 @@ function ProjectDetail({
 
       {/* More work */}
       <div className="mt-20 border-t border-white/10 xl:px-24 px-6 py-16">
-        <span className="font-anonymous text-[8px] tracking-[0.3em] uppercase text-white/30 block mb-8">
+        <span className="font-anonymous text-[8px] tracking-[0.3em] uppercase text-black/30 block mb-8">
           More work
         </span>
         <div className="grid grid-cols-2 xl:grid-cols-4 gap-6">
           {others.map((p) => (
-            <Link key={p.slug} href={`/work/${p.slug}`} className="group flex flex-col gap-3">
+            <Link
+              key={p.slug}
+              href={`/work/${p.slug}`}
+              className="group flex flex-col gap-3"
+            >
               <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden">
                 <Image
                   src={p.src}
@@ -203,7 +207,7 @@ function ProjectDetail({
                   className="object-cover saturate-0 group-hover:saturate-100 transition duration-500"
                 />
               </div>
-              <span className="font-anonymous text-[9px] tracking-[0.15em] uppercase text-white/50 group-hover:text-white/85 transition-colors">
+              <span className="font-anonymous text-[9px] tracking-[0.15em] uppercase text-black/50 group-hover:text-black/85 transition-colors">
                 {p.title}
               </span>
             </Link>
@@ -214,7 +218,7 @@ function ProjectDetail({
       <div className="xl:px-24 px-6 pb-12">
         <Link
           href="/work"
-          className="font-anonymous text-[8px] tracking-[0.25em] uppercase text-white/25 hover:text-white/60 transition-colors"
+          className="font-anonymous text-[8px] tracking-[0.25em] uppercase text-black/25 hover:text-black/60 transition-colors"
         >
           ← Back to catalogue
         </Link>

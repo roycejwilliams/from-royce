@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { PROJECTS } from "@/lib/projects";
+import { dropCapTightening } from "@/lib/typography";
 
 type InfoColumn = {
   label: string;
@@ -28,44 +29,6 @@ const CO_COLUMNS: InfoColumn[] = [
   },
 ];
 
-function CoCaseStudy() {
-  return (
-    <section className="reveal xl:px-24 px-6 py-24 border-t border-black/8">
-      <div className="max-w-4xl mx-auto">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-4 h-px bg-black/20" />
-          <span className="font-anonymous text-[7px] tracking-[0.35em] uppercase text-black/30">
-            Featured / CoPatible
-          </span>
-        </div>
-
-        <h2 className="font-anonymous uppercase text-black/85 leading-none mb-12">
-          <span className="font-cylburn text-6xl xl:text-7xl leading-[0.85]">
-            C
-          </span>
-          <span className="text-2xl xl:text-4xl tracking-[0.05em]">o</span>
-        </h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-x-10 gap-y-10">
-          {CO_COLUMNS.map((col) => (
-            <div key={col.label} className="flex flex-col gap-3">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-px bg-black/20" />
-                <span className="font-anonymous text-[7px] tracking-[0.3em] uppercase text-black/30">
-                  {col.label}
-                </span>
-              </div>
-              <p className="font-anonymous text-[11px] tracking-[0.03em] leading-[1.9] text-black/55">
-                {col.body}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function WorkHeader() {
   return (
     <header className="xl:px-24 px-6 pt-36 xl:pt-44 pb-16 xl:pb-20">
@@ -74,8 +37,8 @@ function WorkHeader() {
         <span className="text-black/15">/</span>
         <span className="text-black/50">Catalogue</span>
       </div>
-      <h1 className="font-anonymous uppercase text-black/85 leading-[0.9]">
-        <span className="font-cylburn text-[5rem] xl:text-[9rem] leading-[0.85]">
+      <h1 className="font-anonymous uppercase text-black/85 leading-[0.9] flex items-baseline">
+        <span className={`font-cylburn text-[5rem] xl:text-[9rem] leading-[0.85] ${dropCapTightening("W")}`}>
           W
         </span>
         <span className="text-3xl xl:text-6xl tracking-[0.04em]">ork</span>
@@ -111,7 +74,9 @@ function ProjectRow({ project }: { project: (typeof PROJECTS)[number] }) {
 
       <div className="flex flex-col gap-2 flex-1 min-w-0">
         <h2 className="font-anonymous uppercase text-sm xl:text-base tracking-[0.06em] text-black/70 group-hover:text-black/90 transition-colors duration-200">
-          <span className="font-cylburn text-lg italic mr-1">{project.title[0]}</span>
+          <span className="font-cylburn text-lg italic mr-1">
+            {project.title[0]}
+          </span>
           {project.title.slice(1)}
         </h2>
         <p className="font-anonymous text-[9px] tracking-[0.1em] uppercase text-black/35 truncate">
@@ -141,8 +106,6 @@ function WorkCatalogue() {
           <ProjectRow key={project.slug} project={project} />
         ))}
       </div>
-
-      <CoCaseStudy />
     </section>
   );
 }

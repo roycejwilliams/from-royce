@@ -32,8 +32,8 @@ const Portfolio = () => {
         <Work />
         <WorkCon />
         <Grid />
-        <Photos />
         <MusicSection />
+        <Photos />
         <Footer />
       </div>
     </>
