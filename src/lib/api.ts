@@ -21,10 +21,10 @@ export function formatPost(p: Record<string, unknown>): BlogPost {
     ...post,
     formatted_date: post.post_date
       ? format(parseISO(post.post_date), "MM/dd/yy")
-      : "—",
+      : "-",
     formatted_time: post.post_time
       ? format(parseISO(`1970-01-01T${post.post_time}`), "hh:mm a")
-      : "—",
+      : "-",
     slug: (post.slug as string) || toSlug(post.post_title),
   };
 }
