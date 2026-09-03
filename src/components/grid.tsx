@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ArrowUpRight } from "lucide-react";
@@ -9,30 +9,54 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Grid = () => {
-  const logos = [
-    {
-      social: "/images/insta.webp",
-      href: "https://instagram.com/roycejwilliams",
-      alt: "instagram",
-    },
-    {
-      social: "/images/google.png",
-      href: "mailto:roycewilliamsj@gmail.com",
-      alt: "email",
-    },
-    {
-      social: "/images/github.png",
-      href: "https://github.com/roycejwilliams",
-      alt: "github",
-    },
-    {
-      social: "/images/linkedin.png",
-      href: "https://www.linkedin.com/in/royce-williams-9bb2021a1/",
-      alt: "linkedin",
-    },
-  ];
+const SOCIALS = [
+  {
+    social: "/images/insta.webp",
+    href: "https://instagram.com/roycejwilliams",
+    alt: "instagram",
+  },
+  {
+    social: "/images/google.png",
+    href: "mailto:roycewilliamsj@gmail.com",
+    alt: "email",
+  },
+  {
+    social: "/images/github.png",
+    href: "https://github.com/roycejwilliams",
+    alt: "github",
+  },
+  {
+    social: "/images/linkedin.png",
+    href: "https://www.linkedin.com/in/royce-williams-9bb2021a1/",
+    alt: "linkedin",
+  },
+];
 
+function SocialLinks({ iconSize, gap }: { iconSize: string; gap: string }) {
+  return (
+    <div className={`flex items-center ${gap}`}>
+      {SOCIALS.map((logo) => (
+        <Link
+          href={logo.href}
+          key={logo.alt}
+          target={logo.href.startsWith("http") ? "_blank" : undefined}
+          rel={logo.href.startsWith("http") ? "noopener noreferrer" : undefined}
+          className={`relative ${iconSize} rounded-full overflow-hidden opacity-40 hover:opacity-90 transition-opacity duration-300`}
+        >
+          <Image
+            src={logo.social}
+            alt={logo.alt}
+            fill
+            sizes="32px"
+            className="object-cover saturate-0"
+          />
+        </Link>
+      ))}
+    </div>
+  );
+}
+
+const Grid = () => {
   const skills = [
     "UX / UI",
     "Branding",
@@ -127,7 +151,7 @@ const Grid = () => {
     >
       {/* ── MOBILE: stacked cards ── */}
       <div className="flex xl:hidden flex-col gap-4 w-full">
-        <div className={mobilePanelCls}>
+        <div className={`reveal ${mobilePanelCls}`}>
           {panelLabel("About")}
           <p className="font-anonymous text-xs leading-[2.3] tracking-[0.06em] uppercase text-black/65">
             <span className="font-cylburn text-[4rem] leading-[0.75] text-black/85 float-left mr-2 mt-1">
@@ -139,7 +163,10 @@ const Grid = () => {
           </p>
         </div>
 
-        <div className={mobilePanelCls}>
+        <div
+          className={`reveal ${mobilePanelCls}`}
+          style={{ transitionDelay: "0.1s" }}
+        >
           {panelLabel("What I do")}
           <ul className="font-anonymous flex flex-col gap-3 tracking-[0.18em] uppercase text-xs">
             {skills.map((skill, i) => (
@@ -151,34 +178,18 @@ const Grid = () => {
           </ul>
         </div>
 
-        <div className={mobilePanelCls}>
+        <div
+          className={`reveal ${mobilePanelCls}`}
+          style={{ transitionDelay: "0.2s" }}
+        >
           {panelLabel("Find me")}
-          <div className="flex items-center gap-4">
-            {logos.map((logo, i) => (
-              <Link
-                href={logo.href}
-                key={i}
-                target={logo.href.startsWith("http") ? "_blank" : undefined}
-                rel={
-                  logo.href.startsWith("http")
-                    ? "noopener noreferrer"
-                    : undefined
-                }
-                className="relative w-8 h-8 rounded-full overflow-hidden opacity-40 hover:opacity-90 transition-opacity duration-300"
-              >
-                <Image
-                  src={logo.social}
-                  alt={logo.alt}
-                  fill
-                  sizes="32px"
-                  className="object-cover saturate-0"
-                />
-              </Link>
-            ))}
-          </div>
+          <SocialLinks iconSize="w-8 h-8" gap="gap-4" />
         </div>
 
-        <div className={mobilePanelCls}>
+        <div
+          className={`reveal ${mobilePanelCls}`}
+          style={{ transitionDelay: "0.3s" }}
+        >
           {panelLabel("Work together")}
           <div className="flex items-end justify-between gap-6">
             <p className="font-anonymous uppercase text-xs leading-[2.2] tracking-[0.06em] text-black/65">
@@ -224,28 +235,8 @@ const Grid = () => {
           }}
         >
           {panelLabel("Find me")}
-          <div className="flex items-center gap-5 pt-1">
-            {logos.map((logo, i) => (
-              <Link
-                href={logo.href}
-                key={i}
-                target={logo.href.startsWith("http") ? "_blank" : undefined}
-                rel={
-                  logo.href.startsWith("http")
-                    ? "noopener noreferrer"
-                    : undefined
-                }
-                className="relative w-10 h-10 rounded-full overflow-hidden opacity-40 hover:opacity-90 transition-opacity duration-300"
-              >
-                <Image
-                  src={logo.social}
-                  alt={logo.alt}
-                  fill
-                  sizes="32px"
-                  className="object-cover saturate-0"
-                />
-              </Link>
-            ))}
+          <div className="pt-1">
+            <SocialLinks iconSize="w-10 h-10" gap="gap-5" />
           </div>
         </div>
 
