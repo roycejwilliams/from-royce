@@ -12,12 +12,12 @@ const Work = () => {
         <title>Work – From Royce</title>
         <meta
           name="description"
-          content="Selected projects by Royce Williams — engineering and design treated as one practice."
+          content="Selected projects by Royce Williams: engineering and design treated as one practice."
         />
         <meta property="og:title" content="Work – From Royce" />
         <meta
           property="og:description"
-          content="Selected projects by Royce Williams — engineering and design treated as one practice."
+          content="Selected projects by Royce Williams: engineering and design treated as one practice."
         />
         <meta property="og:image" content="https://from-royce.com/cover.png" />
         <meta property="og:url" content="https://from-royce.com/work" />
@@ -26,7 +26,7 @@ const Work = () => {
         <meta name="twitter:title" content="Work – From Royce" />
         <meta
           name="twitter:description"
-          content="Selected projects by Royce Williams — engineering and design treated as one practice."
+          content="Selected projects by Royce Williams: engineering and design treated as one practice."
         />
         <meta name="twitter:image" content="https://from-royce.com/cover.png" />
       </Head>
