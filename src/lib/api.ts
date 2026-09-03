@@ -25,7 +25,7 @@ export function formatPost(p: Record<string, unknown>): BlogPost {
     formatted_time: post.post_time
       ? format(parseISO(`1970-01-01T${post.post_time}`), "hh:mm a")
       : "—",
-    slug: toSlug(post.post_title),
+    slug: (post.slug as string) || toSlug(post.post_title),
   };
 }
 

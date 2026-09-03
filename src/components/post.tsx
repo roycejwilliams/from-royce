@@ -69,7 +69,7 @@ function Post() {
                   <Image
                     src={p.post_image}
                     fill
-                    priority
+                    sizes="(min-width: 1280px) 110px, 80px"
                     alt={p.post_title}
                     className="object-cover saturate-0 group-hover:saturate-100 transition duration-500"
                   />

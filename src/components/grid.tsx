@@ -34,7 +34,7 @@ const Grid = () => {
   ];
 
   const playlistUrl =
-    "https://embed.music.apple.com/us/playlist/summer/pl.u-9N9LLpyTx2XgDXJ";
+    "https://embed.music.apple.com/us/playlist/intuition/pl.u-mJy88R0CzGyjKyd";
 
   const skills = [
     "UX / UI",
@@ -183,6 +183,7 @@ const Grid = () => {
                   src={logo.social}
                   alt={logo.alt}
                   fill
+                  sizes="32px"
                   className="object-cover saturate-0"
                 />
               </Link>
@@ -258,6 +259,7 @@ const Grid = () => {
                   src={logo.social}
                   alt={logo.alt}
                   fill
+                  sizes="32px"
                   className="object-cover saturate-0"
                 />
               </Link>

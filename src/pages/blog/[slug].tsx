@@ -113,6 +113,7 @@ export default function BlogSlugPage() {
                   alt={post_title}
                   fill
                   priority
+                  sizes="(min-width: 1280px) 60vw, 100vw"
                   className="object-cover transition duration-700 ease-in-out hover:scale-[1.02]"
                 />
               </figure>

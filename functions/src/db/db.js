@@ -10,6 +10,8 @@ if (!isProd) {
 const pool = new Pool({
   connectionString: isProd ? process.env.DATABASE_URL : process.env.LOCAL_DATABASE_URL,
   ssl: isProd ? { rejectUnauthorized: false } : false,
+  max: 3,
+  idleTimeoutMillis: 30000,
 });
 
 module.exports = pool;

@@ -1,13 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const pool = require("../db/db");
+const { toSlug } = require("../lib/slug");
 
 router.post("/", async (req, res) => {
   try {
     const { title, content, image } = req.body;
     const newPost = await pool.query(
-      "INSERT INTO post (post_title, post_content, post_image) VALUES($1, $2, $3) RETURNING *",
-      [title, content, image || null]
+      "INSERT INTO post (post_title, post_content, post_image, slug) VALUES($1, $2, $3, $4) RETURNING *",
+      [title, content, image || null, toSlug(title)]
     );
     res.json(newPost.rows[0]);
   } catch (err) {
@@ -19,7 +20,9 @@ router.post("/", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const result = await pool.query(
-      "SELECT * FROM post ORDER BY post_date DESC, post_time DESC"
+      `SELECT post_id, post_title, LEFT(post_content, 300) AS post_content,
+              post_image, post_date, post_time, slug
+       FROM post ORDER BY post_date DESC, post_time DESC`
     );
     res.json({
       totalPost: result.rows.length,
@@ -38,17 +41,7 @@ router.get("/slug/:slug", async (req, res) => {
   try {
     const { slug } = req.params;
     const result = await pool.query(
-      `SELECT * FROM post WHERE
-        lower(
-          regexp_replace(
-            regexp_replace(
-              regexp_replace(post_title, '[^\\w\\s-]', '', 'g'),
-              '\\s+', '-', 'g'
-            ),
-            '-+', '-', 'g'
-          )
-        ) = $1
-      LIMIT 1`,
+      "SELECT * FROM post WHERE slug = $1 LIMIT 1",
       [slug]
     );
     if (!result.rows[0]) return res.status(404).json({ message: "Post not found" });
@@ -76,8 +69,8 @@ router.put("/:id", async (req, res) => {
     const { id } = req.params;
     const { title, content, image } = req.body;
     await pool.query(
-      "UPDATE post SET post_title = $1, post_content = $2, post_image = $3 WHERE post_id = $4",
-      [title, content, image || null, id]
+      "UPDATE post SET post_title = $1, post_content = $2, post_image = $3, slug = $4 WHERE post_id = $5",
+      [title, content, image || null, toSlug(title), id]
     );
     res.json("Post updated");
   } catch (err) {

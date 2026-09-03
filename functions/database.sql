@@ -6,8 +6,11 @@ CREATE TABLE post (
     post_content TEXT NOT NULL,
     post_image VARCHAR(255),
     post_date DATE DEFAULT CURRENT_DATE,
-    post_time TIME DEFAULT CURRENT_TIME
+    post_time TIME DEFAULT CURRENT_TIME,
+    slug VARCHAR(500) NOT NULL
 );
+
+CREATE UNIQUE INDEX post_slug_idx ON post (slug);
 
 SELECT 
     post_id,

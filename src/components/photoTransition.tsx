@@ -9,32 +9,46 @@ gsap.registerPlugin(ScrollTrigger);
 
 const photos = [
   {
-    src: "/images/photo.jpg",
+    src: "/images/fr1.jpeg",
     label: "001",
     heading: "Visions",
     sub: "Crafted",
     caption: "An engineer's perspective",
   },
   {
-    src: "/images/photo1.jpg",
+    src: "/images/fr2.jpeg",
     label: "002",
     heading: "Built",
     sub: "With intent",
     caption: "Every decision deliberate",
   },
   {
-    src: "/images/photo2.jpg",
+    src: "/images/fr3.jpeg",
     label: "003",
     heading: "Depth",
     sub: "In the detail",
     caption: "Where craft lives",
   },
   {
-    src: "/images/photo3.jpg",
+    src: "/images/fr4.jpeg",
     label: "004",
     heading: "Made",
     sub: "To last",
     caption: "Products that hold their weight",
+  },
+  {
+    src: "/images/fr5.jpeg",
+    label: "005",
+    heading: "Quiet",
+    sub: "Confidence",
+    caption: "No noise, just signal",
+  },
+  {
+    src: "/images/fr6.jpeg",
+    label: "006",
+    heading: "Shape",
+    sub: "Of things",
+    caption: "Form follows function",
   },
 ];
 
@@ -120,9 +134,10 @@ const Photos = () => {
           className={`photo photo-${index} w-full h-screen absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden origin-bottom`}
         >
           <Image
-            priority
+            priority={index === 0}
             src={photo.src}
             fill
+            sizes="100vw"
             alt={`Photo ${index + 1}`}
             className="absolute w-full h-full brightness-[0.65] object-cover"
             style={{ transform: "translateZ(0)" }}
