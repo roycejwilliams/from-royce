@@ -7,6 +7,7 @@ import MobileMenu from "../mobileMenu";
 const LINKS = [
   { href: "/portfolio", letter: "H", rest: "ome", label: "Home" },
   { href: "/blog", letter: "E", rest: "thos", label: "Ethos" },
+  { href: "/work", letter: "W", rest: "ork", label: "Work" },
 ];
 
 function Nav() {
@@ -101,19 +102,6 @@ function Nav() {
             </li>
           );
         })}
-        <li>
-          <button
-            className="text-black/25 cursor-not-allowed flex gap-x-2 items-center tracking-[0.22em] font-anonymous uppercase text-[9px]"
-            aria-label="Work (Coming Soon)"
-            disabled
-          >
-            <span className="font-cylburn text-xl italic leading-none">W</span>
-            ork
-            <span className="border border-black/15 text-[7px] tracking-[0.15em] px-1.5 py-0.5 rounded-sm text-black/25">
-              soon
-            </span>
-          </button>
-        </li>
       </ul>
 
       {/* Section progress dots */}
