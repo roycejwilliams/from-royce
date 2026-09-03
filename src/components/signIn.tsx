@@ -1,11 +1,11 @@
 "use client";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, type ReactNode } from "react";
 import { auth } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import Draft from "./draft";
 import { AuthContext } from "../context/AuthContext";
 
-function SignIn() {
+function SignIn({ children }: { children?: ReactNode }) {
   const { user } = useContext(AuthContext);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -24,7 +24,7 @@ function SignIn() {
     }
   };
 
-  if (user) return <Draft />;
+  if (user) return <>{children ?? <Draft />}</>;
 
   return (
     <section className=" w-full xl:px-24 px-6 overflow-y-hidden flex justify-center items-center min-h-screen">

@@ -1,11 +1,8 @@
 import Head from "next/head";
 import WorkCatalogue from "../../components/workCatalogue";
 import Footer from "../../components/footer";
-import { useReveal } from "../../hooks/useReveal";
 
 const Work = () => {
-  useReveal();
-
   return (
     <>
       <Head>

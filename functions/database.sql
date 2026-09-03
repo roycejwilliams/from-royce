@@ -12,7 +12,24 @@ CREATE TABLE post (
 
 CREATE UNIQUE INDEX post_slug_idx ON post (slug);
 
-SELECT 
+CREATE TABLE project (
+    project_id SERIAL PRIMARY KEY,
+    slug VARCHAR(255) NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    descriptor TEXT NOT NULL,
+    role VARCHAR(255) NOT NULL,
+    tags TEXT[] NOT NULL DEFAULT '{}',
+    year VARCHAR(10) NOT NULL,
+    src VARCHAR(500) NOT NULL,
+    live_url VARCHAR(500),
+    stack TEXT,
+    status TEXT,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE UNIQUE INDEX project_slug_idx ON project (slug);
+
+SELECT
     post_id,
     post_title,
     post_content,

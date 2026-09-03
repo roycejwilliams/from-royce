@@ -2,7 +2,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { PROJECTS } from "@/lib/projects";
+import { useWorks, type Project } from "@/hooks/work";
+import { useReveal } from "@/hooks/useReveal";
 import { dropCapTightening } from "@/lib/typography";
 
 function WorkHeader() {
@@ -26,7 +27,19 @@ function WorkHeader() {
   );
 }
 
-function ProjectRow({ project }: { project: (typeof PROJECTS)[number] }) {
+function ProjectRowSkeleton() {
+  return (
+    <div className="w-full border-b border-black/8 py-7 animate-pulse flex items-center gap-6 xl:gap-10">
+      <div className="hidden xl:block w-[110px] h-[72px] rounded-xl bg-black/6 flex-shrink-0" />
+      <div className="flex flex-col gap-3 flex-1">
+        <div className="h-3 bg-black/6 rounded w-1/3" />
+        <div className="h-2 bg-black/6 rounded w-2/3" />
+      </div>
+    </div>
+  );
+}
+
+function ProjectRow({ project }: { project: Project }) {
   return (
     <Link
       href={`/work/${project.slug}`}
@@ -73,12 +86,27 @@ function ProjectRow({ project }: { project: (typeof PROJECTS)[number] }) {
 }
 
 function WorkCatalogue() {
+  const { data, isPending, isError } = useWorks();
+  useReveal([data]);
+
   return (
     <section className="w-full">
       <WorkHeader />
 
       <div className="xl:px-24 px-6 pb-16 flex flex-col">
-        {PROJECTS.map((project) => (
+        {isError && (
+          <p className="font-anonymous text-[8px] tracking-[0.3em] uppercase text-black/30 text-center py-12">
+            Failed to load projects.
+          </p>
+        )}
+        {isPending && !isError && (
+          <>
+            <ProjectRowSkeleton />
+            <ProjectRowSkeleton />
+            <ProjectRowSkeleton />
+          </>
+        )}
+        {data?.map((project) => (
           <ProjectRow key={project.slug} project={project} />
         ))}
       </div>
