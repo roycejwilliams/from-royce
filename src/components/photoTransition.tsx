@@ -11,42 +11,36 @@ gsap.registerPlugin(ScrollTrigger);
 const photos = [
   {
     src: "/images/fr1.jpeg",
-    label: "001",
     heading: "Visions",
     sub: "Crafted",
     caption: "An engineer's perspective",
   },
   {
     src: "/images/fr2.jpeg",
-    label: "002",
     heading: "Built",
     sub: "With intent",
     caption: "Every decision deliberate",
   },
   {
     src: "/images/fr3.jpeg",
-    label: "003",
     heading: "Depth",
     sub: "In the detail",
     caption: "Where craft lives",
   },
   {
     src: "/images/fr4.jpeg",
-    label: "004",
     heading: "Made",
     sub: "To last",
     caption: "Products that hold their weight",
   },
   {
     src: "/images/fr5.jpeg",
-    label: "005",
     heading: "Quiet",
     sub: "Confidence",
     caption: "No noise, just signal",
   },
   {
     src: "/images/fr6.jpeg",
-    label: "006",
     heading: "Shape",
     sub: "Of things",
     caption: "Form follows function",
@@ -57,8 +51,8 @@ const Photos = () => {
   const photosRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  useGSAP(() => {
-    const ctx = gsap.context(() => {
+  useGSAP(
+    () => {
       const photoElements = Array.from(
         photosRef.current?.querySelectorAll<HTMLElement>(".photo") ?? [],
       );
@@ -73,15 +67,25 @@ const Photos = () => {
         gsap.set(block, { opacity: i === 0 ? 1 : 0, y: i === 0 ? 0 : 20 });
       });
 
-      const isMobile = window.innerWidth < 768;
-      const vh = document.documentElement.clientHeight;
-
       const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: photosRef.current,
           start: "top top",
-          end: `+=${photos.length * vh * (isMobile ? 0.75 : 0.6)}`,
+          // A function (not a fixed string) so a resize/orientation change
+          // recalculates the pinned scroll distance instead of locking in
+          // whatever the viewport happened to be at mount.
+          end: () =>
+            `+=${
+              photos.length *
+              document.documentElement.clientHeight *
+              (window.innerWidth < 768 ? 0.75 : 0.6)
+            }`,
           scrub: 1,
+          // Prevents a fast flick/fling scroll from leaving several slides'
+          // text blocks mid-crossfade at once (scrub normally animates
+          // through every intermediate frame, which can't keep up with a
+          // large jump) by snapping straight to the nearest end state.
+          fastScrollEnd: true,
           pin: true,
           pinSpacing: true,
           anticipatePin: 1,
@@ -96,8 +100,18 @@ const Photos = () => {
         },
       });
 
+      // Text-block fade-in must fully finish before the *next* slide's
+      // transition starts fading that same block back out again (fires one
+      // SLIDE_SPACING later). Otherwise two tweens fight over the same
+      // element's opacity and both headlines render blended together. Keep
+      // TEXT_IN_OFFSET + TEXT_IN_DURATION comfortably under SLIDE_SPACING.
+      const SLIDE_SPACING = 0.3;
+      const TEXT_OUT_DURATION = 0.35;
+      const TEXT_IN_OFFSET = 0.05;
+      const TEXT_IN_DURATION = 0.18;
+
       photoElements.forEach((photo, i) => {
-        const position = i * 0.3;
+        const position = i * SLIDE_SPACING;
 
         timeline.to(
           photo,
@@ -108,20 +122,19 @@ const Photos = () => {
         if (i > 0) {
           timeline.to(
             textBlocks[i - 1],
-            { opacity: 0, y: -14, duration: 0.35, ease: "power2.in" },
+            { opacity: 0, y: -14, duration: TEXT_OUT_DURATION, ease: "power2.in" },
             position,
           );
           timeline.to(
             textBlocks[i],
-            { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" },
-            position + 0.08,
+            { opacity: 1, y: 0, duration: TEXT_IN_DURATION, ease: "power2.out" },
+            position + TEXT_IN_OFFSET,
           );
         }
       });
-    }, photosRef);
-
-    return () => ctx.revert();
-  }, []);
+    },
+    { scope: photosRef, dependencies: [] },
+  );
 
   return (
     <section
@@ -197,7 +210,8 @@ const Photos = () => {
               <div className="flex items-center gap-3">
                 <div className="w-4 h-px bg-white/25" />
                 <span className="font-anonymous text-[8px] tracking-[0.35em] uppercase text-white/35">
-                  {photo.label} / 00{photos.length}
+                  {String(index + 1).padStart(3, "0")} /{" "}
+                  {String(photos.length).padStart(3, "0")}
                 </span>
               </div>
 
