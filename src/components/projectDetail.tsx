@@ -141,6 +141,26 @@ function ProjectDetail({
                 {project.role}
               </span>
             </div>
+            {project.stack && (
+              <div className="flex flex-col gap-1.5">
+                <span className="font-anonymous text-[8px] tracking-[0.3em] uppercase text-white/30">
+                  Stack
+                </span>
+                <span className="font-anonymous text-[10px] tracking-[0.05em] text-white/60">
+                  {project.stack}
+                </span>
+              </div>
+            )}
+            {project.status && (
+              <div className="flex flex-col gap-1.5">
+                <span className="font-anonymous text-[8px] tracking-[0.3em] uppercase text-white/30">
+                  Status
+                </span>
+                <span className="font-anonymous text-[10px] tracking-[0.05em] text-white/60">
+                  {project.status}
+                </span>
+              </div>
+            )}
             <div className="flex flex-col gap-1.5">
               <span className="font-anonymous text-[8px] tracking-[0.3em] uppercase text-black/30">
                 Published

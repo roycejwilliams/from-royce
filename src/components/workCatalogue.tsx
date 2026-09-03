@@ -5,30 +5,6 @@ import { ArrowUpRight } from "lucide-react";
 import { PROJECTS } from "@/lib/projects";
 import { dropCapTightening } from "@/lib/typography";
 
-type InfoColumn = {
-  label: string;
-  body: string;
-};
-
-const CO_COLUMNS: InfoColumn[] = [
-  {
-    label: "What Co is",
-    body: "A genuine, ongoing life companion, not a matchmaking app or an event app. Built to understand the person using it and the people around them, then act on that understanding over time: surfacing who's worth meeting, when to follow up, what actually matters to them. Its near-term expression is in-person event curation: Co-branded events where it decides who should meet whom in the room. The premise is the ongoing companionship, not any single feature.",
-  },
-  {
-    label: "My role",
-    body: "Co-founder & CTO. Built the full stack end-to-end: conversational and voice infrastructure, the profile and relevance intelligence pipeline, and the event curation system, from zero to production.",
-  },
-  {
-    label: "Stack & systems",
-    body: "Voice and conversation infrastructure, a profile/relevance intelligence pipeline, and an in-room event curation system, built as one full-stack product rather than separate hand-offs.",
-  },
-  {
-    label: "Status",
-    body: "Active: in-person curation running live through Co-branded events.",
-  },
-];
-
 function WorkHeader() {
   return (
     <header className="xl:px-24 px-6 pt-36 xl:pt-44 pb-16 xl:pb-20">
