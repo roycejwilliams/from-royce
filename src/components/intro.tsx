@@ -107,7 +107,7 @@ const GRID: { char: string; fade: boolean }[][] = [
   ],
 ];
 
-// Scramble duration — all cells finish at roughly the same time
+// Scramble duration: all cells finish at roughly the same time
 const SCRAMBLE_DURATION = 3.5;
 
 function Intro() {

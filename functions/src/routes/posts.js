@@ -36,7 +36,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Slug lookup — must come before /:id to avoid ambiguity
+// Slug lookup: must come before /:id to avoid ambiguity
 router.get("/slug/:slug", async (req, res) => {
   try {
     const { slug } = req.params;

@@ -119,7 +119,7 @@ const Splash = () => {
           from-royce.com
         </span>
 
-        {/* Logo — sits above SVG */}
+        {/* Logo: sits above SVG */}
         <Link
           ref={logoRef}
           scroll={false}

@@ -114,7 +114,7 @@ const Grid = () => {
     </div>
   );
 
-  // Shared panel shell — desktop uses absolute positioning on top of this
+  // Shared panel shell: desktop uses absolute positioning on top of this
   const mobilePanelCls =
     "flex flex-col gap-4 border border-black/8 rounded-2xl p-6 bg-[#f0ebe5]/80 backdrop-blur-sm";
   const desktopPanelCls =
@@ -125,7 +125,7 @@ const Grid = () => {
       ref={gridContainer}
       className="w-full xl:px-24 px-6 py-16 xl:py-24 flex flex-col xl:flex-row justify-center gap-12 xl:min-h-[100vh] items-start xl:items-center"
     >
-      {/* ── MOBILE — stacked cards ── */}
+      {/* ── MOBILE: stacked cards ── */}
       <div className="flex xl:hidden flex-col gap-4 w-full">
         <div className={mobilePanelCls}>
           {panelLabel("About")}
@@ -134,7 +134,7 @@ const Grid = () => {
               I
             </span>
             &apos;m a full-stack engineer and founder who thinks like a
-            designer. I build products end-to-end — from database to interface —
+            designer. I build products end-to-end, from database to interface,
             and care deeply about what the thing actually feels like to use.
           </p>
         </div>
@@ -197,9 +197,9 @@ const Grid = () => {
         </div>
       </div>
 
-      {/* ── DESKTOP — rotating panels ── */}
+      {/* ── DESKTOP: rotating panels ── */}
       <div className="w-full xl:w-1/2 hidden relative xl:flex justify-center items-center min-h-[300px]">
-        {/* Panel 0 — About */}
+        {/* Panel 0: About */}
         <div
           className={desktopPanelCls}
           style={{ visibility: activePanel === 0 ? "visible" : "hidden" }}
@@ -210,12 +210,12 @@ const Grid = () => {
               I
             </span>
             &apos;m a full-stack engineer and founder who thinks like a
-            designer. I build products end-to-end — from database to interface —
+            designer. I build products end-to-end, from database to interface,
             and care deeply about what the thing actually feels like to use.
           </p>
         </div>
 
-        {/* Panel 1 — Socials */}
+        {/* Panel 1: Socials */}
         <div
           className={desktopPanelCls}
           style={{
@@ -249,7 +249,7 @@ const Grid = () => {
           </div>
         </div>
 
-        {/* Panel 2 — Contact */}
+        {/* Panel 2: Contact */}
         <div
           className={desktopPanelCls}
           style={{

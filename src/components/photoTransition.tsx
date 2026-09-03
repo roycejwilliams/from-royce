@@ -127,7 +127,7 @@ const Photos = () => {
       ref={photosRef}
       className="photos min-h-[100vh] relative flex justify-center items-center w-full overflow-hidden"
     >
-      {/* Grain filter def — generates noise independent of source content */}
+      {/* Grain filter def: generates noise independent of source content */}
       <svg width="0" height="0" className="absolute" aria-hidden="true">
         <filter id="photo-grain">
           <feTurbulence
@@ -160,17 +160,17 @@ const Photos = () => {
             className="absolute w-full h-full grayscale contrast-110 brightness-[0.8] object-cover"
             style={{ transform: "translateZ(0)" }}
           />
-          {/* Duotone tint — warm brand mid-tone multiplied over the grayscale photo */}
+          {/* Duotone tint: warm brand mid-tone multiplied over the grayscale photo */}
           <div
             className="absolute inset-0 bg-royce-mid/35"
             style={{ mixBlendMode: "multiply" }}
           />
-          {/* Grain — editorial print texture, sits above the tint */}
+          {/* Grain: editorial print texture, sits above the tint */}
           <div
             className="absolute inset-0 opacity-40"
             style={{ filter: "url(#photo-grain)", mixBlendMode: "overlay" }}
           />
-          {/* Ghost numeral — large faint index mark, desktop only */}
+          {/* Ghost numeral: large faint index mark, desktop only */}
           <span
             aria-hidden="true"
             className="hidden xl:block absolute -right-4 top-1/2 -translate-y-1/2 font-cylburn text-white/[0.07] select-none pointer-events-none"
@@ -178,13 +178,13 @@ const Photos = () => {
           >
             {index + 1}
           </span>
-          {/* Gradient — heavier at bottom for text legibility, subtle left vignette */}
+          {/* Gradient: heavier at bottom for text legibility, subtle left vignette */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent" />
         </div>
       ))}
 
-      {/* Text blocks — bottom-anchored on mobile, centered left on desktop */}
+      {/* Text blocks: bottom-anchored on mobile, centered left on desktop */}
       <div className="absolute inset-0 z-50 pointer-events-none flex items-end xl:items-center">
         {photos.map((photo, index) => (
           <div
@@ -200,7 +200,7 @@ const Photos = () => {
                 </span>
               </div>
 
-              {/* Headline — cylburn drop char + anonymous body */}
+              {/* Headline: cylburn drop char + anonymous body */}
               <h2 className="font-anonymous uppercase text-white leading-none">
                 <span className="font-cylburn text-[4rem] xl:text-[7rem] leading-[0.85]">
                   {photo.heading[0]}
@@ -226,7 +226,7 @@ const Photos = () => {
         ))}
       </div>
 
-      {/* Progress — active segment brightens, right on desktop / center on mobile */}
+      {/* Progress: active segment brightens, right on desktop / center on mobile */}
       <div className="absolute bottom-8 xl:bottom-10 left-1/2 xl:left-auto -translate-x-1/2 xl:translate-x-0 xl:right-24 z-50 flex gap-2 items-center">
         {photos.map((_, i) => (
           <div
@@ -243,7 +243,7 @@ const Photos = () => {
         ))}
       </div>
 
-      {/* Slide label — top right, desktop only */}
+      {/* Slide label: top right, desktop only */}
       <div className="absolute top-8 right-8 xl:right-24 z-50 hidden xl:flex flex-col items-end gap-1">
         <span className="font-anonymous text-[7px] tracking-[0.3em] uppercase text-white/20">
           Selected work

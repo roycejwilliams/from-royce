@@ -107,7 +107,7 @@ const MobileMenu = ({
           })}
         </ul>
 
-        {/* Bottom — socials + label */}
+        {/* Bottom: socials + label */}
         <div className="flex flex-col gap-4">
           <div className="w-6 h-px bg-black/15" />
           <div className="flex gap-6 items-center">
