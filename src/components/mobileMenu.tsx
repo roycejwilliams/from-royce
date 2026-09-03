@@ -90,16 +90,16 @@ const MobileMenu = ({
                   href={href}
                   onClick={toggleMenu}
                   aria-current={active ? "page" : undefined}
-                  className={`flex items-baseline gap-1 tracking-[0.12em] uppercase font-anonymous text-4xl transition-colors duration-200 ${
+                  className={`flex flex-wrap items-baseline gap-x-1 min-w-0 tracking-[0.12em] uppercase font-anonymous text-2xl sm:text-4xl transition-colors duration-200 ${
                     active
                       ? "text-black/80"
                       : "text-black/25 hover:text-black/60"
                   }`}
                 >
-                  <span className="font-cylburn text-7xl leading-[0.9] block">
+                  <span className="font-cylburn text-5xl sm:text-7xl leading-[0.9] block">
                     {letter}
                   </span>
-                  <span className="text-2xl">{rest}</span>
+                  <span className="text-lg sm:text-2xl min-w-0">{rest}</span>
                 </Link>
               </li>
             );
@@ -107,10 +107,12 @@ const MobileMenu = ({
 
           {/* Work — coming soon */}
           <li>
-            <span className="flex items-baseline gap-1 tracking-[0.12em] uppercase font-anonymous text-black/15 cursor-not-allowed">
-              <span className="font-cylburn text-7xl leading-[0.9] block">W</span>
-              <span className="text-2xl">ork</span>
-              <span className="font-anonymous text-[8px] tracking-[0.2em] uppercase text-black/20 border border-black/10 px-2 py-1 rounded-sm ml-2 self-center">
+            <span className="flex flex-wrap items-baseline gap-x-1 gap-y-1 min-w-0 tracking-[0.12em] uppercase font-anonymous text-black/15 cursor-not-allowed">
+              <span className="flex items-baseline gap-x-1 min-w-0">
+                <span className="font-cylburn text-5xl sm:text-7xl leading-[0.9] block">W</span>
+                <span className="text-lg sm:text-2xl min-w-0">ork</span>
+              </span>
+              <span className="font-anonymous text-[8px] tracking-[0.2em] uppercase text-black/20 border border-black/10 px-2 py-1 rounded-sm self-center">
                 soon
               </span>
             </span>
