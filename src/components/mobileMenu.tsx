@@ -7,6 +7,7 @@ import { useGSAP } from "@gsap/react";
 const LINKS = [
   { href: "/portfolio", letter: "H", rest: "ome", label: "Home" },
   { href: "/blog", letter: "E", rest: "thos", label: "Ethos" },
+  { href: "/work", letter: "W", rest: "ork", label: "Work" },
 ];
 
 const MobileMenu = ({
@@ -104,17 +105,6 @@ const MobileMenu = ({
               </li>
             );
           })}
-
-          {/* Work — coming soon */}
-          <li>
-            <span className="flex items-baseline gap-1 tracking-[0.12em] uppercase font-anonymous text-black/15 cursor-not-allowed">
-              <span className="font-cylburn text-7xl leading-[0.9] block">W</span>
-              <span className="text-2xl">ork</span>
-              <span className="font-anonymous text-[8px] tracking-[0.2em] uppercase text-black/20 border border-black/10 px-2 py-1 rounded-sm ml-2 self-center">
-                soon
-              </span>
-            </span>
-          </li>
         </ul>
 
         {/* Bottom — socials + label */}
