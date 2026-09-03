@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const next = require("next");
 const postsRouter = require("./src/routes/posts");
+const appleMusicRouter = require("./src/routes/apple-music");
 
 const dev = process.env.NODE_ENV === "development";
 const path = require("path");
@@ -15,6 +16,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/posts", postsRouter);
+app.use("/api/apple-music", appleMusicRouter);
 
 app.all("*", (req, res) => handle(req, res));
 
