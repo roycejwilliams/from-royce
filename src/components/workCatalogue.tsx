@@ -4,68 +4,6 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { PROJECTS } from "@/lib/projects";
 
-type InfoColumn = {
-  label: string;
-  body: string;
-};
-
-const CO_COLUMNS: InfoColumn[] = [
-  {
-    label: "What Co is",
-    body: "A genuine, ongoing life companion, not a matchmaking app or an event app. Built to understand the person using it and the people around them, then act on that understanding over time: surfacing who's worth meeting, when to follow up, what actually matters to them. Its near-term expression is in-person event curation: Co-branded events where it decides who should meet whom in the room. The premise is the ongoing companionship, not any single feature.",
-  },
-  {
-    label: "My role",
-    body: "Co-founder & CTO. Built the full stack end-to-end: conversational and voice infrastructure, the profile and relevance intelligence pipeline, and the event curation system, from zero to production.",
-  },
-  {
-    label: "Stack & systems",
-    body: "Voice and conversation infrastructure, a profile/relevance intelligence pipeline, and an in-room event curation system, built as one full-stack product rather than separate hand-offs.",
-  },
-  {
-    label: "Status",
-    body: "Active: in-person curation running live through Co-branded events.",
-  },
-];
-
-function CoCaseStudy() {
-  return (
-    <section className="reveal xl:px-24 px-6 py-24 border-t border-black/8">
-      <div className="max-w-4xl mx-auto">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-4 h-px bg-black/20" />
-          <span className="font-anonymous text-[7px] tracking-[0.35em] uppercase text-black/30">
-            Featured / CoPatible
-          </span>
-        </div>
-
-        <h2 className="font-anonymous uppercase text-black/85 leading-none mb-12">
-          <span className="font-cylburn text-6xl xl:text-7xl leading-[0.85]">
-            C
-          </span>
-          <span className="text-2xl xl:text-4xl tracking-[0.05em]">o</span>
-        </h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-x-10 gap-y-10">
-          {CO_COLUMNS.map((col) => (
-            <div key={col.label} className="flex flex-col gap-3">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-px bg-black/20" />
-                <span className="font-anonymous text-[7px] tracking-[0.3em] uppercase text-black/30">
-                  {col.label}
-                </span>
-              </div>
-              <p className="font-anonymous text-[11px] tracking-[0.03em] leading-[1.9] text-black/55">
-                {col.body}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function WorkHeader() {
   return (
     <header className="xl:px-24 px-6 pt-36 xl:pt-44 pb-16 xl:pb-20">
@@ -141,8 +79,6 @@ function WorkCatalogue() {
           <ProjectRow key={project.slug} project={project} />
         ))}
       </div>
-
-      <CoCaseStudy />
     </section>
   );
 }

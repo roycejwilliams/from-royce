@@ -8,6 +8,8 @@ export type Project = {
   year: string;
   src: string;
   liveUrl?: string;
+  stack?: string;
+  status?: string;
 };
 
 export const PROJECTS: Project[] = [
@@ -80,6 +82,19 @@ export const PROJECTS: Project[] = [
     tags: ["Internal Tools", "Design Systems"],
     year: "2022",
     src: "/images/image25.jpg",
+  },
+  {
+    index: "008",
+    slug: "co",
+    title: "Co",
+    descriptor:
+      "A genuine, ongoing life companion, built to understand people and act on that over time.",
+    role: "Co-founder & CTO",
+    tags: ["Companion AI", "Event Curation"],
+    year: "2026",
+    src: "/images/image.jpg",
+    stack: "Voice infra, relevance pipeline, event curation",
+    status: "Active, running live via Co-branded events",
   },
 ];
 

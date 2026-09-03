@@ -141,6 +141,26 @@ function ProjectDetail({
                 {project.role}
               </span>
             </div>
+            {project.stack && (
+              <div className="flex flex-col gap-1.5">
+                <span className="font-anonymous text-[8px] tracking-[0.3em] uppercase text-white/30">
+                  Stack
+                </span>
+                <span className="font-anonymous text-[10px] tracking-[0.05em] text-white/60">
+                  {project.stack}
+                </span>
+              </div>
+            )}
+            {project.status && (
+              <div className="flex flex-col gap-1.5">
+                <span className="font-anonymous text-[8px] tracking-[0.3em] uppercase text-white/30">
+                  Status
+                </span>
+                <span className="font-anonymous text-[10px] tracking-[0.05em] text-white/60">
+                  {project.status}
+                </span>
+              </div>
+            )}
             <div className="flex flex-col gap-1.5">
               <span className="font-anonymous text-[8px] tracking-[0.3em] uppercase text-white/30">
                 Published
@@ -193,7 +213,11 @@ function ProjectDetail({
         </span>
         <div className="grid grid-cols-2 xl:grid-cols-4 gap-6">
           {others.map((p) => (
-            <Link key={p.slug} href={`/work/${p.slug}`} className="group flex flex-col gap-3">
+            <Link
+              key={p.slug}
+              href={`/work/${p.slug}`}
+              className="group flex flex-col gap-3"
+            >
               <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden">
                 <Image
                   src={p.src}
