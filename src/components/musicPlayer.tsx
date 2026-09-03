@@ -2,31 +2,37 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { Play, Pause, SkipBack, SkipForward } from "lucide-react";
-import { MOCK_TRACKS, fetchTracks, type AppleMusicTrack } from "@/lib/appleMusic";
+import {
+  MOCK_PLAYLIST,
+  PLAYLIST_ID,
+  fetchPlaylist,
+  type AppleMusicPlaylist,
+} from "@/lib/appleMusic";
 
-// Custom Apple Music player UI — replaces the stock embed iframe's chrome
-// with the site's own visual language. Falls back to MOCK_TRACKS until
-// Apple Music API credentials exist server-side (see functions/src/routes/apple-music.js).
+// Custom Apple Music player UI. Replaces the stock embed iframe's chrome
+// with the site's own visual language. Falls back to MOCK_PLAYLIST until
+// Apple Music API credentials exist server side (see functions/src/routes/apple-music.js).
 function MusicPlayer() {
-  const [tracks, setTracks] = useState<AppleMusicTrack[]>(MOCK_TRACKS);
+  const [playlist, setPlaylist] = useState<AppleMusicPlaylist>(MOCK_PLAYLIST);
   const [isLive, setIsLive] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
-    fetchTracks(MOCK_TRACKS.map((t) => t.id))
+    fetchPlaylist(PLAYLIST_ID)
       .then((live) => {
-        if (live?.length) {
-          setTracks(live);
+        if (live?.relationships?.tracks?.data?.length) {
+          setPlaylist(live);
           setIsLive(true);
         }
       })
       .catch(() => {
-        // Expected until Apple Music credentials are configured — keep mock data.
+        // Expected until Apple Music credentials are configured, keep mock data.
       });
   }, []);
 
+  const tracks = playlist.relationships.tracks.data;
   const track = tracks[activeIndex];
   const previewUrl = track.attributes.previews[0]?.url;
 
@@ -49,7 +55,7 @@ function MusicPlayer() {
   return (
     <div className="w-full max-w-lg mx-auto flex flex-col items-center">
       <a
-        href={track.attributes.url}
+        href={playlist.attributes.url}
         target="_blank"
         rel="noopener noreferrer"
         className="font-anonymous uppercase text-[8px] tracking-[0.25em] px-4 py-2 border border-black/15 rounded-full text-black/45 hover:text-black/85 hover:border-black/35 transition-all duration-300"
@@ -57,7 +63,7 @@ function MusicPlayer() {
         Open in Apple Music
       </a>
 
-      {/* Artifact card — album art with a vinyl disc peeking from behind */}
+      {/* Artifact card, album art with a vinyl disc peeking from behind */}
       <div className="relative mt-8 w-56 h-56">
         <div className="absolute top-1/2 -right-10 -translate-y-1/2 w-44 h-44 rounded-full bg-[repeating-radial-gradient(circle,rgba(0,0,0,0.12)_0px,rgba(0,0,0,0.12)_1px,transparent_1px,transparent_4px)] bg-black/5 shadow-inner" />
         <div className="relative w-56 h-56 rounded-2xl overflow-hidden shadow-xl">
@@ -95,7 +101,7 @@ function MusicPlayer() {
           disabled={!previewUrl}
           aria-label={isPlaying ? "Pause" : "Play"}
           className="w-9 h-9 rounded-full border border-black/15 flex items-center justify-center text-black/60 hover:text-black/90 hover:border-black/35 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
-          title={previewUrl ? undefined : "No 30-second preview available for this track"}
+          title={previewUrl ? undefined : "No 30 second preview available for this track"}
         >
           {isPlaying ? <Pause size={14} fill="currentColor" /> : <Play size={14} fill="currentColor" />}
         </button>
@@ -118,12 +124,13 @@ function MusicPlayer() {
         />
       )}
 
-      {/* Scrub filmstrip — same interaction language as the /work page's
-          horizontal scrubber, here browsing tracks instead of process frames. */}
+      {/* Scrub filmstrip, same interaction language as the /work page's
+          horizontal scrubber. Each frame here is a distinct track in the
+          playlist rather than a crop of a single image. */}
       <div className="mt-10 w-full">
         <div className="flex items-center justify-between mb-2 px-1">
           <span className="font-anonymous text-[7px] tracking-[0.25em] uppercase text-black/25">
-            {isLive ? "Live catalog" : "Preview data"}
+            {isLive ? "Live playlist" : "Preview data"}
           </span>
           <span className="font-anonymous text-[7px] tracking-[0.25em] uppercase text-black/30">
             {"<< scroll timeline >>"}
