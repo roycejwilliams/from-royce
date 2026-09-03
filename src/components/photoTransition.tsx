@@ -127,6 +127,24 @@ const Photos = () => {
       ref={photosRef}
       className="photos min-h-[100vh] relative flex justify-center items-center w-full overflow-hidden"
     >
+      {/* Grain filter def — generates noise independent of source content */}
+      <svg width="0" height="0" className="absolute" aria-hidden="true">
+        <filter id="photo-grain">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.85"
+            numOctaves="2"
+            stitchTiles="stitch"
+            result="noise"
+          />
+          <feColorMatrix
+            in="noise"
+            type="matrix"
+            values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.05 0"
+          />
+        </filter>
+      </svg>
+
       {/* Photo stack */}
       {photos.map((photo, index) => (
         <div
@@ -139,9 +157,27 @@ const Photos = () => {
             fill
             sizes="100vw"
             alt={`Photo ${index + 1}`}
-            className="absolute w-full h-full brightness-[0.65] object-cover"
+            className="absolute w-full h-full grayscale contrast-110 brightness-[0.8] object-cover"
             style={{ transform: "translateZ(0)" }}
           />
+          {/* Duotone tint — warm brand mid-tone multiplied over the grayscale photo */}
+          <div
+            className="absolute inset-0 bg-royce-mid/35"
+            style={{ mixBlendMode: "multiply" }}
+          />
+          {/* Grain — editorial print texture, sits above the tint */}
+          <div
+            className="absolute inset-0 opacity-40"
+            style={{ filter: "url(#photo-grain)", mixBlendMode: "overlay" }}
+          />
+          {/* Ghost numeral — large faint index mark, desktop only */}
+          <span
+            aria-hidden="true"
+            className="hidden xl:block absolute -right-4 top-1/2 -translate-y-1/2 font-cylburn text-white/[0.07] select-none pointer-events-none"
+            style={{ fontSize: "42rem", lineHeight: 1 }}
+          >
+            {index + 1}
+          </span>
           {/* Gradient — heavier at bottom for text legibility, subtle left vignette */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent" />

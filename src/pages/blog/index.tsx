@@ -28,9 +28,25 @@ function Blog() {
       </Head>
       <div className="w-full bg-[#f0ebe5] min-h-[100svh] overflow-x-hidden">
         <section aria-labelledby="posts-heading">
-          <h2 id="posts-heading" className="sr-only">
-            Blog Posts
-          </h2>
+          <header className="xl:px-24 px-6 pt-16 xl:pt-24 flex flex-col gap-3">
+            <div className="flex items-center gap-3">
+              <div className="w-4 h-px bg-black/20" />
+              <span className="font-anonymous text-[8px] tracking-[0.35em] uppercase text-black/30">
+                Essays &amp; thoughts
+              </span>
+            </div>
+            <h2
+              id="posts-heading"
+              className="font-anonymous uppercase text-black/85 leading-none"
+            >
+              <span className="font-cylburn text-[3.5rem] xl:text-[5rem] leading-[0.85]">
+                E
+              </span>
+              <span className="text-xl xl:text-3xl tracking-[0.06em]">
+                thos
+              </span>
+            </h2>
+          </header>
           <Post />
         </section>
       </div>
