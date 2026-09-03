@@ -33,9 +33,6 @@ const Grid = () => {
     },
   ];
 
-  const playlistUrl =
-    "https://embed.music.apple.com/us/playlist/intuition/pl.u-mJy88R0CzGyjKyd";
-
   const skills = [
     "UX / UI",
     "Branding",
@@ -117,16 +114,6 @@ const Grid = () => {
     </div>
   );
 
-  const iframeBlock = (
-    <iframe
-      allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
-      width="100%"
-      height="450"
-      style={{ borderRadius: "10px" }}
-      src={playlistUrl}
-    />
-  );
-
   // Shared panel shell — desktop uses absolute positioning on top of this
   const mobilePanelCls =
     "flex flex-col gap-4 border border-black/8 rounded-2xl p-6 bg-[#f0ebe5]/80 backdrop-blur-sm";
@@ -189,11 +176,6 @@ const Grid = () => {
               </Link>
             ))}
           </div>
-        </div>
-
-        <div className={mobilePanelCls}>
-          {panelLabel("What I'm playing")}
-          {iframeBlock}
         </div>
 
         <div className={mobilePanelCls}>
@@ -267,24 +249,12 @@ const Grid = () => {
           </div>
         </div>
 
-        {/* Panel 2 — Music */}
+        {/* Panel 2 — Contact */}
         <div
           className={desktopPanelCls}
           style={{
             opacity: 0,
             visibility: activePanel === 2 ? "visible" : "hidden",
-          }}
-        >
-          {panelLabel("What I'm playing")}
-          {iframeBlock}
-        </div>
-
-        {/* Panel 3 — Contact */}
-        <div
-          className={desktopPanelCls}
-          style={{
-            opacity: 0,
-            visibility: activePanel === 3 ? "visible" : "hidden",
           }}
         >
           {panelLabel("Work together")}

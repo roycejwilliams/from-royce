@@ -11,7 +11,7 @@ function getDeveloperToken() {
 
   if (!teamId || !keyId || !privateKey) {
     throw new Error(
-      "Apple Music API is not configured — missing APPLE_MUSIC_TEAM_ID, " +
+      "Apple Music API is not configured, missing APPLE_MUSIC_TEAM_ID, " +
         "APPLE_MUSIC_KEY_ID, or APPLE_MUSIC_PRIVATE_KEY. Generate a MusicKit " +
         "identifier + private key (.p8) in the Apple Developer portal " +
         "(requires an active Apple Developer Program membership) to enable this."
