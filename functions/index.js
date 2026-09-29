@@ -5,6 +5,7 @@ const next = require("next");
 const postsRouter = require("./src/routes/posts");
 const appleMusicRouter = require("./src/routes/apple-music");
 const workRouter = require("./src/routes/work");
+const { requireOwner } = require("./src/middleware/requireOwner");
 
 const dev = process.env.NODE_ENV === "development";
 const path = require("path");
@@ -16,9 +17,23 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/posts", postsRouter);
+app.use(
+  "/api/posts",
+  (req, res, next) =>
+    ["POST", "PUT", "PATCH", "DELETE"].includes(req.method)
+      ? requireOwner(req, res, next)
+      : next(),
+  postsRouter
+);
 app.use("/api/apple-music", appleMusicRouter);
-app.use("/api/work", workRouter);
+app.use(
+  "/api/work",
+  (req, res, next) =>
+    ["POST", "PUT", "PATCH", "DELETE"].includes(req.method)
+      ? requireOwner(req, res, next)
+      : next(),
+  workRouter
+);
 
 app.all("*", (req, res) => handle(req, res));
 
