@@ -93,44 +93,40 @@ const Photos = () => {
           onUpdate(self) {
             const idx = Math.min(
               photos.length - 1,
-              Math.floor(self.progress * photos.length),
+              Math.round(self.progress * (photos.length - 1)),
             );
             setActiveIndex(idx);
           },
         },
       });
 
-      // Text-block fade-in must fully finish before the *next* slide's
-      // transition starts fading that same block back out again (fires one
-      // SLIDE_SPACING later). Otherwise two tweens fight over the same
-      // element's opacity and both headlines render blended together. Keep
-      // TEXT_IN_OFFSET + TEXT_IN_DURATION comfortably under SLIDE_SPACING.
-      const SLIDE_SPACING = 0.3;
-      const TEXT_OUT_DURATION = 0.35;
-      const TEXT_IN_OFFSET = 0.05;
-      const TEXT_IN_DURATION = 0.18;
+      // Each image needs its own segment of scroll. The old 1.2-unit image
+      // tween started every 0.3 units, leaving four slides active at once.
+      // On a touch fling, scrub visibly stacked their titles and images.
+      const STEP = 1;
+      const IMAGE_DURATION = 0.7;
 
-      photoElements.forEach((photo, i) => {
-        const position = i * SLIDE_SPACING;
+      // Slide zero is visible from gsap.set above. Transition only the
+      // remaining five, so the first scroll segment is not a redundant tween.
+      photoElements.slice(1).forEach((photo, offset) => {
+        const i = offset + 1;
+        const position = i * STEP;
 
         timeline.to(
-          photo,
-          { zIndex: 1, opacity: 1, y: 0, ease: "power3.inOut", duration: 1.2 },
+          textBlocks[i - 1],
+          { opacity: 0, y: -14, duration: 0.12, ease: "power2.in" },
           position,
         );
-
-        if (i > 0) {
-          timeline.to(
-            textBlocks[i - 1],
-            { opacity: 0, y: -14, duration: TEXT_OUT_DURATION, ease: "power2.in" },
-            position,
-          );
-          timeline.to(
-            textBlocks[i],
-            { opacity: 1, y: 0, duration: TEXT_IN_DURATION, ease: "power2.out" },
-            position + TEXT_IN_OFFSET,
-          );
-        }
+        timeline.to(
+          photo,
+          { zIndex: i + 1, opacity: 1, y: 0, ease: "power3.inOut", duration: IMAGE_DURATION },
+          position,
+        );
+        timeline.to(
+          textBlocks[i],
+          { opacity: 1, y: 0, duration: 0.24, ease: "power2.out" },
+          position + 0.14,
+        );
       });
     },
     { scope: photosRef, dependencies: [] },
