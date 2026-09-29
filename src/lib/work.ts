@@ -1,3 +1,4 @@
+import { auth } from "../../firebase";
 import { BASE_URL, toSlug } from "./api";
 import type { Project } from "./projects";
 
@@ -53,9 +54,11 @@ export async function createWork(data: {
   stack?: string | null;
   status?: string | null;
 }): Promise<Project> {
+  const token = await auth?.currentUser?.getIdToken();
+  if (!token) throw new Error("Sign in required");
   const res = await fetch(`${BASE_URL}/api/work`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
     body: JSON.stringify(data),
   });
   if (!res.ok) throw new Error("Failed to create project");
