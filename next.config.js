@@ -6,6 +6,8 @@ const nextConfig = {
   outputFileTracingRoot: path.join(__dirname),
 
   images: {
+    // Reuse optimized images across visits rather than regenerating after 60 seconds.
+    minimumCacheTTL: 86400,
     remotePatterns: [
       {
         protocol: "https",
@@ -25,4 +27,3 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
-
