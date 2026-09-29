@@ -10,37 +10,37 @@ gsap.registerPlugin(ScrollTrigger);
 
 const photos = [
   {
-    src: "/images/fr1.jpeg",
+    src: "/images/fr1.webp",
     heading: "Visions",
     sub: "Crafted",
     caption: "An engineer's perspective",
   },
   {
-    src: "/images/fr2.jpeg",
+    src: "/images/fr2.webp",
     heading: "Built",
     sub: "With intent",
     caption: "Every decision deliberate",
   },
   {
-    src: "/images/fr3.jpeg",
+    src: "/images/fr3.webp",
     heading: "Depth",
     sub: "In the detail",
     caption: "Where craft lives",
   },
   {
-    src: "/images/fr4.jpeg",
+    src: "/images/fr4.webp",
     heading: "Made",
     sub: "To last",
     caption: "Products that hold their weight",
   },
   {
-    src: "/images/fr5.jpeg",
+    src: "/images/fr5.webp",
     heading: "Quiet",
     sub: "Confidence",
     caption: "No noise, just signal",
   },
   {
-    src: "/images/fr6.jpeg",
+    src: "/images/fr6.webp",
     heading: "Shape",
     sub: "Of things",
     caption: "Form follows function",
