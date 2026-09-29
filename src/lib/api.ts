@@ -1,3 +1,4 @@
+import { auth } from "../../firebase";
 import { format, parseISO } from "date-fns";
 import type { BlogPost } from "@/types";
 
@@ -50,9 +51,11 @@ export async function createPost(data: {
   content: string;
   image: string | null;
 }): Promise<BlogPost> {
+  const token = await auth?.currentUser?.getIdToken();
+  if (!token) throw new Error("Sign in required");
   const res = await fetch(`${BASE_URL}/api/posts`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
     body: JSON.stringify(data),
   });
   if (!res.ok) throw new Error("Failed to create post");
