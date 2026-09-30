@@ -44,34 +44,13 @@ router.get("/tracks", async (req, res) => {
   }
 });
 
-// Playlist lookup. Returns the playlist resource with its track list
-// embedded via `?include=tracks`, each track shaped like the /tracks songs
-// resource above. https://api.music.apple.com/v1/catalog/{storefront}/playlists/{id}
+// One allowlisted public playlist. No developer token or arbitrary target URL.
 router.get("/playlist/:id", async (req, res) => {
-  const { id } = req.params;
-
-  let token;
-  try {
-    token = getDeveloperToken();
-  } catch (err) {
-    return res.status(501).json({ message: err.message });
-  }
-
-  try {
-    const url = `https://api.music.apple.com/v1/catalog/${STOREFRONT}/playlists/${encodeURIComponent(id)}?include=tracks`;
-    const appleRes = await fetch(url, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    if (!appleRes.ok) {
-      const text = await appleRes.text();
-      return res.status(appleRes.status).json({ message: text });
-    }
-    const data = await appleRes.json();
-    res.json(data);
-  } catch (err) {
-    console.error("GET /api/apple-music/playlist/:id error:", err);
-    res.status(500).send("Server error");
-  }
+  const { PLAYLIST_ID, getPublicPlaylist } = require("../lib/publicPlaylist");
+  if (req.params.id !== PLAYLIST_ID) return res.status(404).json({ message: "Playlist unavailable" });
+  const { playlist, snapshot } = await getPublicPlaylist();
+  res.set("Cache-Control", "public, max-age=300");
+  res.json({ playlist, snapshot });
 });
 
 module.exports = router;
