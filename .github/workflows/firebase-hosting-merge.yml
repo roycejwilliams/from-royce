@@ -38,6 +38,12 @@ jobs:
       - name: Install root dependencies and build Next.js
         run: npm ci && npm run build
 
+      - name: Install Functions Dependencies
+        working-directory: functions
+        run: npm ci --omit=dev
+      - name: Verify types, lint and focused regressions
+        run: npm run typecheck && npm run lint && npm test
+
       - name: Prepare Firebase Functions directory for SSR
         run: |
           mkdir -p functions
@@ -45,11 +51,6 @@ jobs:
           cp -r public functions/public
           cp next.config.js functions/
           cp -r src functions/src || true
-      - name: Install Functions Dependencies
-        working-directory: functions
-        run: npm ci --omit=dev
-      - name: Verify types, lint and focused regressions
-        run: npm run typecheck && npm run lint && npm test
       - name: Install Firebase CLI
         run: npm install -g firebase-tools@15.32.0
 
