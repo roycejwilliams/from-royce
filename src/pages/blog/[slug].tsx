@@ -1,3 +1,4 @@
+import { useReducedMotion } from "../../hooks/useReducedMotion";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -22,8 +23,10 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ params, re
 };
 export default function BlogSlugPage({ post, loadError }: Props) {
   const router = useRouter();
+  const reduced = useReducedMotion();
   useGSAP(() => {
     if (!post) return;
+    if (reduced) { gsap.set(".show", { opacity: 1, y: 0 }); return; }
     gsap.fromTo(
       ".show",
       { opacity: 0, y: 30 },
@@ -36,7 +39,7 @@ export default function BlogSlugPage({ post, loadError }: Props) {
         delay: 0.1,
       },
     );
-  }, [post]);
+  }, { dependencies: [post, reduced], revertOnUpdate: true });
 
   if (loadError || !post) {
     return <div className="min-h-[100svh] bg-[#f0ebe5] flex flex-col gap-4 items-center justify-center font-anonymous">

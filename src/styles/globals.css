@@ -266,3 +266,16 @@ body {
     top: 0;
   }
 }
+
+/* Respect the visitor's motion preference without changing normal presentation. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  .reveal, .route-transition, .show { opacity: 1 !important; transform: none !important; }
+  .g { stroke-dashoffset: 0 !important; }
+  .photos { display: block !important; }
+  .photo { position: relative !important; top: auto !important; left: auto !important; transform: none !important; opacity: 1 !important; height: 85svh !important; min-height: 520px !important; }
+  .photo-visual { opacity: 1 !important; transform: none !important; }
+  .photo-caption { display: block !important; }
+  .photo-desktop-overlay { display: none !important; }
+}
