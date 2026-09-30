@@ -36,4 +36,14 @@ The PR Hosting preview workflow is not an isolated SSR environment. Its credenti
 
 ## Current limits
 
-No versioned Storage rules/emulator suite is in this repository yet. Upload idempotency/orphan handling, TLS effective configuration, memory capacity/alerts, isolated staging and dependency audit follow-up are still open. A memory increase needs owner approval. Ethos responsive derivative work is a separate change and must preserve originals and post content.
+Storage rules are versioned in `storage.rules` and tested by the isolated suite in `tests/storage`. Main deployment does not deploy Storage rules. Upload size/type limits are still open. Upload idempotency/orphan handling, TLS effective configuration, memory capacity/alerts, isolated staging and dependency audit follow-up are still open. A memory increase needs owner approval. Ethos responsive derivative work is a separate change and must preserve originals and post content.
+
+## Empty Work schema setup
+
+Dummy seeding is disabled, including the old `seed-projects.js` entry point. The schema-only migration `functions/migrations/001-project-schema.sql` creates the table/index without inserting, updating or deleting content. For a separate local database with `LOCAL_DATABASE_URL` set:
+
+```sh
+NODE_ENV=development node functions/scripts/migrate-project-schema.js --apply-local
+```
+
+The script refuses production mode and does not use `DATABASE_URL`. This migration is not run by deployment. Do not apply it to production without reviewing the target and schema first. Its regression tests use a fake database and verify transaction/rollback behavior and no content-changing SQL; they do not prove PostgreSQL compatibility or a deployed schema. Live `/api/work` reads are the production smoke check.
