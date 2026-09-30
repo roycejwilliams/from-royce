@@ -60,6 +60,19 @@ const Photos = () => {
         photosRef.current?.querySelectorAll<HTMLElement>(".photo-text") ?? [],
       );
 
+      const media = gsap.matchMedia();
+      media.add("(max-width: 1023px)", () => {
+        // Touch scrolling should move the page, not hold it in a long pin.
+        // Each photo and its caption remain together in normal document flow.
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        photoElements.forEach((photo) => {
+          gsap.from(photo.querySelector(".photo-visual"), {
+            opacity: 0.6, y: 24, duration: 0.65, ease: "power2.out",
+            scrollTrigger: { trigger: photo, start: "top 85%", once: true },
+          });
+        });
+      });
+      media.add("(min-width: 1024px)", () => {
       photoElements.forEach((photo, i) => {
         gsap.set(photo, { zIndex: -i, y: 40, opacity: i === 0 ? 1 : 0 });
       });
@@ -78,7 +91,7 @@ const Photos = () => {
             `+=${
               photos.length *
               document.documentElement.clientHeight *
-              (window.innerWidth < 768 ? 0.75 : 0.6)
+              0.6
             }`,
           scrub: 1,
           // Prevents a fast flick/fling scroll from leaving several slides'
@@ -128,6 +141,8 @@ const Photos = () => {
           position + 0.14,
         );
       });
+      });
+      return () => media.revert();
     },
     { scope: photosRef, dependencies: [] },
   );
@@ -135,7 +150,7 @@ const Photos = () => {
   return (
     <section
       ref={photosRef}
-      className="photos min-h-[100vh] relative flex justify-center items-center w-full overflow-hidden"
+      className="photos relative w-full overflow-hidden lg:min-h-[100vh] lg:flex lg:justify-center lg:items-center"
     >
       {/* Grain filter def: generates noise independent of source content */}
       <svg width="0" height="0" className="absolute" aria-hidden="true">
@@ -159,8 +174,9 @@ const Photos = () => {
       {photos.map((photo, index) => (
         <div
           key={index}
-          className={`photo photo-${index} w-full h-screen absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden origin-bottom`}
+          className={`photo photo-${index} relative w-full h-[85svh] min-h-[520px] lg:min-h-0 lg:h-screen lg:absolute lg:top-1/2 lg:left-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 overflow-hidden origin-bottom`}
         >
+          <div className="photo-visual absolute inset-0">
           <Image
             priority={index === 0}
             src={photo.src}
@@ -180,6 +196,21 @@ const Photos = () => {
             className="absolute inset-0 opacity-40"
             style={{ filter: "url(#photo-grain)", mixBlendMode: "overlay" }}
           />
+          </div>
+          <div className="lg:hidden absolute inset-x-0 bottom-0 z-10 px-6 pb-16 text-white">
+            <div className="font-anonymous text-[8px] tracking-[0.35em] text-white/60 mb-4">
+              {String(index + 1).padStart(3, "0")} / {String(photos.length).padStart(3, "0")}
+            </div>
+            <h2 className="font-anonymous uppercase leading-none">
+              {[photo.heading, photo.sub].map((line, lineIndex) => (
+                <span key={lineIndex} className="block">
+                  <span className={`font-cylburn text-[4rem] leading-[0.85] ${dropCapTightening(line[0])}`}>{line[0]}</span>
+                  <span className="text-xl tracking-[0.04em]">{line.slice(1)}</span>
+                </span>
+              ))}
+            </h2>
+            <p className="font-anonymous text-[8px] tracking-[0.25em] uppercase text-white/60 mt-5">{photo.caption}</p>
+          </div>
           {/* Ghost numeral: large faint index mark, desktop only */}
           <span
             aria-hidden="true"
@@ -195,7 +226,7 @@ const Photos = () => {
       ))}
 
       {/* Text blocks: bottom-anchored on mobile, centered left on desktop */}
-      <div className="absolute inset-0 z-50 pointer-events-none flex items-end xl:items-center">
+      <div className="absolute inset-0 z-50 pointer-events-none hidden lg:flex items-end xl:items-center">
         {photos.map((photo, index) => (
           <div
             key={index}
@@ -242,7 +273,7 @@ const Photos = () => {
       </div>
 
       {/* Progress: active segment brightens, right on desktop / center on mobile */}
-      <div className="absolute bottom-8 xl:bottom-10 left-1/2 xl:left-auto -translate-x-1/2 xl:translate-x-0 xl:right-24 z-50 flex gap-2 items-center">
+      <div className="absolute bottom-8 xl:bottom-10 left-1/2 xl:left-auto -translate-x-1/2 xl:translate-x-0 xl:right-24 z-50 hidden lg:flex gap-2 items-center">
         {photos.map((_, i) => (
           <div
             key={i}
