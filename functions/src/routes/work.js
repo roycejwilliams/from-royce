@@ -1,16 +1,17 @@
 const express = require("express");
 const router = express.Router();
 const pool = require("../db/db");
-const { toSlug } = require("../lib/slug");
+const { insertWithStableSlug, validateTitle } = require("../lib/slug");
 
 router.post("/", async (req, res) => {
   try {
     const { title, descriptor, role, tags, year, src, liveUrl, stack, status } = req.body;
-    const newProject = await pool.query(
+    validateTitle(title, 255);
+    const newProject = await insertWithStableSlug(title, (slug) => pool.query(
       `INSERT INTO project (slug, title, descriptor, role, tags, year, src, live_url, stack, status)
        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *`,
       [
-        toSlug(title),
+        slug,
         title,
         descriptor,
         role,
@@ -21,9 +22,11 @@ router.post("/", async (req, res) => {
         stack || null,
         status || null,
       ]
-    );
+    ));
     res.json(newProject.rows[0]);
   } catch (err) {
+    if (err.status === 400) return res.status(400).json({ message: err.message });
+    if (err.code === "23505") return res.status(409).json({ message: "Project URL already exists" });
     console.error("POST /api/work error:", err);
     res.status(500).send("Server error");
   }
@@ -73,12 +76,12 @@ router.put("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const { title, descriptor, role, tags, year, src, liveUrl, stack, status } = req.body;
+    validateTitle(title, 255);
     await pool.query(
-      `UPDATE project SET slug = $1, title = $2, descriptor = $3, role = $4, tags = $5,
-              year = $6, src = $7, live_url = $8, stack = $9, status = $10
-       WHERE project_id = $11`,
+      `UPDATE project SET title = $1, descriptor = $2, role = $3, tags = $4,
+              year = $5, src = $6, live_url = $7, stack = $8, status = $9
+       WHERE project_id = $10`,
       [
-        toSlug(title),
         title,
         descriptor,
         role,
@@ -93,6 +96,7 @@ router.put("/:id", async (req, res) => {
     );
     res.json("Project updated");
   } catch (err) {
+    if (err.status === 400) return res.status(400).json({ message: err.message });
     console.error("PUT /api/work/:id error:", err);
     res.status(500).send("Server error");
   }

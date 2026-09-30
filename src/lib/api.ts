@@ -21,7 +21,7 @@ export function formatPost(p: Record<string, unknown>): BlogPost {
   return {
     ...post,
     formatted_date: post.post_date
-      ? format(parseISO(post.post_date), "MM/dd/yy")
+      ? format(parseISO(post.post_date.slice(0, 10)), "MM/dd/yy")
       : "-",
     formatted_time: post.post_time
       ? format(parseISO(`1970-01-01T${post.post_time}`), "hh:mm a")

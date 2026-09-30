@@ -1,4 +1,7 @@
-const { Pool } = require("pg");
+const { Pool, types } = require("pg");
+
+// PostgreSQL DATE is a calendar day, not a UTC timestamp.
+types.setTypeParser(1082, (value) => value);
 
 const isProd = process.env.NODE_ENV === "production";
 
