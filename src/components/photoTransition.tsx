@@ -61,7 +61,7 @@ const Photos = () => {
       );
 
       const media = gsap.matchMedia();
-      media.add("(max-width: 1023px)", () => {
+      media.add("(max-width: 1023px) and (prefers-reduced-motion: no-preference)", () => {
         // Touch scrolling should move the page, not hold it in a long pin.
         // Each photo and its caption remain together in normal document flow.
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -72,7 +72,7 @@ const Photos = () => {
           });
         });
       });
-      media.add("(min-width: 1024px)", () => {
+      media.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
       photoElements.forEach((photo, i) => {
         gsap.set(photo, { zIndex: -i, y: 40, opacity: i === 0 ? 1 : 0 });
       });
@@ -197,7 +197,7 @@ const Photos = () => {
             style={{ filter: "url(#photo-grain)", mixBlendMode: "overlay" }}
           />
           </div>
-          <div className="lg:hidden absolute inset-x-0 bottom-0 z-10 px-6 pb-16 text-white">
+          <div className="photo-caption lg:hidden absolute inset-x-0 bottom-0 z-10 px-6 pb-16 text-white">
             <div className="font-anonymous text-[8px] tracking-[0.35em] text-white/60 mb-4">
               {String(index + 1).padStart(3, "0")} / {String(photos.length).padStart(3, "0")}
             </div>
@@ -226,7 +226,7 @@ const Photos = () => {
       ))}
 
       {/* Text blocks: bottom-anchored on mobile, centered left on desktop */}
-      <div className="absolute inset-0 z-50 pointer-events-none hidden lg:flex items-end xl:items-center">
+      <div className="photo-desktop-overlay absolute inset-0 z-50 pointer-events-none hidden lg:flex items-end xl:items-center">
         {photos.map((photo, index) => (
           <div
             key={index}
@@ -273,7 +273,7 @@ const Photos = () => {
       </div>
 
       {/* Progress: active segment brightens, right on desktop / center on mobile */}
-      <div className="absolute bottom-8 xl:bottom-10 left-1/2 xl:left-auto -translate-x-1/2 xl:translate-x-0 xl:right-24 z-50 hidden lg:flex gap-2 items-center">
+      <div className="photo-desktop-overlay absolute bottom-8 xl:bottom-10 left-1/2 xl:left-auto -translate-x-1/2 xl:translate-x-0 xl:right-24 z-50 hidden lg:flex gap-2 items-center">
         {photos.map((_, i) => (
           <div
             key={i}
@@ -290,7 +290,7 @@ const Photos = () => {
       </div>
 
       {/* Slide label: top right, desktop only */}
-      <div className="absolute top-8 right-8 xl:right-24 z-50 hidden xl:flex flex-col items-end gap-1">
+      <div className="photo-desktop-overlay absolute top-8 right-8 xl:right-24 z-50 hidden xl:flex flex-col items-end gap-1">
         <span className="font-anonymous text-[7px] tracking-[0.3em] uppercase text-white/20">
           Selected work
         </span>
