@@ -25,5 +25,5 @@ export async function loadWorkDetail(slug: string) {
   if (!raw) return null;
   const all = await fetchDetailData("/api/work");
   if (!all || !Array.isArray(all.project)) throw new Error("Invalid project list");
-  return { project: formatProject(raw, Math.max(0, all.project.findIndex(p => p.slug === slug))), projects: all.project.map(formatProject) };
+  return { project: formatProject(raw, Math.max(0, all.project.findIndex((p: { slug: string }) => p.slug === slug))), projects: all.project.map(formatProject) };
 }
