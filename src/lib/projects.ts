@@ -7,7 +7,7 @@ export type Project = {
   tags: string[];
   year: string;
   src: string;
-  liveUrl?: string;
-  stack?: string;
-  status?: string;
+  liveUrl?: string | null;
+  stack?: string | null;
+  status?: string | null;
 };

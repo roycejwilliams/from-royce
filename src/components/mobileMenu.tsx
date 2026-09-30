@@ -28,6 +28,7 @@ const MobileMenu = ({
 
   useEffect(() => {
     if (!menu) return;
+    const toggle = toggleRef.current;
     const background = document.querySelector<HTMLElement>("#page-content");
     const wasInert = background?.inert ?? false;
     const frame = requestAnimationFrame(() => linksRef.current?.querySelector<HTMLAnchorElement>("a")?.focus());
@@ -46,7 +47,7 @@ const MobileMenu = ({
       cancelAnimationFrame(frame);
       document.removeEventListener("keydown", keydown);
       if (background) background.inert = wasInert;
-      toggleRef.current?.focus();
+      toggle?.focus();
     };
   }, [menu]);
 
