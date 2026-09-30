@@ -1,3 +1,4 @@
+import { useReducedMotion } from "../hooks/useReducedMotion";
 import Head from "next/head";
 import Image from "next/image";
 import { useRef } from "react";
@@ -6,11 +7,16 @@ import { useGSAP } from "@gsap/react";
 import Link from "next/link";
 
 const Splash = () => {
+  const reduced = useReducedMotion();
   const logoRef = useRef<HTMLAnchorElement>(null);
   const promptRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
+    if (reduced) {
+      gsap.set([logoRef.current, promptRef.current, lineRef.current], { opacity: 1, scale: 1, y: 0 });
+      return;
+    }
     const tl = gsap.timeline();
     tl.fromTo(
       logoRef.current,
@@ -29,7 +35,7 @@ const Splash = () => {
         { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
         "-=0.4",
       );
-  }, []);
+  }, { dependencies: [reduced], revertOnUpdate: true });
 
   return (
     <>
