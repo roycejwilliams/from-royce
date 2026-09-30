@@ -62,6 +62,7 @@ const WorkDraft: React.FC = () => {
     let finalImageUrl = imageUrl;
 
     if (uploadedFile) {
+      if (!storage) return;
       const imageRef = ref(storage, `work/${uploadedFile.name}-${Date.now()}`);
       try {
         const snapshot = await uploadBytes(imageRef, uploadedFile);
