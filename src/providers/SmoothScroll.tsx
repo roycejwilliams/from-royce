@@ -7,6 +7,7 @@ import {
 } from "react";
 import { useRouter } from "next/router";
 import Lenis from "lenis";
+import { useReducedMotion } from "../hooks/useReducedMotion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -19,8 +20,10 @@ export const useLenis = () => useContext(LenisContext);
 export default function SmoothScroll({ children }: { children: ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null);
   const router = useRouter();
+  const reduced = useReducedMotion();
 
   useEffect(() => {
+    if (reduced) return;
     const lenis = new Lenis({
       duration: 1.1,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -40,7 +43,7 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
       lenis.destroy();
       lenisRef.current = null;
     };
-  }, []);
+  }, [reduced]);
 
   useEffect(() => {
     const onRouteChange = () => {
