@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint src firebase.ts",
     "typecheck": "tsc --noEmit",
-    "test": "node functions/scripts/test-calendar-slugs.cjs && node tests/detail-data.cjs && node tests/project-serialization.cjs && node tests/sign-in-persistence.cjs && node tests/project-schema.cjs"
+    "test": "node functions/scripts/test-calendar-slugs.cjs && node tests/detail-data.cjs && node tests/project-serialization.cjs && node tests/sign-in-persistence.cjs && node tests/project-schema.cjs && node tests/upload-image.cjs && node tests/upload-submit.cjs"
   },
   "overrides": {
     "picomatch": "^4.0.2",
