@@ -35,7 +35,7 @@ async function main() {
     process.env.TZ=tz;
     for(const post_date of ['2026-09-29','2026-09-29T00:00:00.000Z']) assert.equal(exports.formatPost({post_date,post_title:'Test',slug:'test'}).formatted_date,'09/29/26');
   }
-  const parsers={};vm.runInNewContext(fs.readFileSync(`${__dirname}/../src/db/db.js`,'utf8'),{require:()=>({Pool:class{},types:{setTypeParser:(id,fn)=>parsers[id]=fn}}),process:{env:{NODE_ENV:'production'}},module:{exports:{}}});
+  const parsers={};vm.runInNewContext(fs.readFileSync(`${__dirname}/../src/db/db.js`,'utf8'),{require:id=>id==='pg'?{Pool:class{},types:{setTypeParser:(id,fn)=>parsers[id]=fn}}:require('../src/lib/database-config'),process:{env:{NODE_ENV:'production',DATABASE_URL:'postgresql://u:p@example.test/db?sslmode=require'}},module:{exports:{}}});
   assert.equal(parsers[1082]('2026-09-29'),'2026-09-29');
   console.log('calendar date and stable slug tests passed');
 }

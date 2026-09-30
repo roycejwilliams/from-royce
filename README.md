@@ -7,7 +7,7 @@ Next.js Pages Router portfolio, Ethos blog and Work catalogue. Firebase Hosting 
 - Node.js 22.23.3, the same version pinned in production CI.
 - Run `npm ci` at the root and `npm ci --omit=dev` in `functions`. Both lockfiles are required.
 - Local environment settings go in ignored `.env.local` files, never source control. The frontend requires the `NEXT_PUBLIC_FIREBASE_*` settings in `firebase.ts`. These client settings are public configuration, not database credentials.
-- API development uses `LOCAL_DATABASE_URL`; deployed Functions use `DATABASE_URL`. Never print or put database URLs in page props. Production SSL behavior must be verified against the driver and provider; the explicit old TLS override is still an open review item.
+- API development uses `LOCAL_DATABASE_URL`; deployed Functions use `DATABASE_URL`. Never print or put database URLs in page props. Production configuration explicitly validates TLS certificates/hostnames. Accepted connection-string SSL flags are normalized so they cannot replace the validation object; unsafe modes and custom certificate paths fail without printing credentials. The deployed Neon secret was checked read-only for SSL flags, not changed.
 
 ## Development
 
@@ -36,7 +36,7 @@ The PR Hosting preview workflow is not an isolated SSR environment. Its credenti
 
 ## Current limits
 
-Storage rules are versioned in `storage.rules` and tested by the isolated suite in `tests/storage`. Main deployment does not deploy Storage rules. Upload size/type limits are still open. Upload idempotency/orphan handling, TLS effective configuration, memory capacity/alerts, isolated staging and dependency audit follow-up are still open. A memory increase needs owner approval. Ethos responsive derivative work is a separate change and must preserve originals and post content.
+Storage rules are versioned in `storage.rules` and tested by the isolated suite in `tests/storage`. Main deployment does not deploy Storage rules. Upload size/type limits are still open. Upload idempotency/orphan handling, memory capacity/alerts, isolated staging and dependency audit follow-up are still open. A memory increase needs owner approval. Ethos responsive derivative work is a separate change and must preserve originals and post content.
 
 ## Empty Work schema setup
 
@@ -47,3 +47,5 @@ NODE_ENV=development node functions/scripts/migrate-project-schema.js --apply-lo
 ```
 
 The script refuses production mode and does not use `DATABASE_URL`. This migration is not run by deployment. Do not apply it to production without reviewing the target and schema first. Its regression tests use a fake database and verify transaction/rollback behavior and no content-changing SQL; they do not prove PostgreSQL compatibility or a deployed schema. Live `/api/work` reads are the production smoke check.
+
+TLS regression tests require OpenSSL and the Functions install. They use an ephemeral local protocol fixture to check rejected untrusted certificates/wrong hostnames and accepted trusted hostnames. They do not connect to production or authenticate against a real database.
