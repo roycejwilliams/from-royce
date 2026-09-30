@@ -106,6 +106,11 @@ function WorkCatalogue() {
             <ProjectRowSkeleton />
           </>
         )}
+        {!isPending && !isError && data?.length === 0 && (
+          <p className="font-anonymous text-[10px] tracking-[0.2em] uppercase text-black/60 text-center py-12">
+            No projects published yet.
+          </p>
+        )}
         {data?.map((project) => (
           <ProjectRow key={project.slug} project={project} />
         ))}
