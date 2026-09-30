@@ -1,0 +1,1188 @@
+{
+  "id": "pl.u-mJy88R0CzGyjKyd",
+  "attributes": {
+    "name": "Intuition",
+    "url": "https://music.apple.com/us/playlist/intuition/pl.u-mJy88R0CzGyjKyd",
+    "artwork": {
+      "url": "https://is1-ssl.mzstatic.com/image/thumb/SG-MQ-US-001-Image000001/v4/fc/43/33/fc4333e8-6123-a365-78d6-8f9f6158eb44/image/600x600bb.jpg",
+      "width": 600,
+      "height": 600
+    }
+  },
+  "relationships": {
+    "tracks": {
+      "data": [
+        {
+          "id": "6797680453",
+          "attributes": {
+            "name": "Thank You",
+            "artistName": "Majid Jordan",
+            "url": "https://music.apple.com/us/album/thank-you/6797680011?i=6797680453",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d1/c4/28/d1c4281a-e939-b358-9509-2c8efec06a30/808391396920.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/46/5a/7f/465a7fea-f3d2-9084-a099-1216e531c670/mzaf_7918059880355922320.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1614884113",
+          "attributes": {
+            "name": "She's Not Around",
+            "artistName": "Jay Worthy, Larry June & LNDN DRGS",
+            "url": "https://music.apple.com/us/album/shes-not-around/1614883776?i=1614884113",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/a2/56/2c/a2562c60-896c-c9e3-3eac-525f31407ded/194690801808_cover.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/fa/71/85/fa71854f-a0fd-88dc-7efd-3439b58cc956/mzaf_17840723069885805932.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "485817497",
+          "attributes": {
+            "name": "Candy Coated",
+            "artistName": "LE$",
+            "url": "https://music.apple.com/us/album/candy-coated/485817378?i=485817497",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/40/88/93/408893a1-f129-e71d-8293-48369f7375fc/mzi.iqgrupcz.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/b6/3c/9f/b63c9ffb-9bd2-3fd3-bff3-57df06fb707b/mzaf_4572826314888852317.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1846194889",
+          "attributes": {
+            "name": "Suburban Dude",
+            "artistName": "2SKi",
+            "url": "https://music.apple.com/us/album/suburban-dude/1846194885?i=1846194889",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/30/ee/c8/30eec86d-732b-9a53-890a-cb85b3ee210c/58686.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/e2/0d/2c/e20d2c0e-d3d4-07c9-5c02-34d94bd8482c/mzaf_3477626761518689585.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1527305622",
+          "attributes": {
+            "name": "Cardinal Sin",
+            "artistName": "Boldy James",
+            "url": "https://music.apple.com/us/album/cardinal-sin/1527305434?i=1527305622",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/68/a2/90/68a290af-3884-f4ee-5714-92a915379f4c/194690297861_cover.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/5b/fb/b8/5bfbb869-a09d-2ae1-8b36-ba88e7b2e3f6/mzaf_1433290088897244085.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1108565738",
+          "attributes": {
+            "name": "Porzingis",
+            "artistName": "Wintertime",
+            "url": "https://music.apple.com/us/album/porzingis/1108565525?i=1108565738",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music30/v4/a6/79/bb/a679bb30-79ef-4df3-7367-912f25b20cfe/888915223482_cover.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/b5/cc/ca/b5cccaa8-e36f-ccba-a465-71929892dd74/mzaf_3032664785209644552.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "6785638922",
+          "attributes": {
+            "name": "Wavy Federal Bank",
+            "artistName": "King Hendrick$",
+            "url": "https://music.apple.com/us/album/wavy-federal-bank/6785638037?i=6785638922",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/b7/5d/44/b75d44e5-616a-f3bf-6bfe-30e9ce78e160/859741478834_cover.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/5b/74/a3/5b74a3fe-bc1d-c942-7ef6-42a03ccdfb3b/mzaf_1296142691166115700.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1875081094",
+          "attributes": {
+            "name": "The Fall-Off is Inevitable",
+            "artistName": "J. Cole",
+            "url": "https://music.apple.com/us/album/the-fall-off-is-inevitable/1875080726?i=1875081094",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/8a/c3/eb/8ac3ebe8-9ec2-1a21-0654-8dcad1654304/26UMGIM15402.rgb.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/c1/dc/93/c1dc935b-365c-94ac-df6d-5547226e4c38/mzaf_5160283102603626751.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1584281470",
+          "attributes": {
+            "name": "Champagne Poetry",
+            "artistName": "Drake",
+            "url": "https://music.apple.com/us/album/champagne-poetry/1584281467?i=1584281470",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/11/36/38/1136384a-eebc-697a-c005-d890e41c0854/21UM1IM07518.rgb.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/b5/07/43/b5074375-47cd-480b-443f-986191c1735f/mzaf_10335396099672496444.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1851817670",
+          "attributes": {
+            "name": "93' Impala",
+            "artistName": "Shaudie Man",
+            "url": "https://music.apple.com/us/album/93-impala/1851817669?i=1851817670",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/87/4e/c5/874ec5a4-1152-5935-87bc-161caaf04e97/artwork.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/66/5e/3f/665e3f5b-d210-66e1-651e-c2e876652f3e/mzaf_2186253289676111873.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "718442947",
+          "attributes": {
+            "name": "Dominic",
+            "artistName": "DOM KENNEDY",
+            "url": "https://music.apple.com/us/album/dominic/718440669?i=718442947",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a0/b1/f1/a0b1f19e-bd53-3603-01c4-b1068391ef81/859711346460_cover.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/82/85/d8/8285d894-303b-8bf0-1e7c-9017cf8e7395/mzaf_3937356192052562147.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1530670138",
+          "attributes": {
+            "name": "Strange to Hear",
+            "artistName": "Sports",
+            "url": "https://music.apple.com/us/album/strange-to-hear/1530670131?i=1530670138",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/d4/fa/69/d4fa69a7-75df-1d1a-6d06-216ffa56becf/0.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/fb/82/8b/fb828b0e-372f-6117-8722-c4de1ff2d415/mzaf_617632288742018161.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1552470424",
+          "attributes": {
+            "name": "Y.D.L.R.",
+            "artistName": "Tory Lanez",
+            "url": "https://music.apple.com/us/album/y-d-l-r/1552470080?i=1552470424",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/5e/84/e5/5e84e5a0-e11a-b576-9a22-29f8776ae7b9/cover.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/01/2a/93/012a937f-908b-3212-fa21-b10d0643c7ca/mzaf_13796891035671320852.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1213158673",
+          "attributes": {
+            "name": "Santorini Greece",
+            "artistName": "Rick Ross",
+            "url": "https://music.apple.com/us/album/santorini-greece/1213158632?i=1213158673",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/99/f9/35/99f935ba-ffe8-f4c8-ce8c-101335a88527/886446257198.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/e1/6b/dc/e16bdc3c-26f2-f4a1-9acc-27aee3661d96/mzaf_14343411844261345319.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1500080157",
+          "attributes": {
+            "name": "Reflections",
+            "artistName": "LUCKI",
+            "url": "https://music.apple.com/us/album/reflections/1500080148?i=1500080157",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/8e/ab/53/8eab53b8-7d35-6f16-1861-ca9beec7f924/194690137983_cover.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/b4/29/3d/b4293d1f-6aa6-9003-2488-7b0593bae3f9/mzaf_11364779984641902839.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1657274077",
+          "attributes": {
+            "name": "Hurt Me Too",
+            "artistName": "10kdunkin",
+            "url": "https://music.apple.com/us/album/hurt-me-too/1657274060?i=1657274077",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/40/80/dc/4080dc1f-aadc-4b32-c28b-dc1740c85aa6/88.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/93/b8/77/93b877f2-1308-b7d0-313a-d00696ac7df0/mzaf_11878728879178700362.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1825697681",
+          "attributes": {
+            "name": "Permanent Scarz",
+            "artistName": "Loe Shimmy",
+            "url": "https://music.apple.com/us/album/permanent-scarz/1825697667?i=1825697681",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/9b/76/48/9b764810-1da2-0255-09dd-9f5d358471be/764656424572_cover.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/c4/18/9a/c4189aaa-b286-daa7-8cae-034ea30f1c42/mzaf_7381141453420308962.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1440766139",
+          "attributes": {
+            "name": "Sierra Leone",
+            "artistName": "Frank Ocean",
+            "url": "https://music.apple.com/us/album/sierra-leone/1440765580?i=1440766139",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/04/f8/63/04f863fc-2852-604f-c910-a97ac069506b/12UMGIM40339.rgb.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/73/26/58/73265814-8225-45ee-bc31-0ce4ebe09422/mzaf_7125582502127340571.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1552470773",
+          "attributes": {
+            "name": "Don’t Walk Away...Just Trust Me",
+            "artistName": "Tory Lanez",
+            "url": "https://music.apple.com/us/album/dont-walk-away-just-trust-me/1552470080?i=1552470773",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/5e/84/e5/5e84e5a0-e11a-b576-9a22-29f8776ae7b9/cover.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/1e/5e/46/1e5e4619-f053-5580-5671-e7b92a39df11/mzaf_1312597146204032662.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "6797680452",
+          "attributes": {
+            "name": "Every Last Bit Of My Love",
+            "artistName": "Majid Jordan",
+            "url": "https://music.apple.com/us/album/every-last-bit-of-my-love/6797680011?i=6797680452",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d1/c4/28/d1c4281a-e939-b358-9509-2c8efec06a30/808391396920.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/00/c2/64/00c26431-e31a-5f53-9c27-e30085104683/mzaf_12092823684190014897.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1614884111",
+          "attributes": {
+            "name": "Leave It Up To Me",
+            "artistName": "Jay Worthy, Larry June & LNDN DRGS",
+            "url": "https://music.apple.com/us/album/leave-it-up-to-me/1614883776?i=1614884111",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/a2/56/2c/a2562c60-896c-c9e3-3eac-525f31407ded/194690801808_cover.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/df/7c/02/df7c0269-14ee-02fd-f809-0ca81c6e3ffe/mzaf_7502514900248083889.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1589219747",
+          "attributes": {
+            "name": "Love You More (Outro)",
+            "artistName": "DOM KENNEDY",
+            "url": "https://music.apple.com/us/album/love-you-more-outro/1589218634?i=1589219747",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/3a/1d/e2/3a1de2f1-e629-e39b-1eae-d401197e1363/859750832061_cover.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/47/bc/80/47bc80bc-2ab5-81bb-e762-1d24d2524ce3/mzaf_2542475595790227560.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1589219429",
+          "attributes": {
+            "name": "Deep Thought (feat. Kay Franklin & MyGuyMars)",
+            "artistName": "DOM KENNEDY",
+            "url": "https://music.apple.com/us/album/deep-thought-feat-kay-franklin-myguymars/1589218634?i=1589219429",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/3a/1d/e2/3a1de2f1-e629-e39b-1eae-d401197e1363/859750832061_cover.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/6c/a6/24/6ca62476-56fe-27a1-3f39-00c0cb2fd668/mzaf_17488671889485014877.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "807204236",
+          "attributes": {
+            "name": "Webbie Flow (U Like)",
+            "artistName": "Isaiah Rashad",
+            "url": "https://music.apple.com/us/album/webbie-flow-u-like/807204094?i=807204236",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/bc/ff/6b/bcff6b30-6bef-8f19-e646-67e7e34cb111/859711929908_cover.tif/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/ef/ff/ca/efffcafa-66d9-4c0f-a22c-c27e0467bb12/mzaf_16611519631979385770.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1459659646",
+          "attributes": {
+            "name": "Free Game",
+            "artistName": "Baby Smoove",
+            "url": "https://music.apple.com/us/album/free-game/1459658844?i=1459659646",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/fb/c1/2f/fbc12ff4-b28c-453f-a06b-cbe91991f020/859731676479_cover.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/cb/47/18/cb4718d9-84a5-f191-7284-d6ed1d48cf15/mzaf_12362200852751479890.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "6807993804",
+          "attributes": {
+            "name": "Havers",
+            "artistName": "Michigan Meech & Baby Smoove",
+            "url": "https://music.apple.com/us/album/havers/6807993788?i=6807993804",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/55/74/b6/5574b666-70df-dcc2-1b40-bf3777d5544e/199316749908_cover.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/e9/64/70/e964709e-39d9-66b3-1a96-01e19a0ec992/mzaf_14412591662732272829.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "6807993797",
+          "attributes": {
+            "name": "Loyal, Pt. 2",
+            "artistName": "Michigan Meech & Baby Smoove",
+            "url": "https://music.apple.com/us/album/loyal-pt-2/6807993788?i=6807993797",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/55/74/b6/5574b666-70df-dcc2-1b40-bf3777d5544e/199316749908_cover.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/08/cd/9b/08cd9bf1-eebb-a30c-7970-7261c54d6a2f/mzaf_7530274446535481939.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "6807993794",
+          "attributes": {
+            "name": "Crack Seals",
+            "artistName": "Michigan Meech & Baby Smoove",
+            "url": "https://music.apple.com/us/album/crack-seals/6807993788?i=6807993794",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/55/74/b6/5574b666-70df-dcc2-1b40-bf3777d5544e/199316749908_cover.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/74/8d/8a/748d8aac-6d4e-b9b0-d8c2-780921f8fe02/mzaf_7286795026341875394.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "6775901755",
+          "attributes": {
+            "name": "CHANGE YOUR MIND",
+            "artistName": "Lancey Foux",
+            "url": "https://music.apple.com/us/album/change-your-mind/6775901520?i=6775901755",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a6/f2/a8/a6f2a88d-eb8c-cac1-d4c5-66e8d9842d01/196873845333.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/18/91/15/18911588-361b-3739-0be2-4cb160427352/mzaf_15020436895361223951.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "6775901758",
+          "attributes": {
+            "name": "NAKED ON A YACHT",
+            "artistName": "Lancey Foux",
+            "url": "https://music.apple.com/us/album/naked-on-a-yacht/6775901520?i=6775901758",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a6/f2/a8/a6f2a88d-eb8c-cac1-d4c5-66e8d9842d01/196873845333.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/0e/55/f7/0e55f714-7f11-c86e-18f5-9a20877b6849/mzaf_5303263310424284493.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "6775901924",
+          "attributes": {
+            "name": "MISS THE NIGHT",
+            "artistName": "Lancey Foux",
+            "url": "https://music.apple.com/us/album/miss-the-night/6775901520?i=6775901924",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a6/f2/a8/a6f2a88d-eb8c-cac1-d4c5-66e8d9842d01/196873845333.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/64/98/36/64983688-0c03-ed0a-4d8f-13dd89e6c9d6/mzaf_14468547855002053011.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "6803230850",
+          "attributes": {
+            "name": "Spiteful",
+            "artistName": "PARTYNEXTDOOR",
+            "url": "https://music.apple.com/us/album/spiteful/6803230832?i=6803230850",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/27/bb/59/27bb5963-b73c-efc1-04c2-c89f43f7fba0/808391400276.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/93/40/84/9340846a-1585-8dda-b226-1383ad83f477/mzaf_16914917835572607164.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "6803230848",
+          "attributes": {
+            "name": "Temptations",
+            "artistName": "PARTYNEXTDOOR",
+            "url": "https://music.apple.com/us/album/temptations/6803230832?i=6803230848",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/27/bb/59/27bb5963-b73c-efc1-04c2-c89f43f7fba0/808391400276.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/b6/cc/b0/b6ccb0cf-1826-a56c-a862-03a698ca482d/mzaf_17165822974352107111.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "6769551479",
+          "attributes": {
+            "name": "White Bone",
+            "artistName": "Drake",
+            "url": "https://music.apple.com/us/album/white-bone/6769551464?i=6769551479",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/c4/3b/89/c43b8964-a24e-b396-bd65-e5b45cabe039/26UMGIM63616.rgb.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/ea/9a/b6/ea9ab652-186c-b1e7-6416-2c81c0e36198/mzaf_13281330764190242351.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "6769557054",
+          "attributes": {
+            "name": "Outside Tweaking",
+            "artistName": "Drake & Stunna Sandy",
+            "url": "https://music.apple.com/us/album/outside-tweaking/6769556940?i=6769557054",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/25/c0/e6/25c0e60b-5e99-58b2-6a52-821602141cce/26UMGIM63615.rgb.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/f7/ad/6e/f7ad6e88-7a7a-3a0f-223e-2d10f170208d/mzaf_9924863930763395565.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1676397934",
+          "attributes": {
+            "name": "The Medium",
+            "artistName": "Navy Blue",
+            "url": "https://music.apple.com/us/album/the-medium/1676397933?i=1676397934",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/89/11/c3/8911c383-bcce-49d8-6481-d1895c92f748/23UMGIM16781.rgb.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/5a/68/1f/5a681f46-39e7-12dd-cc5e-0a89018e848c/mzaf_9636882603519421366.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1546826150",
+          "attributes": {
+            "name": "Moment Hung",
+            "artistName": "Navy Blue",
+            "url": "https://music.apple.com/us/album/moment-hung/1546825984?i=1546826150",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ae/51/84/ae5184fe-92e7-bc8b-4c5b-acea4e72e143/artwork.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/c7/eb/98/c7eb986c-b417-f082-e89f-23c5a100e297/mzaf_15433560244237366588.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1758801448",
+          "attributes": {
+            "name": "Say The Word",
+            "artistName": "Navy Blue",
+            "url": "https://music.apple.com/us/album/say-the-word/1758801164?i=1758801448",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/2f/b8/a3/2fb8a371-4928-1c70-eb46-74f55a4341db/193436392716_MIAfrontcover.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/9a/76/84/9a7684e9-af77-2a06-9a99-eb0ed144195a/mzaf_2246700915867382891.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1706552460",
+          "attributes": {
+            "name": "Heat Check",
+            "artistName": "Earl Sweatshirt & The Alchemist",
+            "url": "https://music.apple.com/us/album/heat-check/1706552054?i=1706552460",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/e7/96/56/e79656b4-421f-0b29-b6ba-3989cc6c33dc/093624849650.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/49/c9/2a/49c92a8d-018b-6784-2d32-ee6614c9205a/mzaf_4164480588715845083.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "6815453544",
+          "attributes": {
+            "name": "Organic Love",
+            "artistName": "Larry June & Cardo Got Wings",
+            "url": "https://music.apple.com/us/album/organic-love/6815453528?i=6815453544",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/73/78/0f/73780fdf-9cd2-7a1d-c6ec-e28794f78afc/195334371435_cover.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/52/af/5b/52af5b3c-313c-238c-06e7-67c66cd74423/mzaf_4005846591899530419.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "6813785625",
+          "attributes": {
+            "name": "SHE A KEEPER",
+            "artistName": "10kdunkin",
+            "url": "https://music.apple.com/us/album/she-a-keeper/6813785622?i=6813785625",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/96/fb/34/96fb3461-b359-75ca-35af-99d4e8fbd106/artwork.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/51/65/af/5165afe0-1037-fa08-5e40-f5273af255dd/mzaf_5577601728487821844.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "6813785627",
+          "attributes": {
+            "name": "HANDS ON ME",
+            "artistName": "10kdunkin",
+            "url": "https://music.apple.com/us/album/hands-on-me/6813785622?i=6813785627",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/96/fb/34/96fb3461-b359-75ca-35af-99d4e8fbd106/artwork.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/68/f4/c9/68f4c908-c0a6-c4a2-f73f-02d38521e350/mzaf_8156552156975485379.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "6813785629",
+          "attributes": {
+            "name": "I KANT HELP",
+            "artistName": "10kdunkin",
+            "url": "https://music.apple.com/us/album/i-kant-help/6813785622?i=6813785629",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/96/fb/34/96fb3461-b359-75ca-35af-99d4e8fbd106/artwork.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/f3/db/fe/f3dbfe27-65d4-ab0b-cfe7-5dd285757eab/mzaf_18010871293408443455.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "6813785626",
+          "attributes": {
+            "name": "PICK UP DA PHONE",
+            "artistName": "10kdunkin",
+            "url": "https://music.apple.com/us/album/pick-up-da-phone/6813785622?i=6813785626",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/96/fb/34/96fb3461-b359-75ca-35af-99d4e8fbd106/artwork.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/2c/67/89/2c678961-4fde-bfba-f525-d34988e814de/mzaf_6826336377180872924.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "6813171244",
+          "attributes": {
+            "name": "Nothing",
+            "artistName": "Babyface Ray",
+            "url": "https://music.apple.com/us/album/nothing/6813171243?i=6813171244",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e9/8a/38/e98a3842-4daf-16fb-6b11-4066228658de/199316780833_cover.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/a0/82/a4/a082a41c-aba2-27ae-edfa-e4938fae62f7/mzaf_9944059971859209410.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "6787059111",
+          "attributes": {
+            "name": "NO DUBS / DEALING WITH LONELINESS",
+            "artistName": "Nosaint",
+            "url": "https://music.apple.com/us/album/no-dubs-dealing-with-loneliness/6787059098?i=6787059111",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/97/66/a3/9766a315-56fa-fd07-f5a9-8566eb7f911d/artwork.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/58/fd/74/58fd7460-50a7-7155-adef-2827e75707e9/mzaf_1564450694963717882.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "6814660228",
+          "attributes": {
+            "name": "SO GOOD",
+            "artistName": "Shay Lia & KAYTRANADA",
+            "url": "https://music.apple.com/us/album/so-good/6814660210?i=6814660228",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e3/68/42/e3684243-e540-2db9-5c91-2cec3ce450db/196874806098.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/4c/04/32/4c04326f-4d0d-81af-16f4-8bf491dacaf4/mzaf_5849251359892228377.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1854016609",
+          "attributes": {
+            "name": "redo",
+            "artistName": "threetwenty",
+            "url": "https://music.apple.com/us/album/redo/1854016599?i=1854016609",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/4c/97/fd/4c97fd1d-3286-7b1c-e2dc-4b4c3d2e7320/199826509016.png/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/70/12/6e/70126e78-5b2d-dacd-6869-6413a88171c7/mzaf_7656489362197839334.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "6799814017",
+          "attributes": {
+            "name": "Sentimental Love",
+            "artistName": "Cleo Sol",
+            "url": "https://music.apple.com/us/album/sentimental-love/6799813734?i=6799814017",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/42/4b/08/424b084b-8779-45f7-7cad-602926bbdb82/859743823069_cover.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/0c/86/24/0c86247a-38df-ad3a-d9c7-4acc618ef600/mzaf_4729920566581434057.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1849120251",
+          "attributes": {
+            "name": "Lost In U",
+            "artistName": "Grimm Lynn",
+            "url": "https://music.apple.com/us/album/lost-in-u/1849120246?i=1849120251",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b5/3d/f0/b53df0bd-eec4-8b47-c41e-63dc05bdc23f/925025.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/df/72/8d/df728d7f-0331-d493-cec8-13ca7feeecfb/mzaf_12969838199896441531.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1805175718",
+          "attributes": {
+            "name": "Idea 5 (Call My Name) [feat. LULU.]",
+            "artistName": "Kokoroko",
+            "url": "https://music.apple.com/us/album/idea-5-call-my-name-feat-lulu/1805175466?i=1805175718",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/eb/e0/64/ebe064c9-513b-b546-9e91-f34d17f88b3c/5034644578637.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/2d/ca/81/2dca8100-2c8e-65c3-b9f4-075d24664673/mzaf_9305855211742925143.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "6776865132",
+          "attributes": {
+            "name": "Normal",
+            "artistName": "Duwap Kaine",
+            "url": "https://music.apple.com/us/album/normal/6776864710?i=6776865132",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/24/db/a6/24dba62d-ee7d-ade3-59ab-5cb2ec38f339/823000745296.png/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/49/76/5e/49765e6c-c7ca-c462-c43d-f95a6c7c0c80/mzaf_11221324922159891269.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1872705172",
+          "attributes": {
+            "name": "PASSING BY",
+            "artistName": "Glokk40Spaz",
+            "url": "https://music.apple.com/us/album/passing-by/1872704908?i=1872705172",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/22/c8/bc/22c8bc22-2553-c5c4-80cf-769e8bd7ff51/971840.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/5c/61/d7/5c61d7d8-7058-734b-98ac-4027310ed98c/mzaf_13263599394323821797.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "6789741666",
+          "attributes": {
+            "name": "DO DA MOST",
+            "artistName": "10kdunkin",
+            "url": "https://music.apple.com/us/album/do-da-most/6789741665?i=6789741666",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/1c/88/5e/1c885e6f-d6bc-df8f-6594-bbb2946ffd04/artwork.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/d9/7b/02/d97b02f7-906b-ef2d-e918-970d1cb27b25/mzaf_629400584944725056.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1884201360",
+          "attributes": {
+            "name": "Eating Steaks",
+            "artistName": "Elcamino & Black Soprano Family",
+            "url": "https://music.apple.com/us/album/eating-steaks/1884200947?i=1884201360",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/73/f6/57/73f657a1-b45a-770b-4fab-1c1664a27aa4/820200648372.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/ca/9b/21/ca9b21b9-e31a-d9d6-a5fc-c30413470305/mzaf_10902613275254869020.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "6781888296",
+          "attributes": {
+            "name": "Free Flight",
+            "artistName": "MexikoDro",
+            "url": "https://music.apple.com/us/album/free-flight/6781887883?i=6781888296",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/05/ba/bd/05babd45-094e-0d4c-3e65-f21123d66bbc/26UMGIM78952.rgb.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/ed/2b/f2/ed2bf232-307f-4866-71a4-b24b02ef419c/mzaf_7416761133478695741.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1614567712",
+          "attributes": {
+            "name": "Kidding Me",
+            "artistName": "Migos",
+            "url": "https://music.apple.com/us/album/kidding-me/1614567020?i=1614567712",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/db/b4/dd/dbb4dd9b-d094-3cbf-e5e9-1378c773edf5/22UMGIM26604.rgb.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/4f/fe/2e/4ffe2e24-757e-1d32-e528-1b089ca96471/mzaf_16122186554322041739.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1854037613",
+          "attributes": {
+            "name": "Parisian Nights (feat. KNDRX)",
+            "artistName": "Conway the Machine",
+            "url": "https://music.apple.com/us/album/parisian-nights-feat-kndrx/1854037601?i=1854037613",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a6/a3/97/a6a39733-baeb-12d1-f30f-dc8727d0411b/8721416869105.png/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/46/eb/c9/46ebc914-04e6-cb78-b64c-c7845f7de7cf/mzaf_10146347132535921567.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1632524794",
+          "attributes": {
+            "name": "Use It",
+            "artistName": "Oscar Jerome",
+            "url": "https://music.apple.com/us/album/use-it/1632523766?i=1632524794",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/05/cb/39/05cb3930-1c3d-c90d-a401-219bb53cd2ec/196626898258.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/bc/2d/18/bc2d18a3-25b7-9a3f-4b2b-ce8d6618b23d/mzaf_13558942003936712813.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1841624278",
+          "attributes": {
+            "name": "THE FALL (feat. Kiefer & Braxton Cook)",
+            "artistName": "Planet Giza",
+            "url": "https://music.apple.com/us/album/the-fall-feat-kiefer-braxton-cook/1841624265?i=1841624278",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/df/4b/ee/df4beede-b01b-e2a0-965f-02edaa3ef4df/199538754780.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/48/60/77/486077d3-6ca5-8533-bed9-512339b6547a/mzaf_3805653214023495381.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1894489162",
+          "attributes": {
+            "name": "anywhere, anytime",
+            "artistName": "Nolais",
+            "url": "https://music.apple.com/us/album/anywhere-anytime/1894489161?i=1894489162",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/53/7f/cb/537fcb94-5d51-575c-a6aa-b1f8cae482c7/artwork.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/c9/d3/02/c9d302cc-ffa5-de1b-0518-a880f333f353/mzaf_1587266169229808026.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1802736613",
+          "attributes": {
+            "name": "Bullet",
+            "artistName": "Loaded Honey",
+            "url": "https://music.apple.com/us/album/bullet/1802736315?i=1802736613",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/6d/67/e6/6d67e6b2-4bb2-af3f-480a-a00ad0b9bffa/195081562940.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/0e/a2/0b/0ea20bb6-2f5a-ca03-1cbd-7fc55ffe3f48/mzaf_11460812620128845225.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "6766913028",
+          "attributes": {
+            "name": "Slap Em W Da Fye (feat. DJ BANNED)",
+            "artistName": "Slump Audios, 10kdunkin & Peso20k",
+            "url": "https://music.apple.com/us/album/slap-em-w-da-fye-feat-dj-banned/6766913025?i=6766913028",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/32/38/33/32383387-90ff-e1ea-e1df-5d794762d984/1072559.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/bc/0a/82/bc0a8255-3a87-8a4d-d118-23ae37a4981e/mzaf_17729695805057983777.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1794674296",
+          "attributes": {
+            "name": "CheatCode",
+            "artistName": "Mari",
+            "url": "https://music.apple.com/us/album/cheatcode/1794674295?i=1794674296",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/92/d7/ed/92d7eda3-0545-962b-e709-7fcde7424924/199041795768-copy-069d200e.png/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/6e/91/0e/6e910e84-00bb-b6f6-acae-5e83fb97f406/mzaf_11470926902447803453.plus.aac.p.m4a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1707851317",
+          "attributes": {
+            "name": "Porsche Music",
+            "artistName": "Jeezy",
+            "url": "https://music.apple.com/us/album/porsche-music/1707851303?i=1707851317",
+            "artwork": {
+              "url": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/ca/3d/ea/ca3dea91-d274-fbbe-e2d2-05c65476cdf9/193436200998_Grams.jpg/600x600bb.jpg",
+              "width": 600,
+              "height": 600
+            },
+            "previews": [
+              {
+                "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/3b/01/bf/3b01bfb3-b88f-dc2e-a5b2-f969b6135395/mzaf_13260156528804093225.plus.aac.p.m4a"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
