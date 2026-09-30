@@ -91,16 +91,16 @@ const MobileMenu = ({
                   href={href}
                   onClick={toggleMenu}
                   aria-current={active ? "page" : undefined}
-                  className={`flex flex-wrap items-baseline gap-x-1 min-w-0 tracking-[0.12em] uppercase font-anonymous text-2xl sm:text-4xl transition-colors duration-200 ${
+                  className={`inline-flex flex-nowrap items-baseline whitespace-nowrap uppercase font-['Anonymous_Pro_Minus'] text-2xl sm:text-4xl transition-colors duration-200 ${
                     active
                       ? "text-black/80"
                       : "text-black/25 hover:text-black/60"
                   }`}
                 >
-                  <span className="font-cylburn text-5xl sm:text-7xl leading-[0.9] block">
+                  <span className="font-cylburn text-4xl sm:text-6xl leading-none tracking-normal shrink-0">
                     {letter}
                   </span>
-                  <span className="text-lg sm:text-2xl min-w-0">{rest}</span>
+                  <span className="text-lg sm:text-2xl ml-2 tracking-[0.12em]">{rest}</span>
                 </Link>
               </li>
             );
