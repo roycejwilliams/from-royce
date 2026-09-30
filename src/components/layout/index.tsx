@@ -10,7 +10,7 @@ export default function Layout({ children, showNav = true }: LayoutProps) {
   return (
     <>
       {showNav && <Nav />}
-      {children}
+      <div id="page-content">{children}</div>
     </>
   );
 }
