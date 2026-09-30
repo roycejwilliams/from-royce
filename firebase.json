@@ -24,5 +24,8 @@
         "function": "nextApp"
       }
     ]
+  },
+  "storage": {
+    "rules": "storage.rules"
   }
 }
