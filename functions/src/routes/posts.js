@@ -1,17 +1,20 @@
 const express = require("express");
 const router = express.Router();
 const pool = require("../db/db");
-const { toSlug } = require("../lib/slug");
+const { insertWithStableSlug, validateTitle } = require("../lib/slug");
 
 router.post("/", async (req, res) => {
   try {
     const { title, content, image } = req.body;
-    const newPost = await pool.query(
+    validateTitle(title, 500);
+    const newPost = await insertWithStableSlug(title, (slug) => pool.query(
       "INSERT INTO post (post_title, post_content, post_image, slug) VALUES($1, $2, $3, $4) RETURNING *",
-      [title, content, image || null, toSlug(title)]
-    );
+      [title, content, image || null, slug]
+    ));
     res.json(newPost.rows[0]);
   } catch (err) {
+    if (err.status === 400) return res.status(400).json({ message: err.message });
+    if (err.code === "23505") return res.status(409).json({ message: "Post URL already exists" });
     console.error("POST /api/posts error:", err);
     res.status(500).send("Server error");
   }
@@ -68,12 +71,14 @@ router.put("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const { title, content, image } = req.body;
+    validateTitle(title, 500);
     await pool.query(
-      "UPDATE post SET post_title = $1, post_content = $2, post_image = $3, slug = $4 WHERE post_id = $5",
-      [title, content, image || null, toSlug(title), id]
+      "UPDATE post SET post_title = $1, post_content = $2, post_image = $3 WHERE post_id = $4",
+      [title, content, image || null, id]
     );
     res.json("Post updated");
   } catch (err) {
+    if (err.status === 400) return res.status(400).json({ message: err.message });
     console.error("PUT /api/posts/:id error:", err);
     res.status(500).send("Server error");
   }
