@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "queries": "node scripts/queries.js",
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint src firebase.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "node functions/scripts/test-calendar-slugs.cjs && node tests/detail-data.cjs && node tests/project-serialization.cjs && node tests/sign-in-persistence.cjs"
   },
   "overrides": {
     "picomatch": "^4.0.2",
