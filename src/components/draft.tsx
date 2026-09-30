@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Send, Aperture, CircleCheckBig, CircleSlash } from "lucide-react";
 import { storage } from "../../firebase";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { uploadImageForDraft } from "../lib/upload-image";
 import Upload from "./uploadImage";
 import Image from "next/image";
 import { useCreatePost } from "../hooks/api";
@@ -12,6 +12,9 @@ interface FileExtended extends File {
 
 const Draft: React.FC = () => {
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const submittingRef = useRef(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [uploadError, setUploadError] = useState("");
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [textArea, setTextArea] = useState("");
   const [title, setTitle] = useState("");
@@ -50,6 +53,7 @@ const Draft: React.FC = () => {
   };
 
   const handleFileUpload = (files: FileExtended[]) => {
+    if (submittingRef.current) return;
     if (files.length > 0) {
       setImageUrl(files[0].url ?? null);
       setUploadedFile(files[0]);
@@ -60,18 +64,24 @@ const Draft: React.FC = () => {
   };
 
   const handleSubmit = async () => {
+    if (submittingRef.current) return;
     if (!title || !textArea) return;
+
+    submittingRef.current = true;
+    setSubmitting(true);
+    setUploadError("");
 
     let finalImageUrl = imageUrl;
 
     if (uploadedFile) {
-      if (!storage) return;
-      const imageRef = ref(storage, `posts/${uploadedFile.name}-${Date.now()}`);
       try {
-        const snapshot = await uploadBytes(imageRef, uploadedFile);
-        finalImageUrl = await getDownloadURL(snapshot.ref);
+        finalImageUrl = await uploadImageForDraft(storage, "posts", uploadedFile);
         setImageUrl(finalImageUrl);
+        setUploadedFile(null);
       } catch {
+        setUploadError("Image upload failed. Please try again.");
+        submittingRef.current = false;
+        setSubmitting(false);
         return;
       }
     }
@@ -79,6 +89,7 @@ const Draft: React.FC = () => {
     createPost(
       { title, content: textArea, image: finalImageUrl },
       {
+        onSettled: () => { submittingRef.current = false; setSubmitting(false); },
         onSuccess: () => {
           setTitle("");
           setTextArea("");
@@ -123,8 +134,9 @@ const Draft: React.FC = () => {
           </div>
         )}
 
+        {uploadError && <p role="alert" className="font-anonymous text-xs text-red-700">{uploadError}</p>}
         {/* Form */}
-        {isPending ? (
+        {(isPending || submitting) ? (
           <div className="flex items-center gap-3">
             <span className="font-anonymous uppercase text-[8px] tracking-[0.35em] text-black/30 animate-pulse">
               Publishing...
@@ -188,7 +200,7 @@ const Draft: React.FC = () => {
 
               <button
                 type="submit"
-                disabled={isPending}
+                disabled={isPending || submitting}
                 className="font-anonymous uppercase text-[8px] tracking-[0.25em] px-5 py-2.5 border border-black/15 rounded-full text-black/50 hover:text-black/85 hover:border-black/35 transition-all duration-300 cursor-pointer flex items-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 Publish <Send className="w-3 h-3" />
