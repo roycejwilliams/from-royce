@@ -1,34 +1,12 @@
 import { auth } from "../../firebase";
-import { format, parseISO } from "date-fns";
+import { formatPost } from "./post-format";
+export { formatPost, toSlug } from "./post-format";
 import type { BlogPost } from "@/types";
 
 export const BASE_URL =
   process.env.NODE_ENV === "development"
     ? "http://localhost:5002"
     : "";
-
-export function toSlug(title: string): string {
-  return title
-    .toLowerCase()
-    .replace(/[^\w\s-]/g, "")
-    .replace(/\s+/g, "-")
-    .replace(/-+/g, "-")
-    .trim();
-}
-
-export function formatPost(p: Record<string, unknown>): BlogPost {
-  const post = p as BlogPost;
-  return {
-    ...post,
-    formatted_date: post.post_date
-      ? format(parseISO(post.post_date.slice(0, 10)), "MM/dd/yy")
-      : "-",
-    formatted_time: post.post_time
-      ? format(parseISO(`1970-01-01T${post.post_time}`), "hh:mm a")
-      : "-",
-    slug: (post.slug as string) || toSlug(post.post_title),
-  };
-}
 
 export async function getAllPosts(): Promise<BlogPost[]> {
   const res = await fetch(`${BASE_URL}/api/posts`);
