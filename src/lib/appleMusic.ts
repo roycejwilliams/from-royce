@@ -27,7 +27,6 @@ export type AppleMusicPlaylist = {
 };
 
 export const PLAYLIST_ID = "pl.u-mJy88R0CzGyjKyd";
-const PLAYLIST_URL = "https://music.apple.com/us/playlist/intuition/pl.u-mJy88R0CzGyjKyd";
 
 export async function fetchPlaylist(id: string): Promise<{ playlist: AppleMusicPlaylist; snapshot: boolean }> {
   const res = await fetch(`${BASE_URL}/api/apple-music/playlist/${encodeURIComponent(id)}`);
