@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useRouter } from "next/router";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -18,8 +18,35 @@ const MobileMenu = ({
   toggleMenu: () => void;
 }) => {
   const menuRef = useRef<HTMLDivElement | null>(null);
+  const toggleRef = useRef<HTMLButtonElement | null>(null);
   const linksRef = useRef<HTMLUListElement | null>(null);
   const router = useRouter();
+  const toggleMenuRef = useRef(toggleMenu);
+  toggleMenuRef.current = toggleMenu;
+
+  useEffect(() => {
+    if (!menu) return;
+    const background = document.querySelector<HTMLElement>("#page-content");
+    const wasInert = background?.inert ?? false;
+    const frame = requestAnimationFrame(() => linksRef.current?.querySelector<HTMLAnchorElement>("a")?.focus());
+    const keydown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") { event.preventDefault(); toggleMenuRef.current(); return; }
+      if (event.key !== "Tab") return;
+      const focusable = [toggleRef.current, ...Array.from(menuRef.current?.querySelectorAll<HTMLElement>("a,button") ?? [])].filter(Boolean) as HTMLElement[];
+      const first = focusable[0]; const last = focusable[focusable.length - 1];
+      if (!focusable.includes(document.activeElement as HTMLElement)) { event.preventDefault(); (event.shiftKey ? last : first)?.focus(); return; }
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+    };
+    document.addEventListener("keydown", keydown);
+    if (background && !background.contains(menuRef.current)) background.inert = true;
+    return () => {
+      cancelAnimationFrame(frame);
+      document.removeEventListener("keydown", keydown);
+      if (background) background.inert = wasInert;
+      toggleRef.current?.focus();
+    };
+  }, [menu]);
 
   const isActive = (href: string) => router.pathname.startsWith(href);
 
@@ -59,6 +86,7 @@ const MobileMenu = ({
     <>
       {/* Toggle button */}
       <button
+        ref={toggleRef}
         onClick={toggleMenu}
         className="min-w-8 min-h-8 xl:hidden relative z-50 flex justify-center items-center cursor-pointer"
         aria-label={menu ? "Close menu" : "Open menu"}
@@ -79,6 +107,7 @@ const MobileMenu = ({
         ref={menuRef}
         id="mobile-navigation"
         aria-hidden={!menu}
+        aria-label="Main navigation"
         className="fixed inset-0 z-40 hidden opacity-0 flex-col justify-between bg-[#f0ebe5] px-8 pt-28 pb-16 overflow-y-auto"
       >
         {/* Links */}
