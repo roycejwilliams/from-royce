@@ -29,7 +29,7 @@ async function main() {
     await handlers['put/:id']({params:{id:'1'},body:{title:'A new title',content:'text',descriptor:'text',role:'owner',year:'2026',src:'https://example.test/a.jpg'}},res);
     assert(!/SET\s+slug|,\s*slug\s*=/i.test(queries[1].sql));assert.equal(queries[1].values.at(-1),'1');
   }
-  const api = ts.transpileModule(fs.readFileSync(`${__dirname}/../../src/lib/api.ts`, 'utf8'), {compilerOptions:{module:ts.ModuleKind.CommonJS}}).outputText;
+  const api = ts.transpileModule(fs.readFileSync(`${__dirname}/../../src/lib/post-format.ts`, 'utf8'), {compilerOptions:{module:ts.ModuleKind.CommonJS}}).outputText;
   const exports={};vm.runInNewContext(api, {exports,require:id=>id==='date-fns'?{format,parseISO}:{auth:null},process});
   for (const tz of ['UTC','America/Los_Angeles','Asia/Tokyo']) {
     process.env.TZ=tz;

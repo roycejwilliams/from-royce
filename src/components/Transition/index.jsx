@@ -8,7 +8,7 @@ const variants = {
 
 export default function Transition({ children }) {
   return (
-    <motion.div variants={variants} initial="initial" animate="enter" exit="exit">
+    <motion.div className="route-transition" variants={variants} initial="initial" animate="enter" exit="exit">
       {children}
     </motion.div>
   );

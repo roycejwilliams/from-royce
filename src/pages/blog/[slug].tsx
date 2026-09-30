@@ -3,14 +3,25 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { usePost } from "../../hooks/api";
+import type { GetServerSideProps } from "next";
+import type { BlogPost } from "../../types";
+import { loadBlogDetail } from "../../lib/server/detail-data";
 
-export default function BlogSlugPage() {
+type Props = { post: BlogPost | null; loadError: boolean };
+export const getServerSideProps: GetServerSideProps<Props> = async ({ params, res }) => {
+  const slug = typeof params?.slug === "string" ? params.slug : "";
+  try {
+    const post = await loadBlogDetail(slug);
+    if (!post) return { notFound: true };
+    return { props: { post, loadError: false } };
+  } catch {
+    res.statusCode = 503;
+    res.setHeader("Retry-After", "30");
+    return { props: { post: null, loadError: true } };
+  }
+};
+export default function BlogSlugPage({ post, loadError }: Props) {
   const router = useRouter();
-  const slug = typeof router.query.slug === "string" ? router.query.slug : "";
-
-  const { data: post, isPending, isError } = usePost(slug);
-
   useGSAP(() => {
     if (!post) return;
     gsap.fromTo(
@@ -27,38 +38,11 @@ export default function BlogSlugPage() {
     );
   }, [post]);
 
-  if (!slug || isPending) {
-    return (
-      <div className="min-h-[100svh] bg-[#f0ebe5] flex items-center justify-center">
-        <span className="font-anonymous text-[8px] tracking-[0.35em] uppercase text-black/30 animate-pulse">
-          Loading
-        </span>
-      </div>
-    );
-  }
-
-  if (isError || !post) {
-    return (
-      <div className="min-h-[100svh] bg-[#f0ebe5] font-anonymous relative flex flex-col justify-center items-center overflow-hidden xl:px-24 px-8">
-        <span
-          className="font-cylburn absolute select-none pointer-events-none text-black/[0.04]"
-          style={{ fontSize: "clamp(12rem, 40vw, 52rem)", lineHeight: 1 }}
-        >
-          404
-        </span>
-        <div className="relative z-10 flex flex-col items-center gap-4">
-          <p className="font-anonymous uppercase text-[9px] tracking-[0.35em] text-black/35">
-            Post not found
-          </p>
-          <button
-            onClick={() => router.back()}
-            className="font-anonymous uppercase text-[8px] tracking-[0.25em] px-5 py-2.5 border border-black/15 rounded-full text-black/45 hover:text-black/80 hover:border-black/30 transition-all duration-300 cursor-pointer"
-          >
-            Go back
-          </button>
-        </div>
-      </div>
-    );
+  if (loadError || !post) {
+    return <div className="min-h-[100svh] bg-[#f0ebe5] flex flex-col gap-4 items-center justify-center font-anonymous">
+      <p role="alert" className="text-xs text-black/65">This post is temporarily unavailable.</p>
+      <button onClick={() => router.reload()} className="text-xs underline">Try again</button>
+    </div>;
   }
 
   const {
@@ -75,8 +59,9 @@ export default function BlogSlugPage() {
 
   return (
     <>
+      <noscript><style>{`.route-transition, .show { opacity: 1 !important; transform: none !important; }`}</style></noscript>
       <Head>
-        <title>{post_title} – Royce</title>
+        <title>{`${post_title} - Royce`}</title>
         <meta name="description" content={description} />
         <meta property="og:title" content={`${post_title} by Royce`} />
         <meta property="og:description" content={description} />
