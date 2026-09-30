@@ -4,7 +4,6 @@ import Intro from "../../components/intro";
 import Work from "../../components/work";
 import WorkCon from "../../components/workCon";
 import Grid from "../../components/grid";
-import Photos from "../../components/photoTransition";
 import MusicSection from "../../components/musicSection";
 import Footer from "../../components/footer";
 import { useReveal } from "../../hooks/useReveal";
@@ -33,7 +32,6 @@ const Portfolio = () => {
         <WorkCon />
         <Grid />
         <MusicSection />
-        <Photos />
         <Footer />
       </div>
     </>
