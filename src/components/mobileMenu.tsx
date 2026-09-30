@@ -1,3 +1,4 @@
+import { useReducedMotion } from "../hooks/useReducedMotion";
 import Link from "next/link";
 import { useRef, useEffect } from "react";
 import { useRouter } from "next/router";
@@ -17,6 +18,7 @@ const MobileMenu = ({
   menu: boolean;
   toggleMenu: () => void;
 }) => {
+  const reduced = useReducedMotion();
   const menuRef = useRef<HTMLDivElement | null>(null);
   const toggleRef = useRef<HTMLButtonElement | null>(null);
   const linksRef = useRef<HTMLUListElement | null>(null);
@@ -51,6 +53,11 @@ const MobileMenu = ({
   const isActive = (href: string) => router.pathname.startsWith(href);
 
   useGSAP(() => {
+    if (reduced) {
+      gsap.set(menuRef.current, { opacity: menu ? 1 : 0, display: menu ? "flex" : "none" });
+      gsap.set(linksRef.current?.querySelectorAll("li") ?? [], { opacity: 1, y: 0 });
+      return;
+    }
     if (menu) {
       gsap.to(menuRef.current, {
         opacity: 1,
@@ -80,7 +87,7 @@ const MobileMenu = ({
         },
       });
     }
-  }, [menu]);
+  }, { dependencies: [menu, reduced], revertOnUpdate: true });
 
   return (
     <>
