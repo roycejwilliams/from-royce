@@ -26,12 +26,15 @@ const SOCIALS = [
 ];
 
 const SKILLS = [
-  "UX / UI",
-  "Branding",
+  "UX / UI Design",
+  "Brand Identity",
   "Product Design",
   "Interface Design",
-  "Design Consulting",
-  "App & Web Development",
+  "Design Strategy",
+  "Full-Stack Development",
+  "AI Development",
+  "Voice AI Integration",
+  "E-Commerce Solutions",
 ];
 
 function SocialLinks({ iconSize, gap }: { iconSize: string; gap: string }) {
