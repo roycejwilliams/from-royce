@@ -1,3 +1,4 @@
+import { useReducedMotion } from "../hooks/useReducedMotion";
 import React, { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
@@ -111,6 +112,7 @@ const GRID: { char: string; fade: boolean }[][] = [
 const SCRAMBLE_DURATION = 3.5;
 
 function Intro() {
+  const reduced = useReducedMotion();
   const tableRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
@@ -118,6 +120,11 @@ function Intro() {
 
     const cells = tableRef.current.querySelectorAll<HTMLElement>(".scramble");
 
+    if (reduced) {
+      gsap.set(cells, { y: 0, color: "#1e1b18" });
+      cells.forEach(cell => gsap.set(cell, { opacity: cell.classList.contains("fadeOut") ? 0 : 1 }));
+      return;
+    }
     // All cells start: same muted color, slightly below, invisible
     gsap.set(cells, { opacity: 0, y: 10, color: "#c2bab3" });
 
@@ -170,7 +177,7 @@ function Intro() {
         });
       }
     });
-  }, []);
+  }, { dependencies: [reduced], revertOnUpdate: true });
 
   return (
     <div ref={tableRef} className="reveal w-full relative">
