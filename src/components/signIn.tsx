@@ -1,7 +1,7 @@
 "use client";
-import React, { useContext, useState, type ReactNode } from "react";
+import React, { useContext, useState, useRef, type ReactNode } from "react";
 import { auth } from "../../firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithPersistence } from "../lib/sign-in";
 import Draft from "./draft";
 import { AuthContext } from "../context/AuthContext";
 
@@ -9,18 +9,28 @@ function SignIn({ children }: { children?: ReactNode }) {
   const { user } = useContext(AuthContext);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [remember, setRemember] = useState(false);
+  const submittingRef = useRef(false);
+  const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string>("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (submittingRef.current) return;
+    submittingRef.current = true;
+    setSubmitting(true);
+    setError("");
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      await signInWithPersistence(auth, email, password, remember);
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
       } else {
         setError("An unexpected error occurred.");
       }
+    } finally {
+      submittingRef.current = false;
+      setSubmitting(false);
     }
   };
 
@@ -78,6 +88,8 @@ function SignIn({ children }: { children?: ReactNode }) {
               <input
                 id="remember"
                 type="checkbox"
+                checked={remember}
+                onChange={(e) => setRemember(e.target.checked)}
                 className="w-3 h-3 border border-black/20 rounded-sm bg-transparent accent-black/60"
               />
               <span className="font-anonymous uppercase text-[8px] tracking-[0.2em] text-black/30 group-hover:text-black/50 transition-colors duration-200">
@@ -87,6 +99,8 @@ function SignIn({ children }: { children?: ReactNode }) {
 
             <button
               type="submit"
+              disabled={submitting}
+              aria-busy={submitting}
               className="font-anonymous uppercase text-[8px] tracking-[0.25em] px-5 py-2.5 border border-black/15 rounded-full text-black/50 hover:text-black/85 hover:border-black/35 transition-all duration-300 cursor-pointer"
             >
               Enter
