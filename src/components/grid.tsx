@@ -30,7 +30,7 @@ const SKILLS = [
   "Brand Identity",
   "Product Design",
   "Interface Design",
-  "Design Strategy",
+  "System Design",
   "Full-Stack Development",
   "AI Development",
   "Voice AI Integration",
