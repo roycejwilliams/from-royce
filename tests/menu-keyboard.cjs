@@ -8,7 +8,11 @@ const {chromium} = require('playwright');
  await page.goto(process.env.MENU_TEST_URL || 'http://localhost:3208/portfolio');
  const open=page.getByRole('button',{name:'Open menu',exact:true});
  await open.click();
- await page.waitForFunction(()=>document.activeElement?.textContent==='Home');
+ await page.waitForFunction(()=>document.activeElement?.getAttribute('aria-label')==='Close menu');
+ // Pointer opening does not force a focus ring onto HOME; first Tab enters the links.
+ assert.equal(await page.locator('#mobile-navigation li a').evaluateAll(es=>es.every(e=>!e.matches(':focus-visible'))),true);
+ await page.keyboard.press('Tab');
+ assert.equal(await page.evaluate(()=>document.activeElement.textContent),'Home');
  assert.equal(await page.locator('#page-content').evaluate(e=>e.inert),true);
  for(const text of ['Ethos','Work','Instagram','Github','LinkedIn','Close menu','Home']) {
   await page.keyboard.press('Tab');
@@ -23,7 +27,9 @@ const {chromium} = require('playwright');
  assert.equal(await page.evaluate(()=>document.activeElement.getAttribute('aria-label')),'Open menu');
  assert.equal(await page.locator('#page-content').evaluate(e=>e.inert),false);
  // Scroll-triggered parent render must not reset focused navigation.
- await open.click();await page.waitForFunction(()=>document.activeElement?.textContent==='Home');
+ await open.focus();await page.keyboard.press('Enter');
+ await page.waitForFunction(()=>document.activeElement?.textContent==='Home');
+ assert.equal(await page.evaluate(()=>document.activeElement.matches(':focus-visible')),true);
  await page.keyboard.press('Tab');await page.evaluate(()=>window.dispatchEvent(new Event('scroll')));
  assert.equal(await page.evaluate(()=>document.activeElement.textContent),'Ethos');
  await page.keyboard.press('Escape');
