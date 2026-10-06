@@ -21,6 +21,7 @@ const MobileMenu = ({
   const reduced = useReducedMotion();
   const menuRef = useRef<HTMLDivElement | null>(null);
   const toggleRef = useRef<HTMLButtonElement | null>(null);
+  const openedWithKeyboard = useRef(false);
   const linksRef = useRef<HTMLUListElement | null>(null);
   const router = useRouter();
   const toggleMenuRef = useRef(toggleMenu);
@@ -31,7 +32,12 @@ const MobileMenu = ({
     const toggle = toggleRef.current;
     const background = document.querySelector<HTMLElement>("#page-content");
     const wasInert = background?.inert ?? false;
-    const frame = requestAnimationFrame(() => linksRef.current?.querySelector<HTMLAnchorElement>("a")?.focus());
+    const frame = requestAnimationFrame(() => {
+      const target = openedWithKeyboard.current
+        ? linksRef.current?.querySelector<HTMLAnchorElement>("a")
+        : toggle;
+      target?.focus({ preventScroll: true });
+    });
     const keydown = (event: KeyboardEvent) => {
       if (event.key === "Escape") { event.preventDefault(); toggleMenuRef.current(); return; }
       if (event.key !== "Tab") return;
@@ -95,7 +101,10 @@ const MobileMenu = ({
       {/* Toggle button */}
       <button
         ref={toggleRef}
-        onClick={toggleMenu}
+        onClick={(event) => {
+          openedWithKeyboard.current = event.detail === 0;
+          toggleMenu();
+        }}
         className="min-w-8 min-h-8 xl:hidden relative z-50 flex justify-center items-center cursor-pointer"
         aria-label={menu ? "Close menu" : "Open menu"}
         aria-expanded={menu}
@@ -128,11 +137,7 @@ const MobileMenu = ({
                   href={href}
                   onClick={toggleMenu}
                   aria-current={active ? "page" : undefined}
-                  className={`inline-flex flex-nowrap items-baseline whitespace-nowrap uppercase font-['Anonymous_Pro_Minus'] text-2xl sm:text-4xl transition-colors duration-200 ${
-                    active
-                      ? "text-black/80"
-                      : "text-black/25 hover:text-black/60"
-                  }`}
+                  className="inline-flex flex-nowrap items-baseline whitespace-nowrap uppercase font-['Anonymous_Pro_Minus'] text-2xl sm:text-4xl text-black/80"
                 >
                   <span className="font-cylburn text-4xl sm:text-6xl leading-none tracking-normal shrink-0">
                     {letter}
